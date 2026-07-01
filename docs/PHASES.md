@@ -191,6 +191,33 @@ Token estimates: small file ~500, medium ~2,000, large ~5,000.
 
 ---
 
+## Phase 7: Live Deploy on GitHub Pages ✅
+**Goal**: Get the landing publicly live with a shareable URL, deployed automatically on every push — without waiting on the Vercel account or the PENDING real values.
+**Depends on**: Phase 6 (clean static build).
+**Live URLs**: **https://luisgxz.github.io/nexora/** (ES) · **https://luisgxz.github.io/nexora/en/** (EN).
+**Repo**: https://github.com/LuisGxz/nexora (public — required for free GitHub Pages).
+**Files to read**: `astro.config.mjs`, `src/lib/i18n.ts`, `src/layouts/BaseLayout.astro`, `src/config/site.config.ts`, `src/pages/{robots.txt,sitemap.xml,nexora.vcf}.ts`, Header/LanguageToggle/Contact (internal-link audit).
+**Files to create**:
+- `.github/workflows/deploy.yml` (GitHub Actions → Pages via `withastro/action@v3` + `actions/deploy-pages@v4`; triggers on push to `main` + manual `workflow_dispatch`).
+**Files to modify**:
+- `astro.config.mjs` (`site: 'https://luisgxz.github.io'` + `base: '/nexora'`).
+- `src/lib/i18n.ts` (new `withBase()` helper; base-aware `pathForLocale` + first-visit redirect script).
+- `src/layouts/BaseLayout.astro` (base-prefix favicon, canonical, OG image; imports `withBase`).
+- `src/config/site.config.ts` (base-aware `vcardPath`; `brand.url` → live Pages URL).
+- `src/pages/robots.txt.ts` (base-aware `Sitemap:` reference).
+**Estimated tokens**: ~4,000 (read/audit) + ~1,500 (write).
+**Model recommendation**: Opus (deploy target decision + cross-file base-path correctness on a bilingual site with a client redirect).
+**Acceptance criteria**:
+- [x] Public repo created and pushed; Pages enabled with `build_type: workflow`; Actions deploy succeeds (~39s).
+- [x] Site adapted to the `/nexora/` subpath: `withBase()` centralizes the join Astro does NOT auto-apply to hardcoded `href`/`src`. Every internal link resolves under base — locale routes, favicon, OG, vCard, sitemap, robots, ES→EN redirect.
+- [x] Live verification: `/`, `/en/`, `/favicon.svg`, `/sitemap.xml`, and hashed `_astro/*` CSS+JS all return **200**.
+- [x] SEO stays correct under subpath: canonical + hreflang (es/en/x-default) + OG all emit absolute `https://luisgxz.github.io/nexora/...` URLs; sitemap lists both locale routes with alternates.
+- [x] Degrades gracefully: `withBase()` normalizes `import.meta.env.BASE_URL`, so reverting to a root domain later needs only `base: '/'` + real `site` — no per-link edits.
+
+**Completion notes**: **Decision (sanctioned deviation from the Vercel plan):** deployed on **GitHub Pages** instead of Vercel — owner chose the `luisgxz.github.io/nexora` subpath URL (over the root user-site) so the primary Pages slot stays free. Vercel path (`vercel.json`, README) remains valid and untouched for a future custom-domain launch. **Base-path work was the crux:** a bilingual site with absolute `/`, `/en/`, a client-side first-visit `location.replace('/en/')`, favicon, OG, and vCard links all break under a subpath; solved once via `withBase()` rather than scattering base logic. `pathForLocale` becoming base-aware auto-fixed Header/LanguageToggle/hreflang/sitemap (all route through it). Local build + live curl both confirm correct `/nexora/` prefixes. **Auto-deploy:** every `git push` to `main` rebuilds and redeploys (no manual step). **Still PENDING (deferred to a follow-up session):** real WhatsApp number (`593900000000` placeholder), demo URLs, email, social handles, GA id — landing is live but the WhatsApp CTA points at a placeholder number until these are filled in `src/config/site.config.ts`. **Phases 0–7 complete; site is publicly live.**
+
+---
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.
