@@ -1,0 +1,32 @@
+# build output
+dist/
+.output/
+.vercel/
+
+# astro
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment
+.env
+.env.production
+.env.*.local
+
+# editor / os
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# internal / out-of-scope (not part of the landing)
+docs/nexora-documento-administrativo.docx
+docs/turnia-saas-reservas-plan.md

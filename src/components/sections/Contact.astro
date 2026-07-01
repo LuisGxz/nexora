@@ -1,0 +1,90 @@
+---
+/**
+ * Contact (section 09) — the conversion close, on a dark band.
+ *
+ * What: the headline + lead, the primary WhatsApp button, the quote-form island,
+ * the vCard download, and the contact facts (location / email / products). Why
+ * two on-ramps: a one-tap prefilled WhatsApp chat for high-intent leads, and the
+ * form for those who want to say more first — both land in WhatsApp, no server.
+ *
+ * Number/email/paths come from `site.config.ts` (single source); the raw number
+ * is never rendered as scrapable text — only inside the `wa.me` href.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import { brand, whatsappNumber, vcardPath } from '../../config/site.config';
+import { waLink } from '../../lib/whatsapp';
+import QuoteForm from '../QuoteForm.tsx';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { contact, about, ui } = content;
+
+const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
+---
+
+<section id="contacto" class="bg-navy-900 text-text-on-dark">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-9 md:px-6 lg:grid-cols-2">
+    <div class="flex flex-col gap-5">
+      <h2 class="font-display text-h1 text-text-on-dark">{contact.heading}</h2>
+      <p class="max-w-prose text-body-lg text-text-muted-dark">{contact.subheading}</p>
+
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-cta="whatsapp"
+        data-analytics-source="contact"
+        class="inline-flex items-center justify-center gap-2 rounded-lg bg-whatsapp px-5 py-4 text-h4 font-semibold text-navy-900 transition-colors hover:brightness-95"
+      >
+        <Icon name="ui-whatsapp" class="h-6 w-6" />
+        {contact.whatsappCtaLabel}
+      </a>
+
+      <a
+        href={vcardPath}
+        download
+        class="inline-flex items-center gap-2 self-start text-body font-semibold text-cyan transition-colors hover:text-blue-400"
+      >
+        <Icon name="ui-check" class="h-5 w-5" />
+        {contact.vcardLabel}
+      </a>
+
+      <dl class="mt-2 grid grid-cols-2 gap-5 border-t border-border-dark pt-6">
+        <div class="flex flex-col gap-1">
+          <dt class="text-caption font-semibold uppercase tracking-widest text-text-muted-dark">
+            {brand.tagline}
+          </dt>
+          <dd class="text-body text-text-muted-dark">{brand.location}</dd>
+        </div>
+        <div class="flex flex-col gap-1">
+          <dt class="text-caption font-semibold uppercase tracking-widest text-text-muted-dark">Email</dt>
+          <dd class="text-body text-text-muted-dark">
+            <a href={`mailto:${brand.email}`} class="hover:text-cyan">{brand.email}</a>
+          </dd>
+        </div>
+        <div class="col-span-2 flex flex-col gap-1">
+          <dt class="text-caption font-semibold uppercase tracking-widest text-text-muted-dark">
+            {ui.productsLabel}
+          </dt>
+          <dd class="text-body text-text-muted-dark">{about.products.join(' · ')}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="flex flex-col gap-5 rounded-2xl border border-border-dark bg-navy-800 p-6 md:p-7">
+      <p class="font-display text-h4 text-text-on-dark">{contact.form.submitLabel}</p>
+      <QuoteForm
+        client:visible
+        labels={contact.form}
+        template={contact.prefillTemplate}
+        number={whatsappNumber}
+      />
+    </div>
+  </div>
+</section>

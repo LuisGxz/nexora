@@ -1,0 +1,62 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="03 Demos">
+  <defs>
+    <pattern id="ph03" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#EEF2F8"></rect><line x1="0" y1="0" x2="0" y2="10" stroke="#DCE3EE" stroke-width="4"></line>
+    </pattern>
+  </defs>
+  <rect width="390" height="844" fill="#F8FAFC"></rect>
+
+  
+  <rect width="390" height="64" fill="#FFFFFF"></rect>
+  <line x1="0" y1="64" x2="390" y2="64" stroke="#E2E8F0"></line>
+  <g transform="translate(24,21) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="48" y="38" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="700" letter-spacing="1.5">NEXORA</text>
+  <rect x="300" y="18" width="66" height="28" rx="14" fill="#F1F5F9"></rect>
+  <text x="320" y="36" fill="#2563EB" font-size="12" font-weight="600" text-anchor="middle">ES</text>
+  <text x="350" y="36" fill="#94A3B8" font-size="12" font-weight="600" text-anchor="middle">EN</text>
+
+  
+  <text x="24" y="118" fill="#2563EB" font-size="12" font-weight="600" letter-spacing="2">DEMOS EN VIVO</text>
+  <text x="24" y="152" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">Míralo funcionando</text>
+  <text x="24" y="180" fill="#5B6470" font-size="15">Ejemplos reales que puedes abrir y tocar.</text>
+
+  
+  <g>
+    <rect x="24" y="206" width="342" height="190" rx="16" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="222" width="310" height="112" rx="8" fill="url(#ph03)"></rect>
+    <rect x="40" y="222" width="310" height="22" rx="8" fill="#0B1530"></rect>
+    <circle cx="52" cy="233" r="2.4" fill="#5B6470"></circle><circle cx="60" cy="233" r="2.4" fill="#5B6470"></circle><circle cx="68" cy="233" r="2.4" fill="#5B6470"></circle>
+    <text x="195" y="285" fill="#94A3B8" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" text-anchor="middle">preview · barbería</text>
+    <text x="40" y="362" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Barbería — reservas online</text>
+    <text x="40" y="383" fill="#5B6470" font-size="13">Turnos, equipo y recordatorios por WhatsApp.</text>
+    <text x="305" y="383" fill="#2563EB" font-size="13" font-weight="600">Ver demo →</text>
+  </g>
+
+  
+  <g>
+    <rect x="24" y="412" width="342" height="190" rx="16" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="428" width="310" height="112" rx="8" fill="url(#ph03)"></rect>
+    <rect x="40" y="428" width="310" height="22" rx="8" fill="#0B1530"></rect>
+    <circle cx="52" cy="439" r="2.4" fill="#5B6470"></circle><circle cx="60" cy="439" r="2.4" fill="#5B6470"></circle><circle cx="68" cy="439" r="2.4" fill="#5B6470"></circle>
+    <text x="195" y="491" fill="#94A3B8" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="11" text-anchor="middle">preview · restaurante</text>
+    <text x="40" y="568" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Restaurante — menú QR</text>
+    <text x="40" y="589" fill="#5B6470" font-size="13">Carta digital con precios siempre al día.</text>
+    <text x="305" y="589" fill="#2563EB" font-size="13" font-weight="600">Ver demo →</text>
+  </g>
+
+  
+  <g>
+    <rect x="24" y="618" width="342" height="120" rx="16" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="634" width="88" height="88" rx="10" fill="url(#ph03)"></rect>
+    <text x="144" y="672" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Clínica — agenda médica</text>
+    <text x="144" y="694" fill="#5B6470" font-size="13">Pacientes, citas y fichas en un lugar.</text>
+    <text x="144" y="716" fill="#2563EB" font-size="13" font-weight="600">Ver demo →</text>
+  </g>
+
+  <text x="195" y="782" fill="#2563EB" font-size="15" font-weight="600" text-anchor="middle">Ver todos los demos</text>
+</svg>

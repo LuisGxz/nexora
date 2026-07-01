@@ -1,0 +1,65 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="02 Services">
+  <rect width="390" height="844" fill="#F8FAFC"></rect>
+
+  
+  <rect width="390" height="64" fill="#FFFFFF"></rect>
+  <line x1="0" y1="64" x2="390" y2="64" stroke="#E2E8F0"></line>
+  <g transform="translate(24,21) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="48" y="38" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="700" letter-spacing="1.5">NEXORA</text>
+  <rect x="300" y="18" width="66" height="28" rx="14" fill="#F1F5F9"></rect>
+  <text x="320" y="36" fill="#2563EB" font-size="12" font-weight="600" text-anchor="middle">ES</text>
+  <text x="350" y="36" fill="#94A3B8" font-size="12" font-weight="600" text-anchor="middle">EN</text>
+
+  
+  <text x="24" y="118" fill="#2563EB" font-size="12" font-weight="600" letter-spacing="2">SERVICIOS</text>
+  <text x="24" y="152" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">Lo que construimos</text>
+  <text x="24" y="180" fill="#5B6470" font-size="15">Cada servicio resuelve un problema concreto.</text>
+
+  
+  
+  <g>
+    
+    <rect x="24" y="206" width="342" height="92" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="226" width="48" height="48" rx="12" fill="#EFF4FF"></rect>
+    <g transform="translate(52,238)" stroke="#2563EB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="1" width="24" height="20" rx="3"></rect><line x1="0" y1="7" x2="24" y2="7"></line></g>
+    <text x="104" y="244" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Sitios web</text>
+    <text x="104" y="268" fill="#5B6470" font-size="13">&#34;No aparezco en Google ni tengo presencia.&#34;</text>
+
+    
+    <rect x="24" y="306" width="342" height="92" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="326" width="48" height="48" rx="12" fill="#EFF4FF"></rect>
+    <g transform="translate(52,338)" stroke="#2563EB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="9" height="9" rx="1.5"></rect><rect x="15" y="0" width="9" height="9" rx="1.5"></rect><rect x="0" y="15" width="9" height="9" rx="1.5"></rect><path d="M15 15h9v9h-9z"></path></g>
+    <text x="104" y="344" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Menú QR digital</text>
+    <text x="104" y="368" fill="#5B6470" font-size="13">&#34;Reimprimo la carta cada vez que cambio precios.&#34;</text>
+
+    
+    <rect x="24" y="406" width="342" height="92" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="426" width="48" height="48" rx="12" fill="#EFF4FF"></rect>
+    <g transform="translate(52,438)" stroke="#2563EB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="2" width="24" height="20" rx="3"></rect><line x1="0" y1="8" x2="24" y2="8"></line><line x1="7" y1="0" x2="7" y2="4"></line><line x1="17" y1="0" x2="17" y2="4"></line></g>
+    <text x="104" y="444" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Reservas y turnos</text>
+    <text x="104" y="468" fill="#5B6470" font-size="13">&#34;Pierdo citas porque todo es por WhatsApp manual.&#34;</text>
+
+    
+    <rect x="24" y="506" width="342" height="92" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="526" width="48" height="48" rx="12" fill="#EFF4FF"></rect>
+    <g transform="translate(52,538)" stroke="#2563EB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="10" height="10" rx="1.5"></rect><rect x="14" y="0" width="10" height="10" rx="1.5"></rect><rect x="0" y="14" width="10" height="10" rx="1.5"></rect><rect x="14" y="14" width="10" height="10" rx="1.5"></rect></g>
+    <text x="104" y="544" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Catálogo de productos</text>
+    <text x="104" y="568" fill="#5B6470" font-size="13">&#34;Quiero vender sin pagar comisión de apps.&#34;</text>
+
+    
+    <rect x="24" y="606" width="342" height="92" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <rect x="40" y="626" width="48" height="48" rx="12" fill="#0B1530"></rect>
+    <g transform="translate(56,638)" stroke="#22D3EE" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l-4 4 4 4"></path><path d="M10 4l4 4-4 4"></path></g>
+    <text x="104" y="644" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Apps y sistemas a medida</text>
+    <text x="104" y="668" fill="#5B6470" font-size="13">&#34;Mi operación no cabe en una plantilla.&#34;</text>
+  </g>
+
+  
+  <text x="24" y="744" fill="#2563EB" font-size="15" font-weight="600">Ver los 7 servicios  →</text>
+  <text x="24" y="800" fill="#94A3B8" font-size="12">Portafolio · Membresías · y más</text>
+</svg>

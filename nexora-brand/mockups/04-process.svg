@@ -1,0 +1,49 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="04 Process">
+  <rect width="390" height="844" fill="#0B1530"></rect>
+
+  
+  <g transform="translate(24,28) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="48" y="45" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="700" letter-spacing="1.5">NEXORA</text>
+
+  
+  <text x="24" y="118" fill="#22D3EE" font-size="12" font-weight="600" letter-spacing="2">CÓMO TRABAJAMOS</text>
+  <text x="24" y="152" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">Un proceso claro</text>
+  <text x="24" y="180" fill="#94A3B8" font-size="15">Sin sorpresas. Sabes qué pasa en cada paso.</text>
+
+  
+  <line x1="48" y1="252" x2="48" y2="700" stroke="#1B294F" stroke-width="2"></line>
+
+  
+  <circle cx="48" cy="252" r="13" fill="#0B1530" stroke="#2563EB" stroke-width="3"></circle>
+  <text x="48" y="257" fill="#2563EB" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="14" font-weight="700" text-anchor="middle">1</text>
+  <text x="84" y="246" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="19" font-weight="600">Contacto</text>
+  <text x="84" y="270" fill="#94A3B8" font-size="14">Nos escribes por WhatsApp y entendemos tu caso.</text>
+
+  
+  <circle cx="48" cy="392" r="13" fill="#0B1530" stroke="#2563EB" stroke-width="3"></circle>
+  <text x="48" y="397" fill="#2563EB" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="14" font-weight="700" text-anchor="middle">2</text>
+  <text x="84" y="386" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="19" font-weight="600">Propuesta</text>
+  <text x="84" y="410" fill="#94A3B8" font-size="14">Alcance, tiempo y precio cerrado por escrito.</text>
+
+  
+  <circle cx="48" cy="532" r="13" fill="#0B1530" stroke="#2563EB" stroke-width="3"></circle>
+  <text x="48" y="537" fill="#2563EB" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="14" font-weight="700" text-anchor="middle">3</text>
+  <text x="84" y="526" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="19" font-weight="600">Construcción</text>
+  <text x="84" y="550" fill="#94A3B8" font-size="14">Desarrollamos y te mostramos avances reales.</text>
+
+  
+  <circle cx="48" cy="672" r="13" fill="#2563EB"></circle>
+  <path d="M42 672l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="84" y="666" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="19" font-weight="600">Entrega</text>
+  <text x="84" y="690" fill="#94A3B8" font-size="14">Publicamos, te capacitamos y damos soporte.</text>
+
+  
+  <rect x="24" y="744" width="342" height="60" rx="14" fill="#111E3D" stroke="#1B294F"></rect>
+  <text x="44" y="772" fill="#F8FAFC" font-size="14" font-weight="600">Tiempo típico</text>
+  <text x="44" y="792" fill="#94A3B8" font-size="13">De 1 a 3 semanas según el proyecto.</text>
+</svg>

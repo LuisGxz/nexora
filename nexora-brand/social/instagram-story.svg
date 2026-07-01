@@ -1,0 +1,40 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="Instagram story">
+  <defs>
+    <linearGradient id="storyBg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#111E3D"></stop><stop offset="1" stop-color="#0B1530"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#storyBg)"></rect>
+
+  
+  <g stroke="#2563EB" stroke-width="2" opacity="0.35" fill="none">
+    <line x1="160" y1="300" x2="360" y2="220"></line><line x1="360" y1="220" x2="520" y2="380"></line>
+    <line x1="160" y1="300" x2="240" y2="480"></line>
+  </g>
+  <g fill="#22D3EE" opacity="0.5"><circle cx="160" cy="300" r="8"></circle><circle cx="360" cy="220" r="8"></circle><circle cx="520" cy="380" r="8"></circle><circle cx="240" cy="480" r="8"></circle></g>
+
+  
+  <g transform="translate(96,150) scale(0.55)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="172" y="218" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="38" font-weight="700" letter-spacing="6">NEXORA</text>
+
+  
+  <text x="96" y="760" fill="#22D3EE" font-size="32" font-weight="600" letter-spacing="5">NUEVO DEMO EN VIVO</text>
+  <g fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="110" font-weight="700" letter-spacing="-3">
+    <text x="92" y="900">Reservas</text>
+    <text x="92" y="1020">online para</text>
+    <text x="92" y="1140">tu <tspan fill="#2563EB">barbería</tspan></text>
+  </g>
+  <text x="96" y="1240" fill="#94A3B8" font-size="40">Turnos, equipo y recordatorios automáticos.</text>
+
+  
+  <rect x="96" y="1560" width="888" height="128" rx="32" fill="#2563EB"></rect>
+  <text x="540" y="1642" fill="#FFFFFF" font-size="44" font-weight="600" text-anchor="middle">Desliza para ver el demo</text>
+  <g transform="translate(540,1740)" stroke="#F8FAFC" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-22 12l22 -22 22 22"></path><path d="M0 -10v44"></path>
+  </g>
+</svg>

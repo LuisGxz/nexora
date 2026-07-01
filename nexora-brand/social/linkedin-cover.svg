@@ -1,0 +1,28 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="LinkedIn cover banner">
+  <defs>
+    <linearGradient id="liBg" x1="0" y1="0" x2="1" y2="0.6">
+      <stop offset="0" stop-color="#0B1530"></stop><stop offset="1" stop-color="#111E3D"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="1584" height="396" fill="url(#liBg)"></rect>
+  
+  <g stroke="#2563EB" stroke-width="2" opacity="0.45" fill="none">
+    <line x1="1120" y1="110" x2="1300" y2="70"></line><line x1="1300" y1="70" x2="1430" y2="200"></line>
+    <line x1="1120" y1="110" x2="1180" y2="280"></line><line x1="1180" y1="280" x2="1430" y2="200"></line>
+    <line x1="1180" y1="280" x2="1340" y2="330"></line><line x1="1430" y1="200" x2="1500" y2="320"></line>
+  </g>
+  <g fill="#22D3EE" opacity="0.6"><circle cx="1120" cy="110" r="7"></circle><circle cx="1300" cy="70" r="7"></circle><circle cx="1430" cy="200" r="7"></circle><circle cx="1180" cy="280" r="7"></circle><circle cx="1340" cy="330" r="7"></circle><circle cx="1500" cy="320" r="7"></circle></g>
+
+  
+  <g transform="translate(96,118) scale(0.6)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="184" y="178" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="46" font-weight="700" letter-spacing="8">NEXORA</text>
+  <text x="186" y="212" fill="#94A3B8" font-size="17" font-weight="600" letter-spacing="11">SOFTWARE</text>
+
+  <text x="98" y="290" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="34" font-weight="600" letter-spacing="-0.5">Construimos el software que tu negocio necesita.</text>
+  <text x="98" y="330" fill="#94A3B8" font-size="22">Sitios · sistemas · aplicaciones a medida — Guayaquil, Ecuador</text>
+</svg>

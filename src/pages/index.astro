@@ -1,0 +1,64 @@
+---
+/**
+ * Spanish landing route (`/`) — default locale, Ecuador market.
+ *
+ * Composes the chrome (Header/Footer) and static sections 01–06 + the optional
+ * Testimonials block, all driven by the ES content tree. Sections 07–09 (Why
+ * Nexora, FAQ, Contact) and the interactive islands land in Phase 3.
+ *
+ * Auto-detect: the inline head script runs once and bounces a non-Spanish,
+ * first-time visitor to `/en/` — never overriding a stored manual choice.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import Works from '../components/sections/Works.astro';
+import Process from '../components/sections/Process.astro';
+import Niches from '../components/sections/Niches.astro';
+import About from '../components/sections/About.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import WhyNexora from '../components/sections/WhyNexora.astro';
+import Faq from '../components/sections/Faq.tsx';
+import Contact from '../components/sections/Contact.astro';
+import { getContent, firstVisitRedirectScript } from '../lib/i18n';
+import { whatsappNumber } from '../config/site.config';
+import { waLink } from '../lib/whatsapp';
+
+const content = getContent('es');
+const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
+---
+
+<BaseLayout
+  title={content.meta.title}
+  description={content.meta.description}
+  lang="es"
+  path="/"
+  ogAlt={content.meta.ogAlt}
+>
+  <script is:inline set:html={firstVisitRedirectScript()} slot="head" />
+
+  <Header content={content} locale="es" />
+  <main id="contenido" tabindex="-1">
+    <Hero content={content} />
+    <Services content={content} />
+    <Works content={content} />
+    <Process content={content} />
+    <Niches content={content} />
+    <About content={content} />
+    <Testimonials content={content} />
+    <WhyNexora content={content} />
+    <Faq
+      client:visible
+      eyebrow={content.sections.faq.eyebrow}
+      heading={content.sections.faq.heading}
+      items={content.faq}
+      moreLabel={content.ui.faqMoreQuestion}
+      moreCtaLabel={content.contact.whatsappCtaLabel}
+      moreHref={faqMoreHref}
+    />
+    <Contact content={content} />
+  </main>
+  <Footer content={content} />
+</BaseLayout>

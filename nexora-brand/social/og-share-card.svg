@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="Open Graph / share card">
+  <rect width="1200" height="630" fill="#0B1530"></rect>
+  <g stroke="#2563EB" stroke-width="2" opacity="0.4" fill="none">
+    <line x1="860" y1="150" x2="1040" y2="110"></line><line x1="1040" y1="110" x2="1120" y2="280"></line>
+    <line x1="860" y1="150" x2="920" y2="330"></line><line x1="920" y1="330" x2="1120" y2="280"></line>
+    <line x1="920" y1="330" x2="1060" y2="470"></line>
+  </g>
+  <g fill="#22D3EE" opacity="0.6"><circle cx="860" cy="150" r="8"></circle><circle cx="1040" cy="110" r="8"></circle><circle cx="1120" cy="280" r="8"></circle><circle cx="920" cy="330" r="8"></circle><circle cx="1060" cy="470" r="8"></circle></g>
+
+  <g transform="translate(96,90) scale(0.62)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="178" y="160" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="42" font-weight="700" letter-spacing="6">NEXORA</text>
+
+  <g fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="72" font-weight="700" letter-spacing="-2">
+    <text x="92" y="350">Software que tu</text>
+    <text x="92" y="436">negocio <tspan fill="#2563EB">necesita</tspan>.</text>
+  </g>
+  <text x="96" y="510" fill="#94A3B8" font-size="30">Sitios · sistemas · apps a medida — Guayaquil, Ecuador</text>
+  <text x="96" y="560" fill="#22D3EE" font-size="26" font-weight="600" letter-spacing="2">nexora.studio</text>
+</svg>

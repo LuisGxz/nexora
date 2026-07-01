@@ -1,0 +1,43 @@
+---
+/**
+ * Testimonials — optional social proof.
+ *
+ * What: renders a grid of quotes from `testimonials[]`. Why the early return:
+ * per the spec the section must be ABSENT entirely when there are none, so the
+ * page never shows an empty "what clients say" shell. All copy from content.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import SectionEyebrow from '../ui/SectionEyebrow.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { testimonials, sections } = content;
+---
+
+{
+  testimonials.length > 0 && (
+    <section id="testimonios" class="bg-background">
+      <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+        <SectionEyebrow header={sections.testimonials} />
+        <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <li class="flex flex-col gap-4 rounded-xl border border-border bg-surface p-6 shadow-sm">
+              <blockquote class="text-body text-text-primary">“{testimonial.quote}”</blockquote>
+              <div class="mt-auto flex flex-col">
+                <span class="font-display text-body font-semibold text-text-primary">
+                  {testimonial.author}
+                </span>
+                <span class="text-small text-text-muted">{testimonial.business}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

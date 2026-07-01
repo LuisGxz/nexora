@@ -1,0 +1,47 @@
+---
+/**
+ * Process (section 04) — how Nexora works, as a dark vertical timeline.
+ *
+ * What: the section header plus the ordered steps from `process[]`, each a
+ * numbered node + title + description connected by a rail. Why dark: a rhythm
+ * band between the light content sections. The display index comes from the
+ * data (`step`), so re-ordering content re-numbers the timeline automatically.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import SectionEyebrow from '../ui/SectionEyebrow.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { process, sections } = content;
+---
+
+<section id="proceso" class="bg-navy-900 text-text-on-dark">
+  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+    <SectionEyebrow header={sections.process} tone="dark" />
+
+    <ol class="relative flex flex-col gap-6 sm:gap-7">
+      <span
+        class="absolute left-[26px] top-7 bottom-7 w-px bg-border-dark"
+        aria-hidden="true"
+      ></span>
+      {
+        process.map((stepItem) => (
+          <li class="relative flex items-start gap-5">
+            <span class="relative z-10 flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-full border-2 border-blue-600 bg-navy-800 font-display text-h4 font-bold text-blue-400">
+              {stepItem.step}
+            </span>
+            <div class="flex flex-col gap-1 pt-2">
+              <h3 class="font-display text-h4 text-text-on-dark">{stepItem.title}</h3>
+              <p class="text-small text-text-muted-dark">{stepItem.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

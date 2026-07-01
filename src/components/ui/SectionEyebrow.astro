@@ -1,0 +1,42 @@
+---
+/**
+ * SectionEyebrow — the standard heading block atop a titled section.
+ *
+ * What: renders eyebrow label + heading + optional subheading from a
+ * `SectionHeader`, adapting color for light vs dark backgrounds. Why: every
+ * section shares this chrome, so spacing and the eyebrow/heading rhythm stay
+ * consistent and the copy stays centralized in the content tree.
+ *
+ * @prop header - the `SectionHeader` (eyebrow / heading / optional subheading).
+ * @prop tone - 'light' (default) or 'dark' background context.
+ * @prop as - heading element level (default 'h2'; use 'h1' only once per page).
+ * @prop align - text alignment (default 'left').
+ */
+import type { SectionHeader } from '../../content/types';
+
+interface Props {
+  header: SectionHeader;
+  tone?: 'light' | 'dark';
+  as?: 'h1' | 'h2';
+  align?: 'left' | 'center';
+}
+
+const { header, tone = 'light', as: Heading = 'h2', align = 'left' } = Astro.props;
+
+const eyebrowColor = tone === 'dark' ? 'text-cyan' : 'text-blue';
+const headingColor = tone === 'dark' ? 'text-text-on-dark' : 'text-text-primary';
+const subColor = tone === 'dark' ? 'text-text-muted-dark' : 'text-text-muted';
+const alignClass = align === 'center' ? 'items-center text-center' : 'items-start';
+---
+
+<div class:list={['flex flex-col gap-3', alignClass]}>
+  <p class:list={['text-caption font-semibold uppercase tracking-widest', eyebrowColor]}>
+    {header.eyebrow}
+  </p>
+  <Heading class:list={['font-display text-h2', headingColor]}>{header.heading}</Heading>
+  {
+    header.subheading && (
+      <p class:list={['max-w-prose text-body-lg', subColor]}>{header.subheading}</p>
+    )
+  }
+</div>

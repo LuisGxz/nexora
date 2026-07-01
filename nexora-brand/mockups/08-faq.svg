@@ -1,0 +1,51 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="08 FAQ">
+  <rect width="390" height="844" fill="#F8FAFC"></rect>
+
+  
+  <rect width="390" height="64" fill="#FFFFFF"></rect>
+  <line x1="0" y1="64" x2="390" y2="64" stroke="#E2E8F0"></line>
+  <g transform="translate(24,21) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="48" y="38" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="700" letter-spacing="1.5">NEXORA</text>
+
+  
+  <text x="24" y="118" fill="#2563EB" font-size="12" font-weight="600" letter-spacing="2">PREGUNTAS FRECUENTES</text>
+  <text x="24" y="152" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">Lo que sueles preguntar</text>
+
+  
+  <rect x="24" y="186" width="342" height="146" rx="14" fill="#FFFFFF" stroke="#2563EB"></rect>
+  <text x="44" y="220" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="600">¿Cuánto tarda mi proyecto?</text>
+  <g stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"><line x1="330" y1="214" x2="346" y2="214"></line></g>
+  <g fill="#5B6470" font-size="14"><text x="44" y="252">La mayoría se entrega entre 1 y 3 semanas.</text><text x="44" y="276">Te damos una fecha exacta en la propuesta,</text><text x="44" y="300">antes de empezar a construir.</text></g>
+
+  
+  <rect x="24" y="346" width="342" height="56" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+  <text x="44" y="380" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="600">¿El sitio es mío o lo alquilo?</text>
+  <g stroke="#5B6470" stroke-width="2.2" stroke-linecap="round"><line x1="330" y1="374" x2="346" y2="374"></line><line x1="338" y1="366" x2="338" y2="382"></line></g>
+
+  
+  <rect x="24" y="416" width="342" height="56" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+  <text x="44" y="450" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="600">¿Puedo actualizarlo yo mismo?</text>
+  <g stroke="#5B6470" stroke-width="2.2" stroke-linecap="round"><line x1="330" y1="444" x2="346" y2="444"></line><line x1="338" y1="436" x2="338" y2="452"></line></g>
+
+  
+  <rect x="24" y="486" width="342" height="56" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+  <text x="44" y="520" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="600">¿Trabajan con clientes fuera de Ecuador?</text>
+  <g stroke="#5B6470" stroke-width="2.2" stroke-linecap="round"><line x1="330" y1="514" x2="346" y2="514"></line><line x1="338" y1="506" x2="338" y2="522"></line></g>
+
+  
+  <rect x="24" y="556" width="342" height="56" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+  <text x="44" y="590" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="600">¿Cómo son los pagos?</text>
+  <g stroke="#5B6470" stroke-width="2.2" stroke-linecap="round"><line x1="330" y1="584" x2="346" y2="584"></line><line x1="338" y1="576" x2="338" y2="592"></line></g>
+
+  
+  <rect x="24" y="648" width="342" height="120" rx="16" fill="#0B1530"></rect>
+  <text x="44" y="688" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="18" font-weight="600">¿Otra pregunta?</text>
+  <text x="44" y="712" fill="#94A3B8" font-size="14">Respondemos rápido por WhatsApp.</text>
+  <rect x="44" y="724" width="170" height="32" rx="16" fill="#2563EB"></rect>
+  <text x="129" y="745" fill="#FFFFFF" font-size="13" font-weight="600" text-anchor="middle">Escríbenos →</text>
+</svg>

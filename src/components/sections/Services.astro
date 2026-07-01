@@ -1,0 +1,41 @@
+---
+/**
+ * Services (section 02) — what Nexora builds, one card per pain.
+ *
+ * What: the section header plus a responsive grid of service cards, each an
+ * icon chip + title + the pain it removes — all from `services[]`. Why
+ * pain-first copy: speaks to the business owner, not the developer. NO prices.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import SectionEyebrow from '../ui/SectionEyebrow.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { services, sections } = content;
+---
+
+<section id="servicios" class="bg-background">
+  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+    <SectionEyebrow header={sections.services} />
+
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service) => (
+          <li class="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow duration-base ease-standard hover:shadow-md">
+            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue">
+              <Icon name={service.icon} class="h-6 w-6" />
+            </span>
+            <h3 class="font-display text-h4 text-text-primary">{service.title}</h3>
+            <p class="text-small text-text-muted">{service.pain}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

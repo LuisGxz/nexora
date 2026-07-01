@@ -1,0 +1,32 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="Instagram post — service carousel">
+  <rect width="1080" height="1080" fill="#F8FAFC"></rect>
+  <rect x="64" y="64" width="952" height="952" rx="40" fill="#FFFFFF"></rect>
+  <rect x="64" y="64" width="952" height="952" rx="40" fill="none" stroke="#E2E8F0" stroke-width="2"></rect>
+
+  
+  <text x="120" y="190" fill="#2563EB" font-size="28" font-weight="600" letter-spacing="4">SERVICIO 01 / 07</text>
+  <text x="958" y="190" fill="#CBD5E1" font-size="28" font-weight="600" text-anchor="end" font-family="&#39;Space Grotesk&#39;,sans-serif">NEXORA</text>
+
+  
+  <rect x="120" y="250" width="160" height="160" rx="36" fill="#EFF4FF"></rect>
+  <g transform="translate(168,298)" stroke="#2563EB" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="0" y="2" width="64" height="54" rx="8"></rect><line x1="0" y1="18" x2="64" y2="18"></line><path d="M14 34h22M14 44h36"></path>
+  </g>
+
+  <g fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="76" font-weight="700" letter-spacing="-2">
+    <text x="120" y="560">Sitios web que</text>
+    <text x="120" y="648">venden por ti</text>
+  </g>
+  <g fill="#5B6470" font-size="36" font-family="&#39;Inter&#39;,sans-serif">
+    <text x="120" y="740">Rápidos, optimizados y listos para</text>
+    <text x="120" y="790">aparecer en Google.</text>
+  </g>
+
+  
+  <rect x="120" y="846" width="720" height="90" rx="20" fill="#F1F5F9"></rect>
+  <text x="156" y="903" fill="#334155" font-size="32" font-style="italic">&#34;No tengo presencia y nadie me encuentra.&#34;</text>
+
+  
+  <g transform="translate(880,880)" fill="#2563EB"><circle cx="0" cy="11" r="44" opacity="0.1"></circle></g>
+  <path d="M872 891l18 0M884 882l9 9-9 9" stroke="#2563EB" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

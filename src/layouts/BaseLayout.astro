@@ -1,0 +1,124 @@
+---
+/**
+ * BaseLayout — the HTML shell shared by every page.
+ *
+ * Centralizes the document head: charset/viewport, fonts, favicon, the full SEO
+ * layer (localized title/description, canonical, `hreflang` alternates, Open
+ * Graph + Twitter cards) and the GA analytics bootstrap. Pages only compose
+ * content and pass their locale/path/meta in.
+ *
+ * Fonts: Space Grotesk (display) + Inter (body) are preconnected and loaded once
+ * here — preconnect shaves the font round-trip (better LCP); a single <link>
+ * avoids the render-blocking @import pattern.
+ *
+ * Analytics: the gtag loader + bootstrap are emitted ONLY when `PUBLIC_GA_ID`
+ * is set, so id-less builds ship zero analytics JS and never hit the network.
+ *
+ * @prop title - Document <title> (localized; falls back to the brand name).
+ * @prop description - Meta description for the page (localized).
+ * @prop lang - Document language ("es" default | "en"); drives <html lang>.
+ * @prop path - This page's root-relative path ("/" | "/en/") for canonical + alternates.
+ * @prop ogAlt - Alt text for the social share image (localized).
+ */
+import { brand, analyticsId } from '../config/site.config';
+import { LOCALES, DEFAULT_LOCALE, pathForLocale, withBase } from '../lib/i18n';
+import { gaBootstrapScript } from '../lib/analytics';
+import type { Locale } from '../content/types';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: Locale;
+  path?: string;
+  ogAlt?: string;
+}
+
+const {
+  title = 'Nexora · Estudio de Software',
+  description = 'Páginas web, sistemas y aplicaciones a la medida para tu negocio.',
+  lang = 'es',
+  path = '/',
+  ogAlt = 'Nexora — Estudio de software en Guayaquil',
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://luisgxz.github.io');
+const canonical = new URL(withBase(path), site).href;
+const ogImageFile = lang === 'en' ? '/og/og-share-en.png' : '/og/og-share.png';
+const ogImage = new URL(withBase(ogImageFile), site).href;
+
+/** hreflang alternates for both locales, plus x-default → the default locale. */
+const alternates = LOCALES.map((locale) => ({
+  hreflang: locale,
+  href: new URL(pathForLocale(locale), site).href,
+}));
+const xDefaultHref = new URL(pathForLocale(DEFAULT_LOCALE), site).href;
+
+/** OG locale codes: ES targets Ecuador, EN international. */
+const ogLocale = lang === 'es' ? 'es_EC' : 'en_US';
+const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_EC';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={brand.legalName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    {
+      analyticsId && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`} />
+          <script is:inline set:html={gaBootstrapScript(analyticsId)} />
+        </>
+      )
+    }
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

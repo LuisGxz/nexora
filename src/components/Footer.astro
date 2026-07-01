@@ -1,0 +1,54 @@
+---
+/**
+ * Footer — closing chrome on a dark band, shared by both locales.
+ *
+ * What: brand lockup, tagline, own-products signal, local-trust line (RUC /
+ * invoicing) and the rights notice — all from `footer` + `about.products` +
+ * `ui`. Why faceless: the work is the hero, so no people or founder imagery.
+ *
+ * @prop content - active locale content tree (footer, about.products, ui).
+ */
+import type { SiteContent } from '../content/types';
+import logoRaw from '../assets/logo/nexora-logo-mono.svg?raw';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { footer, about, ui } = content;
+
+const logo = logoRaw
+  .replace(/\s(width|height)="[^"]*"/g, '')
+  .replace(/\scolor="[^"]*"/g, '');
+---
+
+<footer class="border-t border-border-dark bg-navy-950 text-text-on-dark">
+  <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:px-6">
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div class="flex flex-col gap-3">
+        <span
+          class="flex h-8 items-center text-text-on-dark [&>svg]:h-full [&>svg]:w-auto"
+          set:html={logo}
+        />
+        <p class="text-small text-text-muted-dark">{footer.tagline}</p>
+      </div>
+
+      <div class="flex flex-col gap-2 md:items-end">
+        <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
+          {ui.productsLabel}
+        </p>
+        <p class="font-display text-body-lg font-semibold">
+          {about.products.join('  ·  ')}
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col gap-2 border-t border-border-dark pt-6 text-small text-text-muted-dark md:flex-row md:items-center md:justify-between"
+    >
+      <p>{footer.rights}</p>
+      <p>{footer.localSignal}</p>
+    </div>
+  </div>
+</footer>

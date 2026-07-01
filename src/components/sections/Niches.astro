@@ -1,0 +1,49 @@
+---
+/**
+ * Niches / "Para quién" (section 05) — the businesses Nexora serves.
+ *
+ * What: the section header plus a grid of industry chips (icon + label) from
+ * `niches[]`, closed by a "not on the list? message anyway" CTA to contact.
+ * Why a CTA here: the section header already invites off-list businesses, so
+ * the button funnels that intent straight to WhatsApp. NO prices.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import SectionEyebrow from '../ui/SectionEyebrow.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { niches, sections, contact } = content;
+---
+
+<section id="para-quien" class="bg-background">
+  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+    <SectionEyebrow header={sections.niches} />
+
+    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {
+        niches.map((niche) => (
+          <li class="flex flex-col items-start gap-3 rounded-xl border border-border bg-surface p-5 shadow-sm">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue">
+              <Icon name={niche.icon} class="h-6 w-6" />
+            </span>
+            <span class="font-display text-h4 text-text-primary">{niche.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="#contacto"
+      class="inline-flex items-center gap-1 self-center text-body font-semibold text-blue transition-colors hover:text-blue-700"
+    >
+      {contact.whatsappCtaLabel}
+      <Icon name="ui-arrow" class="h-4 w-4" />
+    </a>
+  </div>
+</section>

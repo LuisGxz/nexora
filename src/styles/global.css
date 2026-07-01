@@ -1,0 +1,138 @@
+/**
+ * Global stylesheet for the Nexora landing.
+ *
+ * Layer 1 — Tailwind directives (base reset, components, utilities).
+ * Layer 2 — `:root` design tokens mirrored from
+ *   `nexora-brand/tokens/design-tokens.json` so any value can be referenced as
+ *   a CSS variable (e.g. inline SVG `color`, gradients) in addition to the
+ *   Tailwind utilities. Editing a token here OR in `tailwind.config.mjs`
+ *   recolors/retypes the whole site — keep the two in sync.
+ * Layer 3 — minimal base typography wiring the font + color tokens.
+ *
+ * Fonts are loaded via <link preconnect> in BaseLayout (better LCP than @import).
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand */
+    --color-navy: #0b1530;
+    --color-blue: #2563eb;
+    --color-blue-hover: #1d4fd7;
+    --color-cyan: #22d3ee;
+    --color-slate: #5b6470;
+
+    /* Navy ramp */
+    --color-navy-950: #070c1c;
+    --color-navy-900: #0b1530;
+    --color-navy-800: #111e3d;
+    --color-navy-700: #1b294f;
+    --color-navy-600: #293b66;
+    --color-navy-500: #3b4f7e;
+
+    /* Blue ramp */
+    --color-blue-700: #1d4fd7;
+    --color-blue-600: #2563eb;
+    --color-blue-500: #3b82f6;
+    --color-blue-400: #60a5fa;
+    --color-blue-100: #dbe6fe;
+    --color-blue-50: #eff4ff;
+
+    /* Semantic */
+    --color-background: #f8fafc;
+    --color-background-dark: #0b1530;
+    --color-surface: #ffffff;
+    --color-surface-dark: #111e3d;
+    --color-primary: #2563eb;
+    --color-primary-text: #ffffff;
+    --color-accent: #22d3ee;
+    --color-text-primary: #0b1530;
+    --color-text-on-dark: #f8fafc;
+    --color-text-muted: #5b6470;
+    --color-text-muted-dark: #94a3b8;
+    --color-border: #e2e8f0;
+    --color-border-dark: #1b294f;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --color-whatsapp: #25d366;
+
+    /* Typography */
+    --font-display: 'Space Grotesk', 'Geist', 'Sora', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+    /* Radii */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-2xl: 28px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(11, 21, 48, 0.06), 0 1px 1px rgba(11, 21, 48, 0.04);
+    --shadow-md: 0 4px 12px rgba(11, 21, 48, 0.08), 0 2px 4px rgba(11, 21, 48, 0.04);
+    --shadow-lg: 0 12px 32px rgba(11, 21, 48, 0.12), 0 4px 8px rgba(11, 21, 48, 0.06);
+    --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.2), 0 8px 28px rgba(37, 99, 235, 0.28);
+
+    /* Motion */
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+    --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Offset in-page anchor jumps so targets clear the sticky header. */
+    scroll-padding-top: 5rem;
+  }
+
+  /* `<main tabindex="-1">` is a skip-link target: focusable but no focus ring. */
+  [tabindex='-1']:focus {
+    outline: none;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

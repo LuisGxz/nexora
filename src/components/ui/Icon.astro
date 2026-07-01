@@ -1,0 +1,56 @@
+---
+/**
+ * Icon — inline SVG renderer for the brand icon set.
+ *
+ * What: resolves an `IconKey` to the matching SVG in `src/assets/icons/`, strips
+ * its fixed size + hardcoded color so it inherits `currentColor` and the chip's
+ * dimensions, and inlines it (zero JS, no extra request). Why: keeps icons
+ * themeable from tokens — one text-color utility recolors the glyph — and a typo
+ * in the key fails the build instead of rendering a blank box.
+ *
+ * @prop name - icon key (basename of the SVG; typed union in `IconKey`).
+ * @prop class - sizing/color utilities for the wrapper (default 1.5rem square).
+ * @prop title - accessible label; when omitted the icon is decorative (aria-hidden).
+ */
+import type { IconKey } from '../../content/types';
+
+interface Props {
+  name: IconKey;
+  class?: string;
+  title?: string;
+}
+
+const { name, class: className = 'h-6 w-6', title } = Astro.props;
+
+const icons = import.meta.glob<string>('../../assets/icons/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+const entry = Object.entries(icons).find(([path]) => path.endsWith(`/${name}.svg`));
+if (!entry) {
+  throw new Error(`Icon "${name}" not found in src/assets/icons/`);
+}
+
+const svg = entry[1]
+  // Strip the fixed size + hardcoded color from the ROOT <svg> tag only, so the
+  // glyph inherits the wrapper's dimensions and `currentColor`. Scoping to the
+  // opening tag is critical: a global width/height strip would also wipe child
+  // <rect>/<ellipse> geometry and collapse those shapes to nothing.
+  .replace(/<svg\b[^>]*>/, (tag) =>
+    tag
+      .replace(/\s(?:width|height)="[^"]*"/g, '')
+      .replace(/\sstyle="color:[^"]*"/g, '')
+      .replace(/\scolor="[^"]*"/g, '')
+      .replace(/\saria-label="[^"]*"/g, '')
+  );
+---
+
+<span
+  class:list={['inline-flex shrink-0 [&>svg]:h-full [&>svg]:w-full', className]}
+  role={title ? 'img' : undefined}
+  aria-label={title}
+  aria-hidden={title ? undefined : 'true'}
+  set:html={svg}
+/>

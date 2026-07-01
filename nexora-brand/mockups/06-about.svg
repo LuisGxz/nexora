@@ -1,0 +1,61 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="06 About">
+  <rect width="390" height="844" fill="#F8FAFC"></rect>
+
+  
+  <rect width="390" height="64" fill="#FFFFFF"></rect>
+  <line x1="0" y1="64" x2="390" y2="64" stroke="#E2E8F0"></line>
+  <g transform="translate(24,21) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="48" y="38" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="700" letter-spacing="1.5">NEXORA</text>
+
+  
+  <text x="24" y="118" fill="#2563EB" font-size="12" font-weight="600" letter-spacing="2">EL ESTUDIO</text>
+  <g fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="26" font-weight="700" letter-spacing="-0.5">
+    <text x="24" y="154">Un estudio de software,</text>
+    <text x="24" y="186">no un freelancer.</text>
+  </g>
+
+  
+  <g fill="#5B6470" font-size="15">
+    <text x="24" y="226">Desde Guayaquil construimos sitios,</text>
+    <text x="24" y="250">sistemas y aplicaciones para negocios</text>
+    <text x="24" y="274">y clientes internacionales.</text>
+    <text x="24" y="306">Trabajamos con método: alcance claro,</text>
+    <text x="24" y="330">avances visibles y entregas que funcionan.</text>
+  </g>
+
+  
+  <g>
+    <rect x="24" y="360" width="342" height="64" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <circle cx="52" cy="392" r="14" fill="#EFF4FF"></circle>
+    <path d="M46 392l4 4 8-8" stroke="#2563EB" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(-2,-2)"></path>
+    <text x="80" y="388" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="600">Precisión de ingeniería</text>
+    <text x="80" y="408" fill="#5B6470" font-size="13">Código mantenible, no parches.</text>
+
+    <rect x="24" y="436" width="342" height="64" rx="14" fill="#FFFFFF" stroke="#E2E8F0"></rect>
+    <circle cx="52" cy="468" r="14" fill="#EFF4FF"></circle>
+    <path d="M46 468l4 4 8-8" stroke="#2563EB" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(-2,-2)"></path>
+    <text x="80" y="464" fill="#0B1530" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="600">Comunicación directa</text>
+    <text x="80" y="484" fill="#5B6470" font-size="13">Hablas con quien construye.</text>
+  </g>
+
+  
+  <rect x="24" y="528" width="342" height="232" rx="16" fill="#0B1530"></rect>
+  <text x="44" y="566" fill="#22D3EE" font-size="11" font-weight="600" letter-spacing="2">PRODUCTOS PROPIOS</text>
+  <text x="44" y="596" fill="#F8FAFC" font-size="14">No solo construimos para otros. También</text>
+  <text x="44" y="616" fill="#F8FAFC" font-size="14">creamos y operamos nuestros productos:</text>
+
+  <rect x="44" y="638" width="302" height="46" rx="12" fill="#111E3D" stroke="#1B294F"></rect>
+  <text x="62" y="660" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Faktova</text>
+  <text x="62" y="676" fill="#94A3B8" font-size="12">Facturación para pequeños negocios</text>
+
+  <rect x="44" y="694" width="302" height="46" rx="12" fill="#111E3D" stroke="#1B294F"></rect>
+  <text x="62" y="716" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="17" font-weight="600">Turnia</text>
+  <text x="62" y="732" fill="#94A3B8" font-size="12">Reservas y turnos para servicios</text>
+
+  <text x="195" y="800" fill="#5B6470" font-size="12" text-anchor="middle">Sin fotos de fundadores. El trabajo es el protagonista.</text>
+</svg>

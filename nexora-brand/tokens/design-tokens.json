@@ -1,0 +1,106 @@
+{
+  "$meta": {
+    "name": "Nexora Design Tokens",
+    "description": "Single source of truth for the Nexora Software brand. Colors, typography, spacing, radii, shadows and motion. Consume from design tooling or via tailwind.config.snippet.js.",
+    "version": "1.0.0"
+  },
+  "color": {
+    "brand": {
+      "navy":   { "value": "#0B1530", "role": "Base ink / dark background / primary text on light" },
+      "blue":   { "value": "#2563EB", "role": "Primary accent / CTAs / links" },
+      "blueHover": { "value": "#1D4FD7", "role": "Primary hover / pressed" },
+      "cyan":   { "value": "#22D3EE", "role": "Secondary accent — use sparingly (highlights, glow, data)" },
+      "slate":  { "value": "#5B6470", "role": "Muted text / secondary labels" }
+    },
+    "navyRamp": {
+      "950": "#070C1C",
+      "900": "#0B1530",
+      "800": "#111E3D",
+      "700": "#1B294F",
+      "600": "#293B66",
+      "500": "#3B4F7E"
+    },
+    "blueRamp": {
+      "700": "#1D4FD7",
+      "600": "#2563EB",
+      "500": "#3B82F6",
+      "400": "#60A5FA",
+      "100": "#DBE6FE",
+      "50":  "#EFF4FF"
+    },
+    "neutral": {
+      "0":   "#FFFFFF",
+      "50":  "#F8FAFC",
+      "100": "#F1F5F9",
+      "200": "#E2E8F0",
+      "300": "#CBD5E1",
+      "400": "#94A3B8",
+      "500": "#64748B",
+      "700": "#334155",
+      "900": "#0F172A"
+    },
+    "semantic": {
+      "background":    { "value": "#F8FAFC", "role": "App / page background (light)" },
+      "backgroundDark":{ "value": "#0B1530", "role": "Dark sections, hero, footer" },
+      "surface":       { "value": "#FFFFFF", "role": "Cards, panels on light bg" },
+      "surfaceDark":   { "value": "#111E3D", "role": "Cards, panels on dark bg" },
+      "primary":       { "value": "#2563EB", "role": "Primary action color" },
+      "primaryText":   { "value": "#FFFFFF", "role": "Text/icon on primary" },
+      "accent":        { "value": "#22D3EE", "role": "Secondary accent" },
+      "textPrimary":   { "value": "#0B1530", "role": "Headlines & body on light" },
+      "textOnDark":    { "value": "#F8FAFC", "role": "Text on dark bg" },
+      "textMuted":     { "value": "#5B6470", "role": "Secondary / supporting text" },
+      "textMutedDark": { "value": "#94A3B8", "role": "Secondary text on dark bg" },
+      "border":        { "value": "#E2E8F0", "role": "Hairlines, dividers, input borders" },
+      "borderDark":    { "value": "#1B294F", "role": "Dividers on dark bg" },
+      "success":       { "value": "#10B981", "role": "Success / confirmation" },
+      "warning":       { "value": "#F59E0B", "role": "Warning / attention" },
+      "danger":        { "value": "#EF4444", "role": "Error / destructive" },
+      "whatsapp":      { "value": "#25D366", "role": "WhatsApp CTA brand color" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": "'Space Grotesk', 'Geist', 'Sora', system-ui, sans-serif",
+      "body":    "'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif",
+      "mono":    "'JetBrains Mono', 'SF Mono', ui-monospace, monospace"
+    },
+    "fontWeight": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+    "scale": {
+      "display": { "size": "3.5rem",  "px": 56, "lineHeight": 1.05, "letterSpacing": "-0.02em", "weight": 700, "font": "display" },
+      "h1":      { "size": "2.5rem",  "px": 40, "lineHeight": 1.10, "letterSpacing": "-0.02em", "weight": 700, "font": "display" },
+      "h2":      { "size": "2rem",    "px": 32, "lineHeight": 1.15, "letterSpacing": "-0.01em", "weight": 600, "font": "display" },
+      "h3":      { "size": "1.5rem",  "px": 24, "lineHeight": 1.25, "letterSpacing": "-0.01em", "weight": 600, "font": "display" },
+      "h4":      { "size": "1.25rem", "px": 20, "lineHeight": 1.30, "letterSpacing": "0",       "weight": 600, "font": "display" },
+      "bodyLg":  { "size": "1.125rem","px": 18, "lineHeight": 1.60, "letterSpacing": "0",       "weight": 400, "font": "body" },
+      "body":    { "size": "1rem",    "px": 16, "lineHeight": 1.60, "letterSpacing": "0",       "weight": 400, "font": "body" },
+      "small":   { "size": "0.875rem","px": 14, "lineHeight": 1.50, "letterSpacing": "0",       "weight": 400, "font": "body" },
+      "caption": { "size": "0.75rem", "px": 12, "lineHeight": 1.40, "letterSpacing": "0.06em",  "weight": 600, "font": "body", "transform": "uppercase" }
+    },
+    "googleFonts": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+  },
+  "spacing": {
+    "0": "0px", "1": "4px", "2": "8px", "3": "12px", "4": "16px",
+    "5": "24px", "6": "32px", "7": "48px", "8": "64px", "9": "96px", "10": "128px"
+  },
+  "radii": {
+    "sm": "6px", "md": "10px", "lg": "14px", "xl": "20px", "2xl": "28px", "full": "9999px"
+  },
+  "shadow": {
+    "sm": "0 1px 2px rgba(11,21,48,0.06), 0 1px 1px rgba(11,21,48,0.04)",
+    "md": "0 4px 12px rgba(11,21,48,0.08), 0 2px 4px rgba(11,21,48,0.04)",
+    "lg": "0 12px 32px rgba(11,21,48,0.12), 0 4px 8px rgba(11,21,48,0.06)",
+    "glow": "0 0 0 1px rgba(37,99,235,0.20), 0 8px 28px rgba(37,99,235,0.28)"
+  },
+  "motion": {
+    "duration": { "fast": "150ms", "base": "250ms", "slow": "400ms" },
+    "easing": {
+      "standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
+      "accelerate": "cubic-bezier(0.4, 0, 1, 1)"
+    }
+  },
+  "breakpoints": {
+    "sm": "640px", "md": "768px", "lg": "1024px", "xl": "1280px"
+  }
+}

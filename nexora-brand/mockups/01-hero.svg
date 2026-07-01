@@ -1,0 +1,74 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="01 Hero">
+  <defs>
+    <linearGradient id="heroGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B294F"></stop>
+      <stop offset="1" stop-color="#0B1530"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="390" height="844" fill="url(#heroGlow)"></rect>
+
+  
+  <g stroke="#2563EB" stroke-width="1.2" opacity="0.35" fill="none">
+    <line x1="300" y1="150" x2="360" y2="210"></line>
+    <line x1="360" y1="210" x2="320" y2="290"></line>
+    <line x1="300" y1="150" x2="240" y2="200"></line>
+  </g>
+  <g fill="#22D3EE" opacity="0.5">
+    <circle cx="300" cy="150" r="3"></circle><circle cx="360" cy="210" r="3"></circle>
+    <circle cx="320" cy="290" r="3"></circle><circle cx="240" cy="200" r="3"></circle>
+  </g>
+
+  
+  <text x="24" y="34" fill="#94A3B8" font-size="12" font-weight="600">9:41</text>
+  <g fill="#94A3B8"><rect x="338" y="26" width="16" height="9" rx="2"></rect><circle cx="362" cy="30.5" r="3"></circle></g>
+
+  
+  <g transform="translate(24,52) scale(0.2)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="52" y="72" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="700" letter-spacing="2">NEXORA</text>
+  
+  <rect x="246" y="56" width="86" height="28" rx="14" fill="#111E3D" stroke="#1B294F"></rect>
+  <rect x="248" y="58" width="41" height="24" rx="12" fill="#2563EB"></rect>
+  <text x="268" y="74" fill="#FFFFFF" font-size="12" font-weight="600" text-anchor="middle">ES</text>
+  <text x="311" y="74" fill="#94A3B8" font-size="12" font-weight="600" text-anchor="middle">EN</text>
+  
+  <g stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><line x1="344" y1="64" x2="360" y2="64"></line><line x1="344" y1="70" x2="360" y2="70"></line><line x1="344" y1="76" x2="354" y2="76"></line></g>
+
+  
+  <text x="24" y="200" fill="#22D3EE" font-size="12" font-weight="600" letter-spacing="2">ESTUDIO DE SOFTWARE · GUAYAQUIL</text>
+
+  
+  <g fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="36" font-weight="700" letter-spacing="-1">
+    <text x="24" y="252">Construimos el</text>
+    <text x="24" y="294">software que tu</text>
+    <text x="24" y="336">negocio <tspan fill="#2563EB">necesita</tspan>.</text>
+  </g>
+
+  
+  <g fill="#94A3B8" font-size="16">
+    <text x="24" y="382">Sitios, sistemas y aplicaciones a medida.</text>
+    <text x="24" y="406">Ingeniería precisa. Resultados que dan</text>
+    <text x="24" y="430">confianza.</text>
+  </g>
+
+  
+  <rect x="24" y="466" width="342" height="56" rx="14" fill="#2563EB"></rect>
+  <g transform="translate(78,486)" stroke="#FFFFFF" stroke-width="1.6" fill="none"><path d="M0 16l1-3.1A6 6 0 1 1 3.1 14.9L0 16z"></path></g>
+  <text x="195" y="500" fill="#FFFFFF" font-size="16" font-weight="600" text-anchor="middle">Escríbenos por WhatsApp</text>
+
+  <rect x="24" y="534" width="342" height="56" rx="14" fill="none" stroke="#3B4F7E"></rect>
+  <text x="195" y="568" fill="#F8FAFC" font-size="16" font-weight="600" text-anchor="middle">Ver demos en vivo  →</text>
+
+  
+  <line x1="24" y1="650" x2="366" y2="650" stroke="#1B294F"></line>
+  <text x="24" y="686" fill="#5B6470" font-size="11" font-weight="600" letter-spacing="1.5">PRODUCTOS PROPIOS</text>
+  <text x="24" y="714" fill="#CBD5E1" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="18" font-weight="600">Faktova<tspan fill="#3B4F7E">  ·  </tspan>Turnia</text>
+
+  
+  <text x="195" y="800" fill="#5B6470" font-size="12" text-anchor="middle">Desliza para explorar</text>
+  <g stroke="#5B6470" stroke-width="1.6" stroke-linecap="round"><path d="M188 814l7 7 7-7"></path></g>
+</svg>

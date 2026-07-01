@@ -1,0 +1,90 @@
+---
+/**
+ * About / "El estudio" (section 06) — who Nexora is.
+ *
+ * What: heading + body, the founder's prior employers framed strictly as
+ * professional background (NEVER as clients), and a dark panel listing Nexora's
+ * own products. Why faceless: no founder photo — the body and the work carry
+ * the trust. All copy from `about` + `ui` labels.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import SectionEyebrow from '../ui/SectionEyebrow.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { about, sections, ui } = content;
+
+/** Hide a profile link until its real URL is wired in `site.config.ts`. */
+const visibleLinks = about.links.filter((link) => link.href && link.href !== '#');
+---
+
+<section id="estudio" class="bg-background">
+  <div class="mx-auto grid max-w-6xl gap-7 px-4 py-9 md:px-6 lg:grid-cols-2 lg:gap-8">
+    <div class="flex flex-col gap-5">
+      <SectionEyebrow header={sections.about} />
+      <p class="max-w-prose text-body-lg text-text-muted">{about.body}</p>
+
+      {
+        visibleLinks.length > 0 && (
+          <ul class="flex flex-wrap gap-3">
+            {visibleLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-small font-semibold text-text-primary shadow-sm transition-colors duration-base ease-standard hover:border-blue hover:text-blue"
+                >
+                  <Icon name={link.icon} class="h-[1.1rem] w-[1.1rem]" />
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <div class="flex flex-col gap-3">
+        <p class="text-caption font-semibold uppercase tracking-widest text-blue">
+          {ui.experienceLabel}
+        </p>
+        <ul class="flex flex-col gap-3">
+          {
+            about.experience.map((job) => (
+              <li class="flex items-baseline justify-between gap-4 border-b border-border pb-3">
+                <div class="flex flex-col">
+                  <span class="font-display text-body font-semibold text-text-primary">
+                    {job.company}
+                  </span>
+                  <span class="text-small text-text-muted">{job.role}</span>
+                </div>
+                <span class="shrink-0 text-small text-text-muted">{job.period}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 rounded-2xl bg-navy-900 p-6 text-text-on-dark md:p-7">
+      <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
+        {ui.productsLabel}
+      </p>
+      <ul class="flex flex-col gap-3">
+        {
+          about.products.map((product) => (
+            <li class="rounded-xl border border-border-dark bg-navy-800 px-5 py-4 font-display text-h4 font-semibold">
+              {product}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

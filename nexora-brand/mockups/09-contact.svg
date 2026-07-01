@@ -1,0 +1,61 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="09 Contact">
+  <rect width="390" height="844" fill="#0B1530"></rect>
+
+  
+  <g stroke="#2563EB" stroke-width="1.2" opacity="0.3" fill="none">
+    <line x1="40" y1="150" x2="90" y2="120"></line><line x1="90" y1="120" x2="70" y2="200"></line>
+  </g>
+  <g fill="#22D3EE" opacity="0.45"><circle cx="40" cy="150" r="3"></circle><circle cx="90" cy="120" r="3"></circle><circle cx="70" cy="200" r="3"></circle></g>
+
+  
+  <g transform="translate(24,28) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round">
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line>
+    <line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line>
+    <circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle>
+    <circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle>
+  </g>
+  <text x="48" y="45" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="15" font-weight="700" letter-spacing="1.5">NEXORA</text>
+  <rect x="300" y="22" width="66" height="28" rx="14" fill="#111E3D" stroke="#1B294F"></rect>
+  <text x="320" y="40" fill="#2563EB" font-size="12" font-weight="600" text-anchor="middle">ES</text>
+  <text x="350" y="40" fill="#94A3B8" font-size="12" font-weight="600" text-anchor="middle">EN</text>
+
+  
+  <text x="24" y="220" fill="#22D3EE" font-size="12" font-weight="600" letter-spacing="2">HABLEMOS</text>
+  <g fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="34" font-weight="700" letter-spacing="-1">
+    <text x="24" y="266">Cuéntanos tu</text>
+    <text x="24" y="306">idea hoy.</text>
+  </g>
+  <g fill="#94A3B8" font-size="16"><text x="24" y="346">Respuesta el mismo día. Sin compromiso.</text></g>
+
+  
+  <rect x="24" y="384" width="342" height="68" rx="16" fill="#25D366"></rect>
+  <g transform="translate(54,406)" stroke="#0B1530" stroke-width="2" fill="none"><path d="M0 22l1.4-4.2A8 8 0 1 1 4.2 20.6L0 22z"></path></g>
+  <text x="210" y="418" fill="#06351A" font-size="17" font-weight="700" text-anchor="middle">Escríbenos por WhatsApp</text>
+  <text x="210" y="438" fill="#0B5128" font-size="12" text-anchor="middle">+593 9 •• ••• •••</text>
+
+  
+  <rect x="24" y="470" width="342" height="92" rx="16" fill="#111E3D" stroke="#1B294F"></rect>
+  <rect x="44" y="490" width="52" height="52" rx="12" fill="#0B1530" stroke="#293B66"></rect>
+  <g transform="translate(58,504)" stroke="#22D3EE" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="24" height="24" rx="4"></rect><circle cx="12" cy="9" r="3.5"></circle><path d="M5 19c1.5-3 12.5-3 14 0"></path></g>
+  <text x="112" y="508" fill="#F8FAFC" font-family="&#39;Space Grotesk&#39;,sans-serif" font-size="16" font-weight="600">Guardar contacto</text>
+  <text x="112" y="528" fill="#94A3B8" font-size="13">Descarga la tarjeta vCard (.vcf)</text>
+  <g stroke="#2563EB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M348 510v10M343 515l5 5 5-5"></path></g>
+
+  
+  <line x1="24" y1="596" x2="366" y2="596" stroke="#1B294F"></line>
+  <g>
+    <text x="24" y="630" fill="#5B6470" font-size="11" font-weight="600" letter-spacing="1.5">UBICACIÓN</text>
+    <text x="24" y="654" fill="#CBD5E1" font-size="15">Guayaquil, Ecuador</text>
+    <text x="24" y="694" fill="#5B6470" font-size="11" font-weight="600" letter-spacing="1.5">EMAIL</text>
+    <text x="24" y="718" fill="#CBD5E1" font-size="15">hola@nexora.studio</text>
+    <text x="210" y="630" fill="#5B6470" font-size="11" font-weight="600" letter-spacing="1.5">HORARIO</text>
+    <text x="210" y="654" fill="#CBD5E1" font-size="15">Lun–Sáb · 9:00–19:00</text>
+    <text x="210" y="694" fill="#5B6470" font-size="11" font-weight="600" letter-spacing="1.5">PRODUCTOS</text>
+    <text x="210" y="718" fill="#CBD5E1" font-size="15">Faktova · Turnia</text>
+  </g>
+
+  
+  <line x1="24" y1="754" x2="366" y2="754" stroke="#1B294F"></line>
+  <text x="24" y="790" fill="#5B6470" font-size="12">© 2026 Nexora Software</text>
+  <text x="366" y="790" fill="#5B6470" font-size="12" text-anchor="end">nexus · conectar e integrar</text>
+</svg>

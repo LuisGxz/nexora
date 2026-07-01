@@ -1,0 +1,44 @@
+<svg width="420" height="640" viewBox="0 0 420 640" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Inter&#39;,sans-serif" aria-label="WhatsApp Business profile mockup">
+  <rect width="420" height="640" fill="#EFE7DE"></rect>
+  
+  <rect width="420" height="92" fill="#0B1530"></rect>
+  <path d="M28 46l14-12v24z" fill="#F8FAFC"></path>
+  <circle cx="86" cy="46" r="22" fill="#111E3D"></circle>
+  <g transform="translate(70,30) scale(0.18)" stroke="#2563EB" fill="none" stroke-linecap="round"><line x1="30" y1="44" x2="30" y2="76" stroke-width="9"></line><line x1="90" y1="44" x2="90" y2="76" stroke-width="9"></line><line x1="40.9" y1="39.7" x2="79.1" y2="80.3" stroke-width="9"></line><circle cx="30" cy="28" r="12" stroke-width="8"></circle><circle cx="90" cy="28" r="12" stroke-width="8"></circle><circle cx="30" cy="92" r="12" stroke-width="8"></circle><circle cx="90" cy="92" r="12" stroke-width="8"></circle></g>
+  <text x="120" y="42" fill="#F8FAFC" font-size="16" font-weight="700" font-family="&#39;Space Grotesk&#39;,sans-serif">Nexora Software</text>
+  <text x="120" y="62" fill="#94A3B8" font-size="12">en línea · responde en minutos</text>
+
+  
+  <g transform="translate(150,108)"><rect width="120" height="26" rx="13" fill="#DCF8C6"></rect><text x="60" y="18" fill="#1F7A3D" font-size="12" font-weight="600" text-anchor="middle">Cuenta de empresa</text></g>
+
+  
+  <g>
+    <rect x="20" y="160" width="300" height="64" rx="14" fill="#FFFFFF"></rect>
+    <text x="36" y="188" fill="#0B1530" font-size="13.5">¡Hola! 👋 Soy el asistente de Nexora.</text>
+    <text x="36" y="210" fill="#0B1530" font-size="13.5">¿Qué te gustaría construir?</text>
+
+    <rect x="120" y="236" width="280" height="84" rx="14" fill="#DCF8C6"></rect>
+    <text x="136" y="264" fill="#0B1530" font-size="13.5">Tengo una barbería y quiero</text>
+    <text x="136" y="286" fill="#0B1530" font-size="13.5">reservas online y un sitio.</text>
+    <text x="384" y="308" fill="#5B6470" font-size="10" text-anchor="end">✓✓ 9:41</text>
+
+    <rect x="20" y="332" width="320" height="106" rx="14" fill="#FFFFFF"></rect>
+    <text x="36" y="360" fill="#0B1530" font-size="13.5">Perfecto. Eso es nuestro plan <tspan font-weight="700">Pro</tspan>.</text>
+    <text x="36" y="382" fill="#0B1530" font-size="13.5">Incluye sitio + sistema de reservas.</text>
+    <rect x="36" y="396" width="160" height="30" rx="8" fill="#EFF4FF"></rect>
+    <text x="116" y="416" fill="#2563EB" font-size="12" font-weight="600" text-anchor="middle">Ver demo en vivo →</text>
+  </g>
+
+  
+  <g>
+    <rect x="20" y="456" width="130" height="34" rx="17" fill="#FFFFFF" stroke="#CBD5E1"></rect><text x="85" y="478" fill="#2563EB" font-size="12.5" font-weight="600" text-anchor="middle">Ver planes</text>
+    <rect x="160" y="456" width="130" height="34" rx="17" fill="#FFFFFF" stroke="#CBD5E1"></rect><text x="225" y="478" fill="#2563EB" font-size="12.5" font-weight="600" text-anchor="middle">Ver demos</text>
+  </g>
+
+  
+  <rect x="0" y="586" width="420" height="54" fill="#F0F0F0"></rect>
+  <rect x="16" y="598" width="330" height="32" rx="16" fill="#FFFFFF"></rect>
+  <text x="36" y="619" fill="#94A3B8" font-size="13">Escribe un mensaje…</text>
+  <circle cx="380" cy="613" r="20" fill="#25D366"></circle>
+  <path d="M372 613l16 0M381 606l8 7-8 7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

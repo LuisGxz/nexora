@@ -1,0 +1,38 @@
+---
+/**
+ * Why Nexora (section 07) — REPURPOSED from the pricing mockup, NO prices.
+ *
+ * What: the section header plus the trust pillars from `pillars[]`, each a
+ * headline stat + supporting label. Why: the spec forbids pricing entirely, so
+ * the old "planes" slot becomes proof-of-trust. There are no amounts, plans or
+ * tiers here by design — only `stat`/`label` strings from content.
+ *
+ * @prop content - active locale content tree.
+ */
+import type { SiteContent } from '../../content/types';
+import SectionEyebrow from '../ui/SectionEyebrow.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { pillars, sections } = content;
+---
+
+<section id="por-que" class="bg-background">
+  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+    <SectionEyebrow header={sections.pillars} />
+
+    <ul class="grid gap-5 md:grid-cols-3">
+      {
+        pillars.map((pillar) => (
+          <li class="flex flex-col gap-2 rounded-2xl border border-border bg-surface p-6 shadow-sm">
+            <span class="font-display text-h2 text-blue">{pillar.stat}</span>
+            <span class="text-body text-text-muted">{pillar.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
