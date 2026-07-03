@@ -9,7 +9,7 @@
  * Voice mirrors the Spanish: owner-facing, pain-first, confident, no hype.
  */
 import type { SiteContent } from './types';
-import { demoUrls, social } from '../config/site.config';
+import { demoPreviews, demoUrls, social } from '../config/site.config';
 
 export const siteEn: SiteContent = {
   meta: {
@@ -91,29 +91,35 @@ export const siteEn: SiteContent = {
       clientType: 'Barbershop',
       result: 'Bookings 24/7 without answering the phone.',
       url: demoUrls.barbershop,
+      image: demoPreviews.barbershop,
     },
     {
       title: 'Digital QR menu for a restaurant',
       clientType: 'Restaurant',
       result: 'A menu you update without reprinting anything.',
       url: demoUrls.restaurant,
+      image: demoPreviews.restaurant,
     },
     {
       title: 'Scheduling for a medical office',
       clientType: 'Medical office',
       result: 'Patients book their own appointments.',
       url: demoUrls.clinic,
+      image: demoPreviews.clinic,
     },
     {
       title: 'Landing page for an event',
       clientType: 'Event organizer',
       result: 'Sign-ups and confirmations in a single link.',
       url: demoUrls.event,
+      image: demoPreviews.event,
     },
     {
       title: 'Corporate site for an SMB',
       clientType: 'Services company',
       result: 'A professional presence on Google in days.',
+      url: demoUrls.corporate,
+      image: demoPreviews.corporate,
     },
   ],
 

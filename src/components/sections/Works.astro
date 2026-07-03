@@ -3,10 +3,11 @@
  * Works / Demos (section 03) — ONLY Nexora's own work.
  *
  * What: the section header plus a grid of demo/project cards (preview, title,
- * client-type tag, result, and a "view demo" link when a live URL exists). Why
- * the striped placeholder: per brand imagery rules, missing previews use a
- * neutral token-colored stripe with a mono label — never a fake illustration.
- * Past employers never appear here (they live in About as background).
+ * client-type tag, result, and a "view demo" link when a live URL exists).
+ * Preview: a real screenshot when `work.image` is set (lazy, fixed aspect so
+ * CLS stays 0); otherwise, per brand imagery rules, a neutral token-colored
+ * stripe with a mono label — never a fake illustration. Past employers never
+ * appear here (they live in About as background).
  *
  * The "view demo" link renders only when the URL is real (not the `#`
  * placeholder still in `site.config.ts`), so there are no dead links pre-launch.
@@ -37,10 +38,21 @@ const isLive = (url?: string): url is string => !!url && url !== '#';
         works.map((work) => (
           <li class="flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-shadow duration-base ease-standard hover:shadow-md">
             <div
-              class="flex aspect-video items-center justify-center border-b border-border"
+              class="relative flex aspect-video items-center justify-center border-b border-border"
               style="background: repeating-linear-gradient(45deg, var(--color-background) 0 6px, var(--color-border) 6px 8px);"
             >
-              <span class="rounded-full bg-surface/90 px-3 py-1 font-mono text-caption text-text-muted">
+              {work.image && (
+                <img
+                  src={work.image}
+                  alt={work.title}
+                  width="960"
+                  height="540"
+                  loading="lazy"
+                  decoding="async"
+                  class="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              )}
+              <span class="relative rounded-full bg-surface/90 px-3 py-1 font-mono text-caption text-text-muted">
                 {work.clientType}
               </span>
             </div>

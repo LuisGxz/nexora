@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="La Sazón — Cocina criolla en Las Peñas, Guayaquil. El sabor de casa, servido con oficio.">
+<meta name="theme-color" content="#7E2F35">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='7' y='2' width='10' height='10' fill='%23F6EFE3' rx='2'/%3E%3Cpath d='M12 12 L2 22 L22 22 Z' fill='%237E2F35'/%3E%3Crect x='9' y='16' width='6' height='6' fill='%23B98A2F' rx='1'/%3E%3C/svg%3E" type="image/svg+xml">
+<title>La Sazón — Cocina Criolla en Las Peñas</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: #F6EFE3; color: #2E211B; font-family: Karla, system-ui, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  input, button, select, textarea { font: inherit; }
+  ::selection { background: rgba(126, 47, 53, 0.22); }
+  input::placeholder, textarea::placeholder { color: rgba(46, 33, 27, 0.35); }
+  button { cursor: pointer; }
+  a { color: inherit; }
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* Animations */
+  @keyframes lsSpin { to { transform: rotate(360deg); } }
+  @keyframes lsFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes lsSheet { from { opacity: 0; transform: translate(-50%, 24px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  @keyframes lsSheetSlide { from { opacity: 0; transform: translate(-50%, 100px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+  /* Focus visible */
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #7E2F35; outline-offset: 2px; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* Utility classes */
+  .ls-hidden { display: none !important; }
+  .ls-visible { display: block !important; }
+
+  /* Hover effect helper */
+  .ls-hover-scale:hover { transform: scale(1.07); }
+  .ls-hover-bright:hover { filter: brightness(1.12); }
+  .ls-hover-translateY:hover { transform: translateY(-2px); }
+  .ls-hover-line:hover { border-color: rgba(126, 47, 53, 0.55); }
+
+  /* Nav */
+  [data-nav] { position: sticky; top: 0; z-index: 50; background: rgba(246, 239, 227, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #E7DCC8; }
+  [data-nav] > div { max-width: 1120px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 44px); height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .nav-logo { display: flex; align-items: baseline; gap: 9px; text-decoration: none; color: #2E211B; }
+  .nav-logo-diamond { width: 8px; height: 8px; background: #B98A2F; transform: rotate(45deg); flex: none; }
+  .nav-logo-name { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 600; font-size: 24px; line-height: 1; }
+  .nav-logo-sub { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 0.22em; color: #9C8A7D; }
+  .nav-links { display: flex; align-items: center; gap: 24px; }
+  .nav-link { color: #6E5C51; text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.15s ease; }
+  .nav-link:hover { color: #7E2F35; }
+  .nav-cta { background: #7E2F35; color: #FBF3EA; text-decoration: none; font-weight: 700; font-size: 13.5px; letter-spacing: 0.02em; padding: 11px 18px; border-radius: 6px; white-space: nowrap; border: none; transition: filter 0.15s ease; }
+  .nav-cta:hover { filter: brightness(1.12); }
+  @media (max-width: 767px) {
+    .nav-links { display: none; }
+  }
+
+  /* Hero */
+  [data-hero] { position: relative; overflow: hidden; min-height: clamp(540px, 78vh, 720px); display: flex; align-items: center; justify-content: center; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #F0E7D6; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(34, 23, 18, 0.42) 0%, rgba(34, 23, 18, 0.55) 55%, rgba(34, 23, 18, 0.78) 100%); }
+  .hero-content { position: relative; text-align: center; padding: clamp(56px, 10vw, 110px) clamp(18px, 4vw, 44px); max-width: 820px; }
+  .hero-eyebrow { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 0 18px; }
+  .hero-eyebrow-line { width: 26px; height: 1px; background: #B98A2F; }
+  .hero-eyebrow-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.24em; color: #D9B96A; }
+  .hero-h1 { margin: 0 0 18px; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: clamp(44px, 7vw, 84px); line-height: 1.04; color: #FBF6EA; }
+  .hero-h1-italic { font-style: italic; }
+  .hero-sub { margin: 0 auto 28px; color: rgba(251, 246, 234, 0.82); font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; max-width: 52ch; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 0 0 30px; }
+  .hero-cta { text-decoration: none; font-weight: 700; font-size: 14.5px; padding: 14px 26px; border-radius: 6px; white-space: nowrap; border: none; transition: all 0.15s ease; }
+  .hero-cta-primary { background: #F6EFE3; color: #2E211B; }
+  .hero-cta-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+  .hero-cta-secondary { background: transparent; border: 1px solid rgba(251, 246, 234, 0.45); color: #FBF6EA; }
+  .hero-cta-secondary:hover { border-color: #D9B96A; color: #D9B96A; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .hero-chip { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(251, 246, 234, 0.75); border: 1px solid rgba(251, 246, 234, 0.28); border-radius: 999px; padding: 7px 13px; }
+
+  /* Section */
+  [data-section] { border-bottom: 1px solid #E7DCC8; }
+  .section-inner { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(18px, 4vw, 44px); }
+  .section-header { text-align: center; margin: 0 0 26px; }
+  .section-eyebrow { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.24em; color: #B98A2F; margin: 0 0 12px; }
+  .section-h2 { margin: 0 0 12px; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: clamp(32px, 4.6vw, 50px); line-height: 1.05; }
+  .section-ornament { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 0 14px; }
+  .section-ornament-line { width: 26px; height: 1px; background: rgba(185, 138, 47, 0.45); }
+  .section-ornament-diamond { width: 7px; height: 7px; background: #B98A2F; transform: rotate(45deg); }
+  .section-sub { margin: 0 auto; color: #6E5C51; font-size: 14.5px; line-height: 1.7; max-width: 48ch; }
+
+  /* Menu section */
+  .menu-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 26px; }
+  .menu-tab { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; letter-spacing: 0.14em; padding: 10px 16px; border-radius: 999px; border: 1px solid #D6C6A8; background: transparent; color: #6E5C51; transition: background 0.15s ease, color 0.15s ease; }
+  .menu-tab.active { border-color: #7E2F35; background: #7E2F35; color: #FBF3EA; }
+  .menu-tab:hover:not(.active) { border-color: #B98A2F; }
+
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 12px; }
+  .menu-card { display: flex; gap: 14px; align-items: center; background: #FFFCF4; border: 1px solid #E7DCC8; border-radius: 12px; padding: 12px; box-shadow: 0 1px 2px rgba(46, 33, 27, 0.05), 0 8px 24px -14px rgba(46, 33, 27, 0.14); transition: transform 0.15s ease, border-color 0.15s ease; }
+  .menu-card:hover { transform: translateY(-2px); border-color: rgba(126, 47, 53, 0.55); }
+  .menu-card-img { width: 88px; height: 88px; border-radius: 10px; flex: none; background: #F0E7D6; background-size: cover; background-position: center; }
+  .menu-card-content { flex: 1; min-width: 0; }
+  .menu-card-header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .menu-card-name { font-weight: 700; font-size: 15px; }
+  .menu-card-price { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 18px; color: #7E2F35; flex: none; }
+  .menu-card-desc { margin: 4px 0 10px; color: #6E5C51; font-size: 12.5px; line-height: 1.55; }
+  .menu-card-control { display: inline-flex; align-items: center; gap: 0; border: 1px solid #7E2F35; border-radius: 999px; overflow: hidden; }
+  .menu-card-control button { background: none; border: none; padding: 8px 14px; color: #7E2F35; font-weight: 700; line-height: 1; transition: background 0.15s ease, color 0.15s ease; }
+  .menu-card-control button:hover { background: rgba(126, 47, 53, 0.1); }
+  .menu-card-control button.add-btn { background: #7E2F35; color: #FBF3EA; }
+  .menu-card-control button.add-btn:hover { filter: brightness(1.12); }
+  .menu-card-control-qty { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; min-width: 20px; text-align: center; color: #2E211B; }
+  .menu-add-btn { background: none; border: 1px solid #7E2F35; color: #7E2F35; cursor: pointer; font-weight: 700; font-size: 12.5px; padding: 8px 18px; border-radius: 999px; transition: background 0.15s ease, color 0.15s ease; }
+  .menu-add-btn:hover { background: #7E2F35; color: #FBF3EA; }
+
+  .menu-note { margin: 22px 0 0; text-align: center; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.12em; color: #9C8A7D; }
+
+  /* Cart bar */
+  [data-cartbar] { position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 70; width: min(calc(100% - 24px), 560px); background: #221712; color: #FBF6EA; border-radius: 999px; padding: 10px 10px 10px 22px; display: flex; align-items: center; justify-content: space-between; gap: 14px; box-shadow: 0 10px 30px -10px rgba(34, 23, 18, 0.5); animation: lsFade 0.3s ease; }
+  .cartbar-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; letter-spacing: 0.12em; }
+  .cartbar-btn { background: #7E2F35; color: #FBF3EA; border: none; font-weight: 700; font-size: 13.5px; padding: 11px 20px; border-radius: 999px; white-space: nowrap; transition: filter 0.15s ease; }
+  .cartbar-btn:hover { filter: brightness(1.12); }
+
+  /* Sheet overlay */
+  [data-sheet-overlay] { position: fixed; inset: 0; z-index: 80; background: rgba(34, 23, 18, 0.45); animation: lsFade 0.2s ease; }
+  [data-sheet-content] { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 90; width: min(100%, 600px); max-height: 88vh; overflow-y: auto; background: #FCF6EA; border-radius: 18px 18px 0 0; padding: clamp(18px, 3vw, 28px); box-shadow: 0 -8px 40px -12px rgba(34, 23, 18, 0.35); animation: lsSheetSlide 0.3s ease; }
+  .sheet-h3 { margin: 0 0 14px; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 26px; }
+  .sheet-close { background: none; border: 1px solid #D6C6A8; border-radius: 999px; width: 34px; height: 34px; color: #6E5C51; font-size: 15px; line-height: 1; transition: border-color 0.15s ease; }
+  .sheet-close:hover { border-color: #7E2F35; color: #7E2F35; }
+  .sheet-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed #DECFB4; }
+  .sheet-item-name { flex: 1; font-weight: 700; font-size: 14px; }
+  .sheet-item-control { display: inline-flex; align-items: center; border: 1px solid #D6C6A8; border-radius: 999px; overflow: hidden; }
+  .sheet-item-control button { background: none; border: none; padding: 6px 12px; color: #7E2F35; font-weight: 700; }
+  .sheet-item-qty { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; min-width: 18px; text-align: center; }
+  .sheet-item-sub { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 16px; color: #7E2F35; min-width: 56px; text-align: right; }
+  .sheet-form-group { display: grid; gap: 12px; margin: 0 0 14px; }
+  .sheet-label { display: block; }
+  .sheet-label-text { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; color: #9C8A7D; margin: 0 0 6px; }
+  .sheet-input { width: 100%; box-sizing: border-box; background: #FFFCF4; border: 1px solid #D6C6A8; border-radius: 8px; padding: 12px 14px; color: #2E211B; font-size: 14.5px; outline: none; transition: border-color 0.15s ease; }
+  .sheet-input:focus { border-color: #7E2F35; }
+  .sheet-input.error { border-color: #B4372E; }
+  .sheet-error { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.06em; color: #B4372E; margin: 0 0 10px; }
+  .sheet-total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid #D6C6A8; padding-top: 14px; margin: 0 0 14px; }
+  .sheet-total-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.16em; color: #6E5C51; }
+  .sheet-total-amount { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 28px; color: #7E2F35; }
+  .sheet-cta { width: 100%; background: #7E2F35; color: #FBF3EA; border: none; font-weight: 700; font-size: 15px; padding: 15px 20px; border-radius: 10px; transition: filter 0.15s ease; }
+  .sheet-cta:hover { filter: brightness(1.12); }
+  .sheet-note { margin: 10px 0 0; text-align: center; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.1em; color: #9C8A7D; }
+  .sheet-success { text-align: center; padding: 8px 0; animation: lsFade 0.3s ease; }
+  .sheet-check { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #3E7D4E; color: #3E7D4E; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 4px auto 14px; }
+  .sheet-success-h3 { margin: 0 0 8px; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 26px; }
+  .sheet-success-msg { margin: 0 auto 16px; color: #6E5C51; font-size: 14px; line-height: 1.65; max-width: 44ch; }
+  .sheet-preview { background: #FFFCF4; border: 1px dashed #D6C6A8; border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; text-align: left; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.8; color: #4E4038; white-space: pre-wrap; }
+  .sheet-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .sheet-wa-btn { background: #1FAE55; color: #08240F; text-decoration: none; font-weight: 700; font-size: 14.5px; padding: 13px 22px; border-radius: 10px; white-space: nowrap; border: none; transition: filter 0.15s ease; }
+  .sheet-wa-btn:hover { filter: brightness(1.08); }
+  .sheet-reset-btn { background: none; border: 1px solid #D6C6A8; color: #2E211B; font-weight: 700; font-size: 14.5px; padding: 13px 22px; border-radius: 10px; white-space: nowrap; transition: border-color 0.15s ease, color 0.15s ease; }
+  .sheet-reset-btn:hover { border-color: #7E2F35; color: #7E2F35; }
+
+  /* Reservation section */
+  [data-reservation] { background: #FCF6EA; }
+  .res-max { max-width: 680px; }
+  .res-card { background: #FFFCF4; border: 1px solid #E7DCC8; border-radius: 16px; padding: clamp(18px, 3vw, 28px); box-shadow: 0 1px 2px rgba(46, 33, 27, 0.05), 0 8px 24px -14px rgba(46, 33, 27, 0.16); }
+  .res-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.16em; color: #9C8A7D; margin: 0 0 10px; }
+  .res-day-chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 10px; }
+  .res-day-chip { flex: 0 0 auto; min-width: 74px; padding: 10px 8px 9px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; border: 1px solid #E7DCC8; background: #FFFCF4; color: #2E211B; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+  .res-day-chip.active { border-color: #7E2F35; background: rgba(126, 47, 53, 0.10); }
+  .res-day-chip.closed { opacity: 0.4; cursor: not-allowed; }
+  .res-day-chip-wd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 0.1em; color: #9C8A7D; }
+  .res-day-chip-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1; }
+  .res-day-chip-mo { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8.5px; letter-spacing: 0.1em; color: #9C8A7D; }
+  .res-day-chip-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: 0.08em; margin-top: 2px; }
+  .res-day-chip-tag.full { color: #B98A2F; }
+  .res-day-chip-tag.closed { color: #B3A19B; }
+
+  .res-slots-area { min-height: 120px; margin: 14px 0 10px; }
+  .res-slots-idle { border: 1px dashed #DECFB4; border-radius: 10px; padding: 26px 18px; text-align: center; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #9C8A7D; }
+  .res-slots-loading { border: 1px dashed #DECFB4; border-radius: 10px; padding: 26px 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .res-spinner { width: 22px; height: 22px; border: 2px solid #E7DCC8; border-top-color: #7E2F35; border-radius: 50%; animation: lsSpin 0.7s linear infinite; }
+  .res-slots-full { border: 1px solid rgba(185, 138, 47, 0.5); background: rgba(185, 138, 47, 0.07); border-radius: 10px; padding: 24px 18px; text-align: center; animation: lsFade 0.28s ease; }
+  .res-slots-full-h { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 22px; color: #8A6A1F; margin: 0 0 6px; }
+  .res-slots-full-p { margin: 0 0 14px; color: #6E5C51; font-size: 13px; line-height: 1.6; }
+  .res-slots-full-btn { background: #7E2F35; color: #FBF3EA; border: none; font-weight: 700; font-size: 13.5px; padding: 11px 20px; border-radius: 999px; white-space: nowrap; transition: filter 0.15s ease; }
+  .res-slots-full-btn:hover { filter: brightness(1.12); }
+  .res-slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); gap: 8px; animation: lsFade 0.28s ease; }
+  .res-slot-btn { padding: 12px 6px; border-radius: 8px; text-align: center; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; letter-spacing: 0.04em; border: 1px solid #E7DCC8; background: #FFFCF4; color: #2E211B; cursor: pointer; transition: all 0.15s ease; }
+  .res-slot-btn.active { border-color: #7E2F35; background: #7E2F35; color: #FBF3EA; font-weight: 700; }
+  .res-slot-btn:disabled { opacity: 0.5; cursor: not-allowed; text-decoration: line-through; color: #C9BBAE; }
+  .res-pax-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.16em; color: #9C8A7D; margin: 16px 0 10px; }
+  .res-pax-control { display: flex; align-items: center; gap: 14px; }
+  .res-pax-stepper { display: inline-flex; align-items: center; border: 1px solid #D6C6A8; border-radius: 999px; overflow: hidden; background: #FFFCF4; }
+  .res-pax-stepper button { background: none; border: none; padding: 10px 16px; color: #7E2F35; font-weight: 700; font-size: 16px; }
+  .res-pax-stepper-val { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 20px; min-width: 30px; text-align: center; }
+  .res-pax-hint { color: #6E5C51; font-size: 13px; }
+  .res-form-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; margin: 18px 0 4px; }
+  .res-summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px dashed #DECFB4; margin-top: 16px; padding-top: 14px; }
+  .res-summary-text { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 15.5px; color: #6E5C51; }
+  .res-confirm-btn { background: #7E2F35; color: #FBF3EA; border: none; font-weight: 700; font-size: 14.5px; padding: 13px 24px; border-radius: 10px; white-space: nowrap; transition: filter 0.15s ease; }
+  .res-confirm-btn:hover { filter: brightness(1.12); }
+  .res-success { text-align: center; padding: 10px 0; animation: lsFade 0.3s ease; }
+  .res-success-check { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #3E7D4E; color: #3E7D4E; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 4px auto 14px; }
+  .res-success-h3 { margin: 0 0 8px; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 26px; }
+  .res-success-msg { margin: 0 auto 16px; color: #6E5C51; font-size: 14px; line-height: 1.65; max-width: 44ch; }
+  .res-success-preview { background: #FCF6EA; border: 1px dashed #D6C6A8; border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; text-align: left; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.8; color: #4E4038; white-space: pre-wrap; }
+
+  /* Nosotros section */
+  .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(28px, 5vw, 56px); align-items: center; }
+  .nosotros-img { position: relative; }
+  .nosotros-img-main { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; display: block; background: #F0E7D6; }
+  .nosotros-img-avatar { position: absolute; right: -10px; bottom: -14px; width: 112px; height: 112px; border-radius: 50%; overflow: hidden; border: 5px solid #F6EFE3; box-shadow: 0 8px 24px -10px rgba(46, 33, 27, 0.35); }
+  .nosotros-img-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .nosotros-content-eyebrow { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.24em; color: #B98A2F; margin: 0 0 12px; }
+  .nosotros-h2 { margin: 0 0 16px; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.08; }
+  .nosotros-p { margin: 0 0 14px; color: #6E5C51; font-size: 15px; line-height: 1.75; }
+  .nosotros-author { margin: 0 0 24px; }
+  .nosotros-author-name { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 600; font-size: 24px; color: #2E211B; }
+  .nosotros-author-role { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.16em; color: #9C8A7D; margin-top: 4px; }
+  .nosotros-stats { display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 40px); border-top: 1px solid #E7DCC8; padding-top: 18px; }
+  .nosotros-stat { }
+  .nosotros-stat-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 28px; color: #7E2F35; }
+  .nosotros-stat-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 0.14em; color: #9C8A7D; margin-top: 3px; }
+
+  /* Galeria section */
+  .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+  .galeria-tile { position: relative; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; background: #F0E7D6; display: flex; align-items: flex-end; }
+  .galeria-tile-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .galeria-tile-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(34, 23, 18, 0.65) 100%); }
+  .galeria-tile-caption { position: relative; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.14em; color: rgba(251, 246, 234, 0.9); padding: 10px 12px; }
+
+  /* Ubicacion section */
+  .ubicacion-bg { background: #FCF6EA; }
+  .ubicacion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px; align-items: stretch; }
+  .ubicacion-card { background: #FFFCF4; border: 1px solid #E7DCC8; border-radius: 14px; padding: clamp(20px, 3vw, 28px); display: flex; flex-direction: column; gap: 20px; }
+  .ubicacion-card-group-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.16em; color: #9C8A7D; margin: 0 0 8px; }
+  .ubicacion-card-address { font-size: 16px; font-weight: 700; line-height: 1.5; }
+  .ubicacion-card-hint { color: #9C8A7D; font-size: 13px; margin-top: 6px; }
+  .ubicacion-hours { }
+  .ubicacion-hour-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px dashed #DECFB4; font-size: 14px; color: #6E5C51; font-weight: 400; transition: color 0.15s ease; }
+  .ubicacion-hour-row.today { color: #2E211B; font-weight: 700; }
+  .ubicacion-hour-badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8.5px; letter-spacing: 0.1em; color: #7E2F35; margin-left: 4px; }
+  .ubicacion-contact { font-size: 15px; font-weight: 700; }
+  .ubicacion-contact-email { color: #6E5C51; font-size: 13.5px; margin-top: 2px; }
+  .ubicacion-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+  .ubicacion-btn { border: 1px solid #D6C6A8; color: #2E211B; text-decoration: none; font-weight: 700; font-size: 13.5px; padding: 12px 20px; border-radius: 10px; transition: all 0.15s ease; }
+  .ubicacion-btn:hover { border-color: #7E2F35; color: #7E2F35; }
+  .ubicacion-map { position: relative; min-height: 320px; border: 1px solid #E7DCC8; border-radius: 14px; display: block; overflow: hidden; background: linear-gradient(0deg, transparent 0 44%, rgba(46, 33, 27, 0.08) 44% 47%, transparent 47%), linear-gradient(90deg, transparent 0 28%, rgba(46, 33, 27, 0.07) 28% 30.4%, transparent 30.4%), linear-gradient(62deg, transparent 0 60%, rgba(185, 138, 47, 0.18) 60% 62%, transparent 62%), repeating-linear-gradient(0deg, rgba(46, 33, 27, 0.03) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(46, 33, 27, 0.03) 0 1px, transparent 1px 34px), #F0E7D6; text-decoration: none; }
+  .ubicacion-map-pin { position: absolute; top: 44.5%; left: 29%; width: 16px; height: 16px; border-radius: 50%; background: #7E2F35; border: 3px solid #FFFCF4; box-shadow: 0 0 0 8px rgba(126, 47, 53, 0.12); }
+  .ubicacion-map-label { position: absolute; top: calc(44.5% + 26px); left: 29%; transform: translateX(-40%); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.1em; color: #2E211B; background: #FFFCF4; border: 1px solid #D6C6A8; border-radius: 6px; padding: 5px 9px; white-space: nowrap; }
+  .ubicacion-map-footer-l { position: absolute; bottom: 12px; left: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.12em; color: #9C8A7D; }
+  .ubicacion-map-footer-r { position: absolute; bottom: 12px; right: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.12em; color: #7E2F35; }
+
+  /* Footer */
+  footer { background: #221712; color: #EFE3D2; }
+  .footer-inner { max-width: 1120px; margin: 0 auto; padding: clamp(40px, 6vw, 64px) clamp(18px, 4vw, 44px) 28px; }
+  .footer-cols { display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 64px); justify-content: space-between; margin: 0 0 36px; }
+  .footer-col { max-width: 280px; }
+  .footer-logo { display: flex; align-items: baseline; gap: 9px; margin: 0 0 10px; }
+  .footer-logo-diamond { width: 8px; height: 8px; background: #B98A2F; transform: rotate(45deg); }
+  .footer-logo-name { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 600; font-size: 24px; line-height: 1; color: #FBF6EA; }
+  .footer-tagline { margin: 0; color: #B9A48E; font-size: 13px; line-height: 1.7; }
+  .footer-section-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.16em; color: #8A7560; margin: 0 0 12px; }
+  .footer-section-content { color: #D8C6B0; font-size: 13.5px; line-height: 2; }
+  .footer-links { display: flex; flex-direction: column; gap: 8px; }
+  .footer-link { color: #D8C6B0; text-decoration: none; font-size: 13.5px; transition: color 0.15s ease; }
+  .footer-link:hover { color: #D9B96A; }
+  .footer-legal { border-top: 1px solid rgba(239, 227, 210, 0.14); padding-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.1em; color: #8A7560; }
+
+  /* WhatsApp button */
+  [data-wa-float] { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: #1FAE55; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 24px rgba(34, 23, 18, 0.4); border: none; transition: transform 0.15s ease; }
+  [data-wa-float]:hover { transform: scale(1.07); }
+  .wa-float-text { font-family: Karla, system-ui, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.02em; color: #08240F; }
+
+  /* Image error handler */
+  img[data-error] { display: none; }
+</style>
+</head>
+<body>
+
+<div style="position: relative; min-height: 100vh; background: #F6EFE3; overflow-x: clip;">
+
+  <!-- NAV -->
+  <div data-nav>
+    <div>
+      <a href="#inicio" class="nav-logo">
+        <span class="nav-logo-diamond"></span>
+        <span class="nav-logo-name">La Sazón</span>
+        <span class="nav-logo-sub">COCINA CRIOLLA</span>
+      </a>
+      <div class="nav-links">
+        <a href="#menu" class="nav-link">Menú</a>
+        <a href="#nosotros" class="nav-link">Nosotros</a>
+        <a href="#galeria" class="nav-link">Galería</a>
+        <a href="#ubicacion" class="nav-link">Ubicación</a>
+      </div>
+      <button class="nav-cta" onclick="scrollToRes()">Reservar mesa</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="inicio" data-hero>
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80" alt="Mesa servida con platos criollos" class="hero-bg" crossorigin="anonymous">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-eyebrow-text">COCINA CRIOLLA · LAS PEÑAS, GUAYAQUIL</span>
+        <span class="hero-eyebrow-line"></span>
+      </div>
+      <h1 class="hero-h1">El sabor de casa,<br><span class="hero-h1-italic">servido con oficio.</span></h1>
+      <p class="hero-sub">Recetas de mercado, fuego lento y menú digital en tu mesa. Reserva o pide por WhatsApp.</p>
+      <div class="hero-ctas">
+        <button class="hero-cta hero-cta-primary" onclick="scrollTo('menu')">Ver menú</button>
+        <button class="hero-cta hero-cta-secondary" onclick="scrollToRes()">Reservar mesa</button>
+      </div>
+      <div class="hero-chips">
+        <span class="hero-chip">MAR–DOM DESDE 12:00</span>
+        <span class="hero-chip">MENÚ QR EN MESA</span>
+        <span class="hero-chip">4.8★ · 410+ RESEÑAS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu" data-section>
+    <div class="section-inner" style="max-width: 980px;">
+      <div class="section-header">
+        <div class="section-eyebrow">EL MENÚ</div>
+        <h2 class="section-h2">Cocina de mercado, todos los días</h2>
+        <div class="section-ornament">
+          <span class="section-ornament-line"></span>
+          <span class="section-ornament-diamond"></span>
+          <span class="section-ornament-line"></span>
+        </div>
+        <p class="section-sub">Escanea el QR en tu mesa o arma tu pedido aquí mismo — te lo confirmamos por WhatsApp.</p>
+      </div>
+      <div class="menu-tabs">
+        <button class="menu-tab active" onclick="switchCat(event, 'entradas')">ENTRADAS</button>
+        <button class="menu-tab" onclick="switchCat(event, 'fuertes')">FUERTES</button>
+        <button class="menu-tab" onclick="switchCat(event, 'postres')">POSTRES</button>
+        <button class="menu-tab" onclick="switchCat(event, 'bebidas')">BEBIDAS</button>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+      <p class="menu-note">RETIRO EN LOCAL O DELIVERY POR LAS PEÑAS / MALECÓN · PAGAS AL RECIBIR</p>
+    </div>
+  </section>
+
+  <!-- BARRA DE PEDIDO -->
+  <div id="cartBar" data-cartbar style="display: none;">
+    <span class="cartbar-label" id="cartBarLabel">0 ÍTEMS · $0</span>
+    <button class="cartbar-btn" onclick="openOrderSheet()">Revisar pedido</button>
+  </div>
+
+  <!-- SHEET DE PEDIDO -->
+  <div id="orderSheetOverlay" data-sheet-overlay style="display: none;" onclick="closeOrderSheet(event)"></div>
+  <div id="orderSheet" style="display: none;">
+    <div data-sheet-content>
+      <!-- Order form -->
+      <div id="orderForm">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0 0 14px;">
+          <h3 class="sheet-h3">Tu pedido</h3>
+          <button class="sheet-close" onclick="closeOrderSheet()" aria-label="Cerrar">✕</button>
+        </div>
+        <div style="margin: 0 0 16px;" id="sheetItems"></div>
+        <div class="sheet-form-group">
+          <label class="sheet-label">
+            <span class="sheet-label-text">TU NOMBRE *</span>
+            <input type="text" id="orderName" class="sheet-input" placeholder="Ej. Daniela Cruz" onchange="updateOrderName(this.value)">
+          </label>
+          <label class="sheet-label">
+            <span class="sheet-label-text">NOTA PARA LA COCINA (OPCIONAL)</span>
+            <input type="text" id="orderNote" class="sheet-input" placeholder="Ej. sin ají, por favor" onchange="updateOrderNote(this.value)">
+          </label>
+        </div>
+        <div id="orderNameError" style="display: none;" class="sheet-error">⚠ ESCRIBE TU NOMBRE PARA ENVIAR EL PEDIDO.</div>
+        <div class="sheet-total">
+          <span class="sheet-total-label">TOTAL</span>
+          <span class="sheet-total-amount" id="orderTotal">$0</span>
+        </div>
+        <button class="sheet-cta" onclick="confirmOrder()">Pedir por WhatsApp</button>
+        <p class="sheet-note">RETIRO O DELIVERY CERCANO · PAGAS AL RECIBIR</p>
+      </div>
+      <!-- Order success -->
+      <div id="orderSuccess" style="display: none;" class="sheet-success">
+        <div class="sheet-check">✓</div>
+        <h3 class="sheet-success-h3">¡Pedido listo, <span id="orderFirstName">gracias</span>!</h3>
+        <p class="sheet-success-msg">Envíanos el mensaje por WhatsApp y te confirmamos el tiempo de entrega.</p>
+        <div class="sheet-preview" id="orderMsgPreview"></div>
+        <div class="sheet-actions">
+          <a id="orderWALink" href="#" target="_blank" rel="noopener" class="sheet-wa-btn">Enviar por WhatsApp ↗</a>
+          <button class="sheet-reset-btn" onclick="resetOrder()">Nuevo pedido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESERVA -->
+  <section id="reserva" data-reservation data-section>
+    <div class="section-inner res-max">
+      <div class="section-header">
+        <div class="section-eyebrow">RESERVAS</div>
+        <h2 class="section-h2">Tu mesa junto al río</h2>
+        <div class="section-ornament">
+          <span class="section-ornament-line"></span>
+          <span class="section-ornament-diamond"></span>
+          <span class="section-ornament-line"></span>
+        </div>
+        <p class="section-sub">Elige día, hora y cuántos son. Te confirmamos por WhatsApp en minutos.</p>
+      </div>
+      <div class="res-card">
+        <!-- Reservation form -->
+        <div id="resForm">
+          <div class="res-label">EL DÍA</div>
+          <div class="res-day-chips" id="resDayChips"></div>
+
+          <div class="res-label" style="margin-top: 14px;">LA HORA</div>
+          <div class="res-slots-area" id="resSlotsArea">
+            <div class="res-slots-idle" id="resSlotsIdle">ELIGE UN DÍA PARA VER LAS MESAS LIBRES</div>
+          </div>
+
+          <div class="res-pax-label">CUÁNTOS SON</div>
+          <div class="res-pax-control">
+            <div class="res-pax-stepper">
+              <button onclick="paxDec()">−</button>
+              <span class="res-pax-stepper-val" id="resPaxVal">2</span>
+              <button onclick="paxInc()">+</button>
+            </div>
+            <span class="res-pax-hint">personas (máx. 10 — grupos grandes por WhatsApp)</span>
+          </div>
+
+          <div class="res-form-group">
+            <label class="sheet-label">
+              <span class="sheet-label-text">TU NOMBRE *</span>
+              <input type="text" id="resName" class="sheet-input" placeholder="Ej. Daniela Cruz" onchange="updateResName(this.value)">
+            </label>
+            <label class="sheet-label">
+              <span class="sheet-label-text">TELÉFONO (OPCIONAL)</span>
+              <input type="tel" id="resPhone" class="sheet-input" placeholder="+593 9…" onchange="updateResPhone(this.value)">
+            </label>
+          </div>
+          <div id="resNameError" style="display: none;" class="sheet-error">⚠ ESCRIBE TU NOMBRE PARA RESERVAR.</div>
+
+          <div class="res-summary">
+            <span class="res-summary-text" id="resSummaryText">— · — · 2 personas</span>
+            <button class="res-confirm-btn" onclick="confirmRes()">Reservar mesa</button>
+          </div>
+        </div>
+
+        <!-- Reservation success -->
+        <div id="resSuccess" style="display: none;" class="res-success">
+          <div class="res-success-check">✓</div>
+          <h3 class="res-success-h3">¡Mesa pre-reservada, <span id="resFirstName">gracias</span>!</h3>
+          <p class="res-success-msg">Envíanos el mensaje por WhatsApp y te confirmamos en minutos.</p>
+          <div class="res-success-preview" id="resMsgPreview"></div>
+          <div class="sheet-actions">
+            <a id="resWALink" href="#" target="_blank" rel="noopener" class="sheet-wa-btn">Enviar por WhatsApp ↗</a>
+            <button class="sheet-reset-btn" onclick="resetRes()">Hacer otra reserva</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" data-section>
+    <div class="section-inner">
+      <div class="nosotros-grid">
+        <div class="nosotros-img">
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80" alt="Manos cocinando en La Sazón" class="nosotros-img-main" crossorigin="anonymous">
+          <div class="nosotros-img-avatar">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="Rosario Mendoza, fundadora" crossorigin="anonymous">
+          </div>
+        </div>
+        <div>
+          <div class="nosotros-content-eyebrow">NOSOTROS</div>
+          <h2 class="nosotros-h2">Una cocina de casa que se nos fue de las manos</h2>
+          <p class="nosotros-p">La Sazón nació en 2016 en una cocina de casa en Las Peñas. Doña Rosario convirtió las recetas de su madre en un comedor de doce mesas donde todo se hace al día: el refrito, el encocado, el ají.</p>
+          <p class="nosotros-p">Nada de apuros, nada de sobres. Si un plato no está a la altura, no sale.</p>
+          <div class="nosotros-author">
+            <div class="nosotros-author-name">Rosario Mendoza</div>
+            <div class="nosotros-author-role">FUNDADORA Y JEFA DE COCINA</div>
+          </div>
+          <div class="nosotros-stats">
+            <div class="nosotros-stat">
+              <div class="nosotros-stat-num">9</div>
+              <div class="nosotros-stat-label">AÑOS EN LAS PEÑAS</div>
+            </div>
+            <div class="nosotros-stat">
+              <div class="nosotros-stat-num">12</div>
+              <div class="nosotros-stat-label">MESAS, NI UNA MÁS</div>
+            </div>
+            <div class="nosotros-stat">
+              <div class="nosotros-stat-num">100%</div>
+              <div class="nosotros-stat-label">RECETAS PROPIAS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria" data-section>
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">EL AMBIENTE</div>
+        <h2 class="section-h2">Doce mesas, cero apuro</h2>
+        <div class="section-ornament">
+          <span class="section-ornament-line"></span>
+          <span class="section-ornament-diamond"></span>
+          <span class="section-ornament-line"></span>
+        </div>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-tile">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80" alt="El comedor de La Sazón" class="galeria-tile-img" crossorigin="anonymous">
+          <div class="galeria-tile-overlay"></div>
+          <span class="galeria-tile-caption">EL COMEDOR</span>
+        </div>
+        <div class="galeria-tile">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Mesas de ventana" class="galeria-tile-img" crossorigin="anonymous">
+          <div class="galeria-tile-overlay"></div>
+          <span class="galeria-tile-caption">MESAS DE VENTANA</span>
+        </div>
+        <div class="galeria-tile">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" alt="La barra" class="galeria-tile-img" crossorigin="anonymous">
+          <div class="galeria-tile-overlay"></div>
+          <span class="galeria-tile-caption">LA BARRA</span>
+        </div>
+        <div class="galeria-tile">
+          <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=700&q=80" alt="Cocina a fuego lento" class="galeria-tile-img" crossorigin="anonymous">
+          <div class="galeria-tile-overlay"></div>
+          <span class="galeria-tile-caption">FUEGO LENTO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section id="ubicacion" data-section class="ubicacion-bg">
+    <div class="section-inner ubicacion-grid" style="max-width: 1120px;">
+      <div class="ubicacion-card">
+        <div>
+          <div class="ubicacion-card-group-label">DIRECCIÓN</div>
+          <div class="ubicacion-card-address">Numa Pompilio Llona 212<br>Barrio Las Peñas, Guayaquil</div>
+          <div class="ubicacion-card-hint">A una cuadra del Malecón 2000.</div>
+        </div>
+        <div>
+          <div class="ubicacion-card-group-label">HORARIO</div>
+          <div class="ubicacion-hours" id="hoursRows"></div>
+        </div>
+        <div>
+          <div class="ubicacion-card-group-label">CONTACTO</div>
+          <div class="ubicacion-contact">+593 98 761 2045</div>
+          <div class="ubicacion-contact-email">hola@lasazon.ec</div>
+        </div>
+        <div class="ubicacion-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=Numa+Pompilio+Llona+212+Las+Penas+Guayaquil" target="_blank" rel="noopener" class="ubicacion-btn">Cómo llegar ↗</a>
+          <a href="https://wa.me/593987612045?text=Hola+La+Sazón,+quiero+información." target="_blank" rel="noopener" class="ubicacion-btn" style="background: #1FAE55; color: #08240F; border-color: #1FAE55;">Escribir por WhatsApp</a>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Numa+Pompilio+Llona+212+Las+Penas+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" class="ubicacion-map">
+        <span class="ubicacion-map-pin"></span>
+        <span class="ubicacion-map-label">LA SAZÓN</span>
+        <span class="ubicacion-map-footer-l">MAPA · LAS PEÑAS, JUNTO AL MALECÓN</span>
+        <span class="ubicacion-map-footer-r">ABRIR EN GOOGLE MAPS ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <span class="footer-logo-diamond"></span>
+            <span class="footer-logo-name">La Sazón</span>
+          </div>
+          <p class="footer-tagline">Cocina criolla en Las Peñas desde 2016. Recetas de casa, fuego lento y cero apuro.</p>
+        </div>
+        <div>
+          <div class="footer-section-label">HORARIO</div>
+          <div class="footer-section-content">Mar – Jue · 12:00 – 21:00<br>Vie – Sáb · 12:00 – 22:30<br>Domingo · 11:00 – 17:00<br>Lunes · Cerrado</div>
+        </div>
+        <div>
+          <div class="footer-section-label">CONTACTO</div>
+          <div class="footer-section-content">+593 98 761 2045<br>hola@lasazon.ec<br>Numa Pompilio Llona 212, Las Peñas</div>
+        </div>
+        <div>
+          <div class="footer-section-label">SÍGUENOS</div>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Instagram · @lasazon.gye</a>
+            <a href="#" class="footer-link">TikTok · @lasazon</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span id="footerYear">2026</span> LA SAZÓN — NEGOCIO Y DATOS FICTICIOS</span>
+        <span>SITIO DEMO · DISEÑADO POR <a href="https://luisgxz.github.io/nexora/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">NEXORA STUDIO</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOTANTE -->
+  <a id="waFloat" href="https://wa.me/593987612045?text=Hola+La+Sazón,+quiero+información." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-wa-float>
+    <span class="wa-float-text">WA</span>
+  </a>
+
+</div>
+
+<script>
+  // === STATE ===
+  const state = {
+    activeCat: 'entradas',
+    cart: {},
+    cartTotal: 0,
+    cartCount: 0,
+    sheetOpen: false,
+    orderName: '',
+    orderNote: '',
+    orderNameError: false,
+    orderDone: false,
+    resDay: null,
+    resTime: null,
+    resPax: 2,
+    resName: '',
+    resPhone: '',
+    resNameError: false,
+    resLoading: false,
+    resDone: false
+  };
+
+  const DISHES = [
+    { id: 'empanadas', cat: 'entradas', name: 'Empanadas de viento (3)', desc: 'Queso y cebolla blanca, azúcar espolvoreada.', price: 4.5, img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80' },
+    { id: 'ceviche', cat: 'entradas', name: 'Ceviche de camarón', desc: 'Camarón, limón sutil, tomate y cilantro. Con chifles.', price: 9.5, img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80' },
+    { id: 'ensalada', cat: 'entradas', name: 'Ensalada del huerto', desc: 'Hojas frescas, aguacate, choclo y vinagreta de maracuyá.', price: 6, img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80' },
+    { id: 'encebollado', cat: 'fuertes', name: 'Encebollado real', desc: 'Albacora, yuca y cebolla curtida. El de los domingos.', price: 7.5, img: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=400&q=80' },
+    { id: 'seco', cat: 'fuertes', name: 'Seco de chivo', desc: 'Cocción lenta en cerveza y naranjilla, arroz amarillo.', price: 11, img: 'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=400&q=80' },
+    { id: 'mariscos', cat: 'fuertes', name: 'Arroz con mariscos', desc: 'Camarón, calamar y concha, sofrito de la casa.', price: 13.5, img: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=400&q=80' },
+    { id: 'churrasco', cat: 'fuertes', name: 'Churrasco La Sazón', desc: 'Lomo fino, huevo frito, maduro y papas criollas.', price: 12.5, img: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=400&q=80' },
+    { id: 'salmon', cat: 'fuertes', name: 'Salmón al carbón', desc: 'Con puré rústico y vegetales de temporada.', price: 14, img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80' },
+    { id: 'tresleches', cat: 'postres', name: 'Tres leches de la casa', desc: 'Bizcocho húmedo, canela y cereza.', price: 4.5, img: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400&q=80' },
+    { id: 'flan', cat: 'postres', name: 'Flan de coco', desc: 'Caramelo oscuro y coco tostado.', price: 4, img: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=400&q=80' },
+    { id: 'naranjilla', cat: 'bebidas', name: 'Jugo de naranjilla', desc: 'Recién exprimido.', price: 2.5, img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=400&q=80' },
+    { id: 'limonada', cat: 'bebidas', name: 'Limonada de hierbabuena', desc: 'Vaso $2.50 · jarra $5.50.', price: 2.5, img: 'https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?auto=format&fit=crop&w=400&q=80' },
+    { id: 'cafe', cat: 'bebidas', name: 'Café pasado', desc: 'De Loja, en chuspa.', price: 2, img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80' }
+  ];
+
+  const TIMES = ['12:00', '12:30', '13:00', '13:30', '14:00', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30'];
+
+  /**
+   * Generate 7 days starting from today with closure/fullness info
+   */
+  function getDays() {
+    const WD = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const MO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const out = [];
+    const now = new Date();
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      const wd = d.getDay();
+      out.push({
+        i, key: d.toDateString(), wd: WD[wd], num: d.getDate(), mo: MO[d.getMonth()],
+        closed: wd === 1, full: wd === 6,
+        label: (i === 0 ? 'Hoy' : WD[wd]) + ' ' + d.getDate() + ' ' + MO[d.getMonth()]
+      });
+    }
+    return out;
+  }
+
+  /**
+   * Get available/busy slots for a given day
+   */
+  function getSlots(day) {
+    if (!day || day.closed || day.full) return [];
+    return TIMES.map((t, i) => ({ t, busy: ((i * 5 + day.num * 7 + day.i * 3) % 11) < 3 }));
+  }
+
+  /**
+   * Format money
+   */
+  function money(n) {
+    return '$' + n.toFixed(2).replace('.00', '');
+  }
+
+  /**
+   * Scroll to element
+   */
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+
+  function scrollToRes() { scrollTo('reserva'); }
+
+  /**
+   * Switch menu category
+   */
+  function switchCat(e, cat) {
+    state.activeCat = cat;
+    document.querySelectorAll('.menu-tab').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+    renderMenu();
+  }
+
+  /**
+   * Render menu grid for active category
+   */
+  function renderMenu() {
+    const grid = document.getElementById('menuGrid');
+    const dishes = DISHES.filter(d => d.cat === state.activeCat);
+    grid.innerHTML = dishes.map(d => {
+      const qty = state.cart[d.id] || 0;
+      return `<div class="menu-card">
+        <div class="menu-card-img" style="background-image: url('${d.img}');" role="img" aria-label="${d.name}"></div>
+        <div class="menu-card-content">
+          <div class="menu-card-header">
+            <span class="menu-card-name">${d.name}</span>
+            <span class="menu-card-price">${money(d.price)}</span>
+          </div>
+          <p class="menu-card-desc">${d.desc}</p>
+          ${qty > 0 ? `<div class="menu-card-control">
+            <button onclick="updateCart('${d.id}', -1)">−</button>
+            <span class="menu-card-control-qty">${qty}</span>
+            <button class="add-btn" onclick="updateCart('${d.id}', 1)">+</button>
+          </div>` : `<button class="menu-add-btn" onclick="updateCart('${d.id}', 1)">Añadir</button>`}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  /**
+   * Update cart: add/remove item
+   */
+  function updateCart(id, delta) {
+    if (!state.cart[id]) state.cart[id] = 0;
+    state.cart[id] += delta;
+    if (state.cart[id] <= 0) delete state.cart[id];
+    updateCartState();
+    renderMenu();
+  }
+
+  /**
+   * Update cart summary state
+   */
+  function updateCartState() {
+    const entries = Object.entries(state.cart);
+    state.cartCount = entries.reduce((a, [, q]) => a + q, 0);
+    state.cartTotal = entries.reduce((a, [id, q]) => a + q * DISHES.find(d => d.id === id).price, 0);
+
+    const bar = document.getElementById('cartBar');
+    const label = document.getElementById('cartBarLabel');
+    if (state.cartCount > 0 && !state.sheetOpen) {
+      bar.style.display = 'flex';
+      label.textContent = state.cartCount + (state.cartCount === 1 ? ' ÍTEM' : ' ÍTEMS') + ' · ' + money(state.cartTotal);
+      document.getElementById('waFloat').style.display = 'none';
+    } else {
+      bar.style.display = 'none';
+      document.getElementById('waFloat').style.display = 'flex';
+    }
+
+    // Update total in sheet
+    document.getElementById('orderTotal').textContent = money(state.cartTotal);
+  }
+
+  /**
+   * Open order sheet
+   */
+  function openOrderSheet() {
+    state.sheetOpen = true;
+    document.getElementById('orderSheetOverlay').style.display = 'block';
+    document.getElementById('orderSheet').style.display = 'block';
+    renderSheetItems();
+    updateCartState();
+  }
+
+  /**
+   * Close order sheet
+   */
+  function closeOrderSheet(e) {
+    if (e && e.target !== e.currentTarget) return;
+    state.sheetOpen = false;
+    document.getElementById('orderSheetOverlay').style.display = 'none';
+    document.getElementById('orderSheet').style.display = 'none';
+    updateCartState();
+  }
+
+  /**
+   * Render cart items in sheet
+   */
+  function renderSheetItems() {
+    const container = document.getElementById('sheetItems');
+    const entries = Object.entries(state.cart);
+    container.innerHTML = entries.map(([id, q]) => {
+      const d = DISHES.find(x => x.id === id);
+      return `<div class="sheet-item">
+        <span class="sheet-item-name">${d.name}</span>
+        <div class="sheet-item-control">
+          <button onclick="updateCart('${id}', -1)">−</button>
+          <span class="sheet-item-qty">${q}</span>
+          <button onclick="updateCart('${id}', 1)">+</button>
+        </div>
+        <span class="sheet-item-sub">${money(q * d.price)}</span>
+      </div>`;
+    }).join('');
+  }
+
+  /**
+   * Update order name
+   */
+  function updateOrderName(val) {
+    state.orderName = val;
+    state.orderNameError = false;
+    document.getElementById('orderNameError').style.display = 'none';
+    document.getElementById('orderName').classList.remove('error');
+  }
+
+  /**
+   * Update order note
+   */
+  function updateOrderNote(val) {
+    state.orderNote = val;
+  }
+
+  /**
+   * Confirm order
+   */
+  function confirmOrder() {
+    if (!state.orderName.trim()) {
+      state.orderNameError = true;
+      document.getElementById('orderNameError').style.display = 'block';
+      document.getElementById('orderName').classList.add('error');
+      return;
+    }
+    state.orderDone = true;
+    renderOrderSuccess();
+  }
+
+  /**
+   * Render order success state
+   */
+  function renderOrderSuccess() {
+    const entries = Object.entries(state.cart);
+    const orderLines = entries.map(([id, q]) => {
+      const d = DISHES.find(x => x.id === id);
+      return '• ' + q + '× ' + d.name + ' — ' + money(q * d.price);
+    }).join('\n');
+    const orderMsg = 'Hola La Sazón 🍲 Quiero pedir:\n' + orderLines + '\nTotal: ' + money(state.cartTotal) +
+      '\n• Nombre: ' + state.orderName.trim() + (state.orderNote.trim() ? '\n• Nota: ' + state.orderNote.trim() : '') +
+      '\n¿Me confirman tiempo de entrega? ¡Gracias!';
+
+    document.getElementById('orderForm').style.display = 'none';
+    document.getElementById('orderSuccess').style.display = 'block';
+    document.getElementById('orderFirstName').textContent = state.orderName.trim().split(' ')[0];
+    document.getElementById('orderMsgPreview').textContent = orderMsg;
+    document.getElementById('orderWALink').href = 'https://wa.me/593987612045?text=' + encodeURIComponent(orderMsg);
+  }
+
+  /**
+   * Reset order
+   */
+  function resetOrder() {
+    state.cart = {};
+    state.orderName = '';
+    state.orderNote = '';
+    state.orderNameError = false;
+    state.orderDone = false;
+    document.getElementById('orderName').value = '';
+    document.getElementById('orderNote').value = '';
+    document.getElementById('orderForm').style.display = 'block';
+    document.getElementById('orderSuccess').style.display = 'none';
+    closeOrderSheet();
+    updateCartState();
+    renderMenu();
+  }
+
+  /**
+   * Render day chips for reservation
+   */
+  function renderResDayChips() {
+    const container = document.getElementById('resDayChips');
+    const days = getDays();
+    container.innerHTML = days.map(d => {
+      const active = state.resDay && state.resDay.key === d.key;
+      return `<button class="res-day-chip ${active ? 'active' : ''} ${d.closed ? 'closed' : ''}" onclick="pickResDay('${d.key}')" ${d.closed ? 'disabled' : ''}>
+        <span class="res-day-chip-wd">${(d.i === 0 ? 'HOY' : d.wd).toUpperCase()}</span>
+        <span class="res-day-chip-num">${d.num}</span>
+        <span class="res-day-chip-mo">${d.mo.toUpperCase()}</span>
+        ${d.closed || d.full ? `<span class="res-day-chip-tag ${d.full ? 'full' : 'closed'}">${d.closed ? 'CERRADO' : 'COMPLETO'}</span>` : ''}
+      </button>`;
+    }).join('');
+  }
+
+  /**
+   * Pick reservation day
+   */
+  function pickResDay(key) {
+    const days = getDays();
+    const day = days.find(d => d.key === key);
+    if (!day || day.closed) return;
+    state.resDay = day;
+    state.resTime = null;
+    state.resLoading = true;
+    setTimeout(() => {
+      state.resLoading = false;
+      renderResSlots();
+    }, 700);
+    renderResDayChips();
+    renderResSlots();
+  }
+
+  /**
+   * Render reservation slots
+   */
+  function renderResSlots() {
+    const area = document.getElementById('resSlotsArea');
+    if (!state.resDay || state.resLoading) {
+      area.innerHTML = `<div class="res-slots-loading">
+        <span class="res-spinner"></span>
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; color: #9C8A7D;">BUSCANDO MESA…</span>
+      </div>`;
+    } else if (state.resDay.full) {
+      const nextDay = getDays().find(d => d.i > state.resDay.i && !d.closed && !d.full);
+      area.innerHTML = `<div class="res-slots-full">
+        <div class="res-slots-full-h">Completo ese día</div>
+        <p class="res-slots-full-p">Los sábados vuelan. Escríbenos y te avisamos si se libera una mesa.</p>
+        <button class="res-slots-full-btn" onclick="pickResDay('${nextDay.key}')">${nextDay ? 'Probar el ' + nextDay.label : 'Ver otro día'}</button>
+      </div>`;
+    } else {
+      const slots = getSlots(state.resDay);
+      area.innerHTML = `<div class="res-slots-grid">
+        ${slots.map(sl => {
+          const active = state.resTime === sl.t;
+          return `<button class="res-slot-btn ${active ? 'active' : ''}" onclick="pickResTime('${sl.t}')" ${sl.busy ? 'disabled' : ''}>${sl.t}</button>`;
+        }).join('')}
+      </div>`;
+    }
+  }
+
+  /**
+   * Pick reservation time
+   */
+  function pickResTime(t) {
+    state.resTime = t;
+    updateResSummary();
+    renderResSlots();
+  }
+
+  /**
+   * Update persons
+   */
+  function paxInc() {
+    state.resPax = Math.min(10, state.resPax + 1);
+    document.getElementById('resPaxVal').textContent = state.resPax;
+    updateResSummary();
+  }
+
+  function paxDec() {
+    state.resPax = Math.max(1, state.resPax - 1);
+    document.getElementById('resPaxVal').textContent = state.resPax;
+    updateResSummary();
+  }
+
+  /**
+   * Update reservation name
+   */
+  function updateResName(val) {
+    state.resName = val;
+    state.resNameError = false;
+    document.getElementById('resNameError').style.display = 'none';
+    document.getElementById('resName').classList.remove('error');
+    updateResSummary();
+  }
+
+  /**
+   * Update reservation phone
+   */
+  function updateResPhone(val) {
+    state.resPhone = val;
+  }
+
+  /**
+   * Update reservation summary
+   */
+  function updateResSummary() {
+    const day = state.resDay ? state.resDay.label : '—';
+    const time = state.resTime || '—';
+    const pax = state.resPax + (state.resPax === 1 ? ' persona' : ' personas');
+    document.getElementById('resSummaryText').textContent = day + ' · ' + time + ' · ' + pax;
+  }
+
+  /**
+   * Confirm reservation
+   */
+  function confirmRes() {
+    if (!state.resName.trim()) {
+      state.resNameError = true;
+      document.getElementById('resNameError').style.display = 'block';
+      document.getElementById('resName').classList.add('error');
+      return;
+    }
+    if (!state.resDay || !state.resTime) return;
+    state.resDone = true;
+    renderResSuccess();
+  }
+
+  /**
+   * Render reservation success
+   */
+  function renderResSuccess() {
+    const resMsg = 'Hola La Sazón 🍷 Quiero reservar una mesa:\n• Día: ' + state.resDay.label +
+      ' · ' + state.resTime + '\n• Personas: ' + state.resPax + '\n• Nombre: ' + state.resName.trim() +
+      (state.resPhone.trim() ? '\n• Teléfono: ' + state.resPhone.trim() : '') +
+      '\n¿Me confirman? ¡Gracias!';
+
+    document.getElementById('resForm').style.display = 'none';
+    document.getElementById('resSuccess').style.display = 'block';
+    document.getElementById('resFirstName').textContent = state.resName.trim().split(' ')[0];
+    document.getElementById('resMsgPreview').textContent = resMsg;
+    document.getElementById('resWALink').href = 'https://wa.me/593987612045?text=' + encodeURIComponent(resMsg);
+  }
+
+  /**
+   * Reset reservation
+   */
+  function resetRes() {
+    state.resDay = null;
+    state.resTime = null;
+    state.resPax = 2;
+    state.resName = '';
+    state.resPhone = '';
+    state.resNameError = false;
+    state.resDone = false;
+    state.resLoading = false;
+    document.getElementById('resName').value = '';
+    document.getElementById('resPhone').value = '';
+    document.getElementById('resName').classList.remove('error');
+    document.getElementById('resPhone').classList.remove('error');
+    document.getElementById('resNameError').style.display = 'none';
+    document.getElementById('resForm').style.display = 'block';
+    document.getElementById('resSuccess').style.display = 'none';
+    renderResDayChips();
+    renderResSlots();
+    updateResSummary();
+  }
+
+  /**
+   * Render hours table
+   */
+  function renderHoursTable() {
+    const container = document.getElementById('hoursRows');
+    const wd = new Date().getDay();
+    const hours = [
+      { d: 'Martes – Jueves', h: '12:00 – 21:00', on: wd >= 2 && wd <= 4 },
+      { d: 'Viernes – Sábado', h: '12:00 – 22:30', on: wd === 5 || wd === 6 },
+      { d: 'Domingo', h: '11:00 – 17:00', on: wd === 0 },
+      { d: 'Lunes', h: 'Cerrado', on: wd === 1 }
+    ];
+    container.innerHTML = hours.map(h => `<div class="ubicacion-hour-row ${h.on ? 'today' : ''}">
+      <span>${h.d} ${h.on ? '<span class="ubicacion-hour-badge">HOY</span>' : ''}</span>
+      <span>${h.h}</span>
+    </div>`).join('');
+  }
+
+  /**
+   * Initialize on DOM load
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+    renderMenu();
+    renderResDayChips();
+    renderResSlots();
+    renderHoursTable();
+
+    // Image error handler
+    document.addEventListener('error', (e) => {
+      if (e.target && e.target.tagName === 'IMG') {
+        e.target.style.display = 'none';
+      }
+    }, true);
+  });
+</script>
+
+</body>
+</html>

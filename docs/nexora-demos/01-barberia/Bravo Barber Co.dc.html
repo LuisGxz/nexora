@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#0E0D0B;color:#F2EDE6;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  input,button,select,textarea{font:inherit}
+  ::selection{background:rgba(200,127,63,.4)}
+  input::placeholder{color:rgba(242,237,230,.3)}
+  @keyframes bbSpin{to{transform:rotate(360deg)}}
+  @keyframes bbFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;background:#0E0D0B;overflow-x:clip">
+
+  <!-- ============ NAV ============ -->
+  <div data-shot="nav" data-screen-label="Nav" style="position:sticky;top:0;z-index:50;background:rgba(14,13,11,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(242,237,230,.09)">
+    <div style="max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,44px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#inicio" onClick="{{ goTop }}" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#F2EDE6">
+        <span style="width:9px;height:9px;background:var(--bbA,#C87F3F);transform:rotate(45deg);display:block;flex:none"></span>
+        <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:23px;letter-spacing:.05em;line-height:1;padding-top:2px">BRAVO BARBER <span style="color:var(--bbA,#C87F3F)">CO.</span></span>
+      </a>
+      <sc-if value="{{ showNavLinks }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:26px">
+          <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="4">
+            <a href="{{ nv.href }}" onClick="{{ nv.go }}" style="color:#B7AFA4;text-decoration:none;font-size:13.5px;font-weight:500;letter-spacing:.02em" style-hover="color:#F2EDE6">{{ nv.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <a href="#reserva" onClick="{{ goBooking }}" style="background:var(--bbA,#C87F3F);color:#14100B;text-decoration:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:17px;letter-spacing:.08em;padding:11px 18px 9px;border-radius:4px;white-space:nowrap;line-height:1" style-hover="filter:brightness(1.12)">RESERVAR TURNO</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" data-shot="hero" data-screen-label="Hero" style="position:relative;overflow:hidden;border-bottom:1px solid rgba(242,237,230,.08);background:radial-gradient(900px 420px at 85% -10%,var(--bbAglow,rgba(200,127,63,.15)),transparent 62%),radial-gradient(700px 380px at -10% 110%,var(--bbAstripe,rgba(200,127,63,.06)),transparent 60%),#0E0D0B">
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,92px) clamp(18px,4vw,44px) clamp(52px,8vw,100px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:clamp(32px,5vw,64px);align-items:center">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin:0 0 18px">
+          <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+          <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.2em;color:var(--bbA,#C87F3F)">URDESA · GUAYAQUIL · DESDE 2012</span>
+        </div>
+        <h1 style="margin:0 0 18px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(58px,10vw,116px);line-height:.92;letter-spacing:.01em">CORTE LIMPIO.<br>NAVAJA CALIENTE.<br><span style="color:var(--bbA,#C87F3F)">CERO VUELTAS.</span></h1>
+        <p style="margin:0 0 26px;color:#B7AFA4;font-size:clamp(15px,1.6vw,17px);line-height:1.65;max-width:46ch">Barbería de oficio en Urdesa. Fades precisos, afeitado clásico con toalla caliente y tu turno listo en menos de un minuto — sin llamadas.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 34px">
+          <a href="#reserva" onClick="{{ goBooking }}" style="background:var(--bbA,#C87F3F);color:#14100B;text-decoration:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:.08em;padding:14px 28px 12px;border-radius:4px;line-height:1" style-hover="filter:brightness(1.12);transform:translateY(-1px)">RESERVAR TURNO</a>
+          <a href="#servicios" onClick="{{ goServices }}" style="border:1px solid rgba(242,237,230,.25);color:#F2EDE6;text-decoration:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:.08em;padding:14px 28px 12px;border-radius:4px;line-height:1" style-hover="border-color:var(--bbA,#C87F3F);color:var(--bbA,#C87F3F)">VER SERVICIOS</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,44px);border-top:1px solid rgba(242,237,230,.1);padding-top:22px">
+          <div>
+            <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;line-height:1;color:#F2EDE6">14</div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#877F73;margin-top:4px">AÑOS DE OFICIO</div>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;line-height:1;color:#F2EDE6">4.9<span style="color:var(--bbA,#C87F3F)">★</span></div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#877F73;margin-top:4px">380+ RESEÑAS</div>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;line-height:1;color:#F2EDE6">3</div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#877F73;margin-top:4px">BARBEROS DE PLANTA</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;aspect-ratio:4/5;max-height:560px;border:1px solid rgba(242,237,230,.12);border-radius:8px;background:#14120F repeating-linear-gradient(45deg,transparent 0 9px,var(--bbAstripe,rgba(200,127,63,.05)) 9px 10px);display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,230,.42);text-align:center;padding:0 18px">IMG · barbero afeitando<br>con navaja, plano cerrado</span>
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=80" alt="Barbero afeitando con navaja" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.06)">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,.12) 0%,transparent 30% 62%,rgba(11,10,8,.55) 100%)"></div>
+        <span style="position:absolute;top:12px;left:12px;width:18px;height:18px;border-top:2px solid var(--bbA,#C87F3F);border-left:2px solid var(--bbA,#C87F3F)"></span>
+        <span style="position:absolute;bottom:12px;right:12px;width:18px;height:18px;border-bottom:2px solid var(--bbA,#C87F3F);border-right:2px solid var(--bbA,#C87F3F)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section id="servicios" data-shot="servicios" data-screen-label="Servicios" style="border-bottom:1px solid rgba(242,237,230,.08)">
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+        <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.2em;color:var(--bbA,#C87F3F)">SERVICIOS Y PRECIOS</span>
+      </div>
+      <h2 style="margin:0 0 10px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,58px);line-height:.95;letter-spacing:.015em">LO QUE HACEMOS BIEN</h2>
+      <p style="margin:0 0 34px;color:#B7AFA4;font-size:15px;line-height:1.65;max-width:56ch">Precios cerrados, sin sorpresas. Pagas en el local: efectivo, transferencia o tarjeta.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:14px">
+        <sc-for list="{{ srvCards }}" as="s" hint-placeholder-count="6">
+          <div style="background:#15130F;border:1px solid rgba(242,237,230,.1);border-radius:8px;padding:20px 20px 16px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s ease,transform .15s ease" style-hover="border-color:var(--bbAline,rgba(200,127,63,.4));transform:translateY(-2px)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+              <span style="font-weight:600;font-size:16px">{{ s.name }}</span>
+              <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:30px;line-height:1;color:var(--bbA,#C87F3F)">{{ s.priceLabel }}</span>
+            </div>
+            <p style="margin:0;color:#B7AFA4;font-size:13.5px;line-height:1.55;flex:1">{{ s.desc }}</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(242,237,230,.08);padding-top:12px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.12em;color:#877F73;border:1px solid rgba(242,237,230,.14);border-radius:3px;padding:4px 8px">{{ s.minLabel }}</span>
+              <a href="#reserva" onClick="{{ s.pick }}" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.14em;color:var(--bbA,#C87F3F);text-decoration:none" style-hover="text-decoration:underline">RESERVAR →</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria" data-shot="galeria" data-screen-label="Galería" style="border-bottom:1px solid rgba(242,237,230,.08)">
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin:0 0 30px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+            <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+            <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.2em;color:var(--bbA,#C87F3F)">GALERÍA</span>
+          </div>
+          <h2 style="margin:0;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,58px);line-height:.95;letter-spacing:.015em">TRABAJO RECIENTE</h2>
+        </div>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.12em;color:#877F73">@BRAVOBARBER.GYE · ACTUALIZADO CADA SEMANA</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px">
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(242,237,230,.1);border-radius:6px;background:#14120F;display:flex;align-items:flex-end;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" alt="Fade alto con línea" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.05)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.72) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:rgba(242,237,230,.88);padding:10px 12px">FADE ALTO + LÍNEA</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(242,237,230,.1);border-radius:6px;background:#14120F;display:flex;align-items:flex-end;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80" alt="Afeitado clásico con toalla caliente" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.05)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.72) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:rgba(242,237,230,.88);padding:10px 12px">AFEITADO · TOALLA CALIENTE</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(242,237,230,.1);border-radius:6px;background:#14120F;display:flex;align-items:flex-end;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80" alt="Corte clásico a tijera" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.05)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.72) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:rgba(242,237,230,.88);padding:10px 12px">CLÁSICO A TIJERA</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(242,237,230,.1);border-radius:6px;background:#14120F;display:flex;align-items:flex-end;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=700&q=80" alt="Diseño freestyle a máquina" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.05)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.72) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:rgba(242,237,230,.88);padding:10px 12px">DISEÑO FREESTYLE</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(242,237,230,.1);border-radius:6px;background:#14120F;display:flex;align-items:flex-end;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=80" alt="Perfilado de barba" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.05)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.72) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:rgba(242,237,230,.88);padding:10px 12px">PERFILADO DE BARBA</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(242,237,230,.1);border-radius:6px;background:#14120F;display:flex;align-items:flex-end;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=80" alt="Interior del local, sillas de barbero" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.05)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.72) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:rgba(242,237,230,.88);padding:10px 12px">EL LOCAL · SILLAS 1–3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESERVA ============ -->
+  <section id="reserva" data-shot="reserva" data-screen-label="Reserva" style="border-bottom:1px solid rgba(242,237,230,.08);background:#121110">
+    <div style="max-width:880px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 30px">
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 14px">
+          <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+          <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.2em;color:var(--bbA,#C87F3F)">RESERVA EN LÍNEA</span>
+          <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+        </div>
+        <h2 style="margin:0 0 10px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,58px);line-height:.95;letter-spacing:.015em">TU TURNO EN 30 SEGUNDOS</h2>
+        <p style="margin:0 auto;color:#B7AFA4;font-size:15px;line-height:1.65;max-width:52ch">Elige y confirma: el mensaje te queda listo en WhatsApp. Sin cuenta, sin pago online.</p>
+      </div>
+
+      <div style="background:#17150F;border:1px solid rgba(242,237,230,.11);border-radius:10px;overflow:hidden">
+        <div style="display:flex;flex-wrap:wrap;gap:4px;padding:12px 14px;border-bottom:1px solid rgba(242,237,230,.09);background:#131109">
+          <sc-for list="{{ stepChips }}" as="sp" hint-placeholder-count="4">
+            <button type="button" onClick="{{ sp.go }}" style="{{ sp.style }}"><span style="{{ sp.numStyle }}">{{ sp.num }}</span> {{ sp.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding:clamp(18px,3.5vw,34px);min-height:380px;box-sizing:border-box">
+
+          <!-- PASO 1: SERVICIO -->
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="animation:bbFade .28s ease">
+              <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 6px">PASO 1 DE 4</div>
+              <h3 style="margin:0 0 18px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(26px,4vw,34px);letter-spacing:.02em">¿QUÉ TE HACEMOS?</h3>
+              <div style="display:grid;gap:10px">
+                <sc-for list="{{ srvRows }}" as="s" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ s.pick }}" style="{{ s.style }}">
+                    <span style="text-align:left">
+                      <span style="display:block;font-weight:600;font-size:15px;color:#F2EDE6">{{ s.name }}</span>
+                      <span style="display:block;color:#877F73;font-size:12.5px;margin-top:2px">{{ s.desc }}</span>
+                    </span>
+                    <span style="display:flex;align-items:center;gap:12px;flex:none">
+                      <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#877F73">{{ s.minLabel }}</span>
+                      <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;line-height:1;color:var(--bbA,#C87F3F)">{{ s.priceLabel }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- PASO 2: BARBERO -->
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:bbFade .28s ease">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 6px">
+                <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73">PASO 2 DE 4 · {{ selServiceLine }}</span>
+                <button type="button" onClick="{{ goStep1 }}" style="background:none;border:none;padding:0;cursor:pointer;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.12em;color:var(--bbA,#C87F3F);white-space:nowrap" style-hover="text-decoration:underline">← CAMBIAR SERVICIO</button>
+              </div>
+              <h3 style="margin:0 0 18px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(26px,4vw,34px);letter-spacing:.02em">¿CON QUIÉN?</h3>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px">
+                <sc-for list="{{ barberRows }}" as="b" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ b.pick }}" style="{{ b.style }}">
+                    <span style="width:52px;height:52px;border-radius:50%;background:#0E0C0A;border:1px solid rgba(242,237,230,.14);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;color:var(--bbA,#C87F3F);flex:none">{{ b.initials }}</span>
+                    <span style="text-align:left">
+                      <span style="display:block;font-weight:600;font-size:14.5px;color:#F2EDE6">{{ b.name }}</span>
+                      <span style="display:block;color:#877F73;font-size:12px;margin-top:2px">{{ b.spec }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- PASO 3: FECHA Y HORA -->
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:bbFade .28s ease">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 6px">
+                <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73">PASO 3 DE 4 · {{ selServiceLine }} · {{ selBarberLine }}</span>
+                <button type="button" onClick="{{ goStep2 }}" style="background:none;border:none;padding:0;cursor:pointer;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.12em;color:var(--bbA,#C87F3F);white-space:nowrap" style-hover="text-decoration:underline">← CAMBIAR BARBERO</button>
+              </div>
+              <h3 style="margin:0 0 18px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(26px,4vw,34px);letter-spacing:.02em">¿CUÁNDO?</h3>
+              <div style="display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:thin">
+                <sc-for list="{{ dayChips }}" as="d" hint-placeholder-count="7">
+                  <button type="button" onClick="{{ d.pick }}" style="{{ d.style }}">
+                    <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#877F73">{{ d.wdU }}</span>
+                    <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:24px;line-height:1;color:#F2EDE6">{{ d.num }}</span>
+                    <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.1em;color:#877F73">{{ d.moU }}</span>
+                    <sc-if value="{{ d.hasTag }}" hint-placeholder-val="{{ false }}">
+                      <span style="{{ d.tagStyle }}">{{ d.tag }}</span>
+                    </sc-if>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="min-height:190px;margin-top:14px">
+                <sc-if value="{{ noDaySel }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px dashed rgba(242,237,230,.14);border-radius:8px;padding:34px 20px;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.12em;color:#877F73">ELIGE UN DÍA PARA VER LOS HUECOS LIBRES</div>
+                </sc-if>
+                <sc-if value="{{ slotsLoading }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px dashed rgba(242,237,230,.14);border-radius:8px;padding:34px 20px;display:flex;flex-direction:column;align-items:center;gap:14px">
+                    <span style="width:22px;height:22px;border:2px solid rgba(242,237,230,.15);border-top-color:var(--bbA,#C87F3F);border-radius:50%;animation:bbSpin .7s linear infinite"></span>
+                    <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.14em;color:#877F73">BUSCANDO HUECOS LIBRES…</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ dayFullShown }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px solid rgba(224,162,78,.35);background:rgba(224,162,78,.06);border-radius:8px;padding:30px 20px;text-align:center;animation:bbFade .28s ease">
+                    <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;letter-spacing:.03em;color:#E0A24E;margin:0 0 6px">AGENDA LLENA ESE DÍA</div>
+                    <p style="margin:0 0 18px;color:#B7AFA4;font-size:13.5px;line-height:1.6">Se nos fue todo. El sábado suele tener huecos a primera hora.</p>
+                    <button type="button" onClick="{{ goNextDay }}" style="background:var(--bbA,#C87F3F);color:#14100B;border:none;cursor:pointer;font-family:'Bebas Neue',Impact,sans-serif;font-size:17px;letter-spacing:.08em;padding:12px 22px 10px;border-radius:4px;line-height:1" style-hover="filter:brightness(1.12)">{{ nextDayLabel }}</button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ slotsShown }}" hint-placeholder-val="{{ false }}">
+                  <div style="animation:bbFade .28s ease">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px">
+                      <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="8">
+                        <button type="button" onClick="{{ sl.pick }}" disabled="{{ sl.busy }}" style="{{ sl.style }}">{{ sl.t }}</button>
+                      </sc-for>
+                    </div>
+                    <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:#877F73;margin-top:12px">TACHADO = OCUPADO · HORA GUAYAQUIL (GMT-5)</div>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- PASO 4: CONFIRMAR -->
+          <sc-if value="{{ showConfirmForm }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:bbFade .28s ease">
+              <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 6px">PASO 4 DE 4</div>
+              <h3 style="margin:0 0 18px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(26px,4vw,34px);letter-spacing:.02em">CONFIRMA TU TURNO</h3>
+              <div style="background:#0F0D0A;border:1px solid rgba(242,237,230,.1);border-radius:8px;padding:16px 18px;margin:0 0 18px">
+                <sc-for list="{{ summaryRows }}" as="r" hint-placeholder-count="6">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8px 0;border-bottom:1px dashed rgba(242,237,230,.1)">
+                    <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#877F73;flex:none">{{ r.k }}</span>
+                    <span style="font-size:14px;font-weight:600;text-align:right">{{ r.v }}</span>
+                  </div>
+                </sc-for>
+                <button type="button" onClick="{{ goStep1 }}" style="background:none;border:none;padding:10px 0 2px;cursor:pointer;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.12em;color:var(--bbA,#C87F3F)" style-hover="text-decoration:underline">← CAMBIAR ALGO</button>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:0 0 6px">
+                <label style="display:block">
+                  <span style="display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#877F73;margin:0 0 6px">TU NOMBRE *</span>
+                  <input type="text" value="{{ name }}" onChange="{{ setName }}" placeholder="Ej. Carlos Andrade" style="{{ nameInputStyle }}">
+                </label>
+                <label style="display:block">
+                  <span style="display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#877F73;margin:0 0 6px">TELÉFONO (OPCIONAL)</span>
+                  <input type="tel" value="{{ phone }}" onChange="{{ setPhone }}" placeholder="+593 9…" style="width:100%;box-sizing:border-box;background:#0E0C0A;border:1px solid rgba(242,237,230,.15);border-radius:6px;padding:13px 14px;color:#F2EDE6;font-size:15px;outline:none" style-focus="border-color:var(--bbA,#C87F3F)">
+                </label>
+              </div>
+              <sc-if value="{{ nameError }}" hint-placeholder-val="{{ false }}">
+                <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.08em;color:#E05B4E;margin:6px 0 0">⚠ ESCRIBE TU NOMBRE PARA CONFIRMAR LA RESERVA.</div>
+              </sc-if>
+              <button type="button" onClick="{{ confirm }}" style="width:100%;margin-top:16px;background:var(--bbA,#C87F3F);color:#14100B;border:none;cursor:pointer;font-family:'Bebas Neue',Impact,sans-serif;font-size:21px;letter-spacing:.08em;padding:16px 20px 13px;border-radius:5px;line-height:1" style-hover="filter:brightness(1.12)">CONFIRMAR POR WHATSAPP</button>
+              <p style="margin:12px 0 0;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#877F73;line-height:1.7">SE ABRE WHATSAPP CON EL MENSAJE LISTO. NO PAGAS NADA TODAVÍA.</p>
+            </div>
+          </sc-if>
+
+          <!-- ÉXITO -->
+          <sc-if value="{{ showSuccess }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:bbFade .35s ease;text-align:center;padding:10px 0">
+              <div style="width:62px;height:62px;border-radius:50%;border:2px solid #4CAF6E;color:#4CAF6E;display:flex;align-items:center;justify-content:center;font-size:26px;margin:6px auto 16px">✓</div>
+              <h3 style="margin:0 0 8px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(28px,4.4vw,38px);letter-spacing:.02em">¡LISTO, {{ successName }}!</h3>
+              <p style="margin:0 auto 20px;color:#B7AFA4;font-size:14.5px;line-height:1.65;max-width:46ch">Tu turno quedó pre-reservado. Envíanos el mensaje por WhatsApp y te confirmamos la silla en minutos.</p>
+              <div style="background:#0F0D0A;border:1px dashed rgba(242,237,230,.16);border-radius:8px;padding:16px 18px;margin:0 0 20px;text-align:left;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.8;color:#C9C2B6;white-space:pre-wrap">{{ waMsg }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+                <a href="{{ waHref }}" target="_blank" rel="noopener" style="background:#22C15E;color:#06220F;text-decoration:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:.08em;padding:14px 26px 12px;border-radius:5px;line-height:1" style-hover="filter:brightness(1.08)">ENVIAR POR WHATSAPP ↗</a>
+                <button type="button" onClick="{{ reset }}" style="background:none;border:1px solid rgba(242,237,230,.25);color:#F2EDE6;cursor:pointer;font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:.08em;padding:14px 26px 12px;border-radius:5px;line-height:1;white-space:nowrap" style-hover="border-color:var(--bbA,#C87F3F);color:var(--bbA,#C87F3F)">HACER OTRA RESERVA</button>
+              </div>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BARBEROS ============ -->
+  <section id="barberos" data-shot="barberos" data-screen-label="Barberos" style="border-bottom:1px solid rgba(242,237,230,.08)">
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+        <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.2em;color:var(--bbA,#C87F3F)">EL EQUIPO</span>
+      </div>
+      <h2 style="margin:0 0 10px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,58px);line-height:.95;letter-spacing:.015em">TRES BARBEROS, UN OFICIO</h2>
+      <p style="margin:0 0 34px;color:#B7AFA4;font-size:15px;line-height:1.65;max-width:56ch">Cada uno con su especialidad. Elige el tuyo al reservar, o déjate sorprender.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px">
+        <div style="background:#15130F;border:1px solid rgba(242,237,230,.1);border-radius:8px;overflow:hidden;transition:border-color .15s ease" style-hover="border-color:var(--bbAline,rgba(200,127,63,.4))">
+          <div style="position:relative;aspect-ratio:3/4;background:#14120F;border-bottom:1px solid rgba(242,237,230,.1);display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:74px;color:rgba(242,237,230,.07);letter-spacing:.04em">MA</span>
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80" alt="Retrato de Marco Aguirre" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1) brightness(.92)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,10,8,.55) 100%)"></div>
+          </div>
+          <div style="padding:16px 18px 18px">
+            <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;letter-spacing:.03em;line-height:1">Marco Aguirre</div>
+            <div style="color:#B7AFA4;font-size:13px;margin:6px 0 12px">Clásicos y navaja · Fundador</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#877F73;border:1px solid rgba(242,237,230,.14);border-radius:3px;padding:4px 8px">14 AÑOS DE OFICIO</span>
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:var(--bbA,#C87F3F);border:1px solid var(--bbAline,rgba(200,127,63,.35));border-radius:3px;padding:4px 8px">@MARCO.BRAVOBARBER</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:#15130F;border:1px solid rgba(242,237,230,.1);border-radius:8px;overflow:hidden;transition:border-color .15s ease" style-hover="border-color:var(--bbAline,rgba(200,127,63,.4))">
+          <div style="position:relative;aspect-ratio:3/4;background:#14120F;border-bottom:1px solid rgba(242,237,230,.1);display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:74px;color:rgba(242,237,230,.07);letter-spacing:.04em">DS</span>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Retrato de Diego Salazar" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1) brightness(.92)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,10,8,.55) 100%)"></div>
+          </div>
+          <div style="padding:16px 18px 18px">
+            <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;letter-spacing:.03em;line-height:1">Diego Salazar</div>
+            <div style="color:#B7AFA4;font-size:13px;margin:6px 0 12px">Fades y diseño freestyle</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#877F73;border:1px solid rgba(242,237,230,.14);border-radius:3px;padding:4px 8px">8 AÑOS DE OFICIO</span>
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:var(--bbA,#C87F3F);border:1px solid var(--bbAline,rgba(200,127,63,.35));border-radius:3px;padding:4px 8px">@DIEGO.FADES</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:#15130F;border:1px solid rgba(242,237,230,.1);border-radius:8px;overflow:hidden;transition:border-color .15s ease" style-hover="border-color:var(--bbAline,rgba(200,127,63,.4))">
+          <div style="position:relative;aspect-ratio:3/4;background:#14120F;border-bottom:1px solid rgba(242,237,230,.1);display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:74px;color:rgba(242,237,230,.07);letter-spacing:.04em">JV</span>
+            <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=700&q=80" alt="Retrato de Jandry Vera" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1) brightness(.92)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,10,8,.55) 100%)"></div>
+          </div>
+          <div style="padding:16px 18px 18px">
+            <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;letter-spacing:.03em;line-height:1">Jandry Vera</div>
+            <div style="color:#B7AFA4;font-size:13px;margin:6px 0 12px">Barba y afeitado clásico</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#877F73;border:1px solid rgba(242,237,230,.14);border-radius:3px;padding:4px 8px">6 AÑOS DE OFICIO</span>
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:var(--bbA,#C87F3F);border:1px solid var(--bbAline,rgba(200,127,63,.35));border-radius:3px;padding:4px 8px">@JANDRY.NAVAJA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UBICACIÓN ============ -->
+  <section id="ubicacion" data-shot="ubicacion" data-screen-label="Ubicación" style="border-bottom:1px solid rgba(242,237,230,.08);background:#121110">
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+        <span style="width:24px;height:1px;background:var(--bbA,#C87F3F)"></span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.2em;color:var(--bbA,#C87F3F)">UBICACIÓN Y HORARIO</span>
+      </div>
+      <h2 style="margin:0 0 34px;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,58px);line-height:.95;letter-spacing:.015em">EN EL CORAZÓN DE URDESA</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;align-items:stretch">
+        <div style="background:#15130F;border:1px solid rgba(242,237,230,.1);border-radius:8px;padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:20px">
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 8px">DIRECCIÓN</div>
+            <div style="font-size:16px;font-weight:600;line-height:1.5">Av. Víctor Emilio Estrada 707 y Ficus<br>Urdesa Central, Guayaquil</div>
+            <div style="color:#877F73;font-size:13px;margin-top:6px">A media cuadra del Parque de Urdesa. Parqueo en La Ficus.</div>
+          </div>
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 4px">HORARIO</div>
+            <sc-for list="{{ hoursRows }}" as="h" hint-placeholder-count="3">
+              <div style="{{ h.style }}">
+                <span>{{ h.d }} <span style="{{ h.badgeStyle }}">{{ h.badge }}</span></span>
+                <span>{{ h.h }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 8px">CONTACTO</div>
+            <div style="font-size:15px;font-weight:600">+593 99 284 7310</div>
+            <div style="color:#B7AFA4;font-size:13.5px;margin-top:2px">hola@bravobarber.ec</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto">
+            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" style="border:1px solid rgba(242,237,230,.25);color:#F2EDE6;text-decoration:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:17px;letter-spacing:.08em;padding:12px 20px 10px;border-radius:4px;line-height:1" style-hover="border-color:var(--bbA,#C87F3F);color:var(--bbA,#C87F3F)">CÓMO LLEGAR ↗</a>
+            <a href="{{ waFloatHref }}" target="_blank" rel="noopener" style="background:#22C15E;color:#06220F;text-decoration:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:17px;letter-spacing:.08em;padding:12px 20px 10px;border-radius:4px;line-height:1" style-hover="filter:brightness(1.08)">ESCRIBIR POR WHATSAPP</a>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" style="position:relative;min-height:320px;border:1px solid rgba(242,237,230,.12);border-radius:8px;display:block;overflow:hidden;background:linear-gradient(0deg,transparent 0 46%,rgba(242,237,230,.07) 46% 49%,transparent 49%),linear-gradient(90deg,transparent 0 30%,rgba(242,237,230,.06) 30% 32.4%,transparent 32.4%),linear-gradient(64deg,transparent 0 62%,var(--bbAsoft,rgba(200,127,63,.12)) 62% 64%,transparent 64%),repeating-linear-gradient(0deg,rgba(242,237,230,.025) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(242,237,230,.025) 0 1px,transparent 1px 34px),#131110">
+          <span style="position:absolute;top:46.5%;left:31%;width:16px;height:16px;border-radius:50%;background:var(--bbA,#C87F3F);border:3px solid #0E0D0B;box-shadow:0 0 0 8px var(--bbAsoft,rgba(200,127,63,.15))"></span>
+          <span style="position:absolute;top:calc(46.5% + 26px);left:31%;transform:translateX(-40%);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#F2EDE6;background:#0E0D0B;border:1px solid rgba(242,237,230,.18);border-radius:4px;padding:5px 9px;white-space:nowrap">BRAVO BARBER CO.</span>
+          <span style="position:absolute;bottom:12px;left:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.12em;color:rgba(242,237,230,.5)">MAPA · V.E. ESTRADA Y FICUS</span>
+          <span style="position:absolute;bottom:12px;right:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.12em;color:var(--bbA,#C87F3F)">ABRIR EN GOOGLE MAPS ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-shot="pie" data-screen-label="Footer" style="background:#0B0A08">
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(40px,6vw,64px) clamp(18px,4vw,44px) 28px">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);justify-content:space-between;margin:0 0 36px">
+        <div style="max-width:280px">
+          <div style="display:flex;align-items:center;gap:10px;margin:0 0 10px">
+            <span style="width:9px;height:9px;background:var(--bbA,#C87F3F);transform:rotate(45deg);display:block"></span>
+            <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:22px;letter-spacing:.05em;line-height:1;padding-top:2px">BRAVO BARBER <span style="color:var(--bbA,#C87F3F)">CO.</span></span>
+          </div>
+          <p style="margin:0;color:#877F73;font-size:13px;line-height:1.65">Barbería de oficio en Urdesa desde 2012. Corte, navaja y conversación de la buena.</p>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 12px">HORARIO</div>
+          <div style="color:#B7AFA4;font-size:13.5px;line-height:2">Lun – Vie · 09:00 – 20:00<br>Sábado · 09:00 – 18:00<br>Domingo · Cerrado</div>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 12px">CONTACTO</div>
+          <div style="color:#B7AFA4;font-size:13.5px;line-height:2">+593 99 284 7310<br>hola@bravobarber.ec<br>V.E. Estrada 707 y Ficus, Urdesa</div>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#877F73;margin:0 0 12px">SÍGUENOS</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="#inicio" onClick="{{ noopLink }}" style="color:#B7AFA4;text-decoration:none;font-size:13.5px" style-hover="color:var(--bbA,#C87F3F)">Instagram · @bravobarber.gye</a>
+            <a href="#inicio" onClick="{{ noopLink }}" style="color:#B7AFA4;text-decoration:none;font-size:13.5px" style-hover="color:var(--bbA,#C87F3F)">TikTok · @bravobarber</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(242,237,230,.08);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#5E584F">
+        <span>© {{ year }} BRAVO BARBER CO. — NEGOCIO Y DATOS FICTICIOS</span>
+        <span>SITIO DEMO · DISEÑADO POR NEXORA STUDIO</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ waFloatHref }}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-shot="float" style="position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#22C15E;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.5);transition:transform .15s ease" style-hover="transform:scale(1.07)">
+      <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:.04em;color:#06220F;padding-top:2px">WA</span>
+    </a>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#C87F3F&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#C87F3F&quot;, &quot;#D9962F&quot;, &quot;#B5502F&quot;, &quot;#7C8A96&quot;], &quot;section&quot;: &quot;Marca&quot;}, &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;593992847310&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Datos&quot;}, &quot;mostrarWhatsapp&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Comportamiento&quot;}}">
+class Component extends DCLogic {
+  SERVICES = [
+    { id: 'clasico', name: 'Corte clásico', desc: 'Tijera y máquina, acabado a navaja.', min: 45, price: 12 },
+    { id: 'fade', name: 'Fade / Degradado', desc: 'Low, mid o high, con línea marcada.', min: 45, price: 14 },
+    { id: 'combo', name: 'Corte + Barba', desc: 'El combo completo, cierre con navaja.', min: 75, price: 18 },
+    { id: 'afeitado', name: 'Afeitado clásico', desc: 'Toalla caliente, espuma y navaja libre.', min: 30, price: 10 },
+    { id: 'barba', name: 'Perfilado de barba', desc: 'Forma, contorno y aceite de cierre.', min: 25, price: 8 },
+    { id: 'nino', name: 'Corte niño', desc: 'Hasta 12 años. Paciencia incluida.', min: 30, price: 9 }
+  ];
+  BARBERS = [
+    { id: 'marco', name: 'Marco Aguirre', spec: 'Clásicos y navaja · Fundador', years: 14, ig: '@MARCO.BRAVOBARBER', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80' },
+    { id: 'diego', name: 'Diego Salazar', spec: 'Fades y diseño freestyle', years: 8, ig: '@DIEGO.FADES', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80' },
+    { id: 'jandry', name: 'Jandry Vera', spec: 'Barba y afeitado clásico', years: 6, ig: '@JANDRY.NAVAJA', img: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=700&q=80' },
+    { id: 'any', name: 'El primero disponible', spec: 'Sin preferencia, te toca el que esté libre', years: null, ig: null }
+  ];
+  TIMES = ['09:00', '09:45', '10:30', '11:15', '12:00', '12:45', '14:00', '14:45', '15:30', '16:15', '17:00', '17:45', '18:30', '19:15'];
+  NAV = [
+    { label: 'Servicios', id: 'servicios' },
+    { label: 'Galería', id: 'galeria' },
+    { label: 'Barberos', id: 'barberos' },
+    { label: 'Ubicación', id: 'ubicacion' }
+  ];
+
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    mode: null,
+    step: 1,
+    service: null, barber: null, day: null, time: null,
+    name: '', phone: '',
+    slotsLoading: false, nameError: false, done: false
+  };
+
+  componentDidMount() {
+    this._onR = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onR);
+    this._onImgErr = (e) => {
+      const t = e.target;
+      if (t && t.tagName === 'IMG') t.style.display = 'none';
+    };
+    document.addEventListener('error', this._onImgErr, true);
+    this.applyAccent();
+    const self = this;
+    window.__nex = {
+      days: this._days(),
+      services: this.SERVICES,
+      barbers: this.BARBERS,
+      set: (patch) => self.setState(patch),
+      freeSlot: (day) => { const s = self._slots(day).find(x => !x.busy); return s ? s.t : '16:15'; }
+    };
+    window.__shot = (keep, width) => {
+      const b = document.body, h = document.documentElement;
+      let anim = document.getElementById('__shotcss');
+      if (width) {
+        h.style.width = b.style.width = width + 'px';
+        h.style.height = b.style.height = 'auto';
+        h.style.maxWidth = b.style.maxWidth = 'none';
+        if (!anim) {
+          anim = document.createElement('style');
+          anim.id = '__shotcss';
+          anim.textContent = '*{animation:none !important;transition:none !important;scrollbar-width:none !important}\n*::-webkit-scrollbar{display:none !important}';
+          document.head.appendChild(anim);
+        }
+      } else {
+        h.style.width = b.style.width = '';
+        h.style.height = b.style.height = '';
+        h.style.maxWidth = b.style.maxWidth = '';
+        if (anim) anim.remove();
+      }
+      const nav = document.querySelector('[data-shot="nav"]');
+      if (nav) nav.style.position = width ? 'relative' : 'sticky';
+      const fl = document.querySelector('[data-shot="float"]');
+      if (fl) fl.style.position = width ? 'absolute' : 'fixed';
+      const list = keep ? (Array.isArray(keep) ? keep : [keep]) : null;
+      document.querySelectorAll('[data-shot]').forEach(el => {
+        el.style.display = (!list || list.includes(el.dataset.shot)) ? '' : 'none';
+      });
+      window.scrollTo(0, 0);
+      self.setState({ mode: width ? (width <= 520 ? 'mobile' : 'desktop') : null });
+    };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+    document.removeEventListener('error', this._onImgErr, true);
+    clearTimeout(this._adv); clearTimeout(this._load);
+  }
+  componentDidUpdate() { this.applyAccent(); }
+
+  applyAccent() {
+    const a = this.props.accent ?? '#C87F3F';
+    if (this._lastA === a) return;
+    this._lastA = a;
+    const r = document.documentElement;
+    r.style.setProperty('--bbA', a);
+    r.style.setProperty('--bbAsoft', a + '1F');
+    r.style.setProperty('--bbAstripe', a + '0D');
+    r.style.setProperty('--bbAglow', a + '26');
+    r.style.setProperty('--bbAline', a + '59');
+  }
+
+  _days() {
+    if (this._daysCache) return this._daysCache;
+    const WD = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const MO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const out = []; const now = new Date();
+    let open = 0;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      const closed = d.getDay() === 0;
+      let full = false;
+      if (!closed) { open++; if (open === 3) full = true; }
+      out.push({
+        i, key: d.toDateString(), wd: WD[d.getDay()], num: d.getDate(), mo: MO[d.getMonth()],
+        closed, full, today: i === 0,
+        label: (i === 0 ? 'Hoy' : WD[d.getDay()]) + ' ' + d.getDate() + ' ' + MO[d.getMonth()]
+      });
+    }
+    this._daysCache = out;
+    return out;
+  }
+
+  _slots(day) {
+    if (!day || day.closed || day.full) return [];
+    const now = new Date();
+    const cutoff = String(now.getHours() + 1).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    return this.TIMES.map((t, i) => {
+      let busy = ((i * 7 + day.num * 3 + day.i * 5) % 10) < 3;
+      if (day.today && t <= cutoff) busy = true;
+      return { t, busy };
+    });
+  }
+
+  goSection(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+  }
+
+  pickDay(d) {
+    if (d.closed) return;
+    clearTimeout(this._load);
+    this.setState({ day: d, time: null, slotsLoading: true, done: false });
+    this._load = setTimeout(() => this.setState({ slotsLoading: false }), 700);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const A = 'var(--bbA,#C87F3F)';
+    const SOFT = 'var(--bbAsoft,rgba(200,127,63,.12))';
+    const MONO = 'ui-monospace,SFMono-Regular,Menlo,monospace';
+    const LINE = 'rgba(242,237,230,.13)';
+    const isMobile = st.mode ? st.mode === 'mobile' : st.vw < 768;
+    const days = this._days();
+
+    const srvRows = this.SERVICES.map(s => {
+      const on = st.service && st.service.id === s.id;
+      return {
+        ...s, priceLabel: '$' + s.price, minLabel: s.min + ' MIN',
+        style: {
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px',
+          padding: '14px 16px', borderRadius: '6px', cursor: 'pointer', width: '100%',
+          transition: 'border-color .15s ease, background .15s ease', textAlign: 'left',
+          border: '1px solid ' + (on ? A : LINE), background: on ? SOFT : '#14110D', color: '#F2EDE6'
+        },
+        pick: () => {
+          this.setState({ service: s });
+          clearTimeout(this._adv);
+          this._adv = setTimeout(() => this.setState({ step: 2 }), 260);
+        }
+      };
+    });
+
+    const srvCards = this.SERVICES.map(s => ({
+      ...s, priceLabel: '$' + s.price, minLabel: s.min + ' MIN',
+      pick: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState({ service: s, step: 2, done: false });
+        this.goSection('reserva');
+      }
+    }));
+
+    const barberRows = this.BARBERS.map(b => {
+      const on = st.barber && st.barber.id === b.id;
+      return {
+        ...b,
+        initials: b.id === 'any' ? '¿?' : b.name.split(' ').map(w => w[0]).slice(0, 2).join(''),
+        style: {
+          display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 16px',
+          borderRadius: '6px', cursor: 'pointer', width: '100%', textAlign: 'left',
+          transition: 'border-color .15s ease, background .15s ease',
+          border: '1px solid ' + (on ? A : LINE), background: on ? SOFT : '#14110D', color: '#F2EDE6'
+        },
+        pick: () => {
+          this.setState({ barber: b });
+          clearTimeout(this._adv);
+          this._adv = setTimeout(() => this.setState({ step: 3 }), 260);
+        }
+      };
+    });
+
+    const dayChips = days.map(d => {
+      const on = st.day && st.day.key === d.key;
+      return {
+        ...d,
+        wdU: (d.today ? 'HOY' : d.wd).toUpperCase(), moU: d.mo.toUpperCase(),
+        hasTag: d.closed || d.full,
+        tag: d.closed ? 'CERRADO' : (d.full ? 'LLENO' : ''),
+        tagStyle: { fontFamily: MONO, fontSize: '8px', letterSpacing: '.08em', color: d.full ? '#E0A24E' : 'rgba(242,237,230,.4)', marginTop: '2px' },
+        style: {
+          flex: '0 0 auto', minWidth: '76px', padding: '10px 8px 9px', borderRadius: '6px',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px',
+          cursor: d.closed ? 'not-allowed' : 'pointer', opacity: d.closed ? .38 : 1,
+          transition: 'border-color .15s ease, background .15s ease',
+          border: '1px solid ' + (on ? A : LINE), background: on ? SOFT : '#14110D', color: '#F2EDE6'
+        },
+        pick: () => this.pickDay(d)
+      };
+    });
+
+    const rawSlots = this._slots(st.day);
+    const slots = rawSlots.map(sl => {
+      const on = st.time === sl.t;
+      return {
+        ...sl,
+        style: {
+          padding: '13px 6px', borderRadius: '5px', textAlign: 'center',
+          fontFamily: MONO, fontSize: '12.5px', letterSpacing: '.04em',
+          cursor: sl.busy ? 'not-allowed' : 'pointer',
+          transition: 'border-color .15s ease, background .15s ease',
+          border: '1px solid ' + (on ? A : LINE),
+          background: on ? A : '#14110D',
+          color: on ? '#14100B' : (sl.busy ? 'rgba(242,237,230,.28)' : '#F2EDE6'),
+          textDecoration: sl.busy ? 'line-through' : 'none',
+          fontWeight: on ? 700 : 400
+        },
+        pick: () => {
+          if (sl.busy) return;
+          this.setState({ time: sl.t });
+          clearTimeout(this._adv);
+          this._adv = setTimeout(() => this.setState({ step: 4 }), 240);
+        }
+      };
+    });
+
+    const canGo = (n) =>
+      n === 1 || (n === 2 && st.service) || (n === 3 && st.service && st.barber) ||
+      (n === 4 && st.service && st.barber && st.day && st.time);
+    const defs = [{ n: 1, label: 'SERVICIO' }, { n: 2, label: 'BARBERO' }, { n: 3, label: 'FECHA Y HORA' }, { n: 4, label: 'CONFIRMAR' }];
+    const stepChips = defs.map(dc => {
+      const active = st.step === dc.n && !st.done;
+      const passed = st.step > dc.n || st.done;
+      const able = canGo(dc.n);
+      return {
+        num: '0' + dc.n, label: dc.label,
+        style: {
+          display: 'flex', alignItems: 'center', gap: '7px', padding: '9px 12px 8px', borderRadius: '4px',
+          fontFamily: MONO, fontSize: '10px', letterSpacing: '.1em', whiteSpace: 'nowrap',
+          border: '1px solid ' + (active ? A : 'transparent'),
+          background: active ? SOFT : 'transparent',
+          color: active ? '#F2EDE6' : (passed ? '#B7AFA4' : 'rgba(242,237,230,.35)'),
+          cursor: able ? 'pointer' : 'default'
+        },
+        numStyle: { color: (active || passed) ? A : 'inherit', fontWeight: 700 },
+        go: () => { if (able) this.setState({ step: dc.n, done: false }); }
+      };
+    });
+
+    const wd = new Date().getDay();
+    const hoursRows = [
+      { d: 'Lunes – Viernes', h: '09:00 – 20:00', on: wd >= 1 && wd <= 5 },
+      { d: 'Sábado', h: '09:00 – 18:00', on: wd === 6 },
+      { d: 'Domingo', h: 'Cerrado', on: wd === 0 }
+    ].map(r => ({
+      ...r,
+      badge: r.on ? 'HOY' : '',
+      badgeStyle: { fontFamily: MONO, fontSize: '8.5px', letterSpacing: '.1em', color: A, marginLeft: '4px' },
+      style: {
+        display: 'flex', justifyContent: 'space-between', gap: '12px', padding: '10px 0',
+        borderBottom: '1px dashed rgba(242,237,230,.12)', fontSize: '14px',
+        color: r.on ? '#F2EDE6' : '#B7AFA4', fontWeight: r.on ? 600 : 400
+      }
+    }));
+
+    const fmtDay = st.day ? st.day.label : '—';
+    const summaryRows = st.service ? [
+      { k: 'SERVICIO', v: st.service.name },
+      { k: 'BARBERO', v: st.barber ? st.barber.name : '—' },
+      { k: 'DÍA', v: fmtDay },
+      { k: 'HORA', v: st.time || '—' },
+      { k: 'DURACIÓN', v: st.service.min + ' min' },
+      { k: 'PRECIO', v: '$' + st.service.price + ' — pagas en el local' }
+    ] : [];
+
+    const num = this.props.whatsappNumber ?? '593992847310';
+    const nm = st.name.trim();
+    const waMsg = 'Hola Bravo Barber 💈 Quiero reservar un turno:\n' +
+      '• Servicio: ' + (st.service ? st.service.name + ' ($' + st.service.price + ' · ' + st.service.min + ' min)' : '—') + '\n' +
+      '• Barbero: ' + (st.barber ? st.barber.name : '—') + '\n' +
+      '• Día: ' + fmtDay + ' · ' + (st.time || '—') + '\n' +
+      '• Nombre: ' + (nm || '—') + (st.phone.trim() ? '\n• Teléfono: ' + st.phone.trim() : '') +
+      '\n¿Me confirman? ¡Gracias!';
+
+    const nextDay = st.day ? days.find(d => d.i > st.day.i && !d.closed && !d.full) : null;
+
+    return {
+      showNavLinks: !isMobile,
+      navItems: this.NAV.map(n => ({ label: n.label, href: '#' + n.id, go: (e) => this.goSection(n.id, e) })),
+      goTop: (e) => { if (e && e.preventDefault) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      goBooking: (e) => this.goSection('reserva', e),
+      goServices: (e) => this.goSection('servicios', e),
+      noopLink: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+
+      srvCards,
+
+      stepChips, srvRows, barberRows, dayChips, slots,
+      isStep1: st.step === 1 && !st.done,
+      isStep2: st.step === 2 && !st.done,
+      isStep3: st.step === 3 && !st.done,
+      showConfirmForm: st.step === 4 && !st.done,
+      showSuccess: st.done,
+      goStep1: () => this.setState({ step: 1, done: false }),
+      goStep2: () => this.setState({ step: 2, done: false }),
+      selServiceLine: st.service ? (st.service.name + ' · $' + st.service.price).toUpperCase() : '',
+      selBarberLine: st.barber ? st.barber.name.toUpperCase() : '',
+
+      noDaySel: !st.day && !st.slotsLoading,
+      slotsLoading: st.slotsLoading,
+      dayFullShown: !!st.day && st.day.full && !st.slotsLoading,
+      slotsShown: !!st.day && !st.day.full && !st.slotsLoading,
+      goNextDay: () => { if (nextDay) this.pickDay(nextDay); },
+      nextDayLabel: nextDay ? ('PROBAR EL ' + nextDay.label).toUpperCase() : 'VER OTRO DÍA',
+
+      summaryRows,
+      name: st.name, phone: st.phone,
+      setName: (e) => this.setState({ name: e.target.value, nameError: false }),
+      setPhone: (e) => this.setState({ phone: e.target.value }),
+      nameError: st.nameError,
+      nameInputStyle: {
+        width: '100%', boxSizing: 'border-box', background: '#0E0C0A', borderRadius: '6px',
+        padding: '13px 14px', color: '#F2EDE6', fontSize: '15px', outline: 'none',
+        border: '1px solid ' + (st.nameError ? '#E05B4E' : 'rgba(242,237,230,.15)')
+      },
+      confirm: () => {
+        if (!this.state.name.trim()) { this.setState({ nameError: true }); return; }
+        this.setState({ done: true, nameError: false });
+      },
+      reset: () => this.setState({ step: 1, service: null, barber: null, day: null, time: null, name: '', phone: '', done: false, nameError: false, slotsLoading: false }),
+      successName: (nm || 'crack').split(' ')[0].toUpperCase(),
+      waMsg,
+      waHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent(waMsg),
+      waFloatHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hola Bravo Barber, quiero información.'),
+      showFloat: this.props.mostrarWhatsapp ?? true,
+      year: new Date().getFullYear()
+    };
+  }
+}
+</script>
+</body>
+</html>

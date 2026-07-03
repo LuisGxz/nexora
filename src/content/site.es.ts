@@ -11,7 +11,7 @@
  * exaggeration (see `nexora-brand/brand-guidelines.md`).
  */
 import type { SiteContent } from './types';
-import { demoUrls, social } from '../config/site.config';
+import { demoPreviews, demoUrls, social } from '../config/site.config';
 
 export const siteEs: SiteContent = {
   meta: {
@@ -93,29 +93,35 @@ export const siteEs: SiteContent = {
       clientType: 'Barbería',
       result: 'Reservas 24/7 sin contestar el teléfono.',
       url: demoUrls.barbershop,
+      image: demoPreviews.barbershop,
     },
     {
       title: 'Menú digital QR para restaurante',
       clientType: 'Restaurante',
       result: 'Menú que se actualiza sin reimprimir nada.',
       url: demoUrls.restaurant,
+      image: demoPreviews.restaurant,
     },
     {
       title: 'Agenda para consultorio',
       clientType: 'Consultorio médico',
       result: 'Pacientes que reservan solos su cita.',
       url: demoUrls.clinic,
+      image: demoPreviews.clinic,
     },
     {
       title: 'Landing para evento',
       clientType: 'Organizador de eventos',
       result: 'Inscripciones y confirmaciones en un solo link.',
       url: demoUrls.event,
+      image: demoPreviews.event,
     },
     {
       title: 'Sitio corporativo para PYME',
       clientType: 'Empresa de servicios',
       result: 'Presencia profesional en Google en pocos días.',
+      url: demoUrls.corporate,
+      image: demoPreviews.corporate,
     },
   ],
 

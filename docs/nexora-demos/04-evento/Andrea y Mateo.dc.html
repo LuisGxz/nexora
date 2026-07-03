@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#FBF6F1;color:#4A3B38;font-family:Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  input,button,select,textarea{font:inherit}
+  ::selection{background:rgba(176,141,69,.2)}
+  input::placeholder,textarea::placeholder{color:rgba(74,59,56,.35)}
+  @keyframes amSpin{to{transform:rotate(360deg)}}
+  @keyframes amFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;background:#FBF6F1;overflow-x:clip">
+
+  <!-- ============ NAV ============ -->
+  <div data-shot="nav" data-screen-label="Nav" style="position:sticky;top:0;z-index:50;background:rgba(251,246,241,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #EADDD3">
+    <div style="max-width:1000px;margin:0 auto;padding:0 clamp(18px,4vw,44px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#inicio" onClick="{{ goTop }}" style="font-family:'Great Vibes',cursive;font-size:27px;line-height:1;color:#B08D45;text-decoration:none;padding-top:4px">A &amp; M</a>
+      <sc-if value="{{ showNavLinks }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:24px">
+          <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="5">
+            <a href="{{ nv.href }}" onClick="{{ nv.go }}" style="color:#8A7570;text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.06em" style-hover="color:#B08D45">{{ nv.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <a href="#rsvp" onClick="{{ goRsvp }}" style="background:#B08D45;color:#FBF6F1;text-decoration:none;font-weight:500;font-size:13px;letter-spacing:.06em;padding:11px 20px;border-radius:999px;white-space:nowrap" style-hover="filter:brightness(1.1)">Confirmar asistencia</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" data-shot="hero" data-screen-label="Hero" style="border-bottom:1px solid #EADDD3;background:linear-gradient(180deg,#F9EFEA 0%,#FBF6F1 100%)">
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(48px,8vw,88px) clamp(18px,4vw,44px) clamp(56px,8vw,96px);text-align:center">
+      <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 14px">¡NOS CASAMOS!</div>
+      <h1 style="margin:0 0 6px;font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(56px,11vw,108px);line-height:1.1;color:#4A3B38">Andrea <span style="color:#B08D45">&amp;</span> Mateo</h1>
+      <p style="margin:0 0 30px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(17px,2.4vw,22px);color:#8A7570">Sábado 21 de noviembre, 2026 · Guayaquil, Ecuador</p>
+      <div style="display:flex;justify-content:center;gap:clamp(8px,2vw,14px);margin:0 0 30px;flex-wrap:wrap">
+        <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:14px;padding:14px 10px;min-width:74px;box-shadow:0 1px 2px rgba(74,59,56,.04)">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1;color:#4A3B38">{{ cdD }}</div>
+          <div style="font-size:9.5px;font-weight:500;letter-spacing:.22em;color:#B3A19B;margin-top:6px">DÍAS</div>
+        </div>
+        <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:14px;padding:14px 10px;min-width:74px;box-shadow:0 1px 2px rgba(74,59,56,.04)">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1;color:#4A3B38">{{ cdH }}</div>
+          <div style="font-size:9.5px;font-weight:500;letter-spacing:.22em;color:#B3A19B;margin-top:6px">HORAS</div>
+        </div>
+        <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:14px;padding:14px 10px;min-width:74px;box-shadow:0 1px 2px rgba(74,59,56,.04)">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1;color:#4A3B38">{{ cdM }}</div>
+          <div style="font-size:9.5px;font-weight:500;letter-spacing:.22em;color:#B3A19B;margin-top:6px">MINUTOS</div>
+        </div>
+        <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:14px;padding:14px 10px;min-width:74px;box-shadow:0 1px 2px rgba(74,59,56,.04)">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1;color:#B08D45">{{ cdS }}</div>
+          <div style="font-size:9.5px;font-weight:500;letter-spacing:.22em;color:#B3A19B;margin-top:6px">SEGUNDOS</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:0 0 40px">
+        <a href="#rsvp" onClick="{{ goRsvp }}" style="background:#B08D45;color:#FBF6F1;text-decoration:none;font-weight:500;font-size:14px;letter-spacing:.06em;padding:14px 30px;border-radius:999px;white-space:nowrap" style-hover="filter:brightness(1.1);transform:translateY(-1px)">Confirmar asistencia</a>
+        <a href="#itinerario" onClick="{{ goItin }}" style="border:1px solid #DCC9BC;color:#4A3B38;text-decoration:none;font-weight:500;font-size:14px;letter-spacing:.06em;padding:14px 30px;border-radius:999px;white-space:nowrap;background:#FFFDFB" style-hover="border-color:#B08D45;color:#B08D45">Ver itinerario</a>
+      </div>
+      <div style="position:relative;width:min(100%,420px);margin:0 auto">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Andrea y Mateo" crossorigin="anonymous" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:210px 210px 16px 16px;display:block;background:#F3E1D9;border:6px solid #FFFDFB;box-sizing:border-box;box-shadow:0 24px 48px -24px rgba(74,59,56,.28)">
+        <div style="position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);background:#FFFDFB;border:1px solid #EADDD3;border-radius:999px;padding:8px 18px;white-space:nowrap;box-shadow:0 10px 24px -14px rgba(74,59,56,.3)">
+          <span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:15px;color:#8A7570">#AndreaYMateo2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ HISTORIA ============ -->
+  <section id="historia" data-shot="historia" data-screen-label="Historia" style="border-bottom:1px solid #EADDD3">
+    <div style="max-width:640px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(18px,4vw,44px);text-align:center">
+      <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">NUESTRA HISTORIA</div>
+      <h2 style="margin:0 0 8px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.6vw,44px);line-height:1.1">Tres momentos que nos trajeron aquí</h2>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 36px">
+        <span style="width:26px;height:1px;background:rgba(176,141,69,.4)"></span>
+        <span style="width:6px;height:6px;background:#B08D45;transform:rotate(45deg)"></span>
+        <span style="width:26px;height:1px;background:rgba(176,141,69,.4)"></span>
+      </div>
+      <div style="display:grid;gap:26px;text-align:center">
+        <div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:20px;color:#B08D45;margin:0 0 6px">2019 — Nos conocimos</div>
+          <p style="margin:0 auto;color:#8A7570;font-size:15px;line-height:1.8;max-width:44ch;font-weight:300">En la fila del café de la universidad. Mateo pidió lo mismo que Andrea para tener de qué hablar.</p>
+        </div>
+        <div style="display:flex;justify-content:center"><span style="width:1px;height:26px;background:#DCC9BC"></span></div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:20px;color:#B08D45;margin:0 0 6px">2022 — Primer viaje</div>
+          <p style="margin:0 auto;color:#8A7570;font-size:15px;line-height:1.8;max-width:44ch;font-weight:300">Baños, con lluvia todo el fin de semana. Nos dio exactamente igual.</p>
+        </div>
+        <div style="display:flex;justify-content:center"><span style="width:1px;height:26px;background:#DCC9BC"></span></div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:20px;color:#B08D45;margin:0 0 6px">2025 — La propuesta</div>
+          <p style="margin:0 auto;color:#8A7570;font-size:15px;line-height:1.8;max-width:44ch;font-weight:300">Atardecer en el faro de Las Peñas. Ella dijo "obvio".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETALLES ============ -->
+  <section id="detalles" data-shot="detalles" data-screen-label="Detalles" style="border-bottom:1px solid #EADDD3;background:#F9EFEA">
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 34px">
+        <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">EL GRAN DÍA</div>
+        <h2 style="margin:0 0 8px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.6vw,44px);line-height:1.1">Dónde y cuándo</h2>
+        <p style="margin:0 auto;color:#8A7570;font-size:14.5px;font-weight:300;max-width:46ch">La ceremonia empieza puntual — recomendamos llegar 20 minutos antes.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+        <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:16px;padding:clamp(24px,4vw,34px);text-align:center;box-shadow:0 1px 2px rgba(74,59,56,.04), 0 12px 34px -24px rgba(74,59,56,.25)">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(176,141,69,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <span style="width:10px;height:10px;background:#B08D45;transform:rotate(45deg)"></span>
+          </div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;margin:0 0 4px">La ceremonia</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45;margin:0 0 12px">16:30 · puntual</div>
+          <p style="margin:0 0 16px;color:#8A7570;font-size:14.5px;line-height:1.7;font-weight:300">Iglesia San José<br>Av. 9 de Octubre 1512, Guayaquil</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Iglesia+San+Jose+Av+9+de+Octubre+Guayaquil" target="_blank" rel="noopener" style="display:inline-block;border:1px solid #DCC9BC;color:#4A3B38;text-decoration:none;font-weight:500;font-size:12.5px;letter-spacing:.06em;padding:10px 20px;border-radius:999px;white-space:nowrap" style-hover="border-color:#B08D45;color:#B08D45">Cómo llegar ↗</a>
+        </div>
+        <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:16px;padding:clamp(24px,4vw,34px);text-align:center;box-shadow:0 1px 2px rgba(74,59,56,.04), 0 12px 34px -24px rgba(74,59,56,.25)">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(125,140,116,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <span style="width:10px;height:10px;border-radius:50%;background:#7D8C74"></span>
+          </div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;margin:0 0 4px">La recepción</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45;margin:0 0 12px">desde las 19:00</div>
+          <p style="margin:0 0 16px;color:#8A7570;font-size:14.5px;line-height:1.7;font-weight:300">Quinta Los Álamos<br>Km 12 vía Samborondón · valet incluido</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Km+12+via+Samborondon" target="_blank" rel="noopener" style="display:inline-block;border:1px solid #DCC9BC;color:#4A3B38;text-decoration:none;font-weight:500;font-size:12.5px;letter-spacing:.06em;padding:10px 20px;border-radius:999px;white-space:nowrap" style-hover="border-color:#B08D45;color:#B08D45">Cómo llegar ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RSVP ============ -->
+  <section id="rsvp" data-shot="rsvp" data-screen-label="RSVP" style="border-bottom:1px solid #EADDD3">
+    <div style="max-width:640px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 30px">
+        <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">RSVP</div>
+        <h2 style="margin:0 0 8px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.6vw,44px);line-height:1.1">¿Contamos contigo?</h2>
+        <p style="margin:0 auto;color:#8A7570;font-size:14.5px;font-weight:300;max-width:44ch">Confírmanos antes del <span style="font-weight:500;color:#4A3B38">31 de octubre de 2026</span>. Tu respuesta le llega a Gabriela, nuestra coordinadora.</p>
+      </div>
+
+      <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:18px;padding:clamp(22px,4vw,32px);box-shadow:0 1px 2px rgba(74,59,56,.04), 0 12px 34px -24px rgba(74,59,56,.25)">
+
+        <sc-if value="{{ rsvpFormShown }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;gap:16px">
+            <label style="display:block">
+              <span style="display:block;font-size:11px;font-weight:500;letter-spacing:.18em;color:#B3A19B;margin:0 0 7px">NOMBRE Y APELLIDO *</span>
+              <input type="text" value="{{ rsvpName }}" onChange="{{ setRsvpName }}" placeholder="Ej. Valentina Suárez" style="{{ rsvpNameStyle }}">
+            </label>
+            <div>
+              <span style="display:block;font-size:11px;font-weight:500;letter-spacing:.18em;color:#B3A19B;margin:0 0 7px">¿ASISTIRÁS?</span>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button type="button" onClick="{{ pickYes }}" style="{{ yesStyle }}">Sí, ahí estaré</button>
+                <button type="button" onClick="{{ pickNo }}" style="{{ noStyle }}">No podré ir</button>
+              </div>
+            </div>
+            <sc-if value="{{ attendYes }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;gap:16px">
+                <div>
+                  <span style="display:block;font-size:11px;font-weight:500;letter-spacing:.18em;color:#B3A19B;margin:0 0 7px">ACOMPAÑANTES (SIN CONTARTE)</span>
+                  <span style="display:inline-flex;align-items:center;border:1px solid #DCC9BC;border-radius:999px;overflow:hidden;background:#FFFDFB">
+                    <button type="button" onClick="{{ guestsDec }}" aria-label="Menos acompañantes" style="background:none;border:none;cursor:pointer;padding:10px 18px;color:#B08D45;font-weight:500;font-size:16px">−</button>
+                    <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:20px;min-width:28px;text-align:center">{{ guests }}</span>
+                    <button type="button" onClick="{{ guestsInc }}" aria-label="Más acompañantes" style="background:none;border:none;cursor:pointer;padding:10px 18px;color:#B08D45;font-weight:500;font-size:16px">+</button>
+                  </span>
+                  <span style="color:#B3A19B;font-size:12.5px;font-weight:300;margin-left:10px">máximo 5</span>
+                </div>
+                <label style="display:block">
+                  <span style="display:block;font-size:11px;font-weight:500;letter-spacing:.18em;color:#B3A19B;margin:0 0 7px">RESTRICCIONES ALIMENTICIAS (OPCIONAL)</span>
+                  <input type="text" value="{{ diet }}" onChange="{{ setDiet }}" placeholder="Ej. vegetariana, sin mariscos…" style="width:100%;box-sizing:border-box;background:#FFFDFB;border:1px solid #DCC9BC;border-radius:12px;padding:13px 16px;color:#4A3B38;font-size:15px;outline:none" style-focus="border-color:#B08D45">
+                </label>
+              </div>
+            </sc-if>
+            <label style="display:block">
+              <span style="display:block;font-size:11px;font-weight:500;letter-spacing:.18em;color:#B3A19B;margin:0 0 7px">UN MENSAJE PARA LOS NOVIOS (OPCIONAL)</span>
+              <input type="text" value="{{ message }}" onChange="{{ setMessage }}" placeholder="Escríbeles algo bonito…" style="width:100%;box-sizing:border-box;background:#FFFDFB;border:1px solid #DCC9BC;border-radius:12px;padding:13px 16px;color:#4A3B38;font-size:15px;outline:none" style-focus="border-color:#B08D45">
+            </label>
+            <sc-if value="{{ rsvpError }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:13px;font-weight:500;color:#B4544A">Cuéntanos tu nombre para confirmar.</div>
+            </sc-if>
+            <button type="button" onClick="{{ submitRsvp }}" style="width:100%;background:#B08D45;color:#FBF6F1;border:none;cursor:pointer;font-weight:500;font-size:15px;letter-spacing:.06em;padding:15px 20px;border-radius:999px;white-space:nowrap" style-hover="filter:brightness(1.1)">Confirmar asistencia</button>
+            <p style="margin:0;text-align:center;color:#B3A19B;font-size:12px;font-weight:300">Se abre WhatsApp con tu respuesta lista para enviar a Gabriela.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ rsvpSending }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:40px 0">
+            <span style="width:24px;height:24px;border:2px solid #EADDD3;border-top-color:#B08D45;border-radius:50%;animation:amSpin .7s linear infinite"></span>
+            <span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#B3A19B">ENVIANDO…</span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ rsvpDoneShown }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:6px 0;animation:amFade .3s ease">
+            <div style="font-family:'Great Vibes',cursive;font-size:44px;color:#B08D45;line-height:1;margin:6px 0 10px">Gracias</div>
+            <h3 style="margin:0 0 8px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(22px,3.4vw,28px)">{{ doneTitle }}</h3>
+            <p style="margin:0 auto 18px;color:#8A7570;font-size:14px;line-height:1.7;font-weight:300;max-width:42ch">{{ doneSub }}</p>
+            <div style="background:#F9EFEA;border:1px dashed #DCC9BC;border-radius:12px;padding:14px 16px;margin:0 0 18px;text-align:left;font-size:13px;line-height:1.8;color:#6E5A55;white-space:pre-wrap">{{ waMsg }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+              <a href="{{ waHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:500;font-size:14px;padding:13px 24px;border-radius:999px;white-space:nowrap" style-hover="filter:brightness(1.08)">Enviar por WhatsApp ↗</a>
+              <button type="button" onClick="{{ editRsvp }}" style="background:none;border:1px solid #DCC9BC;color:#4A3B38;cursor:pointer;font-weight:500;font-size:14px;padding:13px 24px;border-radius:999px;white-space:nowrap" style-hover="border-color:#B08D45;color:#B08D45">Editar respuesta</button>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARIO ============ -->
+  <section id="itinerario" data-shot="itinerario" data-screen-label="Itinerario" style="border-bottom:1px solid #EADDD3;background:#F9EFEA">
+    <div style="max-width:560px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 34px">
+        <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">ITINERARIO</div>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.6vw,44px);line-height:1.1">Así será la noche</h2>
+      </div>
+      <div style="display:grid;gap:0">
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#B08D45"></span><span style="width:1px;flex:1;min-height:34px;background:#DCC9BC"></span></span>
+          <div style="padding:0 0 22px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45">16:30</span><div style="font-weight:500;font-size:15px;margin-top:2px">Ceremonia religiosa</div><div style="color:#8A7570;font-size:13px;font-weight:300">Iglesia San José</div></div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#B08D45"></span><span style="width:1px;flex:1;min-height:34px;background:#DCC9BC"></span></span>
+          <div style="padding:0 0 22px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45">18:00</span><div style="font-weight:500;font-size:15px;margin-top:2px">Fotos y traslado</div><div style="color:#8A7570;font-size:13px;font-weight:300">El cortejo sale del templo</div></div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#B08D45"></span><span style="width:1px;flex:1;min-height:34px;background:#DCC9BC"></span></span>
+          <div style="padding:0 0 22px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45">19:00</span><div style="font-weight:500;font-size:15px;margin-top:2px">Recepción y cóctel</div><div style="color:#8A7570;font-size:13px;font-weight:300">Quinta Los Álamos</div></div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#B08D45"></span><span style="width:1px;flex:1;min-height:34px;background:#DCC9BC"></span></span>
+          <div style="padding:0 0 22px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45">20:30</span><div style="font-weight:500;font-size:15px;margin-top:2px">Cena</div></div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#B08D45"></span><span style="width:1px;flex:1;min-height:34px;background:#DCC9BC"></span></span>
+          <div style="padding:0 0 22px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45">21:30</span><div style="font-weight:500;font-size:15px;margin-top:2px">Primer baile</div></div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#B08D45"></span><span style="width:1px;flex:1;min-height:34px;background:#DCC9BC"></span></span>
+          <div style="padding:0 0 22px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#B08D45">22:00</span><div style="font-weight:500;font-size:15px;margin-top:2px">¡Fiesta!</div></div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <span style="display:flex;flex-direction:column;align-items:center;flex:none;padding-top:3px"><span style="width:9px;height:9px;border-radius:50%;background:#7D8C74"></span></span>
+          <div><span style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#7D8C74">00:30</span><div style="font-weight:500;font-size:15px;margin-top:2px">Despedida con luces</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria" data-shot="galeria" data-screen-label="Galería" style="border-bottom:1px solid #EADDD3">
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 34px">
+        <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">GALERÍA</div>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.6vw,44px);line-height:1.1">Un poco de nosotros</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:14px;align-items:end">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" alt="Los anillos" crossorigin="anonymous" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:120px 120px 12px 12px;display:block;background:#F3E1D9">
+        <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=600&q=80" alt="Sesión de compromiso" crossorigin="anonymous" style="width:100%;aspect-ratio:3/4.4;object-fit:cover;border-radius:12px;display:block;background:#F3E1D9">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Caminando juntos" crossorigin="anonymous" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:120px 120px 12px 12px;display:block;background:#F3E1D9">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Bailando" crossorigin="anonymous" style="width:100%;aspect-ratio:3/4.4;object-fit:cover;border-radius:12px;display:block;background:#F3E1D9">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80" alt="Atardecer juntos" crossorigin="anonymous" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:120px 120px 12px 12px;display:block;background:#F3E1D9">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DRESS CODE + REGALOS ============ -->
+  <section id="regalos" data-shot="regalos" data-screen-label="Dress code y regalos" style="border-bottom:1px solid #EADDD3;background:#F9EFEA">
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(18px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:16px;padding:clamp(24px,4vw,32px);text-align:center">
+        <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">DRESS CODE</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;margin:0 0 14px">Formal, etiqueta relajada</div>
+        <div style="display:flex;justify-content:center;gap:10px;margin:0 0 16px">
+          <span style="width:34px;height:34px;border-radius:50%;background:#7D8C74;border:3px solid #FFFDFB;box-shadow:0 0 0 1px #EADDD3"></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#C9B287;border:3px solid #FFFDFB;box-shadow:0 0 0 1px #EADDD3"></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#B4715A;border:3px solid #FFFDFB;box-shadow:0 0 0 1px #EADDD3"></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#4A5878;border:3px solid #FFFDFB;box-shadow:0 0 0 1px #EADDD3"></span>
+        </div>
+        <p style="margin:0 0 8px;color:#8A7570;font-size:14px;line-height:1.7;font-weight:300">Salvia, arena, terracota suave o azul noche.<br><span style="font-weight:500;color:#4A3B38">Por favor evita blanco, marfil y champán</span> — esos son de la novia.</p>
+        <p style="margin:0;color:#B3A19B;font-size:12.5px;font-weight:300">Noviembre en Guayaquil es cálido: telas frescas. La recepción es en jardín techado.</p>
+      </div>
+      <div style="background:#FFFDFB;border:1px solid #EADDD3;border-radius:16px;padding:clamp(24px,4vw,32px);text-align:center">
+        <div style="font-weight:500;font-size:10.5px;letter-spacing:.34em;color:#B08D45;margin:0 0 12px">MESA DE REGALOS</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;margin:0 0 14px">Tu presencia es el regalo</div>
+        <p style="margin:0 0 18px;color:#8A7570;font-size:14px;line-height:1.7;font-weight:300">…pero si insistes, hay dos caminos:</p>
+        <div style="background:#F9EFEA;border:1px dashed #DCC9BC;border-radius:12px;padding:14px 16px;margin:0 0 12px;text-align:left">
+          <div style="font-weight:500;font-size:13.5px;margin:0 0 4px">Transferencia con cariño</div>
+          <div style="color:#8A7570;font-size:13px;line-height:1.7;font-weight:300">Banco Pichincha · Cta. ahorros 2204815563<br>Andrea Villamar · CI 0923456781</div>
+        </div>
+        <div style="background:#F9EFEA;border:1px dashed #DCC9BC;border-radius:12px;padding:14px 16px;text-align:left">
+          <div style="font-weight:500;font-size:13.5px;margin:0 0 4px">Lluvia de sobres</div>
+          <div style="color:#8A7570;font-size:13px;line-height:1.7;font-weight:300">Habrá un buzón discreto en la recepción.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-shot="pie" data-screen-label="Footer" style="background:#FBF6F1">
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(48px,7vw,72px) clamp(18px,4vw,44px) 26px;text-align:center">
+      <div style="font-family:'Great Vibes',cursive;font-size:clamp(38px,6vw,52px);color:#B08D45;line-height:1.1;margin:0 0 8px">Andrea &amp; Mateo</div>
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:16px;color:#8A7570;margin:0 0 6px">21 · 11 · 2026 — Guayaquil, Ecuador</div>
+      <div style="font-weight:500;font-size:11px;letter-spacing:.22em;color:#B3A19B;margin:0 0 28px">#ANDREAYMATEO2026</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 22px">
+        <span style="width:26px;height:1px;background:rgba(176,141,69,.4)"></span>
+        <span style="width:6px;height:6px;background:#B08D45;transform:rotate(45deg)"></span>
+        <span style="width:26px;height:1px;background:rgba(176,141,69,.4)"></span>
+      </div>
+      <div style="border-top:1px solid #EADDD3;padding-top:16px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;font-size:11px;color:#B3A19B;font-weight:300">
+        <span>Evento y datos ficticios · ¿Dudas? Escríbele a Gabriela, la coordinadora</span>
+        <span>Sitio demo · diseñado por Nexora Studio</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ waFloatHref }}" target="_blank" rel="noopener" aria-label="Escríbele a Gabriela por WhatsApp" data-fixed data-shot="float" style="position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:9px;background:#1FAE55;color:#08240F;text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(74,59,56,.3);transition:transform .15s ease" style-hover="transform:scale(1.05)">
+      <span style="width:8px;height:8px;border-radius:50%;background:#08240F;flex:none"></span>
+      <span style="font-weight:500;font-size:13px;white-space:nowrap">¿Dudas? · Gabriela</span>
+    </a>
+  </sc-if>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;fechaBoda&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;2026-11-21T16:30:00-05:00&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Datos&quot;}, &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;593994027716&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Datos&quot;}, &quot;mostrarWhatsapp&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Comportamiento&quot;}}">
+class Component extends DCLogic {
+  NAV = [
+    { label: 'Historia', id: 'historia' },
+    { label: 'Detalles', id: 'detalles' },
+    { label: 'Itinerario', id: 'itinerario' },
+    { label: 'Galería', id: 'galeria' },
+    { label: 'Regalos', id: 'regalos' }
+  ];
+
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    mode: null,
+    now: Date.now(),
+    rsvpName: '', attend: 'si', guests: 1, diet: '', message: '',
+    rsvpSending: false, rsvpError: false, rsvpDone: false
+  };
+
+  componentDidMount() {
+    this._onR = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onR);
+    this._onImgErr = (e) => { const t = e.target; if (t && t.tagName === 'IMG') t.style.display = 'none'; };
+    document.addEventListener('error', this._onImgErr, true);
+    this._tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    const self = this;
+    window.__nex = { set: (patch) => self.setState(patch) };
+    window.__shot = (keep, width) => {
+      const b = document.body, h = document.documentElement;
+      let anim = document.getElementById('__shotcss');
+      if (width) {
+        h.style.width = b.style.width = width + 'px';
+        h.style.height = b.style.height = 'auto';
+        h.style.maxWidth = b.style.maxWidth = 'none';
+        if (!anim) {
+          anim = document.createElement('style');
+          anim.id = '__shotcss';
+          anim.textContent = '*{animation:none !important;transition:none !important;scrollbar-width:none !important}\n*::-webkit-scrollbar{display:none !important}';
+          document.head.appendChild(anim);
+        }
+      } else {
+        h.style.width = b.style.width = '';
+        h.style.height = b.style.height = '';
+        h.style.maxWidth = b.style.maxWidth = '';
+        if (anim) anim.remove();
+      }
+      const nav = document.querySelector('[data-shot="nav"]');
+      if (nav) nav.style.position = width ? 'relative' : 'sticky';
+      document.querySelectorAll('[data-fixed]').forEach(el => { el.style.position = width ? 'absolute' : 'fixed'; });
+      const list = keep ? (Array.isArray(keep) ? keep : [keep]) : null;
+      document.querySelectorAll('[data-shot]').forEach(el => {
+        el.style.display = (!list || list.includes(el.dataset.shot)) ? '' : 'none';
+      });
+      window.scrollTo(0, 0);
+      self.setState({ mode: width ? (width <= 520 ? 'mobile' : 'desktop') : null });
+    };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+    document.removeEventListener('error', this._onImgErr, true);
+    clearInterval(this._tick); clearTimeout(this._send);
+  }
+
+  goSection(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+  }
+
+  pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+
+  renderVals() {
+    const st = this.state;
+    const GOLD = '#B08D45';
+    const isMobile = st.mode ? st.mode === 'mobile' : st.vw < 768;
+    const num = this.props.whatsappNumber ?? '593994027716';
+
+    const target = new Date(this.props.fechaBoda ?? '2026-11-21T16:30:00-05:00').getTime();
+    let diff = Math.max(0, target - st.now);
+    const dd = Math.floor(diff / 86400000); diff -= dd * 86400000;
+    const hh = Math.floor(diff / 3600000); diff -= hh * 3600000;
+    const mm = Math.floor(diff / 60000); diff -= mm * 60000;
+    const ss = Math.floor(diff / 1000);
+
+    const attendYes = st.attend === 'si';
+    const radioStyle = (on) => ({
+      flex: '1 1 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+      padding: '13px 16px', borderRadius: '999px', cursor: 'pointer', fontWeight: 500, fontSize: '14px',
+      transition: 'border-color .15s ease, background .15s ease', whiteSpace: 'nowrap',
+      border: '1px solid ' + (on ? GOLD : '#DCC9BC'),
+      background: on ? 'rgba(176,141,69,.1)' : '#FFFDFB',
+      color: on ? '#7A5F26' : '#8A7570'
+    });
+
+    const msgLines = 'Hola Gabriela 💍 Confirmación para la boda de Andrea & Mateo:\n' +
+      '• Nombre: ' + (st.rsvpName.trim() || '—') + '\n' +
+      '• Asistencia: ' + (attendYes ? 'Sí, ahí estaré' : 'No podré ir') +
+      (attendYes ? '\n• Acompañantes: ' + st.guests : '') +
+      (st.diet.trim() ? '\n• Restricciones: ' + st.diet.trim() : (attendYes ? '\n• Restricciones: ninguna' : '')) +
+      (st.message.trim() ? '\n• Mensaje: ' + st.message.trim() : '');
+
+    return {
+      showNavLinks: !isMobile,
+      navItems: this.NAV.map(n => ({ label: n.label, href: '#' + n.id, go: (e) => this.goSection(n.id, e) })),
+      goTop: (e) => { if (e && e.preventDefault) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      goRsvp: (e) => this.goSection('rsvp', e),
+      goItin: (e) => this.goSection('itinerario', e),
+      noopLink: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      year: new Date().getFullYear(),
+
+      cdD: this.pad(dd), cdH: this.pad(hh), cdM: this.pad(mm), cdS: this.pad(ss),
+
+      rsvpName: st.rsvpName, diet: st.diet, message: st.message, guests: st.guests,
+      setRsvpName: (e) => this.setState({ rsvpName: e.target.value, rsvpError: false }),
+      setDiet: (e) => this.setState({ diet: e.target.value }),
+      setMessage: (e) => this.setState({ message: e.target.value }),
+      guestsInc: () => this.setState(s => ({ guests: Math.min(5, s.guests + 1) })),
+      guestsDec: () => this.setState(s => ({ guests: Math.max(0, s.guests - 1) })),
+      attendYes,
+      pickYes: () => this.setState({ attend: 'si', rsvpDone: false }),
+      pickNo: () => this.setState({ attend: 'no', rsvpDone: false }),
+      yesStyle: radioStyle(attendYes),
+      noStyle: radioStyle(!attendYes),
+      rsvpNameStyle: {
+        width: '100%', boxSizing: 'border-box', background: '#FFFDFB', borderRadius: '12px',
+        padding: '13px 16px', color: '#4A3B38', fontSize: '15px', outline: 'none',
+        border: '1px solid ' + (st.rsvpError ? '#B4544A' : '#DCC9BC')
+      },
+      rsvpError: st.rsvpError,
+      rsvpSending: st.rsvpSending,
+      rsvpFormShown: !st.rsvpDone && !st.rsvpSending,
+      rsvpDoneShown: st.rsvpDone,
+      submitRsvp: () => {
+        if (!this.state.rsvpName.trim()) { this.setState({ rsvpError: true }); return; }
+        this.setState({ rsvpSending: true, rsvpError: false });
+        clearTimeout(this._send);
+        this._send = setTimeout(() => this.setState({ rsvpSending: false, rsvpDone: true }), 700);
+      },
+      editRsvp: () => this.setState({ rsvpDone: false }),
+      rsvpFirstName: (st.rsvpName.trim() || '').split(' ')[0],
+      doneTitle: attendYes ? ('¡Nos vemos el 21, ' + ((st.rsvpName.trim() || '').split(' ')[0] || 'gracias') + '!') : ('Te vamos a extrañar, ' + ((st.rsvpName.trim() || '').split(' ')[0] || 'gracias') + '.'),
+      doneSub: attendYes ? 'Envíale tu confirmación a Gabriela por WhatsApp y quedas en la lista.' : 'Igual envíale el mensaje a Gabriela — Andrea y Mateo van a leer cada respuesta.',
+      waMsg: msgLines,
+      waHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent(msgLines),
+      waFloatHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hola Gabriela, tengo una duda sobre la boda de Andrea y Mateo.'),
+      showFloat: this.props.mostrarWhatsapp ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

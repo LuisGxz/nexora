@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#FAFCFC;color:#17303B;font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  input,button,select,textarea{font:inherit}
+  ::selection{background:rgba(14,116,144,.18)}
+  input::placeholder{color:rgba(23,48,59,.35)}
+  @keyframes auSpin{to{transform:rotate(360deg)}}
+  @keyframes auFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;background:#FAFCFC;overflow-x:clip">
+
+  <!-- ============ NAV ============ -->
+  <div data-shot="nav" data-screen-label="Nav" style="position:sticky;top:0;z-index:50;background:rgba(250,252,252,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #DFE9EC">
+    <div style="max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px);height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#inicio" onClick="{{ goTop }}" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#17303B">
+        <span style="position:relative;width:20px;height:20px;flex:none;display:block">
+          <span style="position:absolute;left:7px;top:0;width:6px;height:20px;background:var(--auA,#0E7490);border-radius:3px"></span>
+          <span style="position:absolute;left:0;top:7px;width:20px;height:6px;background:var(--auA,#0E7490);border-radius:3px"></span>
+        </span>
+        <span style="display:flex;flex-direction:column;line-height:1">
+          <span style="font-weight:700;font-size:19px;letter-spacing:-.01em">Aurora</span>
+          <span style="font-weight:700;font-size:8.5px;letter-spacing:.22em;color:#7E97A1;margin-top:2px">CLÍNICA DENTAL</span>
+        </span>
+      </a>
+      <sc-if value="{{ showNavLinks }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:24px">
+          <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="5">
+            <a href="{{ nv.href }}" onClick="{{ nv.go }}" style="color:#4E6B77;text-decoration:none;font-size:13.5px;font-weight:500" style-hover="color:var(--auA,#0E7490)">{{ nv.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <a href="#citas" onClick="{{ goCitas }}" style="background:var(--auA,#0E7490);color:#F2FAFB;text-decoration:none;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(14,116,144,.45)" style-hover="filter:brightness(1.08)">Agendar cita</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" data-shot="hero" data-screen-label="Hero" style="border-bottom:1px solid #DFE9EC;background:linear-gradient(180deg,#F1F7F8 0%,#FAFCFC 100%)">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(44px,7vw,88px) clamp(18px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:clamp(30px,5vw,60px);align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:#DDF1EC;border-radius:999px;padding:7px 14px;margin:0 0 18px">
+          <span style="width:7px;height:7px;border-radius:50%;background:#159580"></span>
+          <span style="font-weight:700;font-size:11px;letter-spacing:.14em;color:#0F5E52">KENNEDY NORTE · GUAYAQUIL</span>
+        </div>
+        <h1 style="margin:0 0 16px;font-weight:700;font-size:clamp(38px,5.8vw,64px);line-height:1.06;letter-spacing:-.015em">Tu sonrisa, sin miedo<br>y <span style="color:var(--auA,#0E7490)">sin letra pequeña.</span></h1>
+        <p style="margin:0 0 26px;color:#4E6B77;font-size:clamp(15px,1.6vw,16.5px);line-height:1.7;max-width:50ch">Odontología moderna con precios cerrados por escrito, agenda en línea y cero salas de espera eternas.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 28px">
+          <a href="#citas" onClick="{{ goCitas }}" style="background:var(--auA,#0E7490);color:#F2FAFB;text-decoration:none;font-weight:700;font-size:15px;padding:14px 26px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(14,116,144,.45)" style-hover="filter:brightness(1.08);transform:translateY(-1px)">Agendar cita</a>
+          <a href="#especialidades" onClick="{{ goEsp }}" style="border:1px solid #C4D6DC;color:#17303B;text-decoration:none;font-weight:700;font-size:15px;padding:14px 26px;border-radius:10px;white-space:nowrap;background:#FFFFFF" style-hover="border-color:var(--auA,#0E7490);color:var(--auA,#0E7490)">Ver especialidades</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,40px)">
+          <div>
+            <div style="font-weight:700;font-size:26px;letter-spacing:-.01em">11 años</div>
+            <div style="color:#7E97A1;font-size:12.5px;margin-top:2px">de práctica clínica</div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:26px;letter-spacing:-.01em">+2.400</div>
+            <div style="color:#7E97A1;font-size:12.5px;margin-top:2px">pacientes atendidos</div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:26px;letter-spacing:-.01em">4.9<span style="color:var(--auA,#0E7490)">★</span></div>
+            <div style="color:#7E97A1;font-size:12.5px;margin-top:2px">280+ reseñas</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Consultorio de Clínica Dental Aurora" crossorigin="anonymous" style="width:100%;aspect-ratio:4/3.4;object-fit:cover;border-radius:18px;display:block;background:#E3F1F6;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 24px 48px -24px rgba(23,48,59,.25)">
+        <div style="position:absolute;left:14px;bottom:14px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px -18px rgba(23,48,59,.3)">
+          <span style="width:34px;height:34px;border-radius:50%;background:#DDF1EC;display:flex;align-items:center;justify-content:center;color:#0F5E52;font-weight:700;font-size:15px">✓</span>
+          <span style="line-height:1.3">
+            <span style="display:block;font-weight:700;font-size:13px">Precios cerrados por escrito</span>
+            <span style="display:block;color:#7E97A1;font-size:11.5px">Sin sorpresas en la factura</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ ESPECIALIDADES ============ -->
+  <section id="especialidades" data-shot="esp" data-screen-label="Especialidades" style="border-bottom:1px solid #DFE9EC">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--auA,#0E7490);margin:0 0 10px">ESPECIALIDADES</div>
+      <h2 style="margin:0 0 10px;font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em">Lo que hacemos, con precio claro</h2>
+      <p style="margin:0 0 30px;color:#4E6B77;font-size:15px;line-height:1.7;max-width:56ch">Cada tratamiento arranca con una valoración y un plan por escrito. El precio que firmas es el precio que pagas.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px">
+        <sc-for list="{{ srvCards }}" as="s" hint-placeholder-count="4">
+          <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;padding:22px 20px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 10px 30px -22px rgba(23,48,59,.25);transition:transform .15s ease,border-color .15s ease" style-hover="transform:translateY(-2px);border-color:var(--auAline,rgba(14,116,144,.35))">
+            <div style="width:38px;height:38px;border-radius:12px;background:#DDF1EC;display:flex;align-items:center;justify-content:center">
+              <span style="width:12px;height:12px;border-radius:50%;background:var(--auA,#0E7490)"></span>
+            </div>
+            <div style="font-weight:700;font-size:16.5px;letter-spacing:-.01em">{{ s.name }}</div>
+            <p style="margin:0;color:#4E6B77;font-size:13.5px;line-height:1.6;flex:1">{{ s.desc }}</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #EAF3F5;padding-top:12px">
+              <span style="font-size:12px;font-weight:700;color:#7E97A1;background:#F1F7F8;border-radius:999px;padding:5px 10px">{{ s.minLabel }}</span>
+              <span style="font-weight:700;font-size:20px;color:var(--auA,#0E7490)">{{ s.price }}</span>
+            </div>
+            <a href="#citas" onClick="{{ s.pick }}" style="color:var(--auA,#0E7490);text-decoration:none;font-weight:700;font-size:13px" style-hover="text-decoration:underline">Agendar este servicio →</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOCTORA ============ -->
+  <section id="doctora" data-shot="doctora" data-screen-label="Doctora" style="border-bottom:1px solid #DFE9EC;background:#F1F7F8">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(28px,5vw,56px);align-items:center">
+      <div style="position:relative">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80" alt="Dra. Valeria Herrera" crossorigin="anonymous" style="width:100%;aspect-ratio:4/4.6;object-fit:cover;object-position:top;border-radius:18px;display:block;background:#E3F1F6;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 24px 48px -24px rgba(23,48,59,.22)">
+        <div style="position:absolute;left:14px;bottom:14px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:10px 14px;box-shadow:0 10px 30px -18px rgba(23,48,59,.3)">
+          <span style="display:block;font-weight:700;font-size:13.5px">Dra. Valeria Herrera</span>
+          <span style="display:block;color:#7E97A1;font-size:11.5px;margin-top:2px">Odontóloga · Rehabilitación Oral</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--auA,#0E7490);margin:0 0 10px">LA DOCTORA</div>
+        <h2 style="margin:0 0 16px;font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em">"Te explico todo antes de tocar nada."</h2>
+        <p style="margin:0 0 22px;color:#4E6B77;font-size:15px;line-height:1.75">Mi consulta funciona con una regla: diagnóstico con cámara intraoral, plan por escrito y precios cerrados. Sin sorpresas en la factura ni en la silla.</p>
+        <div style="display:grid;gap:10px;margin:0 0 24px">
+          <div style="display:flex;align-items:center;gap:12px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:12px 16px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--auA,#0E7490);flex:none"></span>
+            <span style="font-size:14px;color:#17303B"><span style="font-weight:700">Odontóloga</span> — Universidad Católica de Santiago de Guayaquil</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:12px 16px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--auA,#0E7490);flex:none"></span>
+            <span style="font-size:14px;color:#17303B"><span style="font-weight:700">Especialista en Rehabilitación Oral</span> — USFQ, Quito</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:12px 16px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--auA,#0E7490);flex:none"></span>
+            <span style="font-size:14px;color:#17303B"><span style="font-weight:700">Miembro activo</span> — Sociedad Ecuatoriana de Odontología</span>
+          </div>
+        </div>
+        <a href="#citas" onClick="{{ goCitas }}" style="display:inline-block;background:var(--auA,#0E7490);color:#F2FAFB;text-decoration:none;font-weight:700;font-size:14.5px;padding:13px 24px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(14,116,144,.45)" style-hover="filter:brightness(1.08)">Agendar con la doctora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CITAS ============ -->
+  <section id="citas" data-shot="citas" data-screen-label="Citas" style="border-bottom:1px solid #DFE9EC">
+    <div style="max-width:860px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 26px">
+        <div style="font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--auA,#0E7490);margin:0 0 10px">AGENDA EN LÍNEA</div>
+        <h2 style="margin:0 0 10px;font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em">Tu cita en tres pasos</h2>
+        <p style="margin:0 auto;color:#4E6B77;font-size:15px;line-height:1.7;max-width:48ch">Elige, confirma y el mensaje queda listo en WhatsApp. La confirmación no genera ningún cobro.</p>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 14px 40px -28px rgba(23,48,59,.3)">
+        <div style="display:flex;flex-wrap:wrap;gap:4px;padding:12px 14px;border-bottom:1px solid #EAF3F5;background:#FAFCFC">
+          <sc-for list="{{ stepChips }}" as="sp" hint-placeholder-count="3">
+            <button type="button" onClick="{{ sp.go }}" style="{{ sp.style }}"><span style="{{ sp.numStyle }}">{{ sp.num }}</span> {{ sp.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding:clamp(18px,3.5vw,32px);min-height:360px;box-sizing:border-box">
+
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="animation:auFade .28s ease">
+              <h3 style="margin:0 0 16px;font-weight:700;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em">¿Qué necesitas?</h3>
+              <div style="display:grid;gap:10px">
+                <sc-for list="{{ srvRows }}" as="s" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ s.pick }}" style="{{ s.style }}">
+                    <span style="text-align:left">
+                      <span style="display:block;font-weight:700;font-size:15px;color:#17303B">{{ s.name }}</span>
+                      <span style="display:block;color:#7E97A1;font-size:12.5px;margin-top:2px">{{ s.desc }}</span>
+                    </span>
+                    <span style="display:flex;align-items:center;gap:12px;flex:none">
+                      <span style="font-size:11.5px;font-weight:700;color:#7E97A1;background:#F1F7F8;border-radius:999px;padding:4px 9px">{{ s.minLabel }}</span>
+                      <span style="font-weight:700;font-size:18px;color:var(--auA,#0E7490)">{{ s.price }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:auFade .28s ease">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 4px">
+                <h3 style="margin:0;font-weight:700;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em">¿Cuándo te queda bien?</h3>
+                <button type="button" onClick="{{ goStep1 }}" style="background:none;border:none;padding:0;cursor:pointer;font-weight:700;font-size:12.5px;color:var(--auA,#0E7490);white-space:nowrap" style-hover="text-decoration:underline">← Cambiar servicio</button>
+              </div>
+              <p style="margin:0 0 16px;color:#7E97A1;font-size:13px">{{ selServiceLine }}</p>
+              <div style="display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px">
+                <sc-for list="{{ dayChips }}" as="d" hint-placeholder-count="7">
+                  <button type="button" onClick="{{ d.pick }}" style="{{ d.style }}">
+                    <span style="font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#7E97A1">{{ d.wdU }}</span>
+                    <span style="font-weight:700;font-size:21px;line-height:1.1">{{ d.num }}</span>
+                    <span style="font-size:9px;font-weight:700;letter-spacing:.08em;color:#7E97A1">{{ d.moU }}</span>
+                    <sc-if value="{{ d.hasTag }}" hint-placeholder-val="{{ false }}">
+                      <span style="{{ d.tagStyle }}">{{ d.tag }}</span>
+                    </sc-if>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="min-height:170px;margin-top:12px">
+                <sc-if value="{{ noDaySel }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1.5px dashed #CFE0E5;border-radius:12px;padding:32px 20px;text-align:center;font-size:13px;font-weight:500;color:#7E97A1">Elige un día para ver los horarios disponibles</div>
+                </sc-if>
+                <sc-if value="{{ slotsLoading }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1.5px dashed #CFE0E5;border-radius:12px;padding:32px 20px;display:flex;flex-direction:column;align-items:center;gap:12px">
+                    <span style="width:22px;height:22px;border:2.5px solid #DFE9EC;border-top-color:var(--auA,#0E7490);border-radius:50%;animation:auSpin .7s linear infinite"></span>
+                    <span style="font-size:13px;font-weight:500;color:#7E97A1">Buscando horarios…</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ dayFullShown }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1.5px solid rgba(192,138,45,.4);background:rgba(192,138,45,.06);border-radius:12px;padding:28px 20px;text-align:center;animation:auFade .28s ease">
+                    <div style="font-weight:700;font-size:18px;color:#8A6420;margin:0 0 6px">Agenda llena ese día</div>
+                    <p style="margin:0 0 16px;color:#4E6B77;font-size:13.5px;line-height:1.6">Guardamos dos espacios diarios para urgencias — si es urgente, escríbenos directo por WhatsApp.</p>
+                    <button type="button" onClick="{{ goNextDay }}" style="background:var(--auA,#0E7490);color:#F2FAFB;border:none;cursor:pointer;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.08)">{{ nextDayLabel }}</button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ slotsShown }}" hint-placeholder-val="{{ false }}">
+                  <div style="animation:auFade .28s ease">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px">
+                      <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="8">
+                        <button type="button" onClick="{{ sl.pick }}" disabled="{{ sl.busy }}" style="{{ sl.style }}">{{ sl.t }}</button>
+                      </sc-for>
+                    </div>
+                    <div style="font-size:11.5px;color:#7E97A1;margin-top:12px">Tachado = ocupado · Pausa de almuerzo 13:00–14:00 · Hora Guayaquil</div>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ showConfirmForm }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:auFade .28s ease">
+              <h3 style="margin:0 0 16px;font-weight:700;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em">Confirma tu cita</h3>
+              <div style="background:#F1F7F8;border:1px solid #DFE9EC;border-radius:12px;padding:14px 18px;margin:0 0 16px">
+                <sc-for list="{{ summaryRows }}" as="r" hint-placeholder-count="5">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px dashed #CFE0E5">
+                    <span style="font-size:12px;font-weight:700;color:#7E97A1;flex:none">{{ r.k }}</span>
+                    <span style="font-size:14px;font-weight:700;text-align:right">{{ r.v }}</span>
+                  </div>
+                </sc-for>
+                <button type="button" onClick="{{ goStep1 }}" style="background:none;border:none;padding:10px 0 2px;cursor:pointer;font-weight:700;font-size:12.5px;color:var(--auA,#0E7490)" style-hover="text-decoration:underline">← Cambiar algo</button>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:0 0 12px">
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;font-weight:700;color:#4E6B77;margin:0 0 6px">Tu nombre *</span>
+                  <input type="text" value="{{ name }}" onChange="{{ setName }}" placeholder="Ej. Paula Ríos" style="{{ nameInputStyle }}">
+                </label>
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;font-weight:700;color:#4E6B77;margin:0 0 6px">Teléfono (opcional)</span>
+                  <input type="tel" value="{{ phone }}" onChange="{{ setPhone }}" placeholder="+593 9…" style="width:100%;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #C4D6DC;border-radius:10px;padding:13px 14px;color:#17303B;font-size:15px;outline:none" style-focus="border-color:var(--auA,#0E7490)">
+                </label>
+              </div>
+              <button type="button" onClick="{{ toggleFirst }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:0;cursor:pointer;margin:0 0 6px">
+                <span style="{{ checkStyle }}">{{ checkMark }}</span>
+                <span style="font-size:14px;color:#17303B">Es mi primera visita a la clínica</span>
+              </button>
+              <sc-if value="{{ nameError }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:12.5px;font-weight:700;color:#C2453A;margin:8px 0 0">⚠ Escribe tu nombre para confirmar la cita.</div>
+              </sc-if>
+              <button type="button" onClick="{{ confirm }}" style="width:100%;margin-top:16px;background:var(--auA,#0E7490);color:#F2FAFB;border:none;cursor:pointer;font-weight:700;font-size:15.5px;padding:15px 20px;border-radius:12px;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(14,116,144,.45)" style-hover="filter:brightness(1.08)">Confirmar por WhatsApp</button>
+              <p style="margin:10px 0 0;text-align:center;font-size:12px;color:#7E97A1">Se abre WhatsApp con el mensaje listo. No pagas nada todavía.</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ showSuccess }}" hint-placeholder-val="{{ false }}">
+            <div style="animation:auFade .3s ease;text-align:center;padding:8px 0">
+              <div style="width:58px;height:58px;border-radius:50%;background:#DDF1EC;color:#0F5E52;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:4px auto 14px">✓</div>
+              <h3 style="margin:0 0 8px;font-weight:700;font-size:clamp(22px,3.4vw,28px);letter-spacing:-.01em">¡Listo, {{ successName }}!</h3>
+              <p style="margin:0 auto 16px;color:#4E6B77;font-size:14px;line-height:1.65;max-width:44ch">Tu cita quedó pre-agendada. Envíanos el mensaje y te confirmamos en minutos.</p>
+              <div style="background:#F1F7F8;border:1.5px dashed #C4D6DC;border-radius:12px;padding:14px 16px;margin:0 0 16px;text-align:left;font-size:13px;line-height:1.8;color:#2E4A56;white-space:pre-wrap">{{ waMsg }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+                <a href="{{ waHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.08)">Enviar por WhatsApp ↗</a>
+                <button type="button" onClick="{{ reset }}" style="background:none;border:1.5px solid #C4D6DC;color:#17303B;cursor:pointer;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap" style-hover="border-color:var(--auA,#0E7490);color:var(--auA,#0E7490)">Agendar otra cita</button>
+              </div>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIOS ============ -->
+  <section id="testimonios" data-shot="testi" data-screen-label="Testimonios" style="border-bottom:1px solid #DFE9EC;background:#F1F7F8">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--auA,#0E7490);margin:0 0 10px">TESTIMONIOS</div>
+      <h2 style="margin:0 0 30px;font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em">Pacientes que volvieron sonriendo</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px">
+        <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(23,48,59,.04)">
+          <span style="color:#E9A93D;font-size:15px;letter-spacing:2px">★★★★★</span>
+          <p style="margin:0;color:#2E4A56;font-size:14.5px;line-height:1.7;flex:1">"Le tenía pánico al dentista. La doctora me explicó cada paso y no sentí nada. Volví con mis dos hijos."</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="María Fernanda O." crossorigin="anonymous" style="width:42px;height:42px;border-radius:50%;object-fit:cover;background:#E3F1F6">
+            <span style="line-height:1.3">
+              <span style="display:block;font-weight:700;font-size:13.5px">María Fernanda O.</span>
+              <span style="display:block;color:#7E97A1;font-size:12px">Limpieza & prevención</span>
+            </span>
+          </div>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(23,48,59,.04)">
+          <span style="color:#E9A93D;font-size:15px;letter-spacing:2px">★★★★★</span>
+          <p style="margin:0;color:#2E4A56;font-size:14.5px;line-height:1.7;flex:1">"Coticé en tres lugares. Aurora fue la única con precio cerrado por escrito. Cero sorpresas al pagar."</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="José Luis P." crossorigin="anonymous" style="width:42px;height:42px;border-radius:50%;object-fit:cover;background:#E3F1F6">
+            <span style="line-height:1.3">
+              <span style="display:block;font-weight:700;font-size:13.5px">José Luis P.</span>
+              <span style="display:block;color:#7E97A1;font-size:12px">Implante dental</span>
+            </span>
+          </div>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(23,48,59,.04)">
+          <span style="color:#E9A93D;font-size:15px;letter-spacing:2px">★★★★★</span>
+          <p style="margin:0;color:#2E4A56;font-size:14.5px;line-height:1.7;flex:1">"Los brackets me los pusieron en la fecha que dijeron y el pago mensual nunca cambió. Eso vale oro."</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Andrea T." crossorigin="anonymous" style="width:42px;height:42px;border-radius:50%;object-fit:cover;background:#E3F1F6">
+            <span style="line-height:1.3">
+              <span style="display:block;font-weight:700;font-size:13.5px">Andrea T.</span>
+              <span style="display:block;color:#7E97A1;font-size:12px">Ortodoncia</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" data-shot="faq" data-screen-label="FAQ" style="border-bottom:1px solid #DFE9EC">
+    <div style="max-width:760px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 26px">
+        <div style="font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--auA,#0E7490);margin:0 0 10px">PREGUNTAS FRECUENTES</div>
+        <h2 style="margin:0;font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em">Lo que todos preguntan</h2>
+      </div>
+      <div style="display:grid;gap:10px">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+          <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;overflow:hidden">
+            <button type="button" onClick="{{ f.toggle }}" style="{{ f.style }}">
+              <span>{{ f.q }}</span>
+              <span style="{{ f.chevStyle }}">{{ f.chev }}</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;padding:0 18px 16px;color:#4E6B77;font-size:14px;line-height:1.7;animation:auFade .22s ease">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:18px 0 0;text-align:center;font-size:13px;color:#7E97A1">¿Otra duda? <a href="{{ waFloatHref }}" target="_blank" rel="noopener" style="color:var(--auA,#0E7490);font-weight:700;text-decoration:none" style-hover="text-decoration:underline">Escríbenos por WhatsApp</a> — respondemos en horario de consulta.</p>
+    </div>
+  </section>
+
+  <!-- ============ UBICACIÓN ============ -->
+  <section id="ubicacion" data-shot="ubicacion" data-screen-label="Ubicación" style="border-bottom:1px solid #DFE9EC;background:#F1F7F8">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--auA,#0E7490);margin:0 0 10px">UBICACIÓN Y HORARIO</div>
+      <h2 style="margin:0 0 30px;font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em">Frente al Mall del Sol</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;align-items:stretch">
+        <div style="background:#FFFFFF;border:1px solid #DFE9EC;border-radius:16px;padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:20px;box-shadow:0 1px 2px rgba(23,48,59,.04)">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#7E97A1;margin:0 0 8px;letter-spacing:.1em">DIRECCIÓN</div>
+            <div style="font-size:16px;font-weight:700;line-height:1.5">Edificio Medical Plaza, piso 3, consultorio 304<br>Av. Joaquín Orrantia y Leopoldo Benítez</div>
+            <div style="color:#7E97A1;font-size:13px;margin-top:6px">Kennedy Norte, Guayaquil · Parqueo del edificio con validación.</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#7E97A1;margin:0 0 4px;letter-spacing:.1em">HORARIO</div>
+            <sc-for list="{{ hoursRows }}" as="h" hint-placeholder-count="3">
+              <div style="{{ h.style }}">
+                <span>{{ h.d }} <span style="{{ h.badgeStyle }}">{{ h.badge }}</span></span>
+                <span>{{ h.h }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#7E97A1;margin:0 0 8px;letter-spacing:.1em">CONTACTO</div>
+            <div style="font-size:15px;font-weight:700">+593 96 512 8834</div>
+            <div style="color:#4E6B77;font-size:13.5px;margin-top:2px">citas@clinicaaurora.ec</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto">
+            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Joaquin+Orrantia+Kennedy+Norte+Guayaquil" target="_blank" rel="noopener" style="border:1.5px solid #C4D6DC;color:#17303B;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 20px;border-radius:10px;white-space:nowrap;background:#FFFFFF" style-hover="border-color:var(--auA,#0E7490);color:var(--auA,#0E7490)">Cómo llegar ↗</a>
+            <a href="{{ waFloatHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 20px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.08)">Escribir por WhatsApp</a>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Joaquin+Orrantia+Kennedy+Norte+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" style="position:relative;min-height:320px;border:1px solid #DFE9EC;border-radius:16px;display:block;overflow:hidden;background:linear-gradient(0deg,transparent 0 48%,rgba(23,48,59,.07) 48% 51%,transparent 51%),linear-gradient(90deg,transparent 0 34%,rgba(23,48,59,.06) 34% 36.4%,transparent 36.4%),linear-gradient(58deg,transparent 0 58%,var(--auAsoft,rgba(14,116,144,.1)) 58% 60%,transparent 60%),repeating-linear-gradient(0deg,rgba(23,48,59,.025) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(23,48,59,.025) 0 1px,transparent 1px 34px),#EAF3F5">
+          <span style="position:absolute;top:48.5%;left:35%;width:16px;height:16px;border-radius:50%;background:var(--auA,#0E7490);border:3px solid #FFFFFF;box-shadow:0 0 0 8px var(--auAsoft,rgba(14,116,144,.12))"></span>
+          <span style="position:absolute;top:calc(48.5% + 26px);left:35%;transform:translateX(-40%);font-size:11px;font-weight:700;color:#17303B;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:8px;padding:5px 10px;white-space:nowrap;box-shadow:0 6px 18px -10px rgba(23,48,59,.3)">Clínica Aurora · piso 3</span>
+          <span style="position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:700;color:#7E97A1;letter-spacing:.08em">MAPA · KENNEDY NORTE</span>
+          <span style="position:absolute;bottom:12px;right:14px;font-size:11px;font-weight:700;color:var(--auA,#0E7490);letter-spacing:.08em">ABRIR EN GOOGLE MAPS ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-shot="pie" data-screen-label="Footer" style="background:#123A47;color:#DCEDF1">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(40px,6vw,64px) clamp(18px,4vw,44px) 28px">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);justify-content:space-between;margin:0 0 36px">
+        <div style="max-width:280px">
+          <div style="display:flex;align-items:center;gap:10px;margin:0 0 10px">
+            <span style="position:relative;width:18px;height:18px;flex:none;display:block">
+              <span style="position:absolute;left:6px;top:0;width:6px;height:18px;background:#7FD1C0;border-radius:3px"></span>
+              <span style="position:absolute;left:0;top:6px;width:18px;height:6px;background:#7FD1C0;border-radius:3px"></span>
+            </span>
+            <span style="font-weight:700;font-size:19px;color:#F2FAFB">Aurora <span style="font-size:10px;letter-spacing:.18em;color:#9DBEC7;font-weight:700">CLÍNICA DENTAL</span></span>
+          </div>
+          <p style="margin:0;color:#9DBEC7;font-size:13px;line-height:1.7">Sonrisas tranquilas, tratos claros. Precios cerrados por escrito desde la primera consulta.</p>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.16em;color:#7FA6B1;margin:0 0 12px">HORARIO</div>
+          <div style="color:#C6DCE2;font-size:13.5px;line-height:2">Lun – Vie · 09:00 – 18:00<br>Sábado · 09:00 – 13:00<br>Domingo · Cerrado</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.16em;color:#7FA6B1;margin:0 0 12px">CONTACTO</div>
+          <div style="color:#C6DCE2;font-size:13.5px;line-height:2">+593 96 512 8834<br>citas@clinicaaurora.ec<br>Medical Plaza, piso 3 · Kennedy Norte</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.16em;color:#7FA6B1;margin:0 0 12px">SÍGUENOS</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="#inicio" onClick="{{ noopLink }}" style="color:#C6DCE2;text-decoration:none;font-size:13.5px" style-hover="color:#7FD1C0">Instagram · @clinicadental.aurora</a>
+            <a href="#inicio" onClick="{{ noopLink }}" style="color:#C6DCE2;text-decoration:none;font-size:13.5px" style-hover="color:#7FD1C0">TikTok · @dra.valeriaherrera</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(220,237,241,.15);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:11px;color:#7FA6B1">
+        <span>© {{ year }} Clínica Dental Aurora — clínica y datos ficticios · Este sitio demo no ofrece consejo médico.</span>
+        <span>Sitio demo · diseñado por Nexora Studio</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ waFloatHref }}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-fixed data-shot="float" style="position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#1FAE55;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(18,58,71,.35);transition:transform .15s ease" style-hover="transform:scale(1.07)">
+      <span style="font-weight:700;font-size:16px;color:#08240F">WA</span>
+    </a>
+  </sc-if>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#0E7490&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#0E7490&quot;, &quot;#159580&quot;, &quot;#1179B4&quot;, &quot;#6D6FB4&quot;], &quot;section&quot;: &quot;Marca&quot;}, &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;593965128834&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Datos&quot;}, &quot;mostrarWhatsapp&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Comportamiento&quot;}}">
+class Component extends DCLogic {
+  SERVICES = [
+    { id: 'limpieza', name: 'Limpieza & prevención', desc: 'Profilaxis, flúor y revisión con cámara intraoral.', min: 40, price: '$35' },
+    { id: 'blanqueamiento', name: 'Blanqueamiento LED', desc: 'Hasta 3 tonos en una sesión, sensibilidad controlada.', min: 60, price: '$120' },
+    { id: 'ortodoncia', name: 'Valoración de ortodoncia', desc: 'Plan por escrito: brackets o alineadores.', min: 30, price: '$25' },
+    { id: 'implantes', name: 'Valoración de implante', desc: 'Estudio 3D y plan de rehabilitación.', min: 30, price: 'Gratis' }
+  ];
+  TIMES_WEEK = ['09:00', '09:45', '10:30', '11:15', '12:00', '14:00', '14:45', '15:30', '16:15', '17:00', '17:45'];
+  TIMES_SAT = ['09:00', '09:45', '10:30', '11:15', '12:00'];
+  NAV = [
+    { label: 'Especialidades', id: 'especialidades' },
+    { label: 'Doctora', id: 'doctora' },
+    { label: 'Testimonios', id: 'testimonios' },
+    { label: 'Preguntas', id: 'faq' },
+    { label: 'Contacto', id: 'ubicacion' }
+  ];
+  FAQS = [
+    { q: '¿Atienden urgencias?', a: 'Sí. Guardamos dos espacios diarios para urgencias. Escríbenos por WhatsApp y te decimos la hora exacta del mismo día.' },
+    { q: '¿Qué formas de pago aceptan?', a: 'Efectivo, transferencia y tarjetas de crédito (diferido hasta 12 meses sin interés con bancos aliados).' },
+    { q: '¿Qué incluye la primera valoración?', a: 'Revisión completa, fotos intraorales y un plan de tratamiento por escrito con precios cerrados. Te lo llevas impreso o por correo.' },
+    { q: '¿Trabajan con seguros?', a: 'Emitimos factura y el detalle clínico que tu aseguradora pide para el reembolso. Te ayudamos con el formulario.' },
+    { q: '¿Hacen ortodoncia en adultos?', a: 'Sí — el 40% de nuestros pacientes de ortodoncia son mayores de 30. Nunca es tarde para alinear.' }
+  ];
+
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    mode: null,
+    step: 1, service: null, day: null, time: null,
+    name: '', phone: '', firstVisit: false,
+    slotsLoading: false, nameError: false, done: false,
+    faqOpen: 0
+  };
+
+  componentDidMount() {
+    this._onR = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onR);
+    this._onImgErr = (e) => { const t = e.target; if (t && t.tagName === 'IMG') t.style.display = 'none'; };
+    document.addEventListener('error', this._onImgErr, true);
+    this.applyAccent();
+    const self = this;
+    window.__nex = {
+      days: this._days(), services: this.SERVICES,
+      set: (patch) => self.setState(patch),
+      freeSlot: (day) => { const s = self._slots(day).find(x => !x.busy); return s ? s.t : '10:30'; }
+    };
+    window.__shot = (keep, width) => {
+      const b = document.body, h = document.documentElement;
+      let anim = document.getElementById('__shotcss');
+      if (width) {
+        h.style.width = b.style.width = width + 'px';
+        h.style.height = b.style.height = 'auto';
+        h.style.maxWidth = b.style.maxWidth = 'none';
+        if (!anim) {
+          anim = document.createElement('style');
+          anim.id = '__shotcss';
+          anim.textContent = '*{animation:none !important;transition:none !important;scrollbar-width:none !important}\n*::-webkit-scrollbar{display:none !important}';
+          document.head.appendChild(anim);
+        }
+      } else {
+        h.style.width = b.style.width = '';
+        h.style.height = b.style.height = '';
+        h.style.maxWidth = b.style.maxWidth = '';
+        if (anim) anim.remove();
+      }
+      const nav = document.querySelector('[data-shot="nav"]');
+      if (nav) nav.style.position = width ? 'relative' : 'sticky';
+      document.querySelectorAll('[data-fixed]').forEach(el => { el.style.position = width ? 'absolute' : 'fixed'; });
+      const list = keep ? (Array.isArray(keep) ? keep : [keep]) : null;
+      document.querySelectorAll('[data-shot]').forEach(el => {
+        el.style.display = (!list || list.includes(el.dataset.shot)) ? '' : 'none';
+      });
+      window.scrollTo(0, 0);
+      self.setState({ mode: width ? (width <= 520 ? 'mobile' : 'desktop') : null });
+    };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+    document.removeEventListener('error', this._onImgErr, true);
+    clearTimeout(this._adv); clearTimeout(this._load);
+  }
+  componentDidUpdate() { this.applyAccent(); }
+
+  applyAccent() {
+    const a = this.props.accent ?? '#0E7490';
+    if (this._lastA === a) return;
+    this._lastA = a;
+    const r = document.documentElement;
+    r.style.setProperty('--auA', a);
+    r.style.setProperty('--auAsoft', a + '14');
+    r.style.setProperty('--auAline', a + '55');
+  }
+
+  _days() {
+    if (this._daysCache) return this._daysCache;
+    const WD = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const MO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const out = []; const now = new Date();
+    let open = 0;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      const wd = d.getDay();
+      const closed = wd === 0;
+      let full = false;
+      if (!closed) { open++; if (open === 3) full = true; }
+      out.push({
+        i, key: d.toDateString(), wd: WD[wd], num: d.getDate(), mo: MO[d.getMonth()],
+        closed, full, sat: wd === 6, today: i === 0,
+        label: (i === 0 ? 'Hoy' : WD[wd]) + ' ' + d.getDate() + ' ' + MO[d.getMonth()]
+      });
+    }
+    this._daysCache = out;
+    return out;
+  }
+
+  _slots(day) {
+    if (!day || day.closed || day.full) return [];
+    const times = day.sat ? this.TIMES_SAT : this.TIMES_WEEK;
+    const now = new Date();
+    const cutoff = String(now.getHours() + 1).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    return times.map((t, i) => {
+      let busy = ((i * 7 + day.num * 3 + day.i * 5) % 10) < 3;
+      if (day.today && t <= cutoff) busy = true;
+      return { t, busy };
+    });
+  }
+
+  goSection(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+  }
+
+  pickDay(d) {
+    if (d.closed) return;
+    clearTimeout(this._load);
+    this.setState({ day: d, time: null, slotsLoading: true, done: false });
+    this._load = setTimeout(() => this.setState({ slotsLoading: false }), 700);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const A = 'var(--auA,#0E7490)';
+    const SOFT = 'var(--auAsoft,rgba(14,116,144,.08))';
+    const isMobile = st.mode ? st.mode === 'mobile' : st.vw < 768;
+    const days = this._days();
+    const num = this.props.whatsappNumber ?? '593965128834';
+
+    const srvRows = this.SERVICES.map(s => {
+      const on = st.service && st.service.id === s.id;
+      return {
+        ...s, minLabel: s.min + ' min',
+        style: {
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px',
+          padding: '15px 16px', borderRadius: '12px', cursor: 'pointer', width: '100%', textAlign: 'left',
+          transition: 'border-color .15s ease, background .15s ease',
+          border: '1.5px solid ' + (on ? A : '#DFE9EC'), background: on ? SOFT : '#FFFFFF', color: '#17303B'
+        },
+        pick: () => {
+          this.setState({ service: s });
+          clearTimeout(this._adv);
+          this._adv = setTimeout(() => this.setState({ step: 2 }), 260);
+        }
+      };
+    });
+
+    const dayChips = days.map(d => {
+      const on = st.day && st.day.key === d.key;
+      return {
+        ...d,
+        wdU: (d.today ? 'HOY' : d.wd).toUpperCase(), moU: d.mo.toUpperCase(),
+        hasTag: d.closed || d.full, tag: d.closed ? 'CERRADO' : (d.full ? 'LLENA' : ''),
+        tagStyle: { fontSize: '8px', fontWeight: 700, letterSpacing: '.08em', color: d.full ? '#C08A2D' : '#7E97A1', marginTop: '2px' },
+        style: {
+          flex: '0 0 auto', minWidth: '74px', padding: '10px 8px 9px', borderRadius: '12px',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px',
+          cursor: d.closed ? 'not-allowed' : 'pointer', opacity: d.closed ? .4 : 1,
+          transition: 'border-color .15s ease',
+          border: '1.5px solid ' + (on ? A : '#DFE9EC'), background: on ? SOFT : '#FFFFFF', color: '#17303B'
+        },
+        pick: () => this.pickDay(d)
+      };
+    });
+
+    const slots = this._slots(st.day).map(sl => {
+      const on = st.time === sl.t;
+      return {
+        ...sl,
+        style: {
+          padding: '12px 6px', borderRadius: '10px', textAlign: 'center',
+          fontSize: '13px', fontWeight: on ? 700 : 500, cursor: sl.busy ? 'not-allowed' : 'pointer',
+          transition: 'border-color .15s ease, background .15s ease',
+          border: '1.5px solid ' + (on ? A : '#DFE9EC'),
+          background: on ? A : '#FFFFFF',
+          color: on ? '#F2FAFB' : (sl.busy ? '#B9CBD2' : '#17303B'),
+          textDecoration: sl.busy ? 'line-through' : 'none'
+        },
+        pick: () => {
+          if (sl.busy) return;
+          this.setState({ time: sl.t });
+          clearTimeout(this._adv);
+          this._adv = setTimeout(() => this.setState({ step: 3 }), 240);
+        }
+      };
+    });
+
+    const canGo = (n) => n === 1 || (n === 2 && st.service) || (n === 3 && st.service && st.day && st.time);
+    const defs = [{ n: 1, label: 'Servicio' }, { n: 2, label: 'Día y hora' }, { n: 3, label: 'Confirmar' }];
+    const stepChips = defs.map(dc => {
+      const active = st.step === dc.n && !st.done;
+      const passed = st.step > dc.n || st.done;
+      const able = canGo(dc.n);
+      return {
+        num: dc.n, label: dc.label,
+        style: {
+          display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 14px', borderRadius: '999px',
+          fontSize: '12.5px', fontWeight: 700, whiteSpace: 'nowrap',
+          border: '1.5px solid ' + (active ? A : 'transparent'),
+          background: active ? SOFT : 'transparent',
+          color: active ? '#17303B' : (passed ? '#4E6B77' : '#B9CBD2'),
+          cursor: able ? 'pointer' : 'default'
+        },
+        numStyle: {
+          width: '20px', height: '20px', borderRadius: '50%', display: 'flex', alignItems: 'center',
+          justifyContent: 'center', fontSize: '11px', fontWeight: 700, flex: 'none',
+          background: (active || passed) ? A : '#DFE9EC', color: (active || passed) ? '#F2FAFB' : '#7E97A1'
+        },
+        go: () => { if (able) this.setState({ step: dc.n, done: false }); }
+      };
+    });
+
+    const wd = new Date().getDay();
+    const hoursRows = [
+      { d: 'Lunes – Viernes', h: '09:00 – 18:00', on: wd >= 1 && wd <= 5 },
+      { d: 'Sábado', h: '09:00 – 13:00', on: wd === 6 },
+      { d: 'Domingo', h: 'Cerrado', on: wd === 0 }
+    ].map(r => ({
+      ...r,
+      badge: r.on ? 'HOY' : '',
+      badgeStyle: { fontSize: '9px', fontWeight: 700, letterSpacing: '.1em', color: A, marginLeft: '4px' },
+      style: {
+        display: 'flex', justifyContent: 'space-between', gap: '12px', padding: '9px 0',
+        borderBottom: '1px dashed #CFE0E5', fontSize: '14px',
+        color: r.on ? '#17303B' : '#4E6B77', fontWeight: r.on ? 700 : 400
+      }
+    }));
+
+    const faqs = this.FAQS.map((f, i) => {
+      const open = st.faqOpen === i;
+      return {
+        ...f, open,
+        chev: open ? '−' : '+',
+        style: {
+          width: '100%', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          gap: '14px', padding: '16px 18px', background: 'none', border: 'none', cursor: 'pointer',
+          fontWeight: 700, fontSize: '15px', color: '#17303B'
+        },
+        chevStyle: {
+          width: '26px', height: '26px', borderRadius: '50%', flex: 'none', display: 'flex',
+          alignItems: 'center', justifyContent: 'center', fontSize: '15px',
+          background: open ? A : '#EAF3F5', color: open ? '#F2FAFB' : '#4E6B77'
+        },
+        toggle: () => this.setState(s => ({ faqOpen: s.faqOpen === i ? -1 : i }))
+      };
+    });
+
+    const fmtDay = st.day ? st.day.label : '—';
+    const summaryRows = st.service ? [
+      { k: 'Servicio', v: st.service.name },
+      { k: 'Día', v: fmtDay },
+      { k: 'Hora', v: st.time || '—' },
+      { k: 'Duración', v: st.service.min + ' min' },
+      { k: 'Precio', v: st.service.price === 'Gratis' ? 'Sin costo' : st.service.price + ' — pagas en consulta' }
+    ] : [];
+
+    const nm = st.name.trim();
+    const waMsg = 'Hola Clínica Aurora 🦷 Quiero agendar una cita:\n' +
+      '• Servicio: ' + (st.service ? st.service.name : '—') + '\n' +
+      '• Día: ' + fmtDay + ' · ' + (st.time || '—') + '\n' +
+      '• Nombre: ' + (nm || '—') +
+      (st.phone.trim() ? '\n• Teléfono: ' + st.phone.trim() : '') +
+      '\n• Primera visita: ' + (st.firstVisit ? 'sí' : 'no') +
+      '\n¿Me confirman? ¡Gracias!';
+
+    const nextDay = st.day ? days.find(d => d.i > st.day.i && !d.closed && !d.full) : null;
+
+    return {
+      showNavLinks: !isMobile,
+      navItems: this.NAV.map(n => ({ label: n.label, href: '#' + n.id, go: (e) => this.goSection(n.id, e) })),
+      goTop: (e) => { if (e && e.preventDefault) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      goCitas: (e) => this.goSection('citas', e),
+      goEsp: (e) => this.goSection('especialidades', e),
+      noopLink: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      year: new Date().getFullYear(),
+
+      srvCards: this.SERVICES.map(s => ({
+        ...s, minLabel: s.min + ' min',
+        pick: (e) => {
+          if (e && e.preventDefault) e.preventDefault();
+          this.setState({ service: s, step: 2, done: false });
+          this.goSection('citas');
+        }
+      })),
+
+      stepChips, srvRows, dayChips, slots,
+      isStep1: st.step === 1 && !st.done,
+      isStep2: st.step === 2 && !st.done,
+      showConfirmForm: st.step === 3 && !st.done,
+      showSuccess: st.done,
+      goStep1: () => this.setState({ step: 1, done: false }),
+      selServiceLine: st.service ? st.service.name : '',
+      noDaySel: !st.day && !st.slotsLoading,
+      slotsLoading: st.slotsLoading,
+      dayFullShown: !!st.day && st.day.full && !st.slotsLoading,
+      slotsShown: !!st.day && !st.day.full && !st.slotsLoading,
+      goNextDay: () => { if (nextDay) this.pickDay(nextDay); },
+      nextDayLabel: nextDay ? ('Probar el ' + nextDay.label) : 'Ver otro día',
+
+      summaryRows,
+      name: st.name, phone: st.phone,
+      setName: (e) => this.setState({ name: e.target.value, nameError: false }),
+      setPhone: (e) => this.setState({ phone: e.target.value }),
+      firstVisit: st.firstVisit,
+      toggleFirst: () => this.setState(s => ({ firstVisit: !s.firstVisit })),
+      checkStyle: {
+        width: '22px', height: '22px', borderRadius: '7px', flex: 'none', cursor: 'pointer',
+        border: '1.5px solid ' + (st.firstVisit ? A : '#C4D6DC'),
+        background: st.firstVisit ? A : '#FFFFFF', color: '#F2FAFB',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 700
+      },
+      checkMark: st.firstVisit ? '✓' : '',
+      nameError: st.nameError,
+      nameInputStyle: {
+        width: '100%', boxSizing: 'border-box', background: '#FFFFFF', borderRadius: '10px',
+        padding: '13px 14px', color: '#17303B', fontSize: '15px', outline: 'none',
+        border: '1.5px solid ' + (st.nameError ? '#C2453A' : '#C4D6DC')
+      },
+      confirm: () => {
+        if (!this.state.name.trim()) { this.setState({ nameError: true }); return; }
+        this.setState({ done: true, nameError: false });
+      },
+      reset: () => this.setState({ step: 1, service: null, day: null, time: null, name: '', phone: '', firstVisit: false, done: false, nameError: false, slotsLoading: false }),
+      successName: (nm || '').split(' ')[0],
+      waMsg,
+      waHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent(waMsg),
+      waFloatHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hola Clínica Aurora, quiero información.'),
+      showFloat: this.props.mostrarWhatsapp ?? true,
+
+      faqs, hoursRows
+    };
+  }
+}
+</script>
+</body>
+</html>

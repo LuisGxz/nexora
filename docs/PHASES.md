@@ -218,6 +218,20 @@ Token estimates: small file ~500, medium ~2,000, large ~5,000.
 
 ---
 
+## Phase 8: Portfolio Demos + Works Section Completion ✅
+**Goal**: Build the 5 fictional-business demo landings from `docs/nexora-demos/` and wire them into the landing's Trabajos section with live links and real preview screenshots.
+**Depends on**: Phase 7 (live Pages deploy).
+**Live URLs**: `https://luisgxz.github.io/nexora/demos/{bravo-barber,la-sazon,dental-aurora,andrea-y-mateo,vertice}/`.
+**Files created**:
+- `public/demos/<slug>/index.html` × 5 — each a SELF-CONTAINED vanilla HTML+CSS+JS landing (no framework, no build) converted from the `.dc.html` canonical templates (custom React-runtime syntax `{{ }}`/`<sc-if>`/`<sc-for>`/`style-hover` fully expanded). All simulated flows implemented with explicit state machines: barbería wizard 4 pasos, restaurante carrito+sheet & reserva, clínica wizard 3 pasos, boda RSVP+countdown vivo, PyME form con validación por campo. Every demo: per-brand inline-SVG favicon, `<title>`+meta, `noindex` (negocios ficticios), image-error fallback, AA/44px/focus-visible/`prefers-reduced-motion`, footer disclaimer linking back to the Nexora landing.
+- `public/works/<slug>.webp` × 5 — 960×540 hero screenshots for the works cards.
+**Files modified**: `site.config.ts` (`demoUrls` real + new `corporate` key + `demoPreviews`, both base-aware), `site.es.ts`/`site.en.ts` (5th work wired + `image` on all 5), `Works.astro` (renders preview image when set; striped placeholder stays as fallback).
+**Verification**: all 5 flows driven end-to-end in a real browser against `astro preview` (validation errors, loading, empty/lleno, éxito con preview literal + `wa.me` link); zero JS console errors; full-page renders compared against `mockups/00-pagina-completa--*`; `astro check` 0 errors.
+**Fixes over agent output**: barbería H1 clamp calibrated to mockup + placeholder z-order + reduced-motion; La Sazón ghost-CTA `background` + order-sheet `position: fixed` (was anchoring to document bottom) + slide keyframes keeping `translateX(-50%)`; clínica doctor-badge missing `position:relative` ancestor.
+**Decisions**: demos hosted INSIDE the Nexora Pages site under `/demos/<slug>/` (one repo, one auto-deploy) instead of separate GitHub Pages repos; slugs use business names for a credible portfolio URL. Preview regen: Chrome headless `--headless=new --screenshot --window-size=1280,720 --virtual-time-budget=15000 file:///…/public/demos/<slug>/index.html`, then `sharp` resize 960×540 → webp q78 into `public/works/`.
+
+---
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.

@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vértice Consultores — Orden financiero y procesos que aguantan crecer</title>
+  <meta name="description" content="Consultoría para PyMEs. Ayudamos a ordenar finanzas, controles y tributación para crecer sin sustos. Diagnóstico inicial sin costo.">
+  <meta name="theme-color" content="#1C4FA0">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23fff' width='32' height='32'/%3E%3Cpolygon points='16,2 28,26 4,26' fill='%231C4FA0'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      --vxA: #1C4FA0;
+      --vxAsoft: rgba(28, 79, 160, 0.08);
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #F8FAFC;
+      color: #101C2C;
+      font-family: Inter, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    input, button, select, textarea {
+      font: inherit;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    ::selection {
+      background: rgba(28, 79, 160, 0.16);
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(16, 28, 44, 0.35);
+    }
+    @keyframes vxSpin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes vxFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* Layout */
+    body > .container {
+      position: relative;
+      min-height: 100vh;
+      background: #F8FAFC;
+      overflow-x: clip;
+    }
+    .max-w { max-width: 1140px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 44px); }
+    section { border-bottom: 1px solid #DCE3EC; }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(248, 250, 252, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #DCE3EC;
+    }
+    nav .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 clamp(18px, 4vw, 44px);
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: #101C2C;
+    }
+    nav .logo-tri {
+      width: 0;
+      height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 15px solid var(--vxA);
+      display: block;
+      flex: none;
+    }
+    nav .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    nav .logo-text-main {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.02em;
+    }
+    nav .logo-text-sub {
+      font-weight: 600;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      color: #7A8AA0;
+      margin-top: 2px;
+    }
+    nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    @media (max-width: 767px) {
+      nav .nav-links { display: none; }
+    }
+    nav .nav-link {
+      color: #44546A;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    nav .nav-link:hover {
+      color: var(--vxA);
+    }
+    nav .nav-cta {
+      background: var(--vxA);
+      color: #F4F8FF;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 11px 18px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: filter 0.15s ease;
+    }
+    nav .nav-cta:hover {
+      filter: brightness(1.12);
+    }
+
+    /* Hero */
+    #inicio {
+      background: #FFFFFF;
+    }
+    .hero {
+      padding: clamp(44px, 7vw, 90px) clamp(18px, 4vw, 44px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+      gap: clamp(30px, 5vw, 60px);
+      align-items: center;
+    }
+    .hero-left {
+    }
+    .hero-eyebrow {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--vxA);
+      margin: 0 0 14px;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5.4vw, 60px);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 .highlight {
+      color: var(--vxA);
+    }
+    .hero-sub {
+      margin: 0 0 26px;
+      color: #44546A;
+      font-size: clamp(15px, 1.6vw, 16.5px);
+      line-height: 1.7;
+      max-width: 52ch;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0 0 30px;
+    }
+    .hero-cta {
+      background: var(--vxA);
+      color: #F4F8FF;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+    .hero-cta:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+    }
+    .hero-cta-secondary {
+      background: #FFFFFF;
+      color: #101C2C;
+      border: 1px solid #C3CEDC;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+    .hero-cta-secondary:hover {
+      border-color: var(--vxA);
+      color: var(--vxA);
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(20px, 4vw, 44px);
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-value {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      color: var(--vxA);
+    }
+    .stat-label {
+      color: #7A8AA0;
+      font-size: 12.5px;
+      margin-top: 2px;
+    }
+    .hero-img-container {
+      position: relative;
+    }
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 4 / 3.2;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      background: #EEF2F7;
+      box-shadow: 0 1px 2px rgba(16, 28, 44, 0.04), 0 24px 48px -26px rgba(16, 28, 44, 0.3);
+    }
+    .hero-badge {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      background: #FFFFFF;
+      border: 1px solid #DCE3EC;
+      border-radius: 10px;
+      padding: 10px 14px;
+      box-shadow: 0 10px 30px -18px rgba(16, 28, 44, 0.35);
+    }
+    .hero-badge-title {
+      display: block;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .hero-badge-sub {
+      display: block;
+      color: #7A8AA0;
+      font-size: 11.5px;
+      margin-top: 2px;
+    }
+
+    /* Servicios */
+    #servicios {
+      background: #F8FAFC;
+    }
+    .servicios-section { padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px); }
+    .section-eyebrow {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--vxA);
+      margin: 0 0 10px;
+    }
+    .section-title {
+      margin: 0 0 10px;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4.2vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      margin: 0 0 30px;
+      color: #44546A;
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 56ch;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #DCE3EC;
+      border-radius: 12px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .card:hover {
+      border-color: var(--vxA);
+      transform: translateY(-2px);
+    }
+    .card-number {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--vxA);
+    }
+    .card-title {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      margin: 0;
+      color: #44546A;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .card-bullets {
+      display: grid;
+      gap: 8px;
+      border-top: 1px solid #EEF2F7;
+      padding-top: 12px;
+    }
+    .bullet {
+      display: flex;
+      gap: 9px;
+      align-items: baseline;
+      font-size: 13px;
+      color: #101C2C;
+    }
+    .bullet-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--vxA);
+      flex: none;
+      transform: translateY(-2px);
+    }
+
+    /* Nosotros */
+    #nosotros {
+      background: #EEF2F7;
+    }
+    .nosotros-content {
+      padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px);
+    }
+    .nosotros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+      gap: clamp(28px, 5vw, 56px);
+      align-items: center;
+      margin: 0 0 44px;
+    }
+    .nosotros-left h2 {
+      margin: 0 0 16px;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4.2vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .nosotros-text {
+      margin: 0 0 14px;
+      color: #44546A;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .nosotros-partners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .partner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .partner-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #DCE3EC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--vxA);
+    }
+    .partner-info {
+      line-height: 1.3;
+    }
+    .partner-name {
+      display: block;
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .partner-role {
+      display: block;
+      color: #7A8AA0;
+      font-size: 12px;
+    }
+    .nosotros-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      background: #DCE3EC;
+      box-shadow: 0 1px 2px rgba(16, 28, 44, 0.04), 0 24px 48px -26px rgba(16, 28, 44, 0.3);
+    }
+    .diferenciales {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 14px;
+    }
+    .diferencial {
+      background: #FFFFFF;
+      border: 1px solid #DCE3EC;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .diferencial-title {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin: 0 0 6px;
+    }
+    .diferencial-text {
+      margin: 0;
+      color: #44546A;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Proceso */
+    #proceso {
+      background: #FFFFFF;
+    }
+    .proceso-section {
+      padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px);
+    }
+    .proceso-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+      gap: 14px;
+    }
+    .proceso-card {
+      border-top: 3px solid var(--vxA);
+      background: #F8FAFC;
+      border-radius: 0 0 12px 12px;
+      padding: 18px 18px 20px;
+    }
+    .proceso-number {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--vxA);
+      margin: 0 0 8px;
+    }
+    .proceso-title {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin: 0 0 6px;
+    }
+    .proceso-title-sub {
+      color: #7A8AA0;
+      font-weight: 500;
+      font-size: 12px;
+    }
+    .proceso-text {
+      margin: 0;
+      color: #44546A;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Casos */
+    #casos {
+      background: #F8FAFC;
+    }
+    .casos-section {
+      padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px);
+    }
+    .sectores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 22px;
+    }
+    .sector-chip {
+      font-weight: 600;
+      font-size: 12.5px;
+      color: #44546A;
+      border: 1px solid #C3CEDC;
+      border-radius: 6px;
+      padding: 7px 13px;
+      background: #FFFFFF;
+    }
+    .clientes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(18px, 4vw, 40px);
+      align-items: center;
+      border-top: 1px solid #DCE3EC;
+      border-bottom: 1px solid #DCE3EC;
+      padding: 18px 0;
+      margin: 0 0 30px;
+    }
+    .cliente-wordmark {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      color: #9AA8BC;
+    }
+    .testimonios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 14px;
+    }
+    .testimonio {
+      background: #FFFFFF;
+      border: 1px solid #DCE3EC;
+      border-radius: 12px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .testimonio-quote {
+      margin: 0;
+      color: #16386B;
+      font-size: 15px;
+      line-height: 1.7;
+      flex: 1;
+      font-weight: 500;
+    }
+    .testimonio-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonio-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #EEF2F7;
+    }
+    .testimonio-name {
+      line-height: 1.3;
+    }
+    .testimonio-name-text {
+      display: block;
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .testimonio-role {
+      display: block;
+      color: #7A8AA0;
+      font-size: 12px;
+    }
+
+    /* Contacto */
+    #contacto {
+      background: #EEF2F7;
+    }
+    .contacto-content {
+      padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      gap: clamp(28px, 5vw, 56px);
+      align-items: start;
+    }
+    .contacto-left h2 {
+      margin: 0 0 14px;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4.2vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .contacto-subtitle {
+      margin: 0 0 24px;
+      color: #44546A;
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 44ch;
+    }
+    .contacto-info {
+      display: grid;
+      gap: 14px;
+    }
+    .info-row {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .info-label {
+      font-weight: 600;
+      font-size: 12px;
+      color: #7A8AA0;
+      min-width: 76px;
+    }
+    .info-value {
+      font-size: 14px;
+      color: #101C2C;
+      line-height: 1.6;
+    }
+    .info-link {
+      color: var(--vxA);
+      text-decoration: none;
+      font-weight: 600;
+      transition: text-decoration 0.15s ease;
+    }
+    .info-link:hover {
+      text-decoration: underline;
+    }
+    .form-card {
+      background: #FFFFFF;
+      border: 1px solid #DCE3EC;
+      border-radius: 14px;
+      padding: clamp(20px, 3.5vw, 30px);
+      box-shadow: 0 1px 2px rgba(16, 28, 44, 0.04), 0 14px 40px -28px rgba(16, 28, 44, 0.3);
+    }
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+      gap: 12px;
+    }
+    .form-label {
+      display: block;
+    }
+    .form-label-text {
+      display: block;
+      font-weight: 600;
+      font-size: 12px;
+      color: #44546A;
+      margin: 0 0 6px;
+    }
+    .form-input {
+      width: 100%;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1.5px solid #C3CEDC;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #101C2C;
+      font-size: 14.5px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .form-input:focus {
+      border-color: var(--vxA);
+    }
+    .form-input.error {
+      border-color: #B83A3A;
+    }
+    .form-error {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #B83A3A;
+      margin: -6px 0 0;
+    }
+    .form-textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1.5px solid #C3CEDC;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #101C2C;
+      font-size: 14.5px;
+      outline: none;
+      min-height: 96px;
+      resize: vertical;
+      transition: border-color 0.15s ease;
+    }
+    .form-textarea:focus {
+      border-color: var(--vxA);
+    }
+    .form-textarea.error {
+      border-color: #B83A3A;
+    }
+    .form-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .form-pill {
+      padding: 9px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12.5px;
+      border: 1.5px solid #C3CEDC;
+      background: #FFFFFF;
+      color: #44546A;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+    .form-pill:hover {
+      border-color: var(--vxA);
+    }
+    .form-pill.active {
+      border-color: var(--vxA);
+      background: var(--vxAsoft);
+      color: #16386B;
+    }
+    .form-submit {
+      width: 100%;
+      background: var(--vxA);
+      color: #F4F8FF;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 15px 20px;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: filter 0.15s ease;
+    }
+    .form-submit:hover {
+      filter: brightness(1.12);
+    }
+    .form-footer {
+      margin: 0;
+      text-align: center;
+      color: #7A8AA0;
+      font-size: 12px;
+    }
+
+    /* Form States */
+    .form-state { display: none; }
+    .form-state.active { display: block; }
+    .form-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 56px 0;
+    }
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #DCE3EC;
+      border-top-color: var(--vxA);
+      border-radius: 50%;
+      animation: vxSpin 0.7s linear infinite;
+    }
+    .spinner-text {
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: #7A8AA0;
+    }
+    .form-success {
+      text-align: center;
+      padding: 8px 0;
+      animation: vxFade 0.3s ease;
+    }
+    .success-check {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--vxAsoft);
+      color: var(--vxA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 4px auto 14px;
+    }
+    .success-title {
+      margin: 0 0 8px;
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(21px, 3.2vw, 26px);
+      letter-spacing: -0.01em;
+    }
+    .success-subtitle {
+      margin: 0 auto 16px;
+      color: #44546A;
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 42ch;
+    }
+    .success-message {
+      background: #F8FAFC;
+      border: 1.5px dashed #C3CEDC;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 0 0 16px;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #2E4058;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    .success-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .success-wa {
+      background: #1FAE55;
+      color: #08240F;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 20px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: filter 0.15s ease;
+    }
+    .success-wa:hover {
+      filter: brightness(1.08);
+    }
+    .success-email {
+      border: 1.5px solid #C3CEDC;
+      color: #101C2C;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 20px;
+      border-radius: 8px;
+      white-space: nowrap;
+      background: #FFFFFF;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+    .success-email:hover {
+      border-color: var(--vxA);
+      color: var(--vxA);
+    }
+    .success-edit {
+      background: none;
+      border: none;
+      color: #7A8AA0;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: underline;
+      transition: color 0.15s ease;
+    }
+    .success-edit:hover {
+      color: #101C2C;
+    }
+
+    /* Footer */
+    footer {
+      background: #12294A;
+      color: #D8E2F0;
+    }
+    .footer-content {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: clamp(40px, 6vw, 64px) clamp(18px, 4vw, 44px) 28px;
+    }
+    .footer-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(28px, 5vw, 64px);
+      justify-content: space-between;
+      margin: 0 0 36px;
+    }
+    .footer-col {
+      max-width: 290px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 10px;
+    }
+    .footer-logo-tri {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 14px solid #6E9BE0;
+      display: block;
+    }
+    .footer-logo-text {
+      font-family: Space Grotesk, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      color: #F4F8FF;
+    }
+    .footer-logo-text-sub {
+      font-size: 9px;
+      letter-spacing: 0.26em;
+      color: #8FA6C6;
+    }
+    .footer-col-title {
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      color: #6E86A8;
+      margin: 0 0 12px;
+    }
+    .footer-col-text {
+      color: #B9C8DE;
+      font-size: 13.5px;
+      line-height: 2.1;
+    }
+    .footer-tagline {
+      margin: 0;
+      color: #8FA6C6;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .footer-legal {
+      border-top: 1px solid rgba(216, 226, 240, 0.14);
+      padding-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #6E86A8;
+    }
+
+    /* WhatsApp Float */
+    .wa-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #1FAE55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(18, 41, 74, 0.35);
+      transition: transform 0.15s ease;
+    }
+    .wa-float:hover {
+      transform: scale(1.07);
+    }
+    .wa-float-text {
+      font-weight: 700;
+      font-size: 16px;
+      color: #08240F;
+    }
+    .wa-float.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ============ NAV ============ -->
+    <nav>
+      <div class="nav-inner">
+        <a href="#inicio" class="logo" onclick="smoothScroll(event, 'inicio')">
+          <span class="logo-tri"></span>
+          <span class="logo-text">
+            <span class="logo-text-main">VÉRTICE</span>
+            <span class="logo-text-sub">CONSULTORES</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="#servicios" class="nav-link" onclick="smoothScroll(event, 'servicios')">Servicios</a>
+          <a href="#nosotros" class="nav-link" onclick="smoothScroll(event, 'nosotros')">Nosotros</a>
+          <a href="#proceso" class="nav-link" onclick="smoothScroll(event, 'proceso')">Proceso</a>
+          <a href="#casos" class="nav-link" onclick="smoothScroll(event, 'casos')">Casos</a>
+          <a href="#contacto" class="nav-link" onclick="smoothScroll(event, 'contacto')">Contacto</a>
+        </div>
+        <a href="#contacto" class="nav-cta" onclick="smoothScroll(event, 'contacto')">Agenda un diagnóstico</a>
+      </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section id="inicio">
+      <div class="max-w">
+        <div class="hero">
+          <div class="hero-left">
+            <div class="hero-eyebrow">CONSULTORÍA PARA PYMES · GUAYAQUIL</div>
+            <h1>Tu empresa creció.<br><span class="highlight">Tus procesos, todavía no.</span></h1>
+            <p class="hero-sub">Ordenamos finanzas, controles y tributación para que puedas crecer sin sustos. Diagnóstico inicial sin costo, entregables accionables en semanas — no meses.</p>
+            <div class="hero-ctas">
+              <a href="#contacto" class="hero-cta" onclick="smoothScroll(event, 'contacto')">Agenda un diagnóstico</a>
+              <a href="#servicios" class="hero-cta hero-cta-secondary" onclick="smoothScroll(event, 'servicios')">Ver servicios</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">años de práctica</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">140+</div>
+                <div class="stat-label">empresas atendidas</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">96%</div>
+                <div class="stat-label">de clientes renuevan</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-img-container">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="Oficina de Vértice Consultores" crossorigin="anonymous" class="hero-img">
+            <div class="hero-badge">
+              <span class="hero-badge-title">Respuesta en &lt;24h</span>
+              <span class="hero-badge-sub">Canal directo con tu socio asignado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section id="servicios">
+      <div class="max-w servicios-section">
+        <div class="section-eyebrow">SERVICIOS</div>
+        <h2 class="section-title">Tres frentes, un objetivo: orden</h2>
+        <p class="section-subtitle">Tarifa cerrada por proyecto y un socio senior al frente de cada cuenta.</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-number">01</div>
+            <div class="card-title">Consultoría estratégica</div>
+            <p class="card-desc">Para decidir con números, no con corazonadas.</p>
+            <div class="card-bullets">
+              <div class="bullet"><span class="bullet-dot"></span>Plan financiero a 12–36 meses</div>
+              <div class="bullet"><span class="bullet-dot"></span>Tablero de indicadores mensual</div>
+              <div class="bullet"><span class="bullet-dot"></span>Estructura de costos y precios</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-number">02</div>
+            <div class="card-title">Auditoría & control interno</div>
+            <p class="card-desc">Para saber exactamente dónde está parada tu empresa.</p>
+            <div class="card-bullets">
+              <div class="bullet"><span class="bullet-dot"></span>Auditoría de estados financieros</div>
+              <div class="bullet"><span class="bullet-dot"></span>Controles antifraude</div>
+              <div class="bullet"><span class="bullet-dot"></span>Inventarios y conciliaciones</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-number">03</div>
+            <div class="card-title">Asesoría tributaria</div>
+            <p class="card-desc">Para pagar lo justo, a tiempo y sin multas.</p>
+            <div class="card-bullets">
+              <div class="bullet"><span class="bullet-dot"></span>Planificación fiscal anual</div>
+              <div class="bullet"><span class="bullet-dot"></span>Declaraciones y anexos SRI</div>
+              <div class="bullet"><span class="bullet-dot"></span>Acompañamiento en requerimientos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NOSOTROS + POR QUÉ ============ -->
+    <section id="nosotros">
+      <div class="nosotros-content">
+        <div class="nosotros-grid">
+          <div class="nosotros-left">
+            <div class="section-eyebrow">NOSOTROS</div>
+            <h2 class="section-title">Ex-auditores de firma grande, cansados de informes que nadie lee</h2>
+            <p class="nosotros-text">Vértice nació en 2014. Trabajamos con PyMEs de 10 a 200 empleados: retail, agro, logística y salud. Cada cuenta la lleva un socio senior — no un junior con plantilla.</p>
+            <p class="nosotros-text">Entregamos planes de cinco páginas con responsables y fechas. No informes de ochenta.</p>
+            <div class="nosotros-partners">
+              <div class="partner">
+                <span class="partner-avatar">DM</span>
+                <span class="partner-info">
+                  <span class="partner-name">Daniel Miranda</span>
+                  <span class="partner-role">Socio · Auditoría</span>
+                </span>
+              </div>
+              <div class="partner">
+                <span class="partner-avatar">CE</span>
+                <span class="partner-info">
+                  <span class="partner-name">Carolina Espinel</span>
+                  <span class="partner-role">Socia · Tributario</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80" alt="Equipo de Vértice trabajando" crossorigin="anonymous" class="nosotros-img">
+        </div>
+        <div class="diferenciales">
+          <div class="diferencial">
+            <div class="diferencial-title">Seniors en tu cuenta</div>
+            <p class="diferencial-text">Quien firma el contrato es quien revisa tus números.</p>
+          </div>
+          <div class="diferencial">
+            <div class="diferencial-title">Entregables accionables</div>
+            <p class="diferencial-text">Planes con responsables y fechas, no diagnósticos eternos.</p>
+          </div>
+          <div class="diferencial">
+            <div class="diferencial-title">Tarifas cerradas</div>
+            <p class="diferencial-text">Sabes el costo total antes de empezar. Sin horas sorpresa.</p>
+          </div>
+          <div class="diferencial">
+            <div class="diferencial-title">Respuesta en &lt;24h</div>
+            <p class="diferencial-text">Canal directo por WhatsApp con tu socio asignado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESO ============ -->
+    <section id="proceso">
+      <div class="max-w proceso-section">
+        <div class="section-eyebrow">EL PROCESO</div>
+        <h2 class="section-title">Cuatro pasos, cero misterio</h2>
+        <div class="proceso-grid">
+          <div class="proceso-card">
+            <div class="proceso-number">01</div>
+            <div class="proceso-title">Diagnóstico <span class="proceso-title-sub">(sin costo)</span></div>
+            <p class="proceso-text">2 reuniones + revisión de estados. Informe de brechas en 10 días.</p>
+          </div>
+          <div class="proceso-card">
+            <div class="proceso-number">02</div>
+            <div class="proceso-title">Plan</div>
+            <p class="proceso-text">Prioridades, responsables, cronograma y tarifa cerrada.</p>
+          </div>
+          <div class="proceso-card">
+            <div class="proceso-number">03</div>
+            <div class="proceso-title">Implementación</div>
+            <p class="proceso-text">Trabajamos con tu equipo contable; capacitación incluida.</p>
+          </div>
+          <div class="proceso-card">
+            <div class="proceso-number">04</div>
+            <div class="proceso-title">Acompañamiento</div>
+            <p class="proceso-text">Tablero mensual y comité trimestral de resultados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CASOS ============ -->
+    <section id="casos">
+      <div class="max-w casos-section">
+        <div class="section-eyebrow">SECTORES Y CASOS</div>
+        <h2 class="section-title">Dónde ya pusimos orden</h2>
+        <div class="sectores">
+          <span class="sector-chip">Retail</span>
+          <span class="sector-chip">Agroindustria</span>
+          <span class="sector-chip">Logística</span>
+          <span class="sector-chip">Salud</span>
+          <span class="sector-chip">Educación</span>
+          <span class="sector-chip">Manufactura</span>
+        </div>
+        <div class="clientes">
+          <span class="cliente-wordmark">ALMAR S.A.</span>
+          <span class="cliente-wordmark">Grupo Deltoro</span>
+          <span class="cliente-wordmark">FRIOSUR</span>
+          <span class="cliente-wordmark">Casa Lirio</span>
+          <span class="cliente-wordmark">Andina Pack</span>
+          <span class="cliente-wordmark">TransNiebla</span>
+        </div>
+        <div class="testimonios">
+          <div class="testimonio">
+            <p class="testimonio-quote">"En 6 meses pasamos de cerrar contabilidad con 40 días de atraso a tener tablero al día 5. Las decisiones cambiaron de tono."</p>
+            <div class="testimonio-author">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Rebeca Salvatierra" crossorigin="anonymous" class="testimonio-avatar">
+              <span class="testimonio-name">
+                <span class="testimonio-name-text">Rebeca Salvatierra</span>
+                <span class="testimonio-role">Gerente General · Casa Lirio (retail, 85 empleados)</span>
+              </span>
+            </div>
+          </div>
+          <div class="testimonio">
+            <p class="testimonio-quote">"La auditoría encontró fugas por el 4% de la facturación. Se pagó sola varias veces."</p>
+            <div class="testimonio-author">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Iván Ramos" crossorigin="anonymous" class="testimonio-avatar">
+              <span class="testimonio-name">
+                <span class="testimonio-name-text">Iván Ramos</span>
+                <span class="testimonio-role">Fundador · FRIOSUR (logística en frío)</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto">
+      <div class="contacto-content">
+        <div>
+          <div class="section-eyebrow">CONTACTO</div>
+          <h2 class="section-title">Empecemos por el diagnóstico</h2>
+          <p class="contacto-subtitle">Sin costo para empresas de 10+ empleados. Te respondemos en menos de 24 horas hábiles.</p>
+          <div class="contacto-info">
+            <div class="info-row">
+              <span class="info-label">OFICINA</span>
+              <span class="info-value">Av. Francisco de Orellana, Edif. World Trade Center,<br>Torre A, piso 9 — Guayaquil</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">HORARIO</span>
+              <span class="info-value">Lun – Vie · 08:30 – 17:30</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">TELÉFONO</span>
+              <span class="info-value">+593 98 220 4471</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">EMAIL</span>
+              <span class="info-value">hola@verticeconsultores.ec</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">LINKEDIN</span>
+              <a href="#" class="info-link">/verticeconsultores</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div id="form-state" class="form-state active">
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label">
+                  <span class="form-label-text">Nombre *</span>
+                  <input type="text" id="f-name" class="form-input" placeholder="Ej. Renata Guerrero">
+                </label>
+                <label class="form-label">
+                  <span class="form-label-text">Empresa</span>
+                  <input type="text" id="f-company" class="form-input" placeholder="Ej. Casa Lirio">
+                </label>
+              </div>
+              <div id="err-name" class="form-error" style="display: none;">Escribe tu nombre.</div>
+              <div class="form-row">
+                <label class="form-label">
+                  <span class="form-label-text">Email *</span>
+                  <input type="text" id="f-email" class="form-input" placeholder="tu@empresa.ec">
+                </label>
+                <label class="form-label">
+                  <span class="form-label-text">Teléfono</span>
+                  <input type="tel" id="f-phone" class="form-input" placeholder="+593 9…">
+                </label>
+              </div>
+              <div id="err-email" class="form-error" style="display: none;"></div>
+              <div>
+                <span class="form-label-text">¿Qué necesitas? *</span>
+                <div class="form-pills">
+                  <button type="button" class="form-pill active" onclick="pickNeed(this, 'Diagnóstico inicial (sin costo)')">Diagnóstico inicial (sin costo)</button>
+                  <button type="button" class="form-pill" onclick="pickNeed(this, 'Auditoría & control interno')">Auditoría & control interno</button>
+                  <button type="button" class="form-pill" onclick="pickNeed(this, 'Asesoría tributaria')">Asesoría tributaria</button>
+                  <button type="button" class="form-pill" onclick="pickNeed(this, 'Consultoría estratégica')">Consultoría estratégica</button>
+                  <button type="button" class="form-pill" onclick="pickNeed(this, 'Otro')">Otro</button>
+                </div>
+              </div>
+              <label class="form-label">
+                <span class="form-label-text">Cuéntanos el contexto *</span>
+                <textarea id="f-msg" class="form-textarea" placeholder="Ej. Facturamos ~$80k/mes, cerramos contabilidad con retraso y el SRI nos observó dos anexos…"></textarea>
+              </label>
+              <div id="err-msg" class="form-error" style="display: none;">Cuéntanos al menos una línea de contexto.</div>
+              <button type="button" class="form-submit" onclick="submitForm()">Enviar consulta</button>
+              <p class="form-footer">Al enviar eliges continuar por WhatsApp o correo — tú decides el canal.</p>
+            </div>
+          </div>
+
+          <div id="form-loading" class="form-state">
+            <div class="form-loading">
+              <span class="spinner"></span>
+              <span class="spinner-text">ENVIANDO…</span>
+            </div>
+          </div>
+
+          <div id="form-success" class="form-state">
+            <div class="form-success">
+              <div class="success-check">✓</div>
+              <h3 class="success-title">Recibido, <span id="success-name"></span>.</h3>
+              <p class="success-subtitle">Te respondemos en menos de 24 horas hábiles. Si prefieres, sigue ya mismo por WhatsApp o correo:</p>
+              <pre class="success-message" id="success-msg"></pre>
+              <div class="success-actions">
+                <a href="#" id="success-wa" class="success-wa" target="_blank" rel="noopener">Continuar por WhatsApp ↗</a>
+                <a href="#" id="success-email" class="success-email">Enviar por correo</a>
+                <button type="button" class="success-edit" onclick="editForm()">Editar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-cols">
+          <div class="footer-col">
+            <div class="footer-logo">
+              <span class="footer-logo-tri"></span>
+              <span class="footer-logo-text">VÉRTICE <span class="footer-logo-text-sub">CONSULTORES</span></span>
+            </div>
+            <p class="footer-tagline">Orden financiero y procesos que aguantan crecer. Guayaquil, desde 2014.</p>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">SERVICIOS</div>
+            <div class="footer-col-text">Consultoría estratégica<br>Auditoría & control interno<br>Asesoría tributaria</div>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">CONTACTO</div>
+            <div class="footer-col-text">+593 98 220 4471<br>hola@verticeconsultores.ec<br>WTC Torre A, piso 9 · Guayaquil</div>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">HORARIO</div>
+            <div class="footer-col-text">Lun – Vie · 08:30 – 17:30<br>Respuesta &lt;24h hábiles</div>
+          </div>
+        </div>
+        <div class="footer-legal">
+          <span>© 2026 Vértice Consultores — empresa y datos ficticios</span>
+          <span>Sitio demo · diseñado por <a href="https://luisgxz.github.io/nexora/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Nexora Studio</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============ WHATSAPP FLOTANTE ============ -->
+    <a href="#" id="wa-float" class="wa-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+      <span class="wa-float-text">WA</span>
+    </a>
+  </div>
+
+  <script>
+    const CONFIG = {
+      accent: '#1C4FA0',
+      whatsappNumber: '593982204471',
+      mostrarWhatsapp: true
+    };
+
+    const FORM_STATE = {
+      fName: '',
+      fCompany: '',
+      fEmail: '',
+      fPhone: '',
+      fNeed: 'Diagnóstico inicial (sin costo)',
+      fMsg: ''
+    };
+
+    /**
+     * Smooth scroll to a section with offset.
+     */
+    function smoothScroll(e, sectionId) {
+      if (e && e.preventDefault) e.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        window.scrollTo({
+          top: el.getBoundingClientRect().top + window.scrollY - 72,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    /**
+     * Pick a "need" pill and update state.
+     */
+    function pickNeed(btn, label) {
+      document.querySelectorAll('.form-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      FORM_STATE.fNeed = label;
+    }
+
+    /**
+     * Validate and submit the contact form.
+     */
+    function submitForm() {
+      const nameEl = document.getElementById('f-name');
+      const emailEl = document.getElementById('f-email');
+      const msgEl = document.getElementById('f-msg');
+      const errNameEl = document.getElementById('err-name');
+      const errEmailEl = document.getElementById('err-email');
+      const errMsgEl = document.getElementById('err-msg');
+
+      // Capture form state
+      FORM_STATE.fName = nameEl.value;
+      FORM_STATE.fEmail = emailEl.value;
+      FORM_STATE.fMsg = msgEl.value;
+
+      // Validate
+      let hasError = false;
+      if (!FORM_STATE.fName.trim()) {
+        errNameEl.style.display = 'block';
+        nameEl.classList.add('error');
+        hasError = true;
+      } else {
+        errNameEl.style.display = 'none';
+        nameEl.classList.remove('error');
+      }
+
+      const em = FORM_STATE.fEmail.trim();
+      if (!em) {
+        errEmailEl.textContent = 'Escribe tu correo para responderte.';
+        errEmailEl.style.display = 'block';
+        emailEl.classList.add('error');
+        hasError = true;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) {
+        errEmailEl.textContent = 'Ese correo no parece válido — revisa el formato.';
+        errEmailEl.style.display = 'block';
+        emailEl.classList.add('error');
+        hasError = true;
+      } else {
+        errEmailEl.style.display = 'none';
+        emailEl.classList.remove('error');
+      }
+
+      if (!FORM_STATE.fMsg.trim()) {
+        errMsgEl.style.display = 'block';
+        msgEl.classList.add('error');
+        hasError = true;
+      } else {
+        errMsgEl.style.display = 'none';
+        msgEl.classList.remove('error');
+      }
+
+      if (hasError) return;
+
+      // Show loading
+      document.getElementById('form-state').classList.remove('active');
+      document.getElementById('form-loading').classList.add('active');
+
+      // Simulate sending (~800ms)
+      setTimeout(() => {
+        showSuccess();
+      }, 800);
+    }
+
+    /**
+     * Render and show the success state.
+     */
+    function showSuccess() {
+      const firstName = (FORM_STATE.fName.trim() || '').split(' ')[0];
+
+      // Build WhatsApp message
+      const waMsg = 'Hola Vértice 📊 Soy ' + (FORM_STATE.fName.trim() || '—') +
+        (FORM_STATE.fCompany.trim() ? ' de ' + FORM_STATE.fCompany.trim() : '') + '.\n' +
+        'Necesito: ' + FORM_STATE.fNeed +
+        (FORM_STATE.fMsg.trim() ? '\n' + FORM_STATE.fMsg.trim() : '') +
+        (FORM_STATE.fEmail.trim() ? '\nMi correo: ' + FORM_STATE.fEmail.trim() : '') +
+        (FORM_STATE.fPhone.trim() ? '\nMi teléfono: ' + FORM_STATE.fPhone.trim() : '');
+
+      // Update success state
+      document.getElementById('success-name').textContent = firstName;
+      document.getElementById('success-msg').textContent = waMsg;
+
+      const waHref = 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(waMsg);
+      document.getElementById('success-wa').href = waHref;
+
+      const mailHref = 'mailto:hola@verticeconsultores.ec?subject=' +
+        encodeURIComponent('Consulta — ' + FORM_STATE.fNeed) +
+        '&body=' + encodeURIComponent(waMsg);
+      document.getElementById('success-email').href = mailHref;
+
+      // Switch states
+      document.getElementById('form-loading').classList.remove('active');
+      document.getElementById('form-success').classList.add('active');
+    }
+
+    /**
+     * Edit the form (go back).
+     */
+    function editForm() {
+      document.getElementById('form-success').classList.remove('active');
+      document.getElementById('form-state').classList.add('active');
+    }
+
+    /**
+     * Initialize the page.
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set accent color
+      document.documentElement.style.setProperty('--vxA', CONFIG.accent);
+      document.documentElement.style.setProperty('--vxAsoft', CONFIG.accent + '12');
+
+      // Set WhatsApp float
+      const waFloat = document.getElementById('wa-float');
+      if (CONFIG.mostrarWhatsapp) {
+        waFloat.href = 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' +
+          encodeURIComponent('Hola Vértice, quiero agendar un diagnóstico.');
+      } else {
+        waFloat.classList.add('hidden');
+      }
+
+      // Global image error listener
+      document.addEventListener('error', (e) => {
+        const t = e.target;
+        if (t && t.tagName === 'IMG') {
+          t.style.display = 'none';
+        }
+      }, true);
+    });
+  </script>
+</body>
+</html>

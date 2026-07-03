@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Barbería de oficio en Urdesa. Cortes precisos, afeitado clásico con toalla caliente y tu turno listo en menos de un minuto — sin llamadas.">
+<meta name="theme-color" content="#0E0D0B">
+<meta name="robots" content="noindex">
+<title>Bravo Barber Co. — Barbería en Urdesa, Guayaquil</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect fill='%230E0D0B' width='48' height='48' rx='8'/><rect fill='%23C87F3F' x='16' y='16' width='16' height='16' rx='2' transform='rotate(45 24 24)'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0E0D0B;
+  color: #F2EDE6;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+input, button, select, textarea { font: inherit; }
+::selection { background: rgba(200, 127, 63, 0.4); }
+input::placeholder { color: rgba(242, 237, 230, 0.3); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto !important; }
+}
+@keyframes bbSpin { to { transform: rotate(360deg); } }
+@keyframes bbFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+a { color: inherit; }
+button { padding: 0; border: none; background: none; color: inherit; cursor: pointer; font-family: inherit; }
+
+/* ========== NAV ========== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(14, 13, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(242, 237, 230, 0.09);
+}
+.nav-content {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 44px);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #F2EDE6;
+  flex: none;
+}
+.nav-rombo {
+  width: 9px;
+  height: 9px;
+  background: var(--bbA, #C87F3F);
+  transform: rotate(45deg);
+  display: block;
+}
+.nav-wordmark {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 23px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding-top: 2px;
+}
+.nav-wordmark-accent { color: var(--bbA, #C87F3F); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.nav-links a {
+  color: #B7AFA4;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.15s ease;
+}
+.nav-links a:hover { color: #F2EDE6; }
+.nav-cta {
+  background: var(--bbA, #C87F3F);
+  color: #14100B;
+  text-decoration: none;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  padding: 11px 18px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 1;
+  transition: filter 0.15s ease;
+  flex: none;
+  display: inline-block;
+}
+.nav-cta:hover { filter: brightness(1.12); }
+@media (max-width: 767px) {
+  .nav-links { display: none; }
+}
+
+/* ========== HERO ========== */
+#inicio {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.08);
+  background: radial-gradient(900px 420px at 85% -10%, var(--bbAglow, rgba(200, 127, 63, 0.15)), transparent 62%),
+              radial-gradient(700px 380px at -10% 110%, var(--bbAstripe, rgba(200, 127, 63, 0.06)), transparent 60%),
+              #0E0D0B;
+}
+.section-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: clamp(44px, 7vw, 92px) clamp(18px, 4vw, 44px);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.hero-left { }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.eyebrow-line {
+  width: 24px;
+  height: 1px;
+  background: var(--bbA, #C87F3F);
+}
+.eyebrow-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--bbA, #C87F3F);
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0 0 18px;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(52px, 7vw, 90px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+}
+.h1-accent { color: var(--bbA, #C87F3F); }
+.hero-sub {
+  margin: 0 0 26px;
+  color: #B7AFA4;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.65;
+  max-width: 46ch;
+}
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 34px;
+}
+.cta-primary {
+  background: var(--bbA, #C87F3F);
+  color: #14100B;
+  text-decoration: none;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  padding: 14px 28px 12px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: filter 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+}
+.cta-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.cta-ghost {
+  border: 1px solid rgba(242, 237, 230, 0.25);
+  color: #F2EDE6;
+  text-decoration: none;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  padding: 14px 28px 12px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+.cta-ghost:hover { border-color: var(--bbA, #C87F3F); color: var(--bbA, #C87F3F); }
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 44px);
+  border-top: 1px solid rgba(242, 237, 230, 0.1);
+  padding-top: 22px;
+}
+.stat {
+  flex: 0 0 auto;
+}
+.stat-val {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  color: #F2EDE6;
+}
+.stat-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #877F73;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+.stat-accent { color: var(--bbA, #C87F3F); }
+.hero-img-container {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 560px;
+  border: 1px solid rgba(242, 237, 230, 0.12);
+  border-radius: 8px;
+  background: #14120F repeating-linear-gradient(45deg, transparent 0 9px, var(--bbAstripe, rgba(200, 127, 63, 0.05)) 9px 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.img-placeholder {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.42);
+  text-align: center;
+  padding: 0 18px;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.06);
+}
+.hero-img-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 10, 8, 0.12) 0%, transparent 30% 62%, rgba(11, 10, 8, 0.55) 100%);
+}
+.hero-img-tick {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+}
+.hero-img-tick-tl {
+  top: 12px;
+  left: 12px;
+  border-top: 2px solid var(--bbA, #C87F3F);
+  border-left: 2px solid var(--bbA, #C87F3F);
+}
+.hero-img-tick-br {
+  bottom: 12px;
+  right: 12px;
+  border-bottom: 2px solid var(--bbA, #C87F3F);
+  border-right: 2px solid var(--bbA, #C87F3F);
+}
+
+/* ========== SECTION HEADERS ========== */
+section {
+  border-bottom: 1px solid rgba(242, 237, 230, 0.08);
+}
+section > .section-container { padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px); }
+h2 {
+  margin: 0 0 10px;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(38px, 5.4vw, 58px);
+  line-height: 0.95;
+  letter-spacing: 0.015em;
+}
+.section-intro {
+  margin: 0 0 34px;
+  color: #B7AFA4;
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 56ch;
+}
+
+/* ========== SERVICIOS ========== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 14px;
+}
+.service-card {
+  background: #15130F;
+  border: 1px solid rgba(242, 237, 230, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.service-card:hover {
+  border-color: var(--bbAline, rgba(200, 127, 63, 0.4));
+  transform: translateY(-2px);
+}
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.service-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+.service-price {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--bbA, #C87F3F);
+  white-space: nowrap;
+}
+.service-desc {
+  margin: 0;
+  color: #B7AFA4;
+  font-size: 13.5px;
+  line-height: 1.55;
+  flex: 1;
+}
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(242, 237, 230, 0.08);
+  padding-top: 12px;
+}
+.service-duration {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: #877F73;
+  border: 1px solid rgba(242, 237, 230, 0.14);
+  border-radius: 3px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+.service-book-link {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--bbA, #C87F3F);
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: text-decoration 0.15s ease;
+}
+.service-book-link:hover { text-decoration: underline; }
+
+/* ========== GALERÍA ========== */
+.gallery-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 30px;
+}
+.gallery-note {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 10px;
+}
+.gallery-tile {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(242, 237, 230, 0.1);
+  border-radius: 6px;
+  background: #14120F;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.gallery-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.05);
+}
+.gallery-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 58%, rgba(11, 10, 8, 0.72) 100%);
+}
+.gallery-caption {
+  position: relative;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: rgba(242, 237, 230, 0.88);
+  padding: 10px 12px;
+  text-transform: uppercase;
+}
+
+/* ========== RESERVA (WIZARD) ========== */
+#reserva { background: #121110; }
+.booking-card {
+  background: #17150F;
+  border: 1px solid rgba(242, 237, 230, 0.11);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.booking-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.09);
+  background: #131109;
+}
+.booking-step-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(242, 237, 230, 0.35);
+  cursor: default;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.booking-step-btn.active {
+  border-color: var(--bbA, #C87F3F);
+  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
+  color: #F2EDE6;
+}
+.booking-step-btn.passed { color: #B7AFA4; }
+.booking-step-btn.active .step-num,
+.booking-step-btn.passed .step-num {
+  color: var(--bbA, #C87F3F);
+  font-weight: 700;
+}
+.booking-step-btn:not(.passed):not(.active):hover { cursor: pointer; }
+.booking-step-btn.clickable:hover {
+  border-color: var(--bbA, #C87F3F);
+  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
+  color: #F2EDE6;
+}
+.booking-content {
+  padding: clamp(18px, 3.5vw, 34px);
+  min-height: 380px;
+}
+.step-page { animation: bbFade 0.28s ease; }
+.step-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #877F73;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+h3 {
+  margin: 0 0 18px;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 4vw, 34px);
+  letter-spacing: 0.02em;
+}
+.step1-rows {
+  display: grid;
+  gap: 10px;
+}
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  border: 1px solid rgba(242, 237, 230, 0.13);
+  background: #14110D;
+  color: #F2EDE6;
+}
+.service-row.selected {
+  border-color: var(--bbA, #C87F3F);
+  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
+}
+.service-row-left {
+  text-align: left;
+  flex: 1;
+}
+.service-row-name {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  color: #F2EDE6;
+}
+.service-row-desc {
+  display: block;
+  color: #877F73;
+  font-size: 12.5px;
+  margin-top: 2px;
+}
+.service-row-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.service-row-min {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.service-row-price {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--bbA, #C87F3F);
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 0 6px;
+}
+.step-header-info {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.step-change-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: var(--bbA, #C87F3F);
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: text-decoration 0.15s ease;
+}
+.step-change-btn:hover { text-decoration: underline; }
+
+/* STEP 2: BARBERS */
+.barbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 10px;
+}
+.barber-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  border: 1px solid rgba(242, 237, 230, 0.13);
+  background: #14110D;
+  color: #F2EDE6;
+}
+.barber-row.selected {
+  border-color: var(--bbA, #C87F3F);
+  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
+}
+.barber-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #0E0C0A;
+  border: 1px solid rgba(242, 237, 230, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  color: var(--bbA, #C87F3F);
+  flex: none;
+}
+.barber-info {
+  text-align: left;
+}
+.barber-name {
+  display: block;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #F2EDE6;
+}
+.barber-spec {
+  display: block;
+  color: #877F73;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* STEP 3: DATE & TIME */
+.day-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 10px;
+  scrollbar-width: thin;
+}
+.day-chip {
+  flex: 0 0 auto;
+  min-width: 76px;
+  padding: 10px 8px 9px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  opacity: 1;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  border: 1px solid rgba(242, 237, 230, 0.13);
+  background: #14110D;
+  color: #F2EDE6;
+}
+.day-chip.disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+.day-chip.selected {
+  border-color: var(--bbA, #C87F3F);
+  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
+}
+.day-wd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.day-num {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  color: #F2EDE6;
+}
+.day-mo {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.day-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+.day-tag.full { color: #E0A24E; }
+.day-tag.closed { color: rgba(242, 237, 230, 0.4); }
+
+.slots-container { min-height: 190px; margin-top: 14px; }
+.slots-idle {
+  border: 1px dashed rgba(242, 237, 230, 0.14);
+  border-radius: 8px;
+  padding: 34px 20px;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.slots-loading {
+  border: 1px dashed rgba(242, 237, 230, 0.14);
+  border-radius: 8px;
+  padding: 34px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(242, 237, 230, 0.15);
+  border-top-color: var(--bbA, #C87F3F);
+  border-radius: 50%;
+  animation: bbSpin 0.7s linear infinite;
+}
+.loading-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: #877F73;
+  text-transform: uppercase;
+}
+.day-full-panel {
+  border: 1px solid rgba(224, 162, 78, 0.35);
+  background: rgba(224, 162, 78, 0.06);
+  border-radius: 8px;
+  padding: 30px 20px;
+  text-align: center;
+  animation: bbFade 0.28s ease;
+}
+.day-full-title {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.03em;
+  color: #E0A24E;
+  margin: 0 0 6px;
+}
+.day-full-desc {
+  margin: 0 0 18px;
+  color: #B7AFA4;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.day-full-btn {
+  background: var(--bbA, #C87F3F);
+  color: #14100B;
+  border: none;
+  cursor: pointer;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  padding: 12px 22px 10px;
+  border-radius: 4px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: filter 0.15s ease;
+}
+.day-full-btn:hover { filter: brightness(1.12); }
+
+.slots-grid {
+  animation: bbFade 0.28s ease;
+}
+.slots-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+  gap: 8px;
+}
+.time-slot {
+  padding: 13px 6px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  border: 1px solid rgba(242, 237, 230, 0.13);
+  background: #14110D;
+  color: #F2EDE6;
+}
+.time-slot:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.time-slot.selected {
+  border-color: var(--bbA, #C87F3F);
+  background: var(--bbA, #C87F3F);
+  color: #14100B;
+  font-weight: 700;
+}
+.time-slot.busy {
+  color: rgba(242, 237, 230, 0.28);
+  text-decoration: line-through;
+}
+.slots-legend {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: #877F73;
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+
+/* STEP 4: CONFIRM */
+.summary-card {
+  background: #0F0D0A;
+  border: 1px solid rgba(242, 237, 230, 0.1);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin: 0 0 18px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(242, 237, 230, 0.1);
+}
+.summary-row-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #877F73;
+  flex: none;
+  text-transform: uppercase;
+}
+.summary-row-value {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+}
+.summary-change-btn {
+  background: none;
+  border: none;
+  padding: 10px 0 2px;
+  cursor: pointer;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--bbA, #C87F3F);
+  text-transform: uppercase;
+  transition: text-decoration 0.15s ease;
+  width: 100%;
+  text-align: left;
+}
+.summary-change-btn:hover { text-decoration: underline; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 12px;
+  margin: 0 0 6px;
+}
+.form-group {
+  display: block;
+}
+.form-label {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #877F73;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #0E0C0A;
+  border: 1px solid rgba(242, 237, 230, 0.15);
+  border-radius: 6px;
+  padding: 13px 14px;
+  color: #F2EDE6;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.form-input:focus {
+  border-color: var(--bbA, #C87F3F);
+}
+.form-input.error {
+  border-color: #E05B4E;
+}
+.form-error {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #E05B4E;
+  margin: 6px 0 0;
+  text-transform: uppercase;
+}
+.confirm-btn {
+  width: 100%;
+  margin-top: 16px;
+  background: var(--bbA, #C87F3F);
+  color: #14100B;
+  border: none;
+  cursor: pointer;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 21px;
+  letter-spacing: 0.08em;
+  padding: 16px 20px 13px;
+  border-radius: 5px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: filter 0.15s ease;
+}
+.confirm-btn:hover { filter: brightness(1.12); }
+.confirm-note {
+  margin: 12px 0 0;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #877F73;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+/* SUCCESS */
+.success-container {
+  animation: bbFade 0.35s ease;
+  text-align: center;
+  padding: 10px 0;
+}
+.success-check {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 2px solid #4CAF6E;
+  color: #4CAF6E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 6px auto 16px;
+}
+.success-title {
+  margin: 0 0 8px;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 4.4vw, 38px);
+  letter-spacing: 0.02em;
+}
+.success-desc {
+  margin: 0 auto 20px;
+  color: #B7AFA4;
+  font-size: 14.5px;
+  line-height: 1.65;
+  max-width: 46ch;
+}
+.success-msg-box {
+  background: #0F0D0A;
+  border: 1px dashed rgba(242, 237, 230, 0.16);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin: 0 0 20px;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #C9C2B6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.success-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.success-wa-btn {
+  background: #22C15E;
+  color: #06220F;
+  text-decoration: none;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  padding: 14px 26px 12px;
+  border-radius: 5px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: filter 0.15s ease;
+  display: inline-block;
+}
+.success-wa-btn:hover { filter: brightness(1.08); }
+.success-reset-btn {
+  background: none;
+  border: 1px solid rgba(242, 237, 230, 0.25);
+  color: #F2EDE6;
+  cursor: pointer;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  padding: 14px 26px 12px;
+  border-radius: 5px;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.success-reset-btn:hover {
+  border-color: var(--bbA, #C87F3F);
+  color: var(--bbA, #C87F3F);
+}
+
+/* ========== BARBEROS ========== */
+.barbers-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 14px;
+}
+.barber-card {
+  background: #15130F;
+  border: 1px solid rgba(242, 237, 230, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.barber-card:hover { border-color: var(--bbAline, rgba(200, 127, 63, 0.4)); }
+.barber-photo-container {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: #14120F;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.barber-initials {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 74px;
+  color: rgba(242, 237, 230, 0.07);
+  letter-spacing: 0.04em;
+}
+.barber-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1) brightness(0.92);
+}
+.barber-photo-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(11, 10, 8, 0.55) 100%);
+}
+.barber-info-card {
+  padding: 16px 18px 18px;
+}
+.barber-card-name {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+.barber-card-spec {
+  color: #B7AFA4;
+  font-size: 13px;
+  margin: 6px 0 12px;
+}
+.barber-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.barber-chip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: #877F73;
+  border: 1px solid rgba(242, 237, 230, 0.14);
+  border-radius: 3px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+.barber-chip-accent {
+  color: var(--bbA, #C87F3F);
+  border-color: var(--bbAline, rgba(200, 127, 63, 0.35));
+}
+
+/* ========== UBICACIÓN ========== */
+#ubicacion { background: #121110; }
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.location-card {
+  background: #15130F;
+  border: 1px solid rgba(242, 237, 230, 0.1);
+  border-radius: 8px;
+  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.location-section {
+  flex: 1;
+}
+.location-section-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #877F73;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+.location-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.location-section-desc {
+  color: #877F73;
+  font-size: 13px;
+  margin-top: 6px;
+}
+.location-hours {
+  color: #B7AFA4;
+  font-size: 13.5px;
+  line-height: 2;
+}
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(242, 237, 230, 0.12);
+  font-size: 14px;
+}
+.hours-row.today {
+  color: #F2EDE6;
+  font-weight: 600;
+}
+.hours-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  color: var(--bbA, #C87F3F);
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+.location-contact {
+  font-size: 15px;
+  font-weight: 600;
+}
+.location-contact-email {
+  color: #B7AFA4;
+  font-size: 13.5px;
+  margin-top: 2px;
+}
+.location-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+.location-btn {
+  border: 1px solid rgba(242, 237, 230, 0.25);
+  color: #F2EDE6;
+  text-decoration: none;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  padding: 12px 20px 10px;
+  border-radius: 4px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  display: inline-block;
+}
+.location-btn:hover {
+  border-color: var(--bbA, #C87F3F);
+  color: var(--bbA, #C87F3F);
+}
+.location-btn-wa {
+  background: #22C15E;
+  color: #06220F;
+  border: none;
+}
+.location-btn-wa:hover {
+  filter: brightness(1.08);
+  border-color: transparent;
+}
+.map-link {
+  position: relative;
+  min-height: 320px;
+  border: 1px solid rgba(242, 237, 230, 0.12);
+  border-radius: 8px;
+  display: block;
+  overflow: hidden;
+  background: linear-gradient(0deg, transparent 0 46%, rgba(242, 237, 230, 0.07) 46% 49%, transparent 49%),
+              linear-gradient(90deg, transparent 0 30%, rgba(242, 237, 230, 0.06) 30% 32.4%, transparent 32.4%),
+              linear-gradient(64deg, transparent 0 62%, var(--bbAsoft, rgba(200, 127, 63, 0.12)) 62% 64%, transparent 64%),
+              repeating-linear-gradient(0deg, rgba(242, 237, 230, 0.025) 0 1px, transparent 1px 34px),
+              repeating-linear-gradient(90deg, rgba(242, 237, 230, 0.025) 0 1px, transparent 1px 34px),
+              #131110;
+  text-decoration: none;
+  color: inherit;
+}
+.map-pin {
+  position: absolute;
+  top: 46.5%;
+  left: 31%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bbA, #C87F3F);
+  border: 3px solid #0E0D0B;
+  box-shadow: 0 0 0 8px var(--bbAsoft, rgba(200, 127, 63, 0.15));
+}
+.map-label {
+  position: absolute;
+  top: calc(46.5% + 26px);
+  left: 31%;
+  transform: translateX(-40%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: #F2EDE6;
+  background: #0E0D0B;
+  border: 1px solid rgba(242, 237, 230, 0.18);
+  border-radius: 4px;
+  padding: 5px 9px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.map-hint-left {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(242, 237, 230, 0.5);
+  text-transform: uppercase;
+}
+.map-hint-right {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--bbA, #C87F3F);
+  text-transform: uppercase;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: #0B0A08;
+}
+.footer-content {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 64px) clamp(18px, 4vw, 44px) 28px;
+}
+.footer-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 5vw, 64px);
+  justify-content: space-between;
+  margin: 0 0 36px;
+}
+.footer-col {
+  max-width: 280px;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+}
+.footer-brand-rombo {
+  width: 9px;
+  height: 9px;
+  background: var(--bbA, #C87F3F);
+  transform: rotate(45deg);
+  display: block;
+}
+.footer-brand-text {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding-top: 2px;
+}
+.footer-brand-accent { color: var(--bbA, #C87F3F); }
+.footer-tagline {
+  margin: 0;
+  color: #877F73;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.footer-col-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #877F73;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+.footer-col-text {
+  color: #B7AFA4;
+  font-size: 13.5px;
+  line-height: 2;
+}
+.footer-col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-link {
+  color: #B7AFA4;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color 0.15s ease;
+}
+.footer-link:hover { color: var(--bbA, #C87F3F); }
+.footer-legal {
+  border-top: 1px solid rgba(242, 237, 230, 0.08);
+  padding-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #5E584F;
+  text-transform: uppercase;
+}
+
+/* ========== FLOATING WHATSAPP ========== */
+.float-wa {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #22C15E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+}
+.float-wa:hover { transform: scale(1.07); }
+.float-wa-text {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  color: #06220F;
+  padding-top: 2px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-content">
+    <a href="#inicio" class="nav-logo" onclick="scrollToSection('inicio', event)">
+      <span class="nav-rombo"></span>
+      <span class="nav-wordmark">BRAVO BARBER <span class="nav-wordmark-accent">CO.</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#servicios" onclick="scrollToSection('servicios', event)">Servicios</a>
+      <a href="#galeria" onclick="scrollToSection('galeria', event)">Galería</a>
+      <a href="#barberos" onclick="scrollToSection('barberos', event)">Barberos</a>
+      <a href="#ubicacion" onclick="scrollToSection('ubicacion', event)">Ubicación</a>
+    </div>
+    <a href="#reserva" class="nav-cta" onclick="scrollToSection('reserva', event)">RESERVAR TURNO</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="inicio">
+  <div class="section-container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">URDESA · GUAYAQUIL · DESDE 2012</span>
+        </div>
+        <h1>CORTE LIMPIO.<br>NAVAJA CALIENTE.<br><span class="h1-accent">CERO VUELTAS.</span></h1>
+        <p class="hero-sub">Barbería de oficio en Urdesa. Fades precisos, afeitado clásico con toalla caliente y tu turno listo en menos de un minuto — sin llamadas.</p>
+        <div class="hero-ctas">
+          <button class="cta-primary" onclick="scrollToSection('reserva', event)">RESERVAR TURNO</button>
+          <button class="cta-ghost" onclick="scrollToSection('servicios', event)">VER SERVICIOS</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-val">14</div>
+            <div class="stat-label">Años de oficio</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">4.9<span class="stat-accent">★</span></div>
+            <div class="stat-label">380+ reseñas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">3</div>
+            <div class="stat-label">Barberos de planta</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-img-container">
+        <span class="img-placeholder">IMG · barbero afeitando<br>con navaja, plano cerrado</span>
+        <img class="hero-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=80" alt="Barbero afeitando con navaja" crossorigin="anonymous">
+        <div class="hero-img-vignette"></div>
+        <div class="hero-img-tick hero-img-tick-tl"></div>
+        <div class="hero-img-tick hero-img-tick-br"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="section-container">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">SERVICIOS Y PRECIOS</span>
+    </div>
+    <h2>LO QUE HACEMOS BIEN</h2>
+    <p class="section-intro">Precios cerrados, sin sorpresas. Pagas en el local: efectivo, transferencia o tarjeta.</p>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section id="galeria">
+  <div class="section-container">
+    <div class="gallery-header">
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">GALERÍA</span>
+        </div>
+        <h2>TRABAJO RECIENTE</h2>
+      </div>
+      <div class="gallery-note">@BRAVOBARBER.GYE · ACTUALIZADO CADA SEMANA</div>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ============ RESERVA ============ -->
+<section id="reserva">
+  <div class="section-container" style="max-width: 880px;">
+    <div style="text-align: center; margin: 0 0 30px;">
+      <div class="eyebrow" style="justify-content: center;">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">RESERVA EN LÍNEA</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h2>TU TURNO EN 30 SEGUNDOS</h2>
+      <p class="section-intro" style="margin: 0 auto;">Elige y confirma: el mensaje te queda listo en WhatsApp. Sin cuenta, sin pago online.</p>
+    </div>
+
+    <div class="booking-card">
+      <div class="booking-steps" id="stepChips"></div>
+      <div class="booking-content">
+        <!-- PASO 1 -->
+        <div id="step1" class="step-page" style="display:none;">
+          <div class="step-label">PASO 1 DE 4</div>
+          <h3>¿QUÉ TE HACEMOS?</h3>
+          <div class="step1-rows" id="servicesStep1"></div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div id="step2" class="step-page" style="display:none;">
+          <div class="step-header">
+            <span class="step-header-info"><span id="step2Label">PASO 2 DE 4</span></span>
+            <button class="step-change-btn" onclick="app.goStep(1)">← CAMBIAR SERVICIO</button>
+          </div>
+          <h3>¿CON QUIÉN?</h3>
+          <div class="barbers-grid" id="barbersStep2"></div>
+        </div>
+
+        <!-- PASO 3 -->
+        <div id="step3" class="step-page" style="display:none;">
+          <div class="step-header">
+            <span class="step-header-info"><span id="step3Label">PASO 3 DE 4</span></span>
+            <button class="step-change-btn" onclick="app.goStep(2)">← CAMBIAR BARBERO</button>
+          </div>
+          <h3>¿CUÁNDO?</h3>
+          <div class="day-chips" id="dayChips"></div>
+          <div class="slots-container" id="slotsContainer">
+            <div class="slots-idle">ELIGE UN DÍA PARA VER LOS HUECOS LIBRES</div>
+          </div>
+        </div>
+
+        <!-- PASO 4 -->
+        <div id="step4" class="step-page" style="display:none;">
+          <div class="step-label">PASO 4 DE 4</div>
+          <h3>CONFIRMA TU TURNO</h3>
+          <div class="summary-card">
+            <div id="summaryRows"></div>
+            <button class="summary-change-btn" onclick="app.goStep(1)">← CAMBIAR ALGO</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">TU NOMBRE *</label>
+              <input type="text" id="nameInput" class="form-input" placeholder="Ej. Carlos Andrade" onchange="app.setName(this.value)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">TELÉFONO (OPCIONAL)</label>
+              <input type="tel" id="phoneInput" class="form-input" placeholder="+593 9…" onchange="app.setPhone(this.value)">
+            </div>
+          </div>
+          <div id="nameErrorMsg" style="display:none;" class="form-error">⚠ ESCRIBE TU NOMBRE PARA CONFIRMAR LA RESERVA.</div>
+          <button class="confirm-btn" onclick="app.confirm()">CONFIRMAR POR WHATSAPP</button>
+          <div class="confirm-note">SE ABRE WHATSAPP CON EL MENSAJE LISTO. NO PAGAS NADA TODAVÍA.</div>
+        </div>
+
+        <!-- ÉXITO -->
+        <div id="successPanel" class="step-page" style="display:none;">
+          <div class="success-container">
+            <div class="success-check">✓</div>
+            <h3 class="success-title" id="successTitle">¡LISTO!</h3>
+            <p class="success-desc">Tu turno quedó pre-reservado. Envíanos el mensaje por WhatsApp y te confirmamos la silla en minutos.</p>
+            <div class="success-msg-box" id="successMsg"></div>
+            <div class="success-buttons">
+              <a id="successWaBtn" class="success-wa-btn" target="_blank" rel="noopener">ENVIAR POR WHATSAPP ↗</a>
+              <button class="success-reset-btn" onclick="app.reset()">HACER OTRA RESERVA</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BARBEROS ============ -->
+<section id="barberos">
+  <div class="section-container">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">EL EQUIPO</span>
+    </div>
+    <h2>TRES BARBEROS, UN OFICIO</h2>
+    <p class="section-intro">Cada uno con su especialidad. Elige el tuyo al reservar, o déjate sorprender.</p>
+    <div class="barbers-cards-grid" id="barbersCards"></div>
+  </div>
+</section>
+
+<!-- ============ UBICACIÓN ============ -->
+<section id="ubicacion">
+  <div class="section-container">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">UBICACIÓN Y HORARIO</span>
+    </div>
+    <h2>EN EL CORAZÓN DE URDESA</h2>
+    <div class="location-grid">
+      <div class="location-card">
+        <div class="location-section">
+          <div class="location-section-label">DIRECCIÓN</div>
+          <div class="location-section-title">Av. Víctor Emilio Estrada 707 y Ficus<br>Urdesa Central, Guayaquil</div>
+          <div class="location-section-desc">A media cuadra del Parque de Urdesa. Parqueo en La Ficus.</div>
+        </div>
+        <div class="location-section">
+          <div class="location-section-label">HORARIO</div>
+          <div id="hoursRows"></div>
+        </div>
+        <div class="location-section">
+          <div class="location-section-label">CONTACTO</div>
+          <div class="location-contact">+593 99 284 7310</div>
+          <div class="location-contact-email">hola@bravobarber.ec</div>
+        </div>
+        <div class="location-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" class="location-btn">CÓMO LLEGAR ↗</a>
+          <a id="locWaBtn" href="#" target="_blank" rel="noopener" class="location-btn location-btn-wa">ESCRIBIR POR WHATSAPP</a>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" class="map-link">
+        <div class="map-pin"></div>
+        <div class="map-label">BRAVO BARBER CO.</div>
+        <div class="map-hint-left">MAPA · V.E. ESTRADA Y FICUS</div>
+        <div class="map-hint-right">ABRIR EN GOOGLE MAPS ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="footer-brand-rombo"></span>
+          <span class="footer-brand-text">BRAVO BARBER <span class="footer-brand-accent">CO.</span></span>
+        </div>
+        <p class="footer-tagline">Barbería de oficio en Urdesa desde 2012. Corte, navaja y conversación de la buena.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">HORARIO</div>
+        <div class="footer-col-text">Lun – Vie · 09:00 – 20:00<br>Sábado · 09:00 – 18:00<br>Domingo · Cerrado</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">CONTACTO</div>
+        <div class="footer-col-text">+593 99 284 7310<br>hola@bravobarber.ec<br>V.E. Estrada 707 y Ficus, Urdesa</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">SÍGUENOS</div>
+        <div class="footer-col-links">
+          <a href="#" class="footer-link">Instagram · @bravobarber.gye</a>
+          <a href="#" class="footer-link">TikTok · @bravobarber</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© <span id="yearSpan">2026</span> BRAVO BARBER CO. — NEGOCIO Y DATOS FICTICIOS</span>
+      <span>SITIO DEMO · DISEÑADO POR <a href="https://luisgxz.github.io/nexora/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">NEXORA STUDIO</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP ============ -->
+<a id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" class="float-wa">
+  <span class="float-wa-text">WA</span>
+</a>
+
+<script>
+const app = {
+  config: {
+    accent: '#C87F3F',
+    whatsappNumber: '593992847310',
+    showFloat: true
+  },
+
+  services: [
+    { id: 'clasico', name: 'Corte clásico', desc: 'Tijera y máquina, acabado a navaja.', min: 45, price: 12 },
+    { id: 'fade', name: 'Fade / Degradado', desc: 'Low, mid o high, con línea marcada.', min: 45, price: 14 },
+    { id: 'combo', name: 'Corte + Barba', desc: 'El combo completo, cierre con navaja.', min: 75, price: 18 },
+    { id: 'afeitado', name: 'Afeitado clásico', desc: 'Toalla caliente, espuma y navaja libre.', min: 30, price: 10 },
+    { id: 'barba', name: 'Perfilado de barba', desc: 'Forma, contorno y aceite de cierre.', min: 25, price: 8 },
+    { id: 'nino', name: 'Corte niño', desc: 'Hasta 12 años. Paciencia incluida.', min: 30, price: 9 }
+  ],
+
+  barbers: [
+    { id: 'marco', name: 'Marco Aguirre', spec: 'Clásicos y navaja · Fundador', years: 14, ig: '@MARCO.BRAVOBARBER', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80' },
+    { id: 'diego', name: 'Diego Salazar', spec: 'Fades y diseño freestyle', years: 8, ig: '@DIEGO.FADES', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80' },
+    { id: 'jandry', name: 'Jandry Vera', spec: 'Barba y afeitado clásico', years: 6, ig: '@JANDRY.NAVAJA', img: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=700&q=80' },
+    { id: 'any', name: 'El primero disponible', spec: 'Sin preferencia, te toca el que esté libre', years: null, ig: null }
+  ],
+
+  gallery: [
+    { caption: 'FADE ALTO + LÍNEA', img: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80', alt: 'Fade alto con línea' },
+    { caption: 'AFEITADO · TOALLA CALIENTE', img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80', alt: 'Afeitado clásico con toalla caliente' },
+    { caption: 'CLÁSICO A TIJERA', img: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80', alt: 'Corte clásico a tijera' },
+    { caption: 'DISEÑO FREESTYLE', img: 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=700&q=80', alt: 'Diseño freestyle a máquina' },
+    { caption: 'PERFILADO DE BARBA', img: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=80', alt: 'Perfilado de barba' },
+    { caption: 'EL LOCAL · SILLAS 1–3', img: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=80', alt: 'Interior del local, sillas de barbero' }
+  ],
+
+  times: ['09:00', '09:45', '10:30', '11:15', '12:00', '12:45', '14:00', '14:45', '15:30', '16:15', '17:00', '17:45', '18:30', '19:15'],
+
+  state: {
+    step: 1,
+    service: null,
+    barber: null,
+    day: null,
+    time: null,
+    name: '',
+    phone: '',
+    slotsLoading: false,
+    nameError: false,
+    done: false
+  },
+
+  init() {
+    document.documentElement.style.setProperty('--bbA', this.config.accent);
+    document.documentElement.style.setProperty('--bbAsoft', this.config.accent + '1F');
+    document.documentElement.style.setProperty('--bbAstripe', this.config.accent + '0D');
+    document.documentElement.style.setProperty('--bbAglow', this.config.accent + '26');
+    document.documentElement.style.setProperty('--bbAline', this.config.accent + '59');
+
+    document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+    const waIntroMsg = 'Hola Bravo Barber, quiero información.';
+    const waLink = 'https://wa.me/' + this.config.whatsappNumber + '?text=' + encodeURIComponent(waIntroMsg);
+    document.getElementById('floatWa').href = waLink;
+    document.getElementById('locWaBtn').href = waLink;
+
+    if (!this.config.showFloat) document.getElementById('floatWa').style.display = 'none';
+
+    this.renderAll();
+
+    document.addEventListener('error', (e) => {
+      if (e.target && e.target.tagName === 'IMG') {
+        e.target.style.display = 'none';
+      }
+    }, true);
+  },
+
+  getDays() {
+    const WD = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const MO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const out = [];
+    const now = new Date();
+    let openCount = 0;
+
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      const dayOfWeek = d.getDay();
+      const isClosed = dayOfWeek === 0;
+      let isFull = false;
+
+      if (!isClosed) {
+        openCount++;
+        if (openCount === 3) isFull = true;
+      }
+
+      out.push({
+        i,
+        key: d.toDateString(),
+        wd: WD[dayOfWeek],
+        num: d.getDate(),
+        mo: MO[d.getMonth()],
+        closed: isClosed,
+        full: isFull,
+        today: i === 0,
+        label: (i === 0 ? 'Hoy' : WD[dayOfWeek]) + ' ' + d.getDate() + ' ' + MO[d.getMonth()]
+      });
+    }
+    return out;
+  },
+
+  getSlots(day) {
+    if (!day || day.closed || day.full) return [];
+    const now = new Date();
+    const cutoff = String(now.getHours() + 1).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    return this.times.map((t, i) => {
+      let busy = ((i * 7 + day.num * 3 + day.i * 5) % 10) < 3;
+      if (day.today && t <= cutoff) busy = true;
+      return { t, busy };
+    });
+  },
+
+  renderAll() {
+    this.renderServices();
+    this.renderGallery();
+    this.renderBarbers();
+    this.renderHours();
+    this.renderWizard();
+  },
+
+  renderServices() {
+    const html = this.services.map(s => `
+      <div class="service-card">
+        <div class="service-header">
+          <span class="service-name">${s.name}</span>
+          <span class="service-price">$${s.price}</span>
+        </div>
+        <p class="service-desc">${s.desc}</p>
+        <div class="service-footer">
+          <span class="service-duration">${s.min} MIN</span>
+          <a href="#reserva" class="service-book-link" onclick="app.pickService('${s.id}', event)">RESERVAR →</a>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('servicesGrid').innerHTML = html;
+  },
+
+  renderGallery() {
+    const html = this.gallery.map(g => `
+      <div class="gallery-tile">
+        <img class="gallery-img" src="${g.img}?auto=format&fit=crop&w=700&q=80" alt="${g.alt}" crossorigin="anonymous">
+        <div class="gallery-gradient"></div>
+        <span class="gallery-caption">${g.caption}</span>
+      </div>
+    `).join('');
+    document.getElementById('galleryGrid').innerHTML = html;
+  },
+
+  renderBarbers() {
+    const html = this.barbers.map(b => {
+      const initials = b.id === 'any' ? '¿?' : b.name.split(' ').map(w => w[0]).slice(0, 2).join('');
+      return `
+      <div class="barber-card">
+        <div class="barber-photo-container">
+          <span class="barber-initials">${initials}</span>
+          ${b.img ? `<img class="barber-photo" src="${b.img}?auto=format&fit=crop&w=700&q=80" alt="Retrato de ${b.name}" crossorigin="anonymous">` : ''}
+          <div class="barber-photo-gradient"></div>
+        </div>
+        <div class="barber-info-card">
+          <div class="barber-card-name">${b.name}</div>
+          <div class="barber-card-spec">${b.spec}</div>
+          <div class="barber-chips">
+            ${b.years ? `<span class="barber-chip">${b.years} AÑOS DE OFICIO</span>` : ''}
+            ${b.ig ? `<span class="barber-chip barber-chip-accent">${b.ig}</span>` : ''}
+          </div>
+        </div>
+      </div>
+      `;
+    }).join('');
+    document.getElementById('barbersCards').innerHTML = html;
+  },
+
+  renderHours() {
+    const wd = new Date().getDay();
+    const hours = [
+      { d: 'Lunes – Viernes', h: '09:00 – 20:00', today: wd >= 1 && wd <= 5 },
+      { d: 'Sábado', h: '09:00 – 18:00', today: wd === 6 },
+      { d: 'Domingo', h: 'Cerrado', today: wd === 0 }
+    ];
+    const html = hours.map(h => `
+      <div class="hours-row ${h.today ? 'today' : ''}">
+        <span>${h.d}${h.today ? ` <span class="hours-badge">HOY</span>` : ''}</span>
+        <span>${h.h}</span>
+      </div>
+    `).join('');
+    document.getElementById('hoursRows').innerHTML = html;
+  },
+
+  renderWizard() {
+    this.renderStepChips();
+    this.renderStep1();
+    this.renderStep2();
+    this.renderStep3();
+    this.renderStep4();
+    this.updateWizardDisplay();
+  },
+
+  renderStepChips() {
+    const defs = [
+      { n: 1, label: 'SERVICIO' },
+      { n: 2, label: 'BARBERO' },
+      { n: 3, label: 'FECHA Y HORA' },
+      { n: 4, label: 'CONFIRMAR' }
+    ];
+    const canGo = (n) => {
+      if (n === 1) return true;
+      if (n === 2) return !!this.state.service;
+      if (n === 3) return !!this.state.service && !!this.state.barber;
+      if (n === 4) return !!this.state.service && !!this.state.barber && !!this.state.day && !!this.state.time;
+      return false;
+    };
+    const html = defs.map(dc => {
+      const active = this.state.step === dc.n && !this.state.done;
+      const passed = this.state.step > dc.n || this.state.done;
+      const able = canGo(dc.n);
+      return `
+        <button class="booking-step-btn ${active ? 'active' : ''} ${passed ? 'passed' : ''} ${able && !active && !passed ? 'clickable' : ''}" onclick="app.goStep(${dc.n})">
+          <span class="step-num">0${dc.n}</span> ${dc.label}
+        </button>
+      `;
+    }).join('');
+    document.getElementById('stepChips').innerHTML = html;
+  },
+
+  renderStep1() {
+    const html = this.services.map(s => `
+      <button class="service-row ${this.state.service?.id === s.id ? 'selected' : ''}" onclick="app.pickService('${s.id}', event)">
+        <span class="service-row-left">
+          <span class="service-row-name">${s.name}</span>
+          <span class="service-row-desc">${s.desc}</span>
+        </span>
+        <span class="service-row-right">
+          <span class="service-row-min">${s.min} MIN</span>
+          <span class="service-row-price">$${s.price}</span>
+        </span>
+      </button>
+    `).join('');
+    document.getElementById('servicesStep1').innerHTML = html;
+  },
+
+  renderStep2() {
+    const html = this.barbers.map(b => {
+      const initials = b.id === 'any' ? '¿?' : b.name.split(' ').map(w => w[0]).slice(0, 2).join('');
+      return `
+        <button class="barber-row ${this.state.barber?.id === b.id ? 'selected' : ''}" onclick="app.pickBarber('${b.id}', event)">
+          <span class="barber-avatar">${initials}</span>
+          <span class="barber-info">
+            <span class="barber-name">${b.name}</span>
+            <span class="barber-spec">${b.spec}</span>
+          </span>
+        </button>
+      `;
+    }).join('');
+    document.getElementById('barbersStep2').innerHTML = html;
+
+    if (this.state.service) {
+      document.getElementById('step2Label').textContent = `PASO 2 DE 4 · ${this.state.service.name.toUpperCase()} · $${this.state.service.price}`;
+    }
+  },
+
+  renderStep3() {
+    const days = this.getDays();
+    const html = days.map(d => `
+      <button class="day-chip ${d.closed ? 'disabled' : ''} ${this.state.day?.key === d.key ? 'selected' : ''}" onclick="app.pickDay('${d.key}', event)" ${d.closed ? 'disabled' : ''}>
+        <span class="day-wd">${(d.today ? 'HOY' : d.wd).toUpperCase()}</span>
+        <span class="day-num">${d.num}</span>
+        <span class="day-mo">${d.mo.toUpperCase()}</span>
+        ${d.closed || d.full ? `<span class="day-tag ${d.full ? 'full' : 'closed'}">${d.full ? 'LLENO' : 'CERRADO'}</span>` : ''}
+      </button>
+    `).join('');
+    document.getElementById('dayChips').innerHTML = html;
+
+    if (this.state.service && this.state.barber) {
+      document.getElementById('step3Label').textContent = `PASO 3 DE 4 · ${this.state.service.name.toUpperCase()} · $${this.state.service.price} · ${this.state.barber.name.toUpperCase()}`;
+    }
+
+    this.renderSlots();
+  },
+
+  renderSlots() {
+    const container = document.getElementById('slotsContainer');
+    if (!this.state.day) {
+      container.innerHTML = '<div class="slots-idle">ELIGE UN DÍA PARA VER LOS HUECOS LIBRES</div>';
+      return;
+    }
+    if (this.state.slotsLoading) {
+      container.innerHTML = '<div class="slots-loading"><span class="spinner"></span><span class="loading-text">BUSCANDO HUECOS LIBRES…</span></div>';
+      return;
+    }
+    if (this.state.day.full) {
+      const days = this.getDays();
+      const nextDay = days.find(d => d.i > this.state.day.i && !d.closed && !d.full);
+      const label = nextDay ? nextDay.label : 'VER OTRO DÍA';
+      container.innerHTML = `
+        <div class="day-full-panel">
+          <div class="day-full-title">AGENDA LLENA ESE DÍA</div>
+          <p class="day-full-desc">Se nos fue todo. El sábado suele tener huecos a primera hora.</p>
+          <button class="day-full-btn" onclick="app.goNextDay()">PROBAR EL ${label.toUpperCase()}</button>
+        </div>
+      `;
+      return;
+    }
+    const slots = this.getSlots(this.state.day);
+    const html = `
+      <div class="slots-grid">
+        <div class="slots-grid-inner">
+          ${slots.map(sl => `
+            <button class="time-slot ${this.state.time === sl.t ? 'selected' : ''} ${sl.busy ? 'busy' : ''}" onclick="app.pickTime('${sl.t}', event)" ${sl.busy ? 'disabled' : ''}>${sl.t}</button>
+          `).join('')}
+        </div>
+        <div class="slots-legend">TACHADO = OCUPADO · HORA GUAYAQUIL (GMT-5)</div>
+      </div>
+    `;
+    container.innerHTML = html;
+  },
+
+  renderStep4() {
+    if (this.state.service) {
+      const rows = [
+        { k: 'SERVICIO', v: this.state.service.name },
+        { k: 'BARBERO', v: this.state.barber ? this.state.barber.name : '—' },
+        { k: 'DÍA', v: this.state.day ? this.state.day.label : '—' },
+        { k: 'HORA', v: this.state.time || '—' },
+        { k: 'DURACIÓN', v: this.state.service.min + ' min' },
+        { k: 'PRECIO', v: '$' + this.state.service.price + ' — pagas en el local' }
+      ];
+      const html = rows.map(r => `
+        <div class="summary-row">
+          <span class="summary-row-label">${r.k}</span>
+          <span class="summary-row-value">${r.v}</span>
+        </div>
+      `).join('');
+      document.getElementById('summaryRows').innerHTML = html;
+    }
+    document.getElementById('nameInput').value = this.state.name;
+    document.getElementById('phoneInput').value = this.state.phone;
+  },
+
+  updateWizardDisplay() {
+    document.getElementById('step1').style.display = this.state.step === 1 && !this.state.done ? 'block' : 'none';
+    document.getElementById('step2').style.display = this.state.step === 2 && !this.state.done ? 'block' : 'none';
+    document.getElementById('step3').style.display = this.state.step === 3 && !this.state.done ? 'block' : 'none';
+    document.getElementById('step4').style.display = this.state.step === 4 && !this.state.done ? 'block' : 'none';
+    document.getElementById('successPanel').style.display = this.state.done ? 'block' : 'none';
+    this.renderStepChips();
+  },
+
+  pickService(id, e) {
+    if (e) e.preventDefault();
+    this.state.service = this.services.find(s => s.id === id);
+    this.renderStep1();
+    setTimeout(() => {
+      this.state.step = 2;
+      this.updateWizardDisplay();
+      this.renderStep2();
+      this.renderStep3();
+      this.renderStep4();
+    }, 260);
+  },
+
+  pickBarber(id, e) {
+    if (e) e.preventDefault();
+    this.state.barber = this.barbers.find(b => b.id === id);
+    this.renderStep2();
+    setTimeout(() => {
+      this.state.step = 3;
+      this.updateWizardDisplay();
+      this.renderStep3();
+      this.renderStep4();
+    }, 260);
+  },
+
+  pickDay(dayKey, e) {
+    if (e) e.preventDefault();
+    const days = this.getDays();
+    this.state.day = days.find(d => d.key === dayKey);
+    if (this.state.day && this.state.day.closed) return;
+    this.state.time = null;
+    this.state.slotsLoading = true;
+    this.renderStep3();
+    setTimeout(() => {
+      this.state.slotsLoading = false;
+      this.renderSlots();
+    }, 700);
+  },
+
+  pickTime(time, e) {
+    if (e) e.preventDefault();
+    const slot = this.getSlots(this.state.day).find(s => s.t === time);
+    if (slot && slot.busy) return;
+    this.state.time = time;
+    setTimeout(() => {
+      this.state.step = 4;
+      this.updateWizardDisplay();
+      this.renderStep4();
+    }, 240);
+  },
+
+  goNextDay() {
+    const days = this.getDays();
+    const nextDay = days.find(d => d.i > this.state.day.i && !d.closed && !d.full);
+    if (nextDay) this.pickDay(nextDay.key);
+  },
+
+  goStep(n) {
+    const canGo = (n) => {
+      if (n === 1) return true;
+      if (n === 2) return !!this.state.service;
+      if (n === 3) return !!this.state.service && !!this.state.barber;
+      if (n === 4) return !!this.state.service && !!this.state.barber && !!this.state.day && !!this.state.time;
+      return false;
+    };
+    if (!canGo(n)) return;
+    this.state.step = n;
+    this.state.done = false;
+    this.updateWizardDisplay();
+    this.renderStep2();
+    this.renderStep3();
+    this.renderStep4();
+  },
+
+  setName(val) {
+    this.state.name = val;
+    this.state.nameError = false;
+    document.getElementById('nameErrorMsg').style.display = 'none';
+  },
+
+  setPhone(val) {
+    this.state.phone = val;
+  },
+
+  confirm() {
+    if (!this.state.name.trim()) {
+      this.state.nameError = true;
+      document.getElementById('nameErrorMsg').style.display = 'block';
+      return;
+    }
+    this.state.done = true;
+    this.updateWizardDisplay();
+    this.renderSuccess();
+  },
+
+  renderSuccess() {
+    const nm = this.state.name.trim();
+    const fmtDay = this.state.day ? this.state.day.label : '—';
+    const waMsg = 'Hola Bravo Barber 💈 Quiero reservar un turno:\n' +
+      '• Servicio: ' + (this.state.service ? this.state.service.name + ' ($' + this.state.service.price + ' · ' + this.state.service.min + ' min)' : '—') + '\n' +
+      '• Barbero: ' + (this.state.barber ? this.state.barber.name : '—') + '\n' +
+      '• Día: ' + fmtDay + ' · ' + (this.state.time || '—') + '\n' +
+      '• Nombre: ' + (nm || '—') + (this.state.phone.trim() ? '\n• Teléfono: ' + this.state.phone.trim() : '') +
+      '\n¿Me confirman? ¡Gracias!';
+
+    const firstName = (nm || 'crack').split(' ')[0].toUpperCase();
+    document.getElementById('successTitle').textContent = '¡LISTO, ' + firstName + '!';
+    document.getElementById('successMsg').textContent = waMsg;
+    const waLink = 'https://wa.me/' + this.config.whatsappNumber + '?text=' + encodeURIComponent(waMsg);
+    document.getElementById('successWaBtn').href = waLink;
+  },
+
+  reset() {
+    this.state.step = 1;
+    this.state.service = null;
+    this.state.barber = null;
+    this.state.day = null;
+    this.state.time = null;
+    this.state.name = '';
+    this.state.phone = '';
+    this.state.slotsLoading = false;
+    this.state.nameError = false;
+    this.state.done = false;
+    this.renderWizard();
+    this.updateWizardDisplay();
+  }
+};
+
+function scrollToSection(id, e) {
+  if (e) e.preventDefault();
+  const el = document.getElementById(id);
+  if (el) {
+    window.scrollTo({
+      top: el.getBoundingClientRect().top + window.scrollY - 70,
+      behavior: 'smooth'
+    });
+  }
+}
+
+app.init();
+</script>
+
+</body>
+</html>

@@ -16,7 +16,10 @@ Single-page bilingual landing (Astro + Tailwind + React islands + TS), static, V
 │   ├── favicon.svg                 # from nexora-brand/logo/favicon.svg
 │   ├── nexora.vcf                  # downloadable contact card
 │   ├── robots.txt
-│   └── og/                         # OG share image(s)
+│   ├── og/                         # OG share image(s)
+│   ├── demos/                      # 5 self-contained demo landings (vanilla HTML/CSS/JS)
+│   │   ├── bravo-barber/  la-sazon/  dental-aurora/  andrea-y-mateo/  vertice/
+│   └── works/                      # 960×540 webp previews for the Works cards
 ├── nexora-brand/                   # ⭐ visual identity = source of truth (input, read-only)
 │   ├── tokens/design-tokens.json
 │   ├── tokens/tailwind.config.snippet.js
@@ -28,7 +31,8 @@ Single-page bilingual landing (Astro + Tailwind + React islands + TS), static, V
 │   ├── PHASES.md                   # phase tracker (current work)
 │   ├── PROJECT_MAP.md              # this file
 │   ├── nexora-plan-proyecto.md     # master plan
-│   └── nexora-prompt-claude-code.md# build prompt
+│   ├── nexora-prompt-claude-code.md# build prompt
+│   └── nexora-demos/               # input spec for the 5 demos (README, demos-spec, per-demo content/tokens/dc.html/mockups) — read-only
 └── src/
     ├── assets/
     │   ├── logo/                   # copied from nexora-brand/logo/

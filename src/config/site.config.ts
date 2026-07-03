@@ -8,10 +8,16 @@
  * colors/typography live in the design tokens.
  *
  * ⚠️ PENDING REAL VALUES (owner to provide; wired in the final phase): the
- * WhatsApp number, demo URLs, email and social handles below are placeholders.
- * Search `PENDING` before launch. Analytics id comes from the environment
+ * WhatsApp number, email and social handles below are placeholders. Search
+ * `PENDING` before launch. Analytics id comes from the environment
  * (`PUBLIC_GA_ID`) — never commit a real id or any secret to the repo.
  */
+
+/**
+ * Deploy base path (no trailing slash) so config-built URLs resolve both under
+ * the GitHub Pages `/nexora/` subpath and at a future root domain.
+ */
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
 
 /** Brand identity constants used in metadata, vCard and footer. */
 export const brand = {
@@ -33,14 +39,29 @@ export const brand = {
 export const whatsappNumber = '593900000000';
 
 /**
- * Live demo URLs referenced by `works[]` (same key in both locales).
- * ⚠️ PENDING: replace `#` with real deployed demo links as they go live.
+ * Live demo URLs referenced by `works[]` (same key in both locales). Each demo
+ * is a self-contained static landing shipped from `public/demos/<slug>/`, so
+ * the links deploy with the site and inherit the configured base path.
  */
 export const demoUrls = {
-  barbershop: '#',
-  restaurant: '#',
-  clinic: '#',
-  event: '#',
+  barbershop: `${BASE}/demos/bravo-barber/`,
+  restaurant: `${BASE}/demos/la-sazon/`,
+  clinic: `${BASE}/demos/dental-aurora/`,
+  event: `${BASE}/demos/andrea-y-mateo/`,
+  corporate: `${BASE}/demos/vertice/`,
+} as const;
+
+/**
+ * Preview screenshots for the `works[]` cards (960×540 webp under
+ * `public/works/`), captured from each live demo's hero at 1280×720. Keys
+ * mirror `demoUrls` so a demo and its preview always travel together.
+ */
+export const demoPreviews = {
+  barbershop: `${BASE}/works/bravo-barber.webp`,
+  restaurant: `${BASE}/works/la-sazon.webp`,
+  clinic: `${BASE}/works/dental-aurora.webp`,
+  event: `${BASE}/works/andrea-y-mateo.webp`,
+  corporate: `${BASE}/works/vertice.webp`,
 } as const;
 
 /**
@@ -66,7 +87,6 @@ export const analyticsId: string | undefined = import.meta.env.PUBLIC_GA_ID;
  * Path to the downloadable vCard (`/nexora.vcf` endpoint), prefixed with the
  * configured deploy subpath so it resolves both under `/nexora/` and at root.
  */
-const BASE = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
 export const vcardPath = `${BASE}/nexora.vcf`;
 
 export const siteConfig = {

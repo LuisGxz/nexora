@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#F8FAFC;color:#101C2C;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  input,button,select,textarea{font:inherit}
+  ::selection{background:rgba(28,79,160,.16)}
+  input::placeholder,textarea::placeholder{color:rgba(16,28,44,.35)}
+  @keyframes vxSpin{to{transform:rotate(360deg)}}
+  @keyframes vxFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;background:#F8FAFC;overflow-x:clip">
+
+  <!-- ============ NAV ============ -->
+  <div data-shot="nav" data-screen-label="Nav" style="position:sticky;top:0;z-index:50;background:rgba(248,250,252,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #DCE3EC">
+    <div style="max-width:1140px;margin:0 auto;padding:0 clamp(18px,4vw,44px);height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#inicio" onClick="{{ goTop }}" style="display:flex;align-items:center;gap:9px;text-decoration:none;color:#101C2C">
+        <span style="width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:15px solid var(--vxA,#1C4FA0);display:block;flex:none"></span>
+        <span style="display:flex;flex-direction:column;line-height:1">
+          <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em">VÉRTICE</span>
+          <span style="font-weight:600;font-size:8px;letter-spacing:.3em;color:#7A8AA0;margin-top:2px">CONSULTORES</span>
+        </span>
+      </a>
+      <sc-if value="{{ showNavLinks }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:24px">
+          <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="5">
+            <a href="{{ nv.href }}" onClick="{{ nv.go }}" style="color:#44546A;text-decoration:none;font-size:13.5px;font-weight:500" style-hover="color:var(--vxA,#1C4FA0)">{{ nv.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <a href="#contacto" onClick="{{ goContacto }}" style="background:var(--vxA,#1C4FA0);color:#F4F8FF;text-decoration:none;font-weight:600;font-size:13.5px;padding:11px 18px;border-radius:8px;white-space:nowrap" style-hover="filter:brightness(1.12)">Agenda un diagnóstico</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" data-shot="hero" data-screen-label="Hero" style="border-bottom:1px solid #DCE3EC;background:#FFFFFF">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:clamp(30px,5vw,60px);align-items:center">
+      <div>
+        <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--vxA,#1C4FA0);margin:0 0 14px">CONSULTORÍA PARA PYMES · GUAYAQUIL</div>
+        <h1 style="margin:0 0 16px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(36px,5.4vw,60px);line-height:1.06;letter-spacing:-.02em">Tu empresa creció.<br><span style="color:var(--vxA,#1C4FA0)">Tus procesos, todavía no.</span></h1>
+        <p style="margin:0 0 26px;color:#44546A;font-size:clamp(15px,1.6vw,16.5px);line-height:1.7;max-width:52ch">Ordenamos finanzas, controles y tributación para que puedas crecer sin sustos. Diagnóstico inicial sin costo, entregables accionables en semanas — no meses.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 30px">
+          <a href="#contacto" onClick="{{ goContacto }}" style="background:var(--vxA,#1C4FA0);color:#F4F8FF;text-decoration:none;font-weight:600;font-size:15px;padding:14px 26px;border-radius:8px;white-space:nowrap" style-hover="filter:brightness(1.12);transform:translateY(-1px)">Agenda un diagnóstico</a>
+          <a href="#servicios" onClick="{{ goServicios }}" style="border:1px solid #C3CEDC;color:#101C2C;text-decoration:none;font-weight:600;font-size:15px;padding:14px 26px;border-radius:8px;white-space:nowrap;background:#FFFFFF" style-hover="border-color:var(--vxA,#1C4FA0);color:var(--vxA,#1C4FA0)">Ver servicios</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,44px)">
+          <div>
+            <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:30px;color:var(--vxA,#1C4FA0)">12</div>
+            <div style="color:#7A8AA0;font-size:12.5px;margin-top:2px">años de práctica</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:30px;color:var(--vxA,#1C4FA0)">140+</div>
+            <div style="color:#7A8AA0;font-size:12.5px;margin-top:2px">empresas atendidas</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:30px;color:var(--vxA,#1C4FA0)">96%</div>
+            <div style="color:#7A8AA0;font-size:12.5px;margin-top:2px">de clientes renuevan</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="Oficina de Vértice Consultores" crossorigin="anonymous" style="width:100%;aspect-ratio:4/3.2;object-fit:cover;border-radius:14px;display:block;background:#EEF2F7;box-shadow:0 1px 2px rgba(16,28,44,.04), 0 24px 48px -26px rgba(16,28,44,.3)">
+        <div style="position:absolute;left:14px;bottom:14px;background:#FFFFFF;border:1px solid #DCE3EC;border-radius:10px;padding:10px 14px;box-shadow:0 10px 30px -18px rgba(16,28,44,.35)">
+          <span style="display:block;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:13.5px">Respuesta en &lt;24h</span>
+          <span style="display:block;color:#7A8AA0;font-size:11.5px;margin-top:2px">Canal directo con tu socio asignado</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ SERVICIOS ============ -->
+  <section id="servicios" data-shot="servicios" data-screen-label="Servicios" style="border-bottom:1px solid #DCE3EC">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--vxA,#1C4FA0);margin:0 0 10px">SERVICIOS</div>
+      <h2 style="margin:0 0 10px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(28px,4.2vw,42px);line-height:1.1;letter-spacing:-.02em">Tres frentes, un objetivo: orden</h2>
+      <p style="margin:0 0 30px;color:#44546A;font-size:15px;line-height:1.7;max-width:56ch">Tarifa cerrada por proyecto y un socio senior al frente de cada cuenta.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px">
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s ease,transform .15s ease" style-hover="border-color:var(--vxA,#1C4FA0);transform:translateY(-2px)">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--vxA,#1C4FA0)">01</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em">Consultoría estratégica</div>
+          <p style="margin:0;color:#44546A;font-size:13.5px;line-height:1.6">Para decidir con números, no con corazonadas.</p>
+          <div style="display:grid;gap:8px;border-top:1px solid #EEF2F7;padding-top:12px">
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Plan financiero a 12–36 meses</div>
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Tablero de indicadores mensual</div>
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Estructura de costos y precios</div>
+          </div>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s ease,transform .15s ease" style-hover="border-color:var(--vxA,#1C4FA0);transform:translateY(-2px)">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--vxA,#1C4FA0)">02</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em">Auditoría & control interno</div>
+          <p style="margin:0;color:#44546A;font-size:13.5px;line-height:1.6">Para saber exactamente dónde está parada tu empresa.</p>
+          <div style="display:grid;gap:8px;border-top:1px solid #EEF2F7;padding-top:12px">
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Auditoría de estados financieros</div>
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Controles antifraude</div>
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Inventarios y conciliaciones</div>
+          </div>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s ease,transform .15s ease" style-hover="border-color:var(--vxA,#1C4FA0);transform:translateY(-2px)">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--vxA,#1C4FA0)">03</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em">Asesoría tributaria</div>
+          <p style="margin:0;color:#44546A;font-size:13.5px;line-height:1.6">Para pagar lo justo, a tiempo y sin multas.</p>
+          <div style="display:grid;gap:8px;border-top:1px solid #EEF2F7;padding-top:12px">
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Planificación fiscal anual</div>
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Declaraciones y anexos SRI</div>
+            <div style="display:flex;gap:9px;align-items:baseline;font-size:13px;color:#101C2C"><span style="width:5px;height:5px;background:var(--vxA,#1C4FA0);flex:none;transform:translateY(-2px)"></span>Acompañamiento en requerimientos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NOSOTROS + POR QUÉ ============ -->
+  <section id="nosotros" data-shot="nosotros" data-screen-label="Nosotros" style="border-bottom:1px solid #DCE3EC;background:#EEF2F7">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(28px,5vw,56px);align-items:center;margin:0 0 44px">
+        <div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--vxA,#1C4FA0);margin:0 0 10px">NOSOTROS</div>
+          <h2 style="margin:0 0 16px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(28px,4.2vw,42px);line-height:1.1;letter-spacing:-.02em">Ex-auditores de firma grande, cansados de informes que nadie lee</h2>
+          <p style="margin:0 0 14px;color:#44546A;font-size:15px;line-height:1.75">Vértice nació en 2014. Trabajamos con PyMEs de 10 a 200 empleados: retail, agro, logística y salud. Cada cuenta la lleva un socio senior — no un junior con plantilla.</p>
+          <p style="margin:0 0 20px;color:#44546A;font-size:15px;line-height:1.75">Entregamos planes de cinco páginas con responsables y fechas. No informes de ochenta.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:24px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:38px;height:38px;border-radius:8px;background:#FFFFFF;border:1px solid #DCE3EC;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--vxA,#1C4FA0)">DM</span>
+              <span style="line-height:1.3"><span style="display:block;font-weight:600;font-size:13.5px">Daniel Miranda</span><span style="display:block;color:#7A8AA0;font-size:12px">Socio · Auditoría</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:38px;height:38px;border-radius:8px;background:#FFFFFF;border:1px solid #DCE3EC;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--vxA,#1C4FA0)">CE</span>
+              <span style="line-height:1.3"><span style="display:block;font-weight:600;font-size:13.5px">Carolina Espinel</span><span style="display:block;color:#7A8AA0;font-size:12px">Socia · Tributario</span></span>
+            </div>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80" alt="Equipo de Vértice trabajando" crossorigin="anonymous" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;background:#DCE3EC;box-shadow:0 1px 2px rgba(16,28,44,.04), 0 24px 48px -26px rgba(16,28,44,.3)">
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px">
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;margin:0 0 6px">Seniors en tu cuenta</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Quien firma el contrato es quien revisa tus números.</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;margin:0 0 6px">Entregables accionables</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Planes con responsables y fechas, no diagnósticos eternos.</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;margin:0 0 6px">Tarifas cerradas</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Sabes el costo total antes de empezar. Sin horas sorpresa.</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;margin:0 0 6px">Respuesta en &lt;24h</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Canal directo por WhatsApp con tu socio asignado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section id="proceso" data-shot="proceso" data-screen-label="Proceso" style="border-bottom:1px solid #DCE3EC;background:#FFFFFF">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--vxA,#1C4FA0);margin:0 0 10px">EL PROCESO</div>
+      <h2 style="margin:0 0 30px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(28px,4.2vw,42px);line-height:1.1;letter-spacing:-.02em">Cuatro pasos, cero misterio</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px">
+        <div style="border-top:3px solid var(--vxA,#1C4FA0);background:#F8FAFC;border-radius:0 0 12px 12px;padding:18px 18px 20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:22px;color:var(--vxA,#1C4FA0);margin:0 0 8px">01</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;margin:0 0 6px">Diagnóstico <span style="color:#7A8AA0;font-weight:500;font-size:12px">(sin costo)</span></div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">2 reuniones + revisión de estados. Informe de brechas en 10 días.</p>
+        </div>
+        <div style="border-top:3px solid var(--vxA,#1C4FA0);background:#F8FAFC;border-radius:0 0 12px 12px;padding:18px 18px 20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:22px;color:var(--vxA,#1C4FA0);margin:0 0 8px">02</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;margin:0 0 6px">Plan</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Prioridades, responsables, cronograma y tarifa cerrada.</p>
+        </div>
+        <div style="border-top:3px solid var(--vxA,#1C4FA0);background:#F8FAFC;border-radius:0 0 12px 12px;padding:18px 18px 20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:22px;color:var(--vxA,#1C4FA0);margin:0 0 8px">03</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;margin:0 0 6px">Implementación</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Trabajamos con tu equipo contable; capacitación incluida.</p>
+        </div>
+        <div style="border-top:3px solid var(--vxA,#1C4FA0);background:#F8FAFC;border-radius:0 0 12px 12px;padding:18px 18px 20px">
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:22px;color:var(--vxA,#1C4FA0);margin:0 0 8px">04</div>
+          <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;margin:0 0 6px">Acompañamiento</div>
+          <p style="margin:0;color:#44546A;font-size:13px;line-height:1.6">Tablero mensual y comité trimestral de resultados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASOS ============ -->
+  <section id="casos" data-shot="casos" data-screen-label="Casos" style="border-bottom:1px solid #DCE3EC">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)">
+      <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--vxA,#1C4FA0);margin:0 0 10px">SECTORES Y CASOS</div>
+      <h2 style="margin:0 0 24px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(28px,4.2vw,42px);line-height:1.1;letter-spacing:-.02em">Dónde ya pusimos orden</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px">
+        <span style="font-weight:600;font-size:12.5px;color:#44546A;border:1px solid #C3CEDC;border-radius:6px;padding:7px 13px;background:#FFFFFF">Retail</span>
+        <span style="font-weight:600;font-size:12.5px;color:#44546A;border:1px solid #C3CEDC;border-radius:6px;padding:7px 13px;background:#FFFFFF">Agroindustria</span>
+        <span style="font-weight:600;font-size:12.5px;color:#44546A;border:1px solid #C3CEDC;border-radius:6px;padding:7px 13px;background:#FFFFFF">Logística</span>
+        <span style="font-weight:600;font-size:12.5px;color:#44546A;border:1px solid #C3CEDC;border-radius:6px;padding:7px 13px;background:#FFFFFF">Salud</span>
+        <span style="font-weight:600;font-size:12.5px;color:#44546A;border:1px solid #C3CEDC;border-radius:6px;padding:7px 13px;background:#FFFFFF">Educación</span>
+        <span style="font-weight:600;font-size:12.5px;color:#44546A;border:1px solid #C3CEDC;border-radius:6px;padding:7px 13px;background:#FFFFFF">Manufactura</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,40px);align-items:center;border-top:1px solid #DCE3EC;border-bottom:1px solid #DCE3EC;padding:18px 0;margin:0 0 30px">
+        <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:#9AA8BC">ALMAR S.A.</span>
+        <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:#9AA8BC">Grupo Deltoro</span>
+        <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:#9AA8BC">FRIOSUR</span>
+        <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:#9AA8BC">Casa Lirio</span>
+        <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:#9AA8BC">Andina Pack</span>
+        <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;color:#9AA8BC">TransNiebla</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px">
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px">
+          <p style="margin:0;color:#16386B;font-size:15px;line-height:1.7;flex:1;font-weight:500">"En 6 meses pasamos de cerrar contabilidad con 40 días de atraso a tener tablero al día 5. Las decisiones cambiaron de tono."</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Rebeca Salvatierra" crossorigin="anonymous" style="width:42px;height:42px;border-radius:50%;object-fit:cover;background:#EEF2F7">
+            <span style="line-height:1.3">
+              <span style="display:block;font-weight:600;font-size:13.5px">Rebeca Salvatierra</span>
+              <span style="display:block;color:#7A8AA0;font-size:12px">Gerente General · Casa Lirio (retail, 85 empleados)</span>
+            </span>
+          </div>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px">
+          <p style="margin:0;color:#16386B;font-size:15px;line-height:1.7;flex:1;font-weight:500">"La auditoría encontró fugas por el 4% de la facturación. Se pagó sola varias veces."</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Iván Ramos" crossorigin="anonymous" style="width:42px;height:42px;border-radius:50%;object-fit:cover;background:#EEF2F7">
+            <span style="line-height:1.3">
+              <span style="display:block;font-weight:600;font-size:13.5px">Iván Ramos</span>
+              <span style="display:block;color:#7A8AA0;font-size:12px">Fundador · FRIOSUR (logística en frío)</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto" data-shot="contacto" data-screen-label="Contacto" style="border-bottom:1px solid #DCE3EC;background:#EEF2F7">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(28px,5vw,56px);align-items:start">
+      <div>
+        <div style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--vxA,#1C4FA0);margin:0 0 10px">CONTACTO</div>
+        <h2 style="margin:0 0 14px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(28px,4.2vw,42px);line-height:1.1;letter-spacing:-.02em">Empecemos por el diagnóstico</h2>
+        <p style="margin:0 0 24px;color:#44546A;font-size:15px;line-height:1.7;max-width:44ch">Sin costo para empresas de 10+ empleados. Te respondemos en menos de 24 horas hábiles.</p>
+        <div style="display:grid;gap:14px">
+          <div style="display:flex;gap:12px;align-items:baseline"><span style="font-weight:600;font-size:12px;color:#7A8AA0;min-width:76px">OFICINA</span><span style="font-size:14px;color:#101C2C;line-height:1.6">Av. Francisco de Orellana, Edif. World Trade Center,<br>Torre A, piso 9 — Guayaquil</span></div>
+          <div style="display:flex;gap:12px;align-items:baseline"><span style="font-weight:600;font-size:12px;color:#7A8AA0;min-width:76px">HORARIO</span><span style="font-size:14px;color:#101C2C">Lun – Vie · 08:30 – 17:30</span></div>
+          <div style="display:flex;gap:12px;align-items:baseline"><span style="font-weight:600;font-size:12px;color:#7A8AA0;min-width:76px">TELÉFONO</span><span style="font-size:14px;color:#101C2C">+593 98 220 4471</span></div>
+          <div style="display:flex;gap:12px;align-items:baseline"><span style="font-weight:600;font-size:12px;color:#7A8AA0;min-width:76px">EMAIL</span><span style="font-size:14px;color:#101C2C">hola@verticeconsultores.ec</span></div>
+          <div style="display:flex;gap:12px;align-items:baseline"><span style="font-weight:600;font-size:12px;color:#7A8AA0;min-width:76px">LINKEDIN</span><a href="#inicio" onClick="{{ noopLink }}" style="font-size:14px;color:var(--vxA,#1C4FA0);text-decoration:none;font-weight:600" style-hover="text-decoration:underline">/verticeconsultores</a></div>
+        </div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #DCE3EC;border-radius:14px;padding:clamp(20px,3.5vw,30px);box-shadow:0 1px 2px rgba(16,28,44,.04), 0 14px 40px -28px rgba(16,28,44,.3)">
+
+        <sc-if value="{{ formShown }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;gap:14px">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
+              <label style="display:block">
+                <span style="display:block;font-weight:600;font-size:12px;color:#44546A;margin:0 0 6px">Nombre *</span>
+                <input type="text" value="{{ fName }}" onChange="{{ setFName }}" placeholder="Ej. Renata Guerrero" style="{{ nameStyle }}">
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-weight:600;font-size:12px;color:#44546A;margin:0 0 6px">Empresa</span>
+                <input type="text" value="{{ fCompany }}" onChange="{{ setFCompany }}" placeholder="Ej. Casa Lirio" style="width:100%;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #C3CEDC;border-radius:8px;padding:12px 14px;color:#101C2C;font-size:14.5px;outline:none" style-focus="border-color:var(--vxA,#1C4FA0)">
+              </label>
+            </div>
+            <sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12.5px;font-weight:600;color:#B83A3A;margin:-6px 0 0">Escribe tu nombre.</div>
+            </sc-if>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
+              <label style="display:block">
+                <span style="display:block;font-weight:600;font-size:12px;color:#44546A;margin:0 0 6px">Email *</span>
+                <input type="text" value="{{ fEmail }}" onChange="{{ setFEmail }}" placeholder="tu@empresa.ec" style="{{ emailStyle }}">
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-weight:600;font-size:12px;color:#44546A;margin:0 0 6px">Teléfono</span>
+                <input type="tel" value="{{ fPhone }}" onChange="{{ setFPhone }}" placeholder="+593 9…" style="width:100%;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #C3CEDC;border-radius:8px;padding:12px 14px;color:#101C2C;font-size:14.5px;outline:none" style-focus="border-color:var(--vxA,#1C4FA0)">
+              </label>
+            </div>
+            <sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12.5px;font-weight:600;color:#B83A3A;margin:-6px 0 0">{{ emailErrText }}</div>
+            </sc-if>
+            <div>
+              <span style="display:block;font-weight:600;font-size:12px;color:#44546A;margin:0 0 8px">¿Qué necesitas? *</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ needOpts }}" as="n" hint-placeholder-count="5">
+                  <button type="button" onClick="{{ n.pick }}" style="{{ n.style }}">{{ n.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <label style="display:block">
+              <span style="display:block;font-weight:600;font-size:12px;color:#44546A;margin:0 0 6px">Cuéntanos el contexto *</span>
+              <textarea value="{{ fMsg }}" onChange="{{ setFMsg }}" placeholder="Ej. Facturamos ~$80k/mes, cerramos contabilidad con retraso y el SRI nos observó dos anexos…" style="{{ msgStyle }}"></textarea>
+            </label>
+            <sc-if value="{{ errMsg }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12.5px;font-weight:600;color:#B83A3A;margin:-6px 0 0">Cuéntanos al menos una línea de contexto.</div>
+            </sc-if>
+            <button type="button" onClick="{{ submit }}" style="width:100%;background:var(--vxA,#1C4FA0);color:#F4F8FF;border:none;cursor:pointer;font-weight:600;font-size:15px;padding:15px 20px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.12)">Enviar consulta</button>
+            <p style="margin:0;text-align:center;color:#7A8AA0;font-size:12px">Al enviar eliges continuar por WhatsApp o correo — tú decides el canal.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sending }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:56px 0">
+            <span style="width:24px;height:24px;border:2.5px solid #DCE3EC;border-top-color:var(--vxA,#1C4FA0);border-radius:50%;animation:vxSpin .7s linear infinite"></span>
+            <span style="font-weight:600;font-size:13px;letter-spacing:.1em;color:#7A8AA0">ENVIANDO…</span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ doneShown }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:8px 0;animation:vxFade .3s ease">
+            <div style="width:58px;height:58px;border-radius:50%;background:var(--vxAsoft,rgba(28,79,160,.08));color:var(--vxA,#1C4FA0);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:4px auto 14px">✓</div>
+            <h3 style="margin:0 0 8px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:clamp(21px,3.2vw,26px);letter-spacing:-.01em">Recibido, {{ doneName }}.</h3>
+            <p style="margin:0 auto 16px;color:#44546A;font-size:14px;line-height:1.65;max-width:42ch">Te respondemos en menos de 24 horas hábiles. Si prefieres, sigue ya mismo por WhatsApp o correo:</p>
+            <div style="background:#F8FAFC;border:1.5px dashed #C3CEDC;border-radius:10px;padding:14px 16px;margin:0 0 16px;text-align:left;font-size:13px;line-height:1.8;color:#2E4058;white-space:pre-wrap">{{ waMsg }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+              <a href="{{ waHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:600;font-size:14px;padding:13px 20px;border-radius:8px;white-space:nowrap" style-hover="filter:brightness(1.08)">Continuar por WhatsApp ↗</a>
+              <a href="{{ mailHref }}" style="border:1.5px solid #C3CEDC;color:#101C2C;text-decoration:none;font-weight:600;font-size:14px;padding:13px 20px;border-radius:8px;white-space:nowrap;background:#FFFFFF" style-hover="border-color:var(--vxA,#1C4FA0);color:var(--vxA,#1C4FA0)">Enviar por correo</a>
+              <button type="button" onClick="{{ editForm }}" style="background:none;border:none;color:#7A8AA0;cursor:pointer;font-weight:600;font-size:13px;text-decoration:underline">Editar</button>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-shot="pie" data-screen-label="Footer" style="background:#12294A;color:#D8E2F0">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,6vw,64px) clamp(18px,4vw,44px) 28px">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);justify-content:space-between;margin:0 0 36px">
+        <div style="max-width:290px">
+          <div style="display:flex;align-items:center;gap:9px;margin:0 0 10px">
+            <span style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #6E9BE0;display:block"></span>
+            <span style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;letter-spacing:.02em;color:#F4F8FF">VÉRTICE <span style="font-size:9px;letter-spacing:.26em;color:#8FA6C6">CONSULTORES</span></span>
+          </div>
+          <p style="margin:0;color:#8FA6C6;font-size:13px;line-height:1.7">Orden financiero y procesos que aguantan crecer. Guayaquil, desde 2014.</p>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:10.5px;letter-spacing:.2em;color:#6E86A8;margin:0 0 12px">SERVICIOS</div>
+          <div style="color:#B9C8DE;font-size:13.5px;line-height:2.1">Consultoría estratégica<br>Auditoría & control interno<br>Asesoría tributaria</div>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:10.5px;letter-spacing:.2em;color:#6E86A8;margin:0 0 12px">CONTACTO</div>
+          <div style="color:#B9C8DE;font-size:13.5px;line-height:2.1">+593 98 220 4471<br>hola@verticeconsultores.ec<br>WTC Torre A, piso 9 · Guayaquil</div>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:10.5px;letter-spacing:.2em;color:#6E86A8;margin:0 0 12px">HORARIO</div>
+          <div style="color:#B9C8DE;font-size:13.5px;line-height:2.1">Lun – Vie · 08:30 – 17:30<br>Respuesta &lt;24h hábiles</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(216,226,240,.14);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:11px;color:#6E86A8">
+        <span>© {{ year }} Vértice Consultores — empresa y datos ficticios</span>
+        <span>Sitio demo · diseñado por Nexora Studio</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ waFloatHref }}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-fixed data-shot="float" style="position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#1FAE55;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(18,41,74,.35);transition:transform .15s ease" style-hover="transform:scale(1.07)">
+      <span style="font-weight:700;font-size:16px;color:#08240F">WA</span>
+    </a>
+  </sc-if>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#1C4FA0&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#1C4FA0&quot;, &quot;#17636B&quot;, &quot;#3B4656&quot;, &quot;#7A2F3E&quot;], &quot;section&quot;: &quot;Marca&quot;}, &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;593982204471&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Datos&quot;}, &quot;mostrarWhatsapp&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Comportamiento&quot;}}">
+class Component extends DCLogic {
+  NAV = [
+    { label: 'Servicios', id: 'servicios' },
+    { label: 'Nosotros', id: 'nosotros' },
+    { label: 'Proceso', id: 'proceso' },
+    { label: 'Casos', id: 'casos' },
+    { label: 'Contacto', id: 'contacto' }
+  ];
+  NEEDS = ['Diagnóstico inicial (sin costo)', 'Auditoría & control interno', 'Asesoría tributaria', 'Consultoría estratégica', 'Otro'];
+
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    mode: null,
+    fName: '', fCompany: '', fEmail: '', fPhone: '', fNeed: 'Diagnóstico inicial (sin costo)', fMsg: '',
+    errs: {}, sending: false, done: false
+  };
+
+  componentDidMount() {
+    this._onR = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onR);
+    this._onImgErr = (e) => { const t = e.target; if (t && t.tagName === 'IMG') t.style.display = 'none'; };
+    document.addEventListener('error', this._onImgErr, true);
+    this.applyAccent();
+    const self = this;
+    window.__nex = { set: (patch) => self.setState(patch) };
+    window.__shot = (keep, width) => {
+      const b = document.body, h = document.documentElement;
+      let anim = document.getElementById('__shotcss');
+      if (width) {
+        h.style.width = b.style.width = width + 'px';
+        h.style.height = b.style.height = 'auto';
+        h.style.maxWidth = b.style.maxWidth = 'none';
+        if (!anim) {
+          anim = document.createElement('style');
+          anim.id = '__shotcss';
+          anim.textContent = '*{animation:none !important;transition:none !important;scrollbar-width:none !important}\n*::-webkit-scrollbar{display:none !important}';
+          document.head.appendChild(anim);
+        }
+      } else {
+        h.style.width = b.style.width = '';
+        h.style.height = b.style.height = '';
+        h.style.maxWidth = b.style.maxWidth = '';
+        if (anim) anim.remove();
+      }
+      const nav = document.querySelector('[data-shot="nav"]');
+      if (nav) nav.style.position = width ? 'relative' : 'sticky';
+      document.querySelectorAll('[data-fixed]').forEach(el => { el.style.position = width ? 'absolute' : 'fixed'; });
+      const list = keep ? (Array.isArray(keep) ? keep : [keep]) : null;
+      document.querySelectorAll('[data-shot]').forEach(el => {
+        el.style.display = (!list || list.includes(el.dataset.shot)) ? '' : 'none';
+      });
+      window.scrollTo(0, 0);
+      self.setState({ mode: width ? (width <= 520 ? 'mobile' : 'desktop') : null });
+    };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+    document.removeEventListener('error', this._onImgErr, true);
+    clearTimeout(this._send);
+  }
+  componentDidUpdate() { this.applyAccent(); }
+
+  applyAccent() {
+    const a = this.props.accent ?? '#1C4FA0';
+    if (this._lastA === a) return;
+    this._lastA = a;
+    const r = document.documentElement;
+    r.style.setProperty('--vxA', a);
+    r.style.setProperty('--vxAsoft', a + '12');
+  }
+
+  goSection(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+  }
+
+  field(key) {
+    const err = !!this.state.errs[key];
+    return {
+      width: '100%', boxSizing: 'border-box', background: '#FFFFFF', borderRadius: '8px',
+      padding: '12px 14px', color: '#101C2C', fontSize: '14.5px', outline: 'none',
+      border: '1.5px solid ' + (err ? '#B83A3A' : '#C3CEDC')
+    };
+  }
+
+  renderVals() {
+    const st = this.state;
+    const A = 'var(--vxA,#1C4FA0)';
+    const isMobile = st.mode ? st.mode === 'mobile' : st.vw < 768;
+    const num = this.props.whatsappNumber ?? '593982204471';
+
+    const needOpts = this.NEEDS.map(n => {
+      const on = st.fNeed === n;
+      return {
+        label: n,
+        style: {
+          padding: '9px 14px', borderRadius: '999px', cursor: 'pointer', fontWeight: 600, fontSize: '12.5px',
+          transition: 'border-color .15s ease, background .15s ease', whiteSpace: 'nowrap',
+          border: '1.5px solid ' + (on ? A : '#C3CEDC'),
+          background: on ? 'var(--vxAsoft,rgba(28,79,160,.07))' : '#FFFFFF',
+          color: on ? '#16386B' : '#44546A'
+        },
+        pick: () => this.setState({ fNeed: n, done: false })
+      };
+    });
+
+    const waMsg = 'Hola Vértice 📊 Soy ' + (st.fName.trim() || '—') + (st.fCompany.trim() ? ' de ' + st.fCompany.trim() : '') + '.\n' +
+      'Necesito: ' + st.fNeed + (st.fMsg.trim() ? '\n' + st.fMsg.trim() : '') +
+      (st.fEmail.trim() ? '\nMi correo: ' + st.fEmail.trim() : '') +
+      (st.fPhone.trim() ? '\nMi teléfono: ' + st.fPhone.trim() : '');
+
+    const mailHref = 'mailto:hola@verticeconsultores.ec?subject=' + encodeURIComponent('Consulta — ' + st.fNeed) + '&body=' + encodeURIComponent(waMsg);
+
+    return {
+      showNavLinks: !isMobile,
+      navItems: this.NAV.map(n => ({ label: n.label, href: '#' + n.id, go: (e) => this.goSection(n.id, e) })),
+      goTop: (e) => { if (e && e.preventDefault) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      goContacto: (e) => this.goSection('contacto', e),
+      goServicios: (e) => this.goSection('servicios', e),
+      noopLink: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      year: new Date().getFullYear(),
+
+      fName: st.fName, fCompany: st.fCompany, fEmail: st.fEmail, fPhone: st.fPhone, fMsg: st.fMsg,
+      setFName: (e) => this.setState(s => ({ fName: e.target.value, errs: { ...s.errs, fName: false } })),
+      setFCompany: (e) => this.setState({ fCompany: e.target.value }),
+      setFEmail: (e) => this.setState(s => ({ fEmail: e.target.value, errs: { ...s.errs, fEmail: false } })),
+      setFPhone: (e) => this.setState({ fPhone: e.target.value }),
+      setFMsg: (e) => this.setState(s => ({ fMsg: e.target.value, errs: { ...s.errs, fMsg: false } })),
+      needOpts,
+      nameStyle: this.field('fName'), emailStyle: this.field('fEmail'), msgStyle: { ...this.field('fMsg'), minHeight: '96px', resize: 'vertical' },
+      errName: !!st.errs.fName, errEmail: !!st.errs.fEmail, errMsg: !!st.errs.fMsg,
+      emailErrText: st.errs.fEmail === 'format' ? 'Ese correo no parece válido — revisa el formato.' : 'Escribe tu correo para responderte.',
+      sending: st.sending,
+      formShown: !st.done && !st.sending,
+      doneShown: st.done,
+      submit: () => {
+        const s = this.state;
+        const errs = {};
+        if (!s.fName.trim()) errs.fName = true;
+        const em = s.fEmail.trim();
+        if (!em) errs.fEmail = true;
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) errs.fEmail = 'format';
+        if (!s.fMsg.trim()) errs.fMsg = true;
+        if (Object.keys(errs).length) { this.setState({ errs }); return; }
+        this.setState({ sending: true, errs: {} });
+        clearTimeout(this._send);
+        this._send = setTimeout(() => this.setState({ sending: false, done: true }), 800);
+      },
+      editForm: () => this.setState({ done: false }),
+      doneName: (st.fName.trim() || '').split(' ')[0],
+      waMsg,
+      waHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent(waMsg),
+      mailHref,
+      waFloatHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hola Vértice, quiero agendar un diagnóstico.'),
+      showFloat: this.props.mostrarWhatsapp ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -82,7 +82,7 @@ These ship as clearly-marked placeholders. Search the repo for `PENDING` and set
 |---|---|
 | Production domain | `astro.config.mjs` → `site` (drives canonical / hreflang / sitemap / OG URLs) |
 | WhatsApp number (E.164, no `+`) | `src/config/site.config.ts` → `whatsappNumber` |
-| Live demo URLs | `src/config/site.config.ts` → `demoUrls` (replace `#` — demo links render only when real) |
+| Live demo URLs | ✅ done — `src/config/site.config.ts` → `demoUrls` points at the 5 demos shipped from `public/demos/<slug>/` (previews in `public/works/`) |
 | Contact email | `src/config/site.config.ts` → `brand.email` |
 | Social handles | `src/config/site.config.ts` → `social` |
 | Employer roles / periods | `src/content/site.es.ts` + `site.en.ts` → `about.experience` |

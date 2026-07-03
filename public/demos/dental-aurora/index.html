@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Clínica Dental Aurora — Sonrisas tranquilas, tratos claros. Odontología moderna con precios cerrados por escrito.">
+<meta name="theme-color" content="#0E7490">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Clínica Dental Aurora — Sonrisas tranquilas, tratos claros">
+<meta property="og:description" content="Odontología moderna con precios cerrados por escrito, agenda en línea y cero salas de espera eternas.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://luisgxz.github.io/nexora/demos/dental-aurora/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23FFFFFF' width='32' height='32'/%3E%3Crect x='11' y='2' width='10' height='28' rx='3' fill='%230E7490'/%3E%3Crect x='2' y='11' width='28' height='10' rx='3' fill='%230E7490'/%3E%3C/svg%3E">
+<title>Clínica Dental Aurora — Sonrisas tranquilas, tratos claros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#FAFCFC;color:#17303B;font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.6}
+input,button,select,textarea{font:inherit}
+::selection{background:rgba(14,116,144,.18)}
+input::placeholder{color:rgba(23,48,59,.35)}
+:focus-visible{outline:2px solid #0E7490;outline-offset:2px}
+@keyframes auSpin{to{transform:rotate(360deg)}}
+@keyframes auFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ============ LAYOUT ============ */
+.container{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.container-small{max-width:860px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.section{border-bottom:1px solid #DFE9EC}
+.section-y{padding:clamp(56px,8vw,100px) clamp(18px,4vw,44px)}
+
+/* ============ NAV ============ */
+nav{position:sticky;top:0;z-index:50;background:rgba(250,252,252,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #DFE9EC}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px);height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#17303B}
+.logo-cross{position:relative;width:20px;height:20px;flex:none;display:block}
+.logo-cross span{position:absolute;background:#0E7490;border-radius:3px}
+.logo-cross span:first-child{left:7px;top:0;width:6px;height:20px}
+.logo-cross span:last-child{left:0;top:7px;width:20px;height:6px}
+.logo-text span{display:block;line-height:1}
+.logo-text span:first-child{font-weight:700;font-size:19px;letter-spacing:-.01em}
+.logo-text span:last-child{font-weight:700;font-size:8.5px;letter-spacing:.22em;color:#7E97A1;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{color:#4E6B77;text-decoration:none;font-size:13.5px;font-weight:500;transition:color .15s ease}
+.nav-links a:hover{color:#0E7490}
+.nav-cta{background:#0E7490;color:#F2FAFB;text-decoration:none;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(14,116,144,.45);transition:filter .15s ease;cursor:pointer;border:none}
+.nav-cta:hover{filter:brightness(1.08)}
+@media(max-width:767px){.nav-links{display:none}}
+
+/* ============ HERO ============ */
+.hero{border-bottom:1px solid #DFE9EC;background:linear-gradient(180deg,#F1F7F8 0%,#FAFCFC 100%)}
+.hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:clamp(30px,5vw,60px);align-items:center}
+.hero-col{padding:clamp(44px,7vw,88px) clamp(18px,4vw,44px)}
+.location-chip{display:inline-flex;align-items:center;gap:8px;background:#DDF1EC;border-radius:999px;padding:7px 14px;margin:0 0 18px}
+.location-chip span:first-child{width:7px;height:7px;border-radius:50%;background:#159580;flex:none}
+.location-chip span:last-child{font-weight:700;font-size:11px;letter-spacing:.14em;color:#0F5E52}
+h1{font-weight:700;font-size:clamp(38px,5.8vw,64px);line-height:1.06;letter-spacing:-.015em;margin:0 0 16px}
+h1 span{color:#0E7490}
+.subtext{color:#4E6B77;font-size:clamp(15px,1.6vw,16.5px);line-height:1.7;margin:0 0 26px;max-width:50ch}
+.cta-group{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 28px}
+.cta-primary{background:#0E7490;color:#F2FAFB;text-decoration:none;font-weight:700;font-size:15px;padding:14px 26px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(14,116,144,.45);display:inline-block;border:none;cursor:pointer;transition:filter .15s ease,transform .15s ease}
+.cta-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.cta-secondary{border:1px solid #C4D6DC;color:#17303B;text-decoration:none;font-weight:700;font-size:15px;padding:14px 26px;border-radius:10px;white-space:nowrap;background:#FFFFFF;display:inline-block;transition:border-color .15s ease,color .15s ease;cursor:pointer}
+.cta-secondary:hover{border-color:#0E7490;color:#0E7490}
+.stats{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,40px)}
+.stat{min-width:120px}
+.stat-num{font-weight:700;font-size:26px;letter-spacing:-.01em}
+.stat-num .star{color:#0E7490}
+.stat-label{color:#7E97A1;font-size:12.5px;margin-top:2px}
+.hero-img-wrapper{position:relative}
+.hero-img{width:100%;aspect-ratio:4/3.4;object-fit:cover;border-radius:18px;display:block;background:#E3F1F6;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 24px 48px -24px rgba(23,48,59,.25)}
+.badge{position:absolute;left:14px;bottom:14px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px -18px rgba(23,48,59,.3)}
+.badge-icon{width:34px;height:34px;border-radius:50%;background:#DDF1EC;display:flex;align-items:center;justify-content:center;color:#0F5E52;font-weight:700;font-size:15px;flex:none}
+.badge-text span{display:block;line-height:1.3}
+.badge-text span:first-child{font-weight:700;font-size:13px}
+.badge-text span:last-child{color:#7E97A1;font-size:11.5px;margin-top:2px}
+
+/* ============ SECTIONS ============ */
+h2{font-weight:700;font-size:clamp(30px,4.4vw,44px);line-height:1.1;letter-spacing:-.015em;margin:0 0 10px}
+h3{font-weight:700;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em;margin:0 0 16px}
+.eyebrow{font-weight:700;font-size:11px;letter-spacing:.18em;color:#0E7490;margin:0 0 10px}
+.section-header{text-align:center;margin:0 0 26px}
+.section-header .eyebrow{margin:0 0 10px}
+.section-sub{color:#4E6B77;font-size:15px;line-height:1.7;max-width:56ch}
+
+/* ============ CARDS GRID ============ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.card{background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;padding:22px 20px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 10px 30px -22px rgba(23,48,59,.25);transition:transform .15s ease,border-color .15s ease}
+.card:hover{transform:translateY(-2px);border-color:rgba(14,116,144,.35)}
+.card-icon{width:38px;height:38px;border-radius:12px;background:#DDF1EC;display:flex;align-items:center;justify-content:center}
+.card-icon span{width:12px;height:12px;border-radius:50%;background:#0E7490}
+.card-title{font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+.card-desc{margin:0;color:#4E6B77;font-size:13.5px;line-height:1.6;flex:1}
+.card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #EAF3F5;padding-top:12px}
+.card-duration{font-size:12px;font-weight:700;color:#7E97A1;background:#F1F7F8;border-radius:999px;padding:5px 10px}
+.card-price{font-weight:700;font-size:20px;color:#0E7490}
+.card-link{color:#0E7490;text-decoration:none;font-weight:700;font-size:13px;transition:text-decoration .15s ease;cursor:pointer}
+.card-link:hover{text-decoration:underline}
+
+/* ============ DOCTOR SECTION ============ */
+.doctor-section{border-bottom:1px solid #DFE9EC;background:#F1F7F8}
+.doctor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(28px,5vw,56px);align-items:center}
+.doctor-img{width:100%;aspect-ratio:4/4.6;object-fit:cover;object-position:top;border-radius:18px;display:block;background:#E3F1F6;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 24px 48px -24px rgba(23,48,59,.22)}
+.doctor-content h2{margin:0 0 16px}
+.doctor-quote{color:#2E4A56;margin:0 0 22px;font-style:italic}
+.creds{display:grid;gap:10px;margin:0 0 24px}
+.cred{display:flex;align-items:center;gap:12px;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:12px;padding:12px 16px}
+.cred-dot{width:8px;height:8px;border-radius:50%;background:#0E7490;flex:none}
+.cred-text{font-size:14px;color:#17303B}
+.cred-text strong{font-weight:700}
+
+/* ============ WIZARD ============ */
+.wizard-card{background:#FFFFFF;border:1px solid #DFE9EC;border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(23,48,59,.04), 0 14px 40px -28px rgba(23,48,59,.3)}
+.wizard-steps{display:flex;flex-wrap:wrap;gap:4px;padding:12px 14px;border-bottom:1px solid #EAF3F5;background:#FAFCFC}
+.step-btn{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:12.5px;font-weight:700;white-space:nowrap;background:transparent;border:1.5px solid transparent;color:#B9CBD2;cursor:default;transition:border-color .15s ease}
+.step-btn.active{border-color:#0E7490;background:rgba(14,116,144,.08);color:#17303B}
+.step-btn.passed{color:#4E6B77}
+.step-btn.can-click{cursor:pointer}
+.step-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none;background:#DFE9EC;color:#7E97A1}
+.step-btn.active .step-num,.step-btn.passed .step-num{background:#0E7490;color:#F2FAFB}
+
+.wizard-content{padding:clamp(18px,3.5vw,32px);min-height:360px;box-sizing:border-box}
+.wizard-section{animation:auFade .28s ease}
+
+.service-rows{display:grid;gap:10px}
+.service-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 16px;border-radius:12px;cursor:pointer;width:100%;text-align:left;transition:border-color .15s ease,background .15s ease;border:1.5px solid #DFE9EC;background:#FFFFFF;color:#17303B}
+.service-row:hover{border-color:#0E7490}
+.service-row.selected{border-color:#0E7490;background:rgba(14,116,144,.08)}
+.service-info span{display:block}
+.service-info span:first-child{font-weight:700;font-size:15px;color:#17303B}
+.service-info span:last-child{color:#7E97A1;font-size:12.5px;margin-top:2px}
+.service-details{display:flex;align-items:center;gap:12px;flex:none}
+
+.day-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px}
+.day-chip{flex:0 0 auto;min-width:74px;padding:10px 8px 9px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;opacity:1;transition:border-color .15s ease;border:1.5px solid #DFE9EC;background:#FFFFFF;color:#17303B;font-size:13px}
+.day-chip.closed{opacity:.4;cursor:not-allowed}
+.day-chip:hover:not(.closed){border-color:#0E7490}
+.day-chip.selected{border-color:#0E7490;background:rgba(14,116,144,.08)}
+.day-chip-wd{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#7E97A1}
+.day-chip-num{font-weight:700;font-size:21px;line-height:1.1}
+.day-chip-mo{font-size:9px;font-weight:700;letter-spacing:.08em;color:#7E97A1}
+.day-chip-tag{font-size:8px;font-weight:700;letter-spacing:.08em;color:#C08A2D;margin-top:2px}
+
+.slots-area{min-height:170px;margin-top:12px}
+.slots-empty{border:1.5px dashed #CFE0E5;border-radius:12px;padding:32px 20px;text-align:center;font-size:13px;font-weight:500;color:#7E97A1}
+.slots-loading{border:1.5px dashed #CFE0E5;border-radius:12px;padding:32px 20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.spinner{width:22px;height:22px;border:2.5px solid #DFE9EC;border-top-color:#0E7490;border-radius:50%;animation:auSpin .7s linear infinite}
+.slots-full{border:1.5px solid rgba(192,138,45,.4);background:rgba(192,138,45,.06);border-radius:12px;padding:28px 20px;text-align:center;animation:auFade .28s ease}
+.slots-full h4{font-weight:700;font-size:18px;color:#8A6420;margin:0 0 6px}
+.slots-full p{margin:0 0 16px;color:#4E6B77;font-size:13.5px;line-height:1.6}
+.slots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;animation:auFade .28s ease}
+.slot-btn{padding:12px 6px;border-radius:10px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .15s ease,background .15s ease;border:1.5px solid #DFE9EC;background:#FFFFFF;color:#17303B;display:block;width:100%}
+.slot-btn:hover:not(:disabled){border-color:#0E7490}
+.slot-btn.selected{border-color:#0E7490;background:#0E7490;color:#F2FAFB;font-weight:700}
+.slot-btn:disabled{cursor:not-allowed;color:#B9CBD2;text-decoration:line-through}
+.slots-note{font-size:11.5px;color:#7E97A1;margin-top:12px}
+
+.step2-header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 4px}
+.change-link{background:none;border:none;padding:0;cursor:pointer;font-weight:700;font-size:12.5px;color:#0E7490;white-space:nowrap;transition:text-decoration .15s ease}
+.change-link:hover{text-decoration:underline}
+.service-line{margin:0 0 16px;color:#7E97A1;font-size:13px}
+
+.summary{background:#F1F7F8;border:1px solid #DFE9EC;border-radius:12px;padding:14px 18px;margin:0 0 16px}
+.summary-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px dashed #CFE0E5}
+.summary-row:last-child{border-bottom:none}
+.summary-key{font-size:12px;font-weight:700;color:#7E97A1;flex:none}
+.summary-val{font-size:14px;font-weight:700;text-align:right}
+
+.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:0 0 12px}
+.form-label{display:block;font-size:12px;font-weight:700;color:#4E6B77;margin:0 0 6px}
+.form-input{width:100%;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #C4D6DC;border-radius:10px;padding:13px 14px;color:#17303B;font-size:15px;outline:none;transition:border-color .15s ease}
+.form-input:focus{border-color:#0E7490}
+.form-input.error{border-color:#C2453A}
+
+.checkbox{display:flex;align-items:center;gap:10px;background:none;border:none;padding:0;cursor:pointer;margin:0 0 6px}
+.checkbox-box{width:22px;height:22px;border-radius:7px;flex:none;cursor:pointer;border:1.5px solid #C4D6DC;background:#FFFFFF;color:#F2FAFB;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:border-color .15s ease,background .15s ease}
+.checkbox.checked .checkbox-box{border-color:#0E7490;background:#0E7490}
+.checkbox-label{font-size:14px;color:#17303B}
+
+.error-msg{font-size:12.5px;font-weight:700;color:#C2453A;margin:8px 0 0}
+
+.success-content{animation:auFade .3s ease;text-align:center;padding:8px 0}
+.success-icon{width:58px;height:58px;border-radius:50%;background:#DDF1EC;color:#0F5E52;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:4px auto 14px;flex:none}
+.success-title{font-weight:700;font-size:clamp(22px,3.4vw,28px);letter-spacing:-.01em;margin:0 0 8px}
+.success-subtitle{color:#4E6B77;font-size:14px;line-height:1.65;margin:0 auto 16px;max-width:44ch}
+.msg-preview{background:#F1F7F8;border:1.5px dashed #C4D6DC;border-radius:12px;padding:14px 16px;margin:0 0 16px;text-align:left;font-size:13px;line-height:1.8;color:#2E4A56;white-space:pre-wrap;font-family:'DM Sans',monospace}
+.success-buttons{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.wa-btn{background:#1FAE55;color:#08240F;text-decoration:none;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap;display:inline-block;transition:filter .15s ease;cursor:pointer;border:none}
+.wa-btn:hover{filter:brightness(1.08)}
+.secondary-btn{background:none;border:1.5px solid #C4D6DC;color:#17303B;cursor:pointer;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap;transition:border-color .15s ease,color .15s ease}
+.secondary-btn:hover{border-color:#0E7490;color:#0E7490}
+
+/* ============ TESTIMONIOS ============ */
+.testimonios{border-bottom:1px solid #DFE9EC;background:#F1F7F8}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.testi-card{background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(23,48,59,.04)}
+.testi-stars{color:#E9A93D;font-size:15px;letter-spacing:2px}
+.testi-quote{margin:0;color:#2E4A56;font-size:14.5px;line-height:1.7;flex:1}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#E3F1F6;flex:none}
+.testi-name{font-weight:700;font-size:13.5px}
+.testi-role{color:#7E97A1;font-size:12px}
+
+/* ============ FAQ ============ */
+.faq{border-bottom:1px solid #DFE9EC}
+.faq-list{display:grid;gap:10px}
+.faq-item{background:#FFFFFF;border:1px solid #DFE9EC;border-radius:14px;overflow:hidden}
+.faq-btn{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;background:none;border:none;cursor:pointer;font-weight:700;font-size:15px;color:#17303B;transition:background .15s ease}
+.faq-btn:hover{background:#F9FAFB}
+.faq-chev{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:15px;background:#EAF3F5;color:#4E6B77;transition:background .15s ease,color .15s ease}
+.faq-btn.open .faq-chev{background:#0E7490;color:#F2FAFB}
+.faq-answer{margin:0;padding:0 18px 16px;color:#4E6B77;font-size:14px;line-height:1.7;animation:auFade .22s ease;display:none}
+.faq-answer.show{display:block}
+.faq-link{color:#0E7490;font-weight:700;text-decoration:none}
+.faq-link:hover{text-decoration:underline}
+.faq-footer{margin:18px 0 0;text-align:center;font-size:13px;color:#7E97A1}
+
+/* ============ UBICACIÓN ============ */
+.ubicacion{border-bottom:1px solid #DFE9EC;background:#F1F7F8}
+.ubicacion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;align-items:stretch}
+.ubicacion-card{background:#FFFFFF;border:1px solid #DFE9EC;border-radius:16px;padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:20px;box-shadow:0 1px 2px rgba(23,48,59,.04)}
+.card-section{display:block}
+.card-label{font-size:12px;font-weight:700;color:#7E97A1;margin:0 0 8px;letter-spacing:.1em}
+.card-title-small{font-size:16px;font-weight:700;line-height:1.5;margin:0}
+.card-ref{color:#7E97A1;font-size:13px;margin-top:6px}
+.hours-list{font-size:13.5px;line-height:2;color:#C6DCE2}
+.hours-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed #CFE0E5;color:#4E6B77;font-size:14px}
+.hours-row.today{color:#17303B;font-weight:700}
+.hours-badge{font-size:9px;font-weight:700;letter-spacing:.1em;color:#0E7490;margin-left:4px}
+.contact-num{font-size:15px;font-weight:700;margin:0}
+.contact-email{color:#4E6B77;font-size:13.5px;margin-top:2px}
+.ubicacion-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.maps-link{border:1.5px solid #C4D6DC;color:#17303B;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 20px;border-radius:10px;white-space:nowrap;background:#FFFFFF;display:inline-block;transition:border-color .15s ease,color .15s ease}
+.maps-link:hover{border-color:#0E7490;color:#0E7490}
+
+.mapa{position:relative;min-height:320px;border:1px solid #DFE9EC;border-radius:16px;display:block;overflow:hidden;background:linear-gradient(0deg,transparent 0 48%,rgba(23,48,59,.07) 48% 51%,transparent 51%),linear-gradient(90deg,transparent 0 34%,rgba(23,48,59,.06) 34% 36.4%,transparent 36.4%),linear-gradient(58deg,transparent 0 58%,rgba(14,116,144,.1) 58% 60%,transparent 60%),repeating-linear-gradient(0deg,rgba(23,48,59,.025) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(23,48,59,.025) 0 1px,transparent 1px 34px),#EAF3F5;text-decoration:none;color:#17303B}
+.mapa-pin{position:absolute;top:48.5%;left:35%;width:16px;height:16px;border-radius:50%;background:#0E7490;border:3px solid #FFFFFF;box-shadow:0 0 0 8px rgba(14,116,144,.12)}
+.mapa-label{position:absolute;top:calc(48.5% + 26px);left:35%;transform:translateX(-40%);font-size:11px;font-weight:700;color:#17303B;background:#FFFFFF;border:1px solid #DFE9EC;border-radius:8px;padding:5px 10px;white-space:nowrap;box-shadow:0 6px 18px -10px rgba(23,48,59,.3)}
+.mapa-note{position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:700;color:#7E97A1;letter-spacing:.08em}
+.mapa-cta{position:absolute;bottom:12px;right:14px;font-size:11px;font-weight:700;color:#0E7490;letter-spacing:.08em}
+
+/* ============ FOOTER ============ */
+footer{background:#123A47;color:#DCEDF1;border-top:1px solid #0E7490}
+.footer-inner{max-width:1120px;margin:0 auto;padding:clamp(40px,6vw,64px) clamp(18px,4vw,44px) 28px}
+.footer-grid{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);justify-content:space-between;margin:0 0 36px}
+.footer-col{max-width:280px}
+.footer-brand{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.footer-cross{position:relative;width:18px;height:18px;flex:none;display:block}
+.footer-cross span{position:absolute;background:#7FD1C0;border-radius:3px}
+.footer-cross span:first-child{left:6px;top:0;width:6px;height:18px}
+.footer-cross span:last-child{left:0;top:6px;width:18px;height:6px}
+.footer-title{font-weight:700;font-size:19px;color:#F2FAFB}
+.footer-subtitle{font-size:10px;letter-spacing:.18em;color:#9DBEC7;font-weight:700}
+.footer-tagline{margin:0;color:#9DBEC7;font-size:13px;line-height:1.7}
+.footer-heading{font-size:11px;font-weight:700;letter-spacing:.16em;color:#7FA6B1;margin:0 0 12px}
+.footer-text{color:#C6DCE2;font-size:13.5px;line-height:2}
+.footer-link{color:#C6DCE2;text-decoration:none;font-size:13.5px;transition:color .15s ease;display:flex;flex-direction:column;gap:8px}
+.footer-link a{color:#C6DCE2;text-decoration:none;transition:color .15s ease}
+.footer-link a:hover{color:#7FD1C0}
+.footer-legal{border-top:1px solid rgba(220,237,241,.15);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:11px;color:#7FA6B1}
+.footer-link-nexora{color:#7FD1C0;text-decoration:none}
+.footer-link-nexora:hover{text-decoration:underline}
+
+/* ============ FLOATING WA ============ */
+.float-wa{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#1FAE55;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(18,58,71,.35);transition:transform .15s ease;font-weight:700;font-size:16px;color:#08240F}
+.float-wa:hover{transform:scale(1.07)}
+
+/* ============ IMAGE FALLBACK ============ */
+img.error{display:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:767px){
+  .hero-grid{grid-template-columns:1fr}
+  .doctor-grid{grid-template-columns:1fr}
+  .ubicacion-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#inicio" class="logo" id="navLogo">
+      <span class="logo-cross"><span></span><span></span></span>
+      <span class="logo-text"><span>Aurora</span><span>CLÍNICA DENTAL</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#especialidades">Especialidades</a>
+      <a href="#doctora">Doctora</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#ubicacion">Contacto</a>
+    </div>
+    <button class="nav-cta" id="navCta">Agendar cita</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="inicio" class="hero section">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-col">
+        <div class="location-chip">
+          <span></span>
+          <span>KENNEDY NORTE · GUAYAQUIL</span>
+        </div>
+        <h1>Tu sonrisa, sin miedo<br>y <span>sin letra pequeña.</span></h1>
+        <p class="subtext">Odontología moderna con precios cerrados por escrito, agenda en línea y cero salas de espera eternas.</p>
+        <div class="cta-group">
+          <button class="cta-primary" id="heroCita">Agendar cita</button>
+          <a href="#especialidades" class="cta-secondary">Ver especialidades</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num">11 años</div>
+            <div class="stat-label">de práctica clínica</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">+2.400</div>
+            <div class="stat-label">pacientes atendidos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">4.9<span class="star">★</span></div>
+            <div class="stat-label">280+ reseñas</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Consultorio de Clínica Dental Aurora" class="hero-img" crossorigin="anonymous">
+        <div class="badge">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">
+            <span>Precios cerrados por escrito</span>
+            <span>Sin sorpresas en la factura</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESPECIALIDADES ============ -->
+<section id="especialidades" class="section section-y">
+  <div class="container">
+    <p class="eyebrow">ESPECIALIDADES</p>
+    <h2>Lo que hacemos, con precio claro</h2>
+    <p class="section-sub">Cada tratamiento arranca con una valoración y un plan por escrito. El precio que firmas es el precio que pagas.</p>
+    <div class="cards-grid" id="srvCards"></div>
+  </div>
+</section>
+
+<!-- ============ DOCTORA ============ -->
+<section id="doctora" class="doctor-section section section-y">
+  <div class="container">
+    <div class="doctor-grid">
+      <div style="position:relative">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80" alt="Dra. Valeria Herrera" class="doctor-img" crossorigin="anonymous">
+        <div class="badge">
+          <span class="badge-text">
+            <span>Dra. Valeria Herrera</span>
+            <span>Odontóloga · Rehabilitación Oral</span>
+          </span>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">LA DOCTORA</p>
+        <h2>"Te explico todo antes de tocar nada."</h2>
+        <p class="doctor-quote">Mi consulta funciona con una regla: diagnóstico con cámara intraoral, plan por escrito y precios cerrados. Sin sorpresas en la factura ni en la silla.</p>
+        <div class="creds">
+          <div class="cred">
+            <span class="cred-dot"></span>
+            <span class="cred-text"><strong>Odontóloga</strong> — Universidad Católica de Santiago de Guayaquil</span>
+          </div>
+          <div class="cred">
+            <span class="cred-dot"></span>
+            <span class="cred-text"><strong>Especialista en Rehabilitación Oral</strong> — USFQ, Quito</span>
+          </div>
+          <div class="cred">
+            <span class="cred-dot"></span>
+            <span class="cred-text"><strong>Miembro activo</strong> — Sociedad Ecuatoriana de Odontología</span>
+          </div>
+        </div>
+        <button class="cta-primary" id="doctorCita">Agendar con la doctora</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CITAS ============ -->
+<section id="citas" class="section section-y">
+  <div class="container-small">
+    <div class="section-header">
+      <p class="eyebrow">AGENDA EN LÍNEA</p>
+      <h2>Tu cita en tres pasos</h2>
+      <p class="section-sub">Elige, confirma y el mensaje queda listo en WhatsApp. La confirmación no genera ningún cobro.</p>
+    </div>
+    <div class="wizard-card">
+      <div class="wizard-steps" id="stepChips"></div>
+      <div class="wizard-content" id="wizardContent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section id="testimonios" class="testimonios section section-y">
+  <div class="container">
+    <p class="eyebrow">TESTIMONIOS</p>
+    <h2>Pacientes que volvieron sonriendo</h2>
+    <div class="testi-grid" id="testiCards"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="faq section section-y">
+  <div class="container-small">
+    <div class="section-header">
+      <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+      <h2>Lo que todos preguntan</h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+    <p class="faq-footer">¿Otra duda? <a href="#" id="faqWaLink" class="faq-link">Escríbenos por WhatsApp</a> — respondemos en horario de consulta.</p>
+  </div>
+</section>
+
+<!-- ============ UBICACIÓN ============ -->
+<section id="ubicacion" class="ubicacion section section-y">
+  <div class="container">
+    <p class="eyebrow">UBICACIÓN Y HORARIO</p>
+    <h2>Frente al Mall del Sol</h2>
+    <div class="ubicacion-grid">
+      <div class="ubicacion-card">
+        <div class="card-section">
+          <div class="card-label">DIRECCIÓN</div>
+          <div class="card-title-small">Edificio Medical Plaza, piso 3, consultorio 304<br>Av. Joaquín Orrantia y Leopoldo Benítez</div>
+          <div class="card-ref">Kennedy Norte, Guayaquil · Parqueo del edificio con validación.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">HORARIO</div>
+          <div id="hoursRows"></div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">CONTACTO</div>
+          <div class="contact-num">+593 96 512 8834</div>
+          <div class="contact-email">citas@clinicaaurora.ec</div>
+        </div>
+        <div class="ubicacion-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=Av.+Joaquin+Orrantia+Kennedy+Norte+Guayaquil" target="_blank" rel="noopener" class="maps-link">Cómo llegar ↗</a>
+          <a href="#" id="contactWaBtn" class="wa-btn">Escribir por WhatsApp</a>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Joaquin+Orrantia+Kennedy+Norte+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" class="mapa">
+        <span class="mapa-pin"></span>
+        <span class="mapa-label">Clínica Aurora · piso 3</span>
+        <span class="mapa-note">MAPA · KENNEDY NORTE</span>
+        <span class="mapa-cta">ABRIR EN GOOGLE MAPS ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="footer-cross"><span></span><span></span></span>
+          <span><span class="footer-title">Aurora</span> <span class="footer-subtitle">CLÍNICA DENTAL</span></span>
+        </div>
+        <p class="footer-tagline">Sonrisas tranquilas, tratos claros. Precios cerrados por escrito desde la primera consulta.</p>
+      </div>
+      <div>
+        <div class="footer-heading">HORARIO</div>
+        <div class="footer-text">Lun – Vie · 09:00 – 18:00<br>Sábado · 09:00 – 13:00<br>Domingo · Cerrado</div>
+      </div>
+      <div>
+        <div class="footer-heading">CONTACTO</div>
+        <div class="footer-text">+593 96 512 8834<br>citas@clinicaaurora.ec<br>Medical Plaza, piso 3 · Kennedy Norte</div>
+      </div>
+      <div>
+        <div class="footer-heading">SÍGUENOS</div>
+        <div class="footer-link">
+          <a href="https://www.instagram.com/clinicadental.aurora" target="_blank" rel="noopener">Instagram · @clinicadental.aurora</a>
+          <a href="https://www.tiktok.com/@dra.valeriaherrera" target="_blank" rel="noopener">TikTok · @dra.valeriaherrera</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© <span id="footerYear"></span> Clínica Dental Aurora — clínica y datos ficticios · Este sitio demo no ofrece consejo médico.</span>
+      <span>Sitio demo · diseñado por <a href="https://luisgxz.github.io/nexora/" target="_blank" rel="noopener" class="footer-link-nexora">Nexora Studio</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WA ============ -->
+<a href="#" id="floatWa" class="float-wa" aria-label="Escríbenos por WhatsApp">WA</a>
+
+<script>
+// ============ STATE & CONFIG ============
+const STATE = {
+  whatsappNumber: '593965128834',
+  accent: '#0E7490',
+  step: 1,
+  service: null,
+  day: null,
+  time: null,
+  name: '',
+  phone: '',
+  firstVisit: false,
+  done: false,
+  slotsLoading: false,
+  nameError: false,
+  faqOpen: 0,
+  vw: typeof window !== 'undefined' ? window.innerWidth : 1200
+};
+
+const SERVICES = [
+  { id: 'limpieza', name: 'Limpieza & prevención', desc: 'Profilaxis, flúor y revisión con cámara intraoral.', min: 40, price: '$35' },
+  { id: 'blanqueamiento', name: 'Blanqueamiento LED', desc: 'Hasta 3 tonos en una sesión, sensibilidad controlada.', min: 60, price: '$120' },
+  { id: 'ortodoncia', name: 'Valoración de ortodoncia', desc: 'Plan por escrito: brackets o alineadores.', min: 30, price: '$25' },
+  { id: 'implantes', name: 'Valoración de implante', desc: 'Estudio 3D y plan de rehabilitación.', min: 30, price: 'Gratis' }
+];
+
+const TIMES_WEEK = ['09:00', '09:45', '10:30', '11:15', '12:00', '14:00', '14:45', '15:30', '16:15', '17:00', '17:45'];
+const TIMES_SAT = ['09:00', '09:45', '10:30', '11:15', '12:00'];
+
+const FAQS = [
+  { q: '¿Atienden urgencias?', a: 'Sí. Guardamos dos espacios diarios para urgencias. Escríbenos por WhatsApp y te decimos la hora exacta del mismo día.' },
+  { q: '¿Qué formas de pago aceptan?', a: 'Efectivo, transferencia y tarjetas de crédito (diferido hasta 12 meses sin interés con bancos aliados).' },
+  { q: '¿Qué incluye la primera valoración?', a: 'Revisión completa, fotos intraorales y un plan de tratamiento por escrito con precios cerrados. Te lo llevas impreso o por correo.' },
+  { q: '¿Trabajan con seguros?', a: 'Emitimos factura y el detalle clínico que tu aseguradora pide para el reembolso. Te ayudamos con el formulario.' },
+  { q: '¿Hacen ortodoncia en adultos?', a: 'Sí — el 40% de nuestros pacientes de ortodoncia son mayores de 30. Nunca es tarde para alinear.' }
+];
+
+const TESTIMONIOS = [
+  { name: 'María Fernanda O.', role: 'Limpieza & prevención', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80', quote: 'Le tenía pánico al dentista. La doctora me explicó cada paso y no sentí nada. Volví con mis dos hijos.' },
+  { name: 'José Luis P.', role: 'Implante dental', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80', quote: 'Cotizé en tres lugares. Aurora fue la única con precio cerrado por escrito. Cero sorpresas al pagar.' },
+  { name: 'Andrea T.', role: 'Ortodoncia', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80', quote: 'Los brackets me los pusieron en la fecha que dijeron y el pago mensual nunca cambió. Eso vale oro.' }
+];
+
+// ============ UTILITIES ============
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 72;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+function getDays() {
+  const WD = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const MO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const out = [];
+  const now = new Date();
+  let open = 0;
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    const wd = d.getDay();
+    const closed = wd === 0;
+    let full = false;
+    if (!closed) { open++; if (open === 3) full = true; }
+    out.push({
+      i, key: d.toDateString(), wd: WD[wd], num: d.getDate(), mo: MO[d.getMonth()],
+      closed, full, sat: wd === 6, today: i === 0,
+      label: (i === 0 ? 'Hoy' : WD[wd]) + ' ' + d.getDate() + ' ' + MO[d.getMonth()]
+    });
+  }
+  return out;
+}
+
+function getSlots(day) {
+  if (!day || day.closed || day.full) return [];
+  const times = day.sat ? TIMES_SAT : TIMES_WEEK;
+  const now = new Date();
+  const cutoff = String(now.getHours() + 1).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+  return times.map((t, i) => {
+    let busy = ((i * 7 + day.num * 3 + day.i * 5) % 10) < 3;
+    if (day.today && t <= cutoff) busy = true;
+    return { t, busy };
+  });
+}
+
+function render() {
+  renderServices();
+  renderTestimonios();
+  renderFaq();
+  renderWizard();
+  renderHours();
+  updateWaLinks();
+}
+
+function renderServices() {
+  const html = SERVICES.map(s => `
+    <div class="card">
+      <div class="card-icon"><span></span></div>
+      <div class="card-title">${s.name}</div>
+      <p class="card-desc">${s.desc}</p>
+      <div class="card-footer">
+        <span class="card-duration">${s.min} min</span>
+        <span class="card-price">${s.price}</span>
+      </div>
+      <button class="card-link" onclick="selectService('${s.id}')">Agendar este servicio →</button>
+    </div>
+  `).join('');
+  document.getElementById('srvCards').innerHTML = html;
+}
+
+function renderTestimonios() {
+  const html = TESTIMONIOS.map(t => `
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"${t.quote}"</p>
+      <div class="testi-author">
+        <img src="${t.img}" alt="${t.name}" class="testi-avatar" crossorigin="anonymous">
+        <span>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-role">${t.role}</div>
+        </span>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('testiCards').innerHTML = html;
+}
+
+function renderFaq() {
+  const html = FAQS.map((f, i) => `
+    <div class="faq-item">
+      <button class="faq-btn ${STATE.faqOpen === i ? 'open' : ''}" onclick="toggleFaq(${i})" aria-expanded="${STATE.faqOpen === i}">
+        <span>${f.q}</span>
+        <span class="faq-chev">${STATE.faqOpen === i ? '−' : '+'}</span>
+      </button>
+      ${STATE.faqOpen === i ? `<p class="faq-answer show">${f.a}</p>` : ''}
+    </div>
+  `).join('');
+  document.getElementById('faqList').innerHTML = html;
+}
+
+function renderHours() {
+  const wd = new Date().getDay();
+  const rows = [
+    { d: 'Lunes – Viernes', h: '09:00 – 18:00', today: wd >= 1 && wd <= 5 },
+    { d: 'Sábado', h: '09:00 – 13:00', today: wd === 6 },
+    { d: 'Domingo', h: 'Cerrado', today: wd === 0 }
+  ];
+  const html = rows.map(r => `
+    <div class="hours-row ${r.today ? 'today' : ''}">
+      <span>${r.d} ${r.today ? '<span class="hours-badge">HOY</span>' : ''}</span>
+      <span>${r.h}</span>
+    </div>
+  `).join('');
+  document.getElementById('hoursRows').innerHTML = html;
+}
+
+function renderWizard() {
+  const canGo = (n) => n === 1 || (n === 2 && STATE.service) || (n === 3 && STATE.service && STATE.day && STATE.time);
+
+  // Step chips
+  const steps = [
+    { n: 1, label: 'Servicio' },
+    { n: 2, label: 'Día y hora' },
+    { n: 3, label: 'Confirmar' }
+  ];
+
+  const stepsHtml = steps.map(s => {
+    const active = STATE.step === s.n && !STATE.done;
+    const passed = STATE.step > s.n || STATE.done;
+    const able = canGo(s.n);
+    return `
+      <button class="step-btn ${active ? 'active' : ''} ${passed ? 'passed' : ''} ${able ? 'can-click' : ''}" onclick="goStep(${s.n})">
+        <span class="step-num">${s.n}</span>
+        ${s.label}
+      </button>
+    `;
+  }).join('');
+  document.getElementById('stepChips').innerHTML = stepsHtml;
+
+  // Content
+  let content = '';
+
+  if (STATE.step === 1 && !STATE.done) {
+    content = `
+      <div class="wizard-section">
+        <h3>¿Qué necesitas?</h3>
+        <div class="service-rows">
+          ${SERVICES.map(s => `
+            <button class="service-row ${STATE.service?.id === s.id ? 'selected' : ''}" onclick="selectService('${s.id}')">
+              <span class="service-info">
+                <span>${s.name}</span>
+                <span>${s.desc}</span>
+              </span>
+              <span class="service-details">
+                <span class="card-duration">${s.min} min</span>
+                <span class="card-price">${s.price}</span>
+              </span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  if (STATE.step === 2 && !STATE.done) {
+    const days = getDays();
+    const srvLine = STATE.service ? STATE.service.name : '';
+    const daysHtml = days.map(d => `
+      <button class="day-chip ${d.closed ? 'closed' : ''} ${STATE.day?.key === d.key ? 'selected' : ''}" onclick="pickDay('${d.key}')" ${d.closed ? 'disabled' : ''}>
+        <span class="day-chip-wd">${(d.today ? 'HOY' : d.wd).toUpperCase()}</span>
+        <span class="day-chip-num">${d.num}</span>
+        <span class="day-chip-mo">${d.mo.toUpperCase()}</span>
+        ${d.closed || d.full ? `<span class="day-chip-tag">${d.closed ? 'CERRADO' : 'LLENA'}</span>` : ''}
+      </button>
+    `).join('');
+
+    const slots = STATE.day ? getSlots(STATE.day) : [];
+    let slotsArea = '';
+
+    if (!STATE.day && !STATE.slotsLoading) {
+      slotsArea = `<div class="slots-empty">Elige un día para ver los horarios disponibles</div>`;
+    } else if (STATE.slotsLoading) {
+      slotsArea = `<div class="slots-loading"><span class="spinner"></span><span>Buscando horarios…</span></div>`;
+    } else if (STATE.day?.full) {
+      const nextDay = days.find(d => d.i > STATE.day.i && !d.closed && !d.full);
+      slotsArea = `
+        <div class="slots-full">
+          <h4>Agenda llena ese día</h4>
+          <p>Guardamos dos espacios diarios para urgencias — si es urgente, escríbenos directo por WhatsApp.</p>
+          <button class="cta-primary" onclick="pickDay('${nextDay ? nextDay.key : days[0].key}')">${nextDay ? 'Probar el ' + nextDay.label : 'Ver otro día'}</button>
+        </div>
+      `;
+    } else if (slots.length > 0) {
+      slotsArea = `
+        <div class="slots-grid">
+          ${slots.map(sl => `
+            <button class="slot-btn ${STATE.time === sl.t ? 'selected' : ''}" onclick="pickTime('${sl.t}')" ${sl.busy ? 'disabled' : ''}>
+              ${sl.t}
+            </button>
+          `).join('')}
+        </div>
+        <div class="slots-note">Tachado = ocupado · Pausa de almuerzo 13:00–14:00 · Hora Guayaquil</div>
+      `;
+    }
+
+    content = `
+      <div class="wizard-section">
+        <div class="step2-header">
+          <h3>¿Cuándo te queda bien?</h3>
+          <button class="change-link" onclick="goStep(1)">← Cambiar servicio</button>
+        </div>
+        <p class="service-line">${srvLine}</p>
+        <div class="day-chips">${daysHtml}</div>
+        <div class="slots-area">${slotsArea}</div>
+      </div>
+    `;
+  }
+
+  if (STATE.step === 3 && !STATE.done) {
+    const days = getDays();
+    const dayLabel = STATE.day ? STATE.day.label : '—';
+
+    content = `
+      <div class="wizard-section">
+        <h3>Confirma tu cita</h3>
+        <div class="summary">
+          ${STATE.service ? `
+            <div class="summary-row">
+              <span class="summary-key">Servicio</span>
+              <span class="summary-val">${STATE.service.name}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Día</span>
+              <span class="summary-val">${dayLabel}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Hora</span>
+              <span class="summary-val">${STATE.time || '—'}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Duración</span>
+              <span class="summary-val">${STATE.service.min} min</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Precio</span>
+              <span class="summary-val">${STATE.service.price === 'Gratis' ? 'Sin costo' : STATE.service.price + ' — pagas en consulta'}</span>
+            </div>
+          ` : ''}
+          <button class="change-link" onclick="goStep(1)" style="margin-top: 6px;">← Cambiar algo</button>
+        </div>
+        <div class="form-row">
+          <label>
+            <span class="form-label">Tu nombre *</span>
+            <input type="text" class="form-input ${STATE.nameError ? 'error' : ''}" value="${STATE.name}" onchange="setState({name: this.value, nameError: false})" placeholder="Ej. Paula Ríos">
+          </label>
+          <label>
+            <span class="form-label">Teléfono (opcional)</span>
+            <input type="tel" class="form-input" value="${STATE.phone}" onchange="setState({phone: this.value})" placeholder="+593 9…">
+          </label>
+        </div>
+        <button class="checkbox ${STATE.firstVisit ? 'checked' : ''}" onclick="setState({firstVisit: !STATE.firstVisit})">
+          <span class="checkbox-box">${STATE.firstVisit ? '✓' : ''}</span>
+          <span class="checkbox-label">Es mi primera visita a la clínica</span>
+        </button>
+        ${STATE.nameError ? '<div class="error-msg">⚠ Escribe tu nombre para confirmar la cita.</div>' : ''}
+        <button class="cta-primary" onclick="confirm()" style="width: 100%; margin-top: 16px;">Confirmar por WhatsApp</button>
+        <p style="margin: 10px 0 0; text-align: center; font-size: 12px; color: #7E97A1;">Se abre WhatsApp con el mensaje listo. No pagas nada todavía.</p>
+      </div>
+    `;
+  }
+
+  if (STATE.done) {
+    const nm = STATE.name.trim().split(' ')[0];
+    const dayLabel = STATE.day ? STATE.day.label : '—';
+    const msg = `Hola Clínica Aurora 🦷 Quiero agendar una cita:\n• Servicio: ${STATE.service?.name || '—'}\n• Día: ${dayLabel} · ${STATE.time || '—'}\n• Nombre: ${STATE.name}\n${STATE.phone ? '• Teléfono: ' + STATE.phone + '\n' : ''}• Primera visita: ${STATE.firstVisit ? 'sí' : 'no'}\n¿Me confirman? ¡Gracias!`;
+    const waHref = 'https://wa.me/' + STATE.whatsappNumber + '?text=' + encodeURIComponent(msg);
+
+    content = `
+      <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h3 class="success-title">¡Listo, ${nm}!</h3>
+        <p class="success-subtitle">Tu cita quedó pre-agendada. Envíanos el mensaje y te confirmamos en minutos.</p>
+        <div class="msg-preview">${msg}</div>
+        <div class="success-buttons">
+          <a href="${waHref}" target="_blank" rel="noopener" class="wa-btn">Enviar por WhatsApp ↗</a>
+          <button class="secondary-btn" onclick="reset()">Agendar otra cita</button>
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById('wizardContent').innerHTML = content;
+}
+
+function selectService(id) {
+  const svc = SERVICES.find(s => s.id === id);
+  if (svc) {
+    setState({ service: svc, step: 2, done: false });
+    scrollToSection('citas');
+  }
+}
+
+function pickDay(dayKey) {
+  const days = getDays();
+  const day = days.find(d => d.key === dayKey);
+  if (day && !day.closed) {
+    setState({ day, time: null, slotsLoading: true });
+    setTimeout(() => setState({ slotsLoading: false }), 700);
+  }
+}
+
+function pickTime(time) {
+  if (!time) return;
+  const slots = getSlots(STATE.day);
+  const slot = slots.find(s => s.t === time);
+  if (slot && !slot.busy) {
+    setState({ time });
+    setTimeout(() => setState({ step: 3 }), 240);
+  }
+}
+
+function goStep(n) {
+  const canGo = n === 1 || (n === 2 && STATE.service) || (n === 3 && STATE.service && STATE.day && STATE.time);
+  if (canGo) setState({ step: n, done: false });
+}
+
+function toggleFaq(i) {
+  setState({ faqOpen: STATE.faqOpen === i ? -1 : i });
+}
+
+function confirm() {
+  if (!STATE.name.trim()) {
+    setState({ nameError: true });
+    return;
+  }
+  setState({ done: true, nameError: false });
+}
+
+function reset() {
+  setState({
+    step: 1, service: null, day: null, time: null,
+    name: '', phone: '', firstVisit: false,
+    done: false, nameError: false, slotsLoading: false
+  });
+}
+
+function setState(patch) {
+  Object.assign(STATE, patch);
+  render();
+}
+
+function updateWaLinks() {
+  const msg = 'Hola Clínica Aurora, quiero información.';
+  const waHref = 'https://wa.me/' + STATE.whatsappNumber + '?text=' + encodeURIComponent(msg);
+
+  const floatWa = document.getElementById('floatWa');
+  if (floatWa) floatWa.href = waHref;
+
+  const faqWaLink = document.getElementById('faqWaLink');
+  if (faqWaLink) faqWaLink.href = waHref;
+
+  const contactWaBtn = document.getElementById('contactWaBtn');
+  if (contactWaBtn) contactWaBtn.href = waHref;
+}
+
+// ============ EVENT LISTENERS ============
+document.getElementById('navLogo').addEventListener('click', (e) => {
+  e.preventDefault();
+  scrollToSection('inicio');
+});
+
+document.getElementById('navCta').addEventListener('click', () => {
+  scrollToSection('citas');
+  setState({ step: 1 });
+});
+
+document.getElementById('heroCita').addEventListener('click', () => {
+  scrollToSection('citas');
+  setState({ step: 1 });
+});
+
+document.getElementById('doctorCita').addEventListener('click', () => {
+  scrollToSection('citas');
+  setState({ step: 1 });
+});
+
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+// Global image error listener
+document.addEventListener('error', (e) => {
+  const t = e.target;
+  if (t && t.tagName === 'IMG') {
+    t.classList.add('error');
+  }
+}, true);
+
+// Initialize
+window.addEventListener('load', () => {
+  STATE.vw = window.innerWidth;
+  render();
+});
+
+window.addEventListener('resize', () => {
+  STATE.vw = window.innerWidth;
+});
+
+// Scroll nav links
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    scrollToSection(href.substring(1));
+  });
+});
+</script>
+</body>
+</html>

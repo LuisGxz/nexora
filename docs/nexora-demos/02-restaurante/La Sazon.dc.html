@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#F6EFE3;color:#2E211B;font-family:Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  input,button,select,textarea{font:inherit}
+  ::selection{background:rgba(126,47,53,.22)}
+  input::placeholder,textarea::placeholder{color:rgba(46,33,27,.35)}
+  @keyframes lsSpin{to{transform:rotate(360deg)}}
+  @keyframes lsFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes lsSheet{from{opacity:0;transform:translate(-50%,24px)}to{opacity:1;transform:translate(-50%,0)}}
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;background:#F6EFE3;overflow-x:clip">
+
+  <!-- ============ NAV ============ -->
+  <div data-shot="nav" data-screen-label="Nav" style="position:sticky;top:0;z-index:50;background:rgba(246,239,227,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E7DCC8">
+    <div style="max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px);height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#inicio" onClick="{{ goTop }}" style="display:flex;align-items:baseline;gap:9px;text-decoration:none;color:#2E211B">
+        <span style="width:8px;height:8px;background:#B98A2F;transform:rotate(45deg);display:block;flex:none;align-self:center"></span>
+        <span style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:24px;line-height:1">La Sazón</span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.22em;color:#9C8A7D">COCINA CRIOLLA</span>
+      </a>
+      <sc-if value="{{ showNavLinks }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:24px">
+          <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="4">
+            <a href="{{ nv.href }}" onClick="{{ nv.go }}" style="color:#6E5C51;text-decoration:none;font-size:13.5px;font-weight:500" style-hover="color:var(--lsA,#7E2F35)">{{ nv.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <a href="#reserva" onClick="{{ goReserva }}" style="background:var(--lsA,#7E2F35);color:#FBF3EA;text-decoration:none;font-weight:700;font-size:13.5px;letter-spacing:.02em;padding:11px 18px;border-radius:6px;white-space:nowrap" style-hover="filter:brightness(1.12)">Reservar mesa</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" data-shot="hero" data-screen-label="Hero" style="position:relative;overflow:hidden;min-height:clamp(540px,78vh,720px);display:flex;align-items:center;justify-content:center">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80" alt="Mesa servida con platos criollos" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,23,18,.42) 0%,rgba(34,23,18,.55) 55%,rgba(34,23,18,.78) 100%)"></div>
+    <div style="position:relative;text-align:center;padding:clamp(56px,10vw,110px) clamp(18px,4vw,44px);max-width:820px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 18px">
+        <span style="width:26px;height:1px;background:#B98A2F"></span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:#D9B96A">COCINA CRIOLLA · LAS PEÑAS, GUAYAQUIL</span>
+        <span style="width:26px;height:1px;background:#B98A2F"></span>
+      </div>
+      <h1 style="margin:0 0 18px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(44px,7vw,84px);line-height:1.04;color:#FBF6EA">El sabor de casa,<br><span style="font-style:italic">servido con oficio.</span></h1>
+      <p style="margin:0 auto 28px;color:rgba(251,246,234,.82);font-size:clamp(15px,1.6vw,17px);line-height:1.7;max-width:52ch">Recetas de mercado, fuego lento y menú digital en tu mesa. Reserva o pide por WhatsApp.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:0 0 30px">
+        <a href="#menu" onClick="{{ goMenu }}" style="background:#F6EFE3;color:#2E211B;text-decoration:none;font-weight:700;font-size:14.5px;padding:14px 26px;border-radius:6px;white-space:nowrap" style-hover="filter:brightness(1.05);transform:translateY(-1px)">Ver menú</a>
+        <a href="#reserva" onClick="{{ goReserva }}" style="border:1px solid rgba(251,246,234,.45);color:#FBF6EA;text-decoration:none;font-weight:700;font-size:14.5px;padding:14px 26px;border-radius:6px;white-space:nowrap" style-hover="border-color:#D9B96A;color:#D9B96A">Reservar mesa</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:rgba(251,246,234,.75);border:1px solid rgba(251,246,234,.28);border-radius:999px;padding:7px 13px">MAR–DOM DESDE 12:00</span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:rgba(251,246,234,.75);border:1px solid rgba(251,246,234,.28);border-radius:999px;padding:7px 13px">MENÚ QR EN MESA</span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:rgba(251,246,234,.75);border:1px solid rgba(251,246,234,.28);border-radius:999px;padding:7px 13px">4.8★ · 410+ RESEÑAS</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ MENÚ ============ -->
+  <section id="menu" data-shot="menu" data-screen-label="Menú" style="border-bottom:1px solid #E7DCC8">
+    <div style="max-width:980px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 26px">
+        <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:#B98A2F;margin:0 0 12px">EL MENÚ</div>
+        <h2 style="margin:0 0 12px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(32px,4.6vw,50px);line-height:1.05">Cocina de mercado, todos los días</h2>
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 14px">
+          <span style="width:26px;height:1px;background:rgba(185,138,47,.45)"></span>
+          <span style="width:7px;height:7px;background:#B98A2F;transform:rotate(45deg)"></span>
+          <span style="width:26px;height:1px;background:rgba(185,138,47,.45)"></span>
+        </div>
+        <p style="margin:0 auto;color:#6E5C51;font-size:14.5px;line-height:1.7;max-width:48ch">Escanea el QR en tu mesa o arma tu pedido aquí mismo — te lo confirmamos por WhatsApp.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px">
+        <sc-for list="{{ catTabs }}" as="c" hint-placeholder-count="4">
+          <button type="button" onClick="{{ c.go }}" style="{{ c.style }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:12px">
+        <sc-for list="{{ dishes }}" as="d" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:center;background:#FFFCF4;border:1px solid #E7DCC8;border-radius:12px;padding:12px;box-shadow:0 1px 2px rgba(46,33,27,.05), 0 8px 24px -14px rgba(46,33,27,.14);transition:transform .15s ease,border-color .15s ease" style-hover="transform:translateY(-2px);border-color:var(--lsAline,rgba(126,47,53,.35))">
+            <div role="img" aria-label="{{ d.name }}" style="{{ d.imgStyle }}"></div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+                <span style="font-weight:700;font-size:15px">{{ d.name }}</span>
+                <span style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:18px;color:var(--lsA,#7E2F35);flex:none">{{ d.priceLabel }}</span>
+              </div>
+              <p style="margin:4px 0 10px;color:#6E5C51;font-size:12.5px;line-height:1.55">{{ d.desc }}</p>
+              <sc-if value="{{ d.hasQty }}" hint-placeholder-val="{{ false }}">
+                <div style="display:inline-flex;align-items:center;gap:0;border:1px solid var(--lsA,#7E2F35);border-radius:999px;overflow:hidden">
+                  <button type="button" onClick="{{ d.dec }}" aria-label="Quitar uno" style="background:none;border:none;cursor:pointer;padding:8px 14px;color:var(--lsA,#7E2F35);font-weight:700;line-height:1">−</button>
+                  <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;min-width:20px;text-align:center;color:#2E211B">{{ d.qty }}</span>
+                  <button type="button" onClick="{{ d.add }}" aria-label="Añadir uno" style="background:var(--lsA,#7E2F35);border:none;cursor:pointer;padding:8px 14px;color:#FBF3EA;font-weight:700;line-height:1">+</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ d.noQty }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ d.add }}" style="background:none;border:1px solid var(--lsA,#7E2F35);color:var(--lsA,#7E2F35);cursor:pointer;font-weight:700;font-size:12.5px;padding:8px 18px;border-radius:999px;transition:background .15s ease,color .15s ease" style-hover="background:var(--lsA,#7E2F35);color:#FBF3EA">Añadir</button>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:22px 0 0;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.12em;color:#9C8A7D">RETIRO EN LOCAL O DELIVERY POR LAS PEÑAS / MALECÓN · PAGAS AL RECIBIR</p>
+    </div>
+  </section>
+
+  <!-- ============ BARRA DE PEDIDO ============ -->
+  <sc-if value="{{ cartVisible }}" hint-placeholder-val="{{ false }}">
+    <div data-fixed data-shot="cartbar" style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:70;width:min(calc(100% - 24px),560px);background:#221712;color:#FBF6EA;border-radius:999px;padding:10px 10px 10px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 10px 30px -10px rgba(34,23,18,.5)">
+      <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;letter-spacing:.12em">{{ cartBarLabel }}</span>
+      <button type="button" onClick="{{ openSheet }}" style="background:var(--lsA,#7E2F35);color:#FBF3EA;border:none;cursor:pointer;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:999px;white-space:nowrap" style-hover="filter:brightness(1.12)">Revisar pedido</button>
+    </div>
+  </sc-if>
+
+  <!-- ============ SHEET DE PEDIDO ============ -->
+  <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-fixed data-shot="sheet" style="position:fixed;inset:0;z-index:80">
+      <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:rgba(34,23,18,.45)"></div>
+      <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,600px);max-height:88vh;overflow-y:auto;background:#FCF6EA;border-radius:18px 18px 0 0;padding:clamp(18px,3vw,28px);box-sizing:border-box;animation:lsSheet .3s ease;box-shadow:0 -8px 40px -12px rgba(34,23,18,.35)">
+
+        <sc-if value="{{ orderFormShown }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 14px">
+              <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:26px">Tu pedido</h3>
+              <button type="button" onClick="{{ closeSheet }}" aria-label="Cerrar" style="background:none;border:1px solid #D6C6A8;border-radius:999px;width:34px;height:34px;cursor:pointer;color:#6E5C51;font-size:15px;line-height:1">✕</button>
+            </div>
+            <div style="margin:0 0 16px">
+              <sc-for list="{{ sheetItems }}" as="it" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed #DECFB4">
+                  <span style="flex:1;font-weight:700;font-size:14px">{{ it.name }}</span>
+                  <span style="display:inline-flex;align-items:center;border:1px solid #D6C6A8;border-radius:999px;overflow:hidden">
+                    <button type="button" onClick="{{ it.dec }}" style="background:none;border:none;cursor:pointer;padding:6px 12px;color:var(--lsA,#7E2F35);font-weight:700">−</button>
+                    <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;min-width:18px;text-align:center">{{ it.qty }}</span>
+                    <button type="button" onClick="{{ it.add }}" style="background:none;border:none;cursor:pointer;padding:6px 12px;color:var(--lsA,#7E2F35);font-weight:700">+</button>
+                  </span>
+                  <span style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:16px;color:var(--lsA,#7E2F35);min-width:56px;text-align:right">{{ it.subLabel }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:grid;gap:12px;margin:0 0 14px">
+              <label style="display:block">
+                <span style="display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#9C8A7D;margin:0 0 6px">TU NOMBRE *</span>
+                <input type="text" value="{{ orderName }}" onChange="{{ setOrderName }}" placeholder="Ej. Daniela Cruz" style="{{ orderNameStyle }}">
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#9C8A7D;margin:0 0 6px">NOTA PARA LA COCINA (OPCIONAL)</span>
+                <input type="text" value="{{ orderNote }}" onChange="{{ setOrderNote }}" placeholder="Ej. sin ají, por favor" style="width:100%;box-sizing:border-box;background:#FFFCF4;border:1px solid #D6C6A8;border-radius:8px;padding:12px 14px;color:#2E211B;font-size:14.5px;outline:none" style-focus="border-color:var(--lsA,#7E2F35)">
+              </label>
+            </div>
+            <sc-if value="{{ orderNameError }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.06em;color:#B4372E;margin:0 0 10px">⚠ ESCRIBE TU NOMBRE PARA ENVIAR EL PEDIDO.</div>
+            </sc-if>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #D6C6A8;padding-top:14px;margin:0 0 14px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.16em;color:#6E5C51">TOTAL</span>
+              <span style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:28px;color:var(--lsA,#7E2F35)">{{ totalLabel }}</span>
+            </div>
+            <button type="button" onClick="{{ confirmOrder }}" style="width:100%;background:var(--lsA,#7E2F35);color:#FBF3EA;border:none;cursor:pointer;font-weight:700;font-size:15px;padding:15px 20px;border-radius:10px" style-hover="filter:brightness(1.12)">Pedir por WhatsApp</button>
+            <p style="margin:10px 0 0;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#9C8A7D">RETIRO O DELIVERY CERCANO · PAGAS AL RECIBIR</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ orderDoneShown }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:8px 0">
+            <div style="width:58px;height:58px;border-radius:50%;border:2px solid #3E7D4E;color:#3E7D4E;display:flex;align-items:center;justify-content:center;font-size:24px;margin:4px auto 14px">✓</div>
+            <h3 style="margin:0 0 8px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:26px">¡Pedido listo, {{ orderFirstName }}!</h3>
+            <p style="margin:0 auto 16px;color:#6E5C51;font-size:14px;line-height:1.65;max-width:44ch">Envíanos el mensaje por WhatsApp y te confirmamos el tiempo de entrega.</p>
+            <div style="background:#FFFCF4;border:1px dashed #D6C6A8;border-radius:10px;padding:14px 16px;margin:0 0 16px;text-align:left;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.8;color:#4E4038;white-space:pre-wrap">{{ orderMsg }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+              <a href="{{ orderHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.08)">Enviar por WhatsApp ↗</a>
+              <button type="button" onClick="{{ resetOrder }}" style="background:none;border:1px solid #D6C6A8;color:#2E211B;cursor:pointer;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap" style-hover="border-color:var(--lsA,#7E2F35);color:var(--lsA,#7E2F35)">Nuevo pedido</button>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ RESERVA ============ -->
+  <section id="reserva" data-shot="reserva" data-screen-label="Reserva" style="background:#FCF6EA;border-bottom:1px solid #E7DCC8">
+    <div style="max-width:680px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 26px">
+        <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:#B98A2F;margin:0 0 12px">RESERVAS</div>
+        <h2 style="margin:0 0 12px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(32px,4.6vw,50px);line-height:1.05">Tu mesa junto al río</h2>
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 14px">
+          <span style="width:26px;height:1px;background:rgba(185,138,47,.45)"></span>
+          <span style="width:7px;height:7px;background:#B98A2F;transform:rotate(45deg)"></span>
+          <span style="width:26px;height:1px;background:rgba(185,138,47,.45)"></span>
+        </div>
+        <p style="margin:0 auto;color:#6E5C51;font-size:14.5px;line-height:1.7;max-width:46ch">Elige día, hora y cuántos son. Te confirmamos por WhatsApp en minutos.</p>
+      </div>
+
+      <div style="background:#FFFCF4;border:1px solid #E7DCC8;border-radius:16px;padding:clamp(18px,3vw,28px);box-shadow:0 1px 2px rgba(46,33,27,.05), 0 8px 24px -14px rgba(46,33,27,.16)">
+
+        <sc-if value="{{ resFormShown }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#9C8A7D;margin:0 0 10px">EL DÍA</div>
+            <div style="display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px">
+              <sc-for list="{{ resDayChips }}" as="d" hint-placeholder-count="7">
+                <button type="button" onClick="{{ d.pick }}" style="{{ d.style }}">
+                  <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.1em;color:#9C8A7D">{{ d.wdU }}</span>
+                  <span style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:22px;line-height:1">{{ d.num }}</span>
+                  <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:8.5px;letter-spacing:.1em;color:#9C8A7D">{{ d.moU }}</span>
+                  <sc-if value="{{ d.hasTag }}" hint-placeholder-val="{{ false }}">
+                    <span style="{{ d.tagStyle }}">{{ d.tag }}</span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#9C8A7D;margin:14px 0 10px">LA HORA</div>
+            <div style="min-height:120px">
+              <sc-if value="{{ resNoDay }}" hint-placeholder-val="{{ true }}">
+                <div style="border:1px dashed #DECFB4;border-radius:10px;padding:26px 18px;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.12em;color:#9C8A7D">ELIGE UN DÍA PARA VER LAS MESAS LIBRES</div>
+              </sc-if>
+              <sc-if value="{{ resLoading }}" hint-placeholder-val="{{ false }}">
+                <div style="border:1px dashed #DECFB4;border-radius:10px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:12px">
+                  <span style="width:22px;height:22px;border:2px solid #E7DCC8;border-top-color:var(--lsA,#7E2F35);border-radius:50%;animation:lsSpin .7s linear infinite"></span>
+                  <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#9C8A7D">BUSCANDO MESA…</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ resFullShown }}" hint-placeholder-val="{{ false }}">
+                <div style="border:1px solid rgba(185,138,47,.5);background:rgba(185,138,47,.07);border-radius:10px;padding:24px 18px;text-align:center;animation:lsFade .28s ease">
+                  <div style="font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:22px;color:#8A6A1F;margin:0 0 6px">Completo ese día</div>
+                  <p style="margin:0 0 14px;color:#6E5C51;font-size:13px;line-height:1.6">Los sábados vuelan. Escríbenos y te avisamos si se libera una mesa.</p>
+                  <button type="button" onClick="{{ goNextResDay }}" style="background:var(--lsA,#7E2F35);color:#FBF3EA;border:none;cursor:pointer;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:999px;white-space:nowrap" style-hover="filter:brightness(1.12)">{{ nextResDayLabel }}</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ resSlotsShown }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px;animation:lsFade .28s ease">
+                  <sc-for list="{{ resSlots }}" as="sl" hint-placeholder-count="8">
+                    <button type="button" onClick="{{ sl.pick }}" disabled="{{ sl.busy }}" style="{{ sl.style }}">{{ sl.t }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#9C8A7D;margin:16px 0 10px">CUÁNTOS SON</div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="display:inline-flex;align-items:center;border:1px solid #D6C6A8;border-radius:999px;overflow:hidden;background:#FFFCF4">
+                <button type="button" onClick="{{ paxDec }}" aria-label="Menos personas" style="background:none;border:none;cursor:pointer;padding:10px 16px;color:var(--lsA,#7E2F35);font-weight:700;font-size:16px">−</button>
+                <span style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:20px;min-width:30px;text-align:center">{{ resPax }}</span>
+                <button type="button" onClick="{{ paxInc }}" aria-label="Más personas" style="background:none;border:none;cursor:pointer;padding:10px 16px;color:var(--lsA,#7E2F35);font-weight:700;font-size:16px">+</button>
+              </span>
+              <span style="color:#6E5C51;font-size:13px">personas (máx. 10 — grupos grandes por WhatsApp)</span>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;margin:18px 0 4px">
+              <label style="display:block">
+                <span style="display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#9C8A7D;margin:0 0 6px">TU NOMBRE *</span>
+                <input type="text" value="{{ resName }}" onChange="{{ setResName }}" placeholder="Ej. Daniela Cruz" style="{{ resNameStyle }}">
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#9C8A7D;margin:0 0 6px">TELÉFONO (OPCIONAL)</span>
+                <input type="tel" value="{{ resPhone }}" onChange="{{ setResPhone }}" placeholder="+593 9…" style="width:100%;box-sizing:border-box;background:#FFFCF4;border:1px solid #D6C6A8;border-radius:8px;padding:12px 14px;color:#2E211B;font-size:14.5px;outline:none" style-focus="border-color:var(--lsA,#7E2F35)">
+              </label>
+            </div>
+            <sc-if value="{{ resNameError }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.06em;color:#B4372E;margin:8px 0 0">⚠ ESCRIBE TU NOMBRE PARA RESERVAR.</div>
+            </sc-if>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px dashed #DECFB4;margin-top:16px;padding-top:14px">
+              <span style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:15.5px;color:#6E5C51">{{ resSummary }}</span>
+              <button type="button" onClick="{{ confirmRes }}" style="background:var(--lsA,#7E2F35);color:#FBF3EA;border:none;cursor:pointer;font-weight:700;font-size:14.5px;padding:13px 24px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.12)">Reservar mesa</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ resDone }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:10px 0;animation:lsFade .3s ease">
+            <div style="width:58px;height:58px;border-radius:50%;border:2px solid #3E7D4E;color:#3E7D4E;display:flex;align-items:center;justify-content:center;font-size:24px;margin:4px auto 14px">✓</div>
+            <h3 style="margin:0 0 8px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:26px">¡Mesa pre-reservada, {{ resFirstName }}!</h3>
+            <p style="margin:0 auto 16px;color:#6E5C51;font-size:14px;line-height:1.65;max-width:44ch">Envíanos el mensaje por WhatsApp y te confirmamos en minutos.</p>
+            <div style="background:#FCF6EA;border:1px dashed #D6C6A8;border-radius:10px;padding:14px 16px;margin:0 0 16px;text-align:left;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.8;color:#4E4038;white-space:pre-wrap">{{ resMsg }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+              <a href="{{ resHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap" style-hover="filter:brightness(1.08)">Enviar por WhatsApp ↗</a>
+              <button type="button" onClick="{{ resetRes }}" style="background:none;border:1px solid #D6C6A8;color:#2E211B;cursor:pointer;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap" style-hover="border-color:var(--lsA,#7E2F35);color:var(--lsA,#7E2F35)">Hacer otra reserva</button>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NOSOTROS ============ -->
+  <section id="nosotros" data-shot="nosotros" data-screen-label="Nosotros" style="border-bottom:1px solid #E7DCC8">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(18px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(28px,5vw,56px);align-items:center">
+      <div style="position:relative">
+        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80" alt="Manos cocinando en La Sazón" crossorigin="anonymous" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block;background:#F0E7D6">
+        <div style="position:absolute;right:-10px;bottom:-14px;width:112px;height:112px;border-radius:50%;overflow:hidden;border:5px solid #F6EFE3;box-shadow:0 8px 24px -10px rgba(46,33,27,.35)">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="Rosario Mendoza, fundadora" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+      <div>
+        <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:#B98A2F;margin:0 0 12px">NOSOTROS</div>
+        <h2 style="margin:0 0 16px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.08">Una cocina de casa que se nos fue de las manos</h2>
+        <p style="margin:0 0 14px;color:#6E5C51;font-size:15px;line-height:1.75">La Sazón nació en 2016 en una cocina de casa en Las Peñas. Doña Rosario convirtió las recetas de su madre en un comedor de doce mesas donde todo se hace al día: el refrito, el encocado, el ají.</p>
+        <p style="margin:0 0 22px;color:#6E5C51;font-size:15px;line-height:1.75">Nada de apuros, nada de sobres. Si un plato no está a la altura, no sale.</p>
+        <div style="margin:0 0 24px">
+          <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:24px;color:#2E211B">Rosario Mendoza</div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.16em;color:#9C8A7D;margin-top:4px">FUNDADORA Y JEFA DE COCINA</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,40px);border-top:1px solid #E7DCC8;padding-top:18px">
+          <div>
+            <div style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:28px;color:var(--lsA,#7E2F35)">9</div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.14em;color:#9C8A7D;margin-top:3px">AÑOS EN LAS PEÑAS</div>
+          </div>
+          <div>
+            <div style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:28px;color:var(--lsA,#7E2F35)">12</div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.14em;color:#9C8A7D;margin-top:3px">MESAS, NI UNA MÁS</div>
+          </div>
+          <div>
+            <div style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:28px;color:var(--lsA,#7E2F35)">100%</div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.14em;color:#9C8A7D;margin-top:3px">RECETAS PROPIAS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria" data-shot="galeria" data-screen-label="Galería" style="border-bottom:1px solid #E7DCC8">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 26px">
+        <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:#B98A2F;margin:0 0 12px">EL AMBIENTE</div>
+        <h2 style="margin:0 0 12px;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(32px,4.6vw,50px);line-height:1.05">Doce mesas, cero apuro</h2>
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px">
+          <span style="width:26px;height:1px;background:rgba(185,138,47,.45)"></span>
+          <span style="width:7px;height:7px;background:#B98A2F;transform:rotate(45deg)"></span>
+          <span style="width:26px;height:1px;background:rgba(185,138,47,.45)"></span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#F0E7D6;display:flex;align-items:flex-end">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80" alt="El comedor de La Sazón" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(34,23,18,.65) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(251,246,234,.9);padding:10px 12px">EL COMEDOR</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#F0E7D6;display:flex;align-items:flex-end">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Mesas de ventana" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(34,23,18,.65) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(251,246,234,.9);padding:10px 12px">MESAS DE VENTANA</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#F0E7D6;display:flex;align-items:flex-end">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" alt="La barra" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(34,23,18,.65) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(251,246,234,.9);padding:10px 12px">LA BARRA</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#F0E7D6;display:flex;align-items:flex-end">
+          <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=700&q=80" alt="Cocina a fuego lento" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(34,23,18,.65) 100%)"></div>
+          <span style="position:relative;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(251,246,234,.9);padding:10px 12px">FUEGO LENTO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UBICACIÓN ============ -->
+  <section id="ubicacion" data-shot="ubicacion" data-screen-label="Ubicación" style="background:#FCF6EA;border-bottom:1px solid #E7DCC8">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(18px,4vw,44px)">
+      <div style="text-align:center;margin:0 0 30px">
+        <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:#B98A2F;margin:0 0 12px">UBICACIÓN Y HORARIO</div>
+        <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(32px,4.6vw,50px);line-height:1.05">En el barrio más lindo de Guayaquil</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;align-items:stretch">
+        <div style="background:#FFFCF4;border:1px solid #E7DCC8;border-radius:14px;padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:20px">
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#9C8A7D;margin:0 0 8px">DIRECCIÓN</div>
+            <div style="font-size:16px;font-weight:700;line-height:1.5">Numa Pompilio Llona 212<br>Barrio Las Peñas, Guayaquil</div>
+            <div style="color:#9C8A7D;font-size:13px;margin-top:6px">A una cuadra del Malecón 2000.</div>
+          </div>
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#9C8A7D;margin:0 0 4px">HORARIO</div>
+            <sc-for list="{{ hoursRows }}" as="h" hint-placeholder-count="4">
+              <div style="{{ h.style }}">
+                <span>{{ h.d }} <span style="{{ h.badgeStyle }}">{{ h.badge }}</span></span>
+                <span>{{ h.h }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#9C8A7D;margin:0 0 8px">CONTACTO</div>
+            <div style="font-size:15px;font-weight:700">+593 98 761 2045</div>
+            <div style="color:#6E5C51;font-size:13.5px;margin-top:2px">hola@lasazon.ec</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto">
+            <a href="https://www.google.com/maps/search/?api=1&query=Numa+Pompilio+Llona+212+Las+Penas+Guayaquil" target="_blank" rel="noopener" style="border:1px solid #D6C6A8;color:#2E211B;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 20px;border-radius:10px" style-hover="border-color:var(--lsA,#7E2F35);color:var(--lsA,#7E2F35)">Cómo llegar ↗</a>
+            <a href="{{ waFloatHref }}" target="_blank" rel="noopener" style="background:#1FAE55;color:#08240F;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 20px;border-radius:10px" style-hover="filter:brightness(1.08)">Escribir por WhatsApp</a>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Numa+Pompilio+Llona+212+Las+Penas+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" style="position:relative;min-height:320px;border:1px solid #E7DCC8;border-radius:14px;display:block;overflow:hidden;background:linear-gradient(0deg,transparent 0 44%,rgba(46,33,27,.08) 44% 47%,transparent 47%),linear-gradient(90deg,transparent 0 28%,rgba(46,33,27,.07) 28% 30.4%,transparent 30.4%),linear-gradient(62deg,transparent 0 60%,rgba(185,138,47,.18) 60% 62%,transparent 62%),repeating-linear-gradient(0deg,rgba(46,33,27,.03) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(46,33,27,.03) 0 1px,transparent 1px 34px),#F0E7D6">
+          <span style="position:absolute;top:44.5%;left:29%;width:16px;height:16px;border-radius:50%;background:var(--lsA,#7E2F35);border:3px solid #FFFCF4;box-shadow:0 0 0 8px var(--lsAsoft,rgba(126,47,53,.12))"></span>
+          <span style="position:absolute;top:calc(44.5% + 26px);left:29%;transform:translateX(-40%);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;color:#2E211B;background:#FFFCF4;border:1px solid #D6C6A8;border-radius:6px;padding:5px 9px;white-space:nowrap">LA SAZÓN</span>
+          <span style="position:absolute;bottom:12px;left:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:#9C8A7D">MAPA · LAS PEÑAS, JUNTO AL MALECÓN</span>
+          <span style="position:absolute;bottom:12px;right:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;color:var(--lsA,#7E2F35)">ABRIR EN GOOGLE MAPS ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-shot="pie" data-screen-label="Footer" style="background:#221712;color:#EFE3D2">
+    <div style="max-width:1120px;margin:0 auto;padding:clamp(40px,6vw,64px) clamp(18px,4vw,44px) 28px">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);justify-content:space-between;margin:0 0 36px">
+        <div style="max-width:280px">
+          <div style="display:flex;align-items:baseline;gap:9px;margin:0 0 10px">
+            <span style="width:8px;height:8px;background:#B98A2F;transform:rotate(45deg);display:block;align-self:center"></span>
+            <span style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:24px;line-height:1;color:#FBF6EA">La Sazón</span>
+          </div>
+          <p style="margin:0;color:#B9A48E;font-size:13px;line-height:1.7">Cocina criolla en Las Peñas desde 2016. Recetas de casa, fuego lento y cero apuro.</p>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#8A7560;margin:0 0 12px">HORARIO</div>
+          <div style="color:#D8C6B0;font-size:13.5px;line-height:2">Mar – Jue · 12:00 – 21:00<br>Vie – Sáb · 12:00 – 22:30<br>Domingo · 11:00 – 17:00<br>Lunes · Cerrado</div>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#8A7560;margin:0 0 12px">CONTACTO</div>
+          <div style="color:#D8C6B0;font-size:13.5px;line-height:2">+593 98 761 2045<br>hola@lasazon.ec<br>Numa Pompilio Llona 212, Las Peñas</div>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#8A7560;margin:0 0 12px">SÍGUENOS</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="#inicio" onClick="{{ noopLink }}" style="color:#D8C6B0;text-decoration:none;font-size:13.5px" style-hover="color:#D9B96A">Instagram · @lasazon.gye</a>
+            <a href="#inicio" onClick="{{ noopLink }}" style="color:#D8C6B0;text-decoration:none;font-size:13.5px" style-hover="color:#D9B96A">TikTok · @lasazon</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(239,227,210,.14);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#8A7560">
+        <span>© {{ year }} LA SAZÓN — NEGOCIO Y DATOS FICTICIOS</span>
+        <span>SITIO DEMO · DISEÑADO POR NEXORA STUDIO</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ waFloatHref }}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-fixed data-shot="float" style="position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#1FAE55;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(34,23,18,.4);transition:transform .15s ease" style-hover="transform:scale(1.07)">
+      <span style="font-family:Karla,system-ui,sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em;color:#08240F">WA</span>
+    </a>
+  </sc-if>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#7E2F35&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#7E2F35&quot;, &quot;#B4552D&quot;, &quot;#6B7042&quot;, &quot;#2F5D62&quot;], &quot;section&quot;: &quot;Marca&quot;}, &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;593987612045&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Datos&quot;}, &quot;mostrarWhatsapp&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Comportamiento&quot;}}">
+class Component extends DCLogic {
+  DISHES = [
+    { id: 'empanadas', cat: 'entradas', name: 'Empanadas de viento (3)', desc: 'Queso y cebolla blanca, azúcar espolvoreada.', price: 4.5, img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80' },
+    { id: 'ceviche', cat: 'entradas', name: 'Ceviche de camarón', desc: 'Camarón, limón sutil, tomate y cilantro. Con chifles.', price: 9.5, img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80' },
+    { id: 'ensalada', cat: 'entradas', name: 'Ensalada del huerto', desc: 'Hojas frescas, aguacate, choclo y vinagreta de maracuyá.', price: 6, img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80' },
+    { id: 'encebollado', cat: 'fuertes', name: 'Encebollado real', desc: 'Albacora, yuca y cebolla curtida. El de los domingos.', price: 7.5, img: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=400&q=80' },
+    { id: 'seco', cat: 'fuertes', name: 'Seco de chivo', desc: 'Cocción lenta en cerveza y naranjilla, arroz amarillo.', price: 11, img: 'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=400&q=80' },
+    { id: 'mariscos', cat: 'fuertes', name: 'Arroz con mariscos', desc: 'Camarón, calamar y concha, sofrito de la casa.', price: 13.5, img: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=400&q=80' },
+    { id: 'churrasco', cat: 'fuertes', name: 'Churrasco La Sazón', desc: 'Lomo fino, huevo frito, maduro y papas criollas.', price: 12.5, img: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=400&q=80' },
+    { id: 'salmon', cat: 'fuertes', name: 'Salmón al carbón', desc: 'Con puré rústico y vegetales de temporada.', price: 14, img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80' },
+    { id: 'tresleches', cat: 'postres', name: 'Tres leches de la casa', desc: 'Bizcocho húmedo, canela y cereza.', price: 4.5, img: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400&q=80' },
+    { id: 'flan', cat: 'postres', name: 'Flan de coco', desc: 'Caramelo oscuro y coco tostado.', price: 4, img: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=400&q=80' },
+    { id: 'naranjilla', cat: 'bebidas', name: 'Jugo de naranjilla', desc: 'Recién exprimido.', price: 2.5, img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=400&q=80' },
+    { id: 'limonada', cat: 'bebidas', name: 'Limonada de hierbabuena', desc: 'Vaso $2.50 · jarra $5.50.', price: 2.5, img: 'https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?auto=format&fit=crop&w=400&q=80' },
+    { id: 'cafe', cat: 'bebidas', name: 'Café pasado', desc: 'De Loja, en chuspa.', price: 2, img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80' }
+  ];
+  CATS = [
+    { id: 'entradas', label: 'ENTRADAS' },
+    { id: 'fuertes', label: 'FUERTES' },
+    { id: 'postres', label: 'POSTRES' },
+    { id: 'bebidas', label: 'BEBIDAS' }
+  ];
+  TIMES = ['12:00', '12:30', '13:00', '13:30', '14:00', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30'];
+  NAV = [
+    { label: 'Menú', id: 'menu' },
+    { label: 'Nosotros', id: 'nosotros' },
+    { label: 'Galería', id: 'galeria' },
+    { label: 'Ubicación', id: 'ubicacion' }
+  ];
+
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    mode: null,
+    activeCat: 'entradas',
+    cart: {}, sheetOpen: false, orderName: '', orderNote: '', orderNameError: false, orderDone: false,
+    resDay: null, resTime: null, resPax: 2, resName: '', resPhone: '',
+    resLoading: false, resNameError: false, resDone: false
+  };
+
+  componentDidMount() {
+    this._onR = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onR);
+    this._onImgErr = (e) => { const t = e.target; if (t && t.tagName === 'IMG') t.style.display = 'none'; };
+    document.addEventListener('error', this._onImgErr, true);
+    this.applyAccent();
+    const self = this;
+    window.__nex = {
+      days: this._days(), dishes: this.DISHES,
+      set: (patch) => self.setState(patch),
+      freeTime: (day) => { const s = self._slots(day).find(x => !x.busy); return s ? s.t : '20:00'; }
+    };
+    window.__shot = (keep, width) => {
+      const b = document.body, h = document.documentElement;
+      let anim = document.getElementById('__shotcss');
+      if (width) {
+        h.style.width = b.style.width = width + 'px';
+        h.style.height = b.style.height = 'auto';
+        h.style.maxWidth = b.style.maxWidth = 'none';
+        if (!anim) {
+          anim = document.createElement('style');
+          anim.id = '__shotcss';
+          anim.textContent = '*{animation:none !important;transition:none !important;scrollbar-width:none !important}\n*::-webkit-scrollbar{display:none !important}';
+          document.head.appendChild(anim);
+        }
+      } else {
+        h.style.width = b.style.width = '';
+        h.style.height = b.style.height = '';
+        h.style.maxWidth = b.style.maxWidth = '';
+        if (anim) anim.remove();
+      }
+      const nav = document.querySelector('[data-shot="nav"]');
+      if (nav) nav.style.position = width ? 'relative' : 'sticky';
+      document.querySelectorAll('[data-fixed]').forEach(el => { el.style.position = width ? 'absolute' : 'fixed'; });
+      const list = keep ? (Array.isArray(keep) ? keep : [keep]) : null;
+      document.querySelectorAll('[data-shot]').forEach(el => {
+        el.style.display = (!list || list.includes(el.dataset.shot)) ? '' : 'none';
+      });
+      window.scrollTo(0, 0);
+      self.setState({ mode: width ? (width <= 520 ? 'mobile' : 'desktop') : null });
+    };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+    document.removeEventListener('error', this._onImgErr, true);
+    clearTimeout(this._load);
+  }
+  componentDidUpdate() { this.applyAccent(); }
+
+  applyAccent() {
+    const a = this.props.accent ?? '#7E2F35';
+    if (this._lastA === a) return;
+    this._lastA = a;
+    const r = document.documentElement;
+    r.style.setProperty('--lsA', a);
+    r.style.setProperty('--lsAsoft', a + '1A');
+    r.style.setProperty('--lsAline', a + '55');
+  }
+
+  _days() {
+    if (this._daysCache) return this._daysCache;
+    const WD = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const MO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const out = []; const now = new Date();
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      const wd = d.getDay();
+      out.push({
+        i, key: d.toDateString(), wd: WD[wd], num: d.getDate(), mo: MO[d.getMonth()],
+        closed: wd === 1, full: wd === 6, today: i === 0,
+        label: (i === 0 ? 'Hoy' : WD[wd]) + ' ' + d.getDate() + ' ' + MO[d.getMonth()]
+      });
+    }
+    this._daysCache = out;
+    return out;
+  }
+
+  _slots(day) {
+    if (!day || day.closed || day.full) return [];
+    return this.TIMES.map((t, i) => ({ t, busy: ((i * 5 + day.num * 7 + day.i * 3) % 11) < 3 }));
+  }
+
+  goSection(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+  }
+
+  pickResDay(d) {
+    if (d.closed) return;
+    clearTimeout(this._load);
+    this.setState({ resDay: d, resTime: null, resLoading: true, resDone: false });
+    this._load = setTimeout(() => this.setState({ resLoading: false }), 700);
+  }
+
+  money(n) { return '$' + n.toFixed(2).replace('.00', ''); }
+
+  renderVals() {
+    const st = this.state;
+    const A = 'var(--lsA,#7E2F35)';
+    const SOFT = 'var(--lsAsoft,rgba(126,47,53,.10))';
+    const MONO = 'ui-monospace,SFMono-Regular,Menlo,monospace';
+    const isMobile = st.mode ? st.mode === 'mobile' : st.vw < 768;
+    const days = this._days();
+    const num = this.props.whatsappNumber ?? '593987612045';
+
+    const catTabs = this.CATS.map(c => {
+      const on = st.activeCat === c.id;
+      return {
+        ...c,
+        style: {
+          fontFamily: MONO, fontSize: '10.5px', letterSpacing: '.14em', padding: '10px 16px',
+          borderRadius: '999px', cursor: 'pointer',
+          border: '1px solid ' + (on ? A : '#D6C6A8'),
+          background: on ? A : 'transparent', color: on ? '#FBF3EA' : '#6E5C51',
+          transition: 'background .15s ease, color .15s ease'
+        },
+        go: () => this.setState({ activeCat: c.id })
+      };
+    });
+
+    const dishes = this.DISHES.filter(d => d.cat === st.activeCat).map(d => {
+      const qty = st.cart[d.id] || 0;
+      return {
+        ...d, qty, hasQty: qty > 0, noQty: qty === 0, priceLabel: this.money(d.price),
+        imgStyle: { width: '88px', height: '88px', borderRadius: '10px', flex: 'none', background: '#F0E7D6 url(' + d.img + ') center/cover no-repeat' },
+        add: () => this.setState(s => ({ cart: { ...s.cart, [d.id]: (s.cart[d.id] || 0) + 1 }, orderDone: false })),
+        dec: () => this.setState(s => {
+          const c = { ...s.cart }; const q = (c[d.id] || 0) - 1;
+          if (q <= 0) delete c[d.id]; else c[d.id] = q;
+          return { cart: c };
+        })
+      };
+    });
+
+    const entries = Object.entries(st.cart);
+    const cartCount = entries.reduce((a, [, q]) => a + q, 0);
+    const cartTotal = entries.reduce((a, [id, q]) => a + q * this.DISHES.find(d => d.id === id).price, 0);
+    const sheetItems = entries.map(([id, q]) => {
+      const d = this.DISHES.find(x => x.id === id);
+      return {
+        ...d, qty: q, subLabel: this.money(q * d.price),
+        add: () => this.setState(s => ({ cart: { ...s.cart, [id]: s.cart[id] + 1 } })),
+        dec: () => this.setState(s => {
+          const c = { ...s.cart }; const nq = c[id] - 1;
+          if (nq <= 0) delete c[id]; else c[id] = nq;
+          return { cart: c };
+        })
+      };
+    });
+
+    const orderLines = entries.map(([id, q]) => {
+      const d = this.DISHES.find(x => x.id === id);
+      return '• ' + q + '× ' + d.name + ' — ' + this.money(q * d.price);
+    }).join('\n');
+    const orderMsg = 'Hola La Sazón 🍲 Quiero pedir:\n' + orderLines + '\nTotal: ' + this.money(cartTotal) +
+      '\n• Nombre: ' + (st.orderName.trim() || '—') + (st.orderNote.trim() ? '\n• Nota: ' + st.orderNote.trim() : '') +
+      '\n¿Me confirman tiempo de entrega? ¡Gracias!';
+
+    const resSlotsRaw = this._slots(st.resDay);
+    const resDayChips = days.map(d => {
+      const on = st.resDay && st.resDay.key === d.key;
+      return {
+        ...d,
+        wdU: (d.today ? 'HOY' : d.wd).toUpperCase(), moU: d.mo.toUpperCase(),
+        hasTag: d.closed || d.full, tag: d.closed ? 'CERRADO' : (d.full ? 'COMPLETO' : ''),
+        tagStyle: { fontFamily: MONO, fontSize: '8px', letterSpacing: '.08em', color: d.full ? '#B98A2F' : '#B3A19B', marginTop: '2px' },
+        style: {
+          flex: '0 0 auto', minWidth: '74px', padding: '10px 8px 9px', borderRadius: '10px',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px',
+          cursor: d.closed ? 'not-allowed' : 'pointer', opacity: d.closed ? .4 : 1,
+          border: '1px solid ' + (on ? A : '#E7DCC8'), background: on ? SOFT : '#FFFCF4', color: '#2E211B',
+          transition: 'border-color .15s ease'
+        },
+        pick: () => this.pickResDay(d)
+      };
+    });
+    const resSlots = resSlotsRaw.map(sl => {
+      const on = st.resTime === sl.t;
+      return {
+        ...sl,
+        style: {
+          padding: '12px 6px', borderRadius: '8px', textAlign: 'center', fontFamily: MONO,
+          fontSize: '12.5px', letterSpacing: '.04em', cursor: sl.busy ? 'not-allowed' : 'pointer',
+          border: '1px solid ' + (on ? A : '#E7DCC8'),
+          background: on ? A : '#FFFCF4',
+          color: on ? '#FBF3EA' : (sl.busy ? '#C9BBAE' : '#2E211B'),
+          textDecoration: sl.busy ? 'line-through' : 'none', fontWeight: on ? 700 : 400
+        },
+        pick: () => { if (!sl.busy) this.setState({ resTime: sl.t }); }
+      };
+    });
+    const nextResDay = st.resDay ? days.find(d => d.i > st.resDay.i && !d.closed && !d.full) : null;
+    const resMsg = 'Hola La Sazón 🍷 Quiero reservar una mesa:\n• Día: ' + (st.resDay ? st.resDay.label : '—') +
+      ' · ' + (st.resTime || '—') + '\n• Personas: ' + st.resPax + '\n• Nombre: ' + (st.resName.trim() || '—') +
+      (st.resPhone.trim() ? '\n• Teléfono: ' + st.resPhone.trim() : '') + '\n¿Me confirman? ¡Gracias!';
+
+    return {
+      showNavLinks: !isMobile,
+      navItems: this.NAV.map(n => ({ label: n.label, href: '#' + n.id, go: (e) => this.goSection(n.id, e) })),
+      goTop: (e) => { if (e && e.preventDefault) e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      goMenu: (e) => this.goSection('menu', e),
+      goReserva: (e) => this.goSection('reserva', e),
+      noopLink: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      year: new Date().getFullYear(),
+      hoursRows: (() => {
+        const wd = new Date().getDay();
+        return [
+          { d: 'Martes – Jueves', h: '12:00 – 21:00', on: wd >= 2 && wd <= 4 },
+          { d: 'Viernes – Sábado', h: '12:00 – 22:30', on: wd === 5 || wd === 6 },
+          { d: 'Domingo', h: '11:00 – 17:00', on: wd === 0 },
+          { d: 'Lunes', h: 'Cerrado', on: wd === 1 }
+        ].map(r => ({
+          ...r,
+          badge: r.on ? 'HOY' : '',
+          badgeStyle: { fontFamily: MONO, fontSize: '8.5px', letterSpacing: '.1em', color: 'var(--lsA,#7E2F35)', marginLeft: '4px' },
+          style: {
+            display: 'flex', justifyContent: 'space-between', gap: '12px', padding: '9px 0',
+            borderBottom: '1px dashed #DECFB4', fontSize: '14px',
+            color: r.on ? '#2E211B' : '#6E5C51', fontWeight: r.on ? 700 : 400
+          }
+        }));
+      })(),
+
+      catTabs, dishes,
+      cartVisible: cartCount > 0 && !st.sheetOpen,
+      cartBarLabel: cartCount + (cartCount === 1 ? ' ÍTEM' : ' ÍTEMS') + ' · ' + this.money(cartTotal),
+      openSheet: () => this.setState({ sheetOpen: true }),
+      closeSheet: () => this.setState({ sheetOpen: false }),
+      sheetOpen: st.sheetOpen,
+      sheetItems,
+      sheetHasItems: sheetItems.length > 0,
+      totalLabel: this.money(cartTotal),
+      orderName: st.orderName, orderNote: st.orderNote,
+      setOrderName: (e) => this.setState({ orderName: e.target.value, orderNameError: false }),
+      setOrderNote: (e) => this.setState({ orderNote: e.target.value }),
+      orderNameError: st.orderNameError,
+      orderNameStyle: {
+        width: '100%', boxSizing: 'border-box', background: '#FFFCF4', borderRadius: '8px',
+        padding: '12px 14px', color: '#2E211B', fontSize: '14.5px', outline: 'none',
+        border: '1px solid ' + (st.orderNameError ? '#B4372E' : '#D6C6A8')
+      },
+      confirmOrder: () => {
+        if (!this.state.orderName.trim()) { this.setState({ orderNameError: true }); return; }
+        this.setState({ orderDone: true, orderNameError: false });
+      },
+      orderDone: st.orderDone,
+      orderFormShown: st.sheetOpen && !st.orderDone,
+      orderDoneShown: st.sheetOpen && st.orderDone,
+      orderMsg,
+      orderHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent(orderMsg),
+      resetOrder: () => this.setState({ cart: {}, sheetOpen: false, orderDone: false, orderName: '', orderNote: '' }),
+      orderFirstName: (st.orderName.trim() || 'gracias').split(' ')[0],
+
+      resDayChips, resSlots,
+      resPax: st.resPax,
+      paxInc: () => this.setState(s => ({ resPax: Math.min(10, s.resPax + 1) })),
+      paxDec: () => this.setState(s => ({ resPax: Math.max(1, s.resPax - 1) })),
+      resNoDay: !st.resDay && !st.resLoading,
+      resLoading: st.resLoading,
+      resFullShown: !!st.resDay && st.resDay.full && !st.resLoading,
+      resSlotsShown: !!st.resDay && !st.resDay.full && !st.resLoading,
+      goNextResDay: () => { if (nextResDay) this.pickResDay(nextResDay); },
+      nextResDayLabel: nextResDay ? ('Probar el ' + nextResDay.label) : 'Ver otro día',
+      resName: st.resName, resPhone: st.resPhone,
+      setResName: (e) => this.setState({ resName: e.target.value, resNameError: false }),
+      setResPhone: (e) => this.setState({ resPhone: e.target.value }),
+      resNameError: st.resNameError,
+      resNameStyle: {
+        width: '100%', boxSizing: 'border-box', background: '#FFFCF4', borderRadius: '8px',
+        padding: '12px 14px', color: '#2E211B', fontSize: '14.5px', outline: 'none',
+        border: '1px solid ' + (st.resNameError ? '#B4372E' : '#D6C6A8')
+      },
+      resSummary: (st.resDay ? st.resDay.label : '—') + ' · ' + (st.resTime || '—') + ' · ' + st.resPax + (st.resPax === 1 ? ' persona' : ' personas'),
+      resReady: !!(st.resDay && st.resTime),
+      confirmRes: () => {
+        if (!this.state.resName.trim()) { this.setState({ resNameError: true }); return; }
+        if (!this.state.resDay || !this.state.resTime) return;
+        this.setState({ resDone: true, resNameError: false });
+      },
+      resDone: st.resDone,
+      resFormShown: !st.resDone,
+      resMsg,
+      resHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent(resMsg),
+      resetRes: () => this.setState({ resDay: null, resTime: null, resPax: 2, resName: '', resPhone: '', resDone: false, resLoading: false }),
+      resFirstName: (st.resName.trim() || '').split(' ')[0],
+
+      waFloatHref: 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hola La Sazón, quiero información.'),
+      showFloat: (this.props.mostrarWhatsapp ?? true) && cartCount === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

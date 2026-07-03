@@ -30,3 +30,4 @@ Thumbs.db
 # internal / out-of-scope (not part of the landing)
 docs/nexora-documento-administrativo.docx
 docs/turnia-saas-reservas-plan.md
+docs/*.zip
