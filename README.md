@@ -92,21 +92,16 @@ The OG share images in `public/og/` carry the brand asset's own `nexora.studio` 
 
 ---
 
-## Deploy to Vercel (static, free)
+## Deploys (both live)
 
-The site is a pure static build, so **no adapter is needed** — Vercel detects Astro and serves `dist/`. `vercel.json` pins the framework, build command, output dir, clean URLs and asset caching for a deterministic deploy.
+| Target | URL | How it updates |
+|---|---|---|
+| **Vercel (primary share link)** | **https://nexora-gye.vercel.app/** | `npx vercel deploy --prod --yes` (CLI; project `nexora`, domain pinned via `vercel domains add`). Git auto-deploy NOT connected — connect the repo in the Vercel dashboard if you want deploy-on-push. |
+| GitHub Pages (mirror) | https://luisgxz.github.io/nexora/ | Auto on every push to `main` (Actions workflow) |
 
-**Option A — Git (recommended):** push the repo to GitHub/GitLab, then in Vercel *New Project → Import*. Framework auto-detects as Astro. Add `PUBLIC_GA_ID` under *Settings → Environment Variables* (Production). Deploy.
+The site is a pure static build, so **no adapter is needed** — `vercel.json` pins framework, build, output, clean URLs, trailing slashes and asset caching. `astro.config.mjs` detects the target at build time (`VERCEL` env): Vercel builds at the root of `nexora-gye.vercel.app`; Pages builds under the `/nexora/` subpath. Canonicals, sitemap, OG and the vCard URL follow whichever target built them.
 
-**Option B — CLI:**
-
-```bash
-npm i -g vercel
-vercel login        # run this yourself (interactive)
-vercel --prod       # builds and deploys dist/
-```
-
-After the first deploy, wire the custom domain in *Vercel → Project → Domains* and update `site` in `astro.config.mjs` to match, then redeploy. HTTPS is automatic.
+Add `PUBLIC_GA_ID` in *Vercel → Settings → Environment Variables* (Production) when you want analytics. A future custom domain: add it in *Vercel → Project → Domains*, point `vercelSite` in `astro.config.mjs` at it, redeploy.
 
 ---
 

@@ -21,12 +21,25 @@ import react from '@astrojs/react';
  * `applyBaseStyles: false` keeps Tailwind's base reset under our control via
  * `src/styles/global.css`, avoiding a duplicate injected stylesheet.
  */
+/**
+ * Deploy-target detection: Vercel sets `VERCEL=1` and the production hostname
+ * in `VERCEL_PROJECT_PRODUCTION_URL` at build time, so the same repo builds
+ * for the Vercel root domain AND for the GitHub Pages `/nexora/` subpath
+ * without touching this file. `withBase()` (lib/i18n) keys off `base`, so
+ * every internal link adapts with it.
+ */
+const onVercel = !!process.env.VERCEL;
+// Pinned to the project's primary production domain (added via
+// `vercel domains add`) so canonical/OG/sitemap URLs stay stable even though
+// each deploy also gets hashed + default aliases.
+const vercelSite = 'https://nexora-gye.vercel.app';
+
 export default defineConfig({
-  // GitHub Pages project site: served under https://luisgxz.github.io/nexora/.
-  // `site` (origin) + `base` (subpath) together drive canonical/hreflang/OG/sitemap
-  // and prefix every asset URL. Swap both for the real domain at launch (base: '/').
-  site: 'https://luisgxz.github.io',
-  base: '/nexora',
+  // Vercel: root deploy (primary share link). GitHub Pages: project subpath
+  // https://luisgxz.github.io/nexora/ (kept as mirror). A future custom domain
+  // only needs its own site/base pair here.
+  site: onVercel ? vercelSite : 'https://luisgxz.github.io',
+  base: onVercel ? '/' : '/nexora',
   output: 'static',
   integrations: [
     tailwind({ applyBaseStyles: false }),

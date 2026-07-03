@@ -232,6 +232,15 @@ Token estimates: small file ~500, medium ~2,000, large ~5,000.
 
 ---
 
+## Phase 9: Vercel Primary Deploy ✅
+**Goal**: Serve the site from a clean shareable Vercel link (owner does outreach by direct link; no custom domain for now), keeping GitHub Pages as mirror.
+**Live**: **https://nexora-gye.vercel.app/** (primary) · https://luisgxz.github.io/nexora/ (mirror, auto-deploys on push).
+**Changes**: `astro.config.mjs` now target-aware (`VERCEL` env → root base + `https://nexora-gye.vercel.app`; default → Pages subpath) — one repo, two correct builds; `brand.url` derives from `SITE`+`BASE` (vCard follows the deploy); demo footers link `../../` (relative → correct on any host); `vercel.json` `trailingSlash: true` (matches internal links, kills 308 hops); `@types/node` dev-dep for `process` typing.
+**Vercel setup (done via CLI, account `luisgxz`)**: project `nexora`, domain `nexora-gye.vercel.app` added with `vercel domains add` (auto-assigns on every prod deploy). **Deploy command: `npx vercel deploy --prod --yes`** — Git integration is NOT connected (needs dashboard OAuth), so pushing to main only redeploys the Pages mirror.
+**Verified live**: `/`, `/en/`, all 5 demos, works previews, sitemap, vCard → 200 on nexora-gye; canonical + vCard URL emit the Vercel domain; Pages mirror unaffected.
+
+---
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.

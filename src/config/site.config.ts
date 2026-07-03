@@ -27,8 +27,12 @@ export const brand = {
   location: 'Guayaquil, Ecuador',
   /** PENDING: real contact email. */
   email: 'hola@nexora.dev',
-  /** PENDING: production domain (also set in `astro.config.mjs`). */
-  url: 'https://luisgxz.github.io/nexora/',
+  /**
+   * Canonical public URL of the active deploy (vCard `URL:` field). Derived
+   * from the Astro `site` + `base` pair so the Vercel root deploy and the
+   * GitHub Pages `/nexora/` mirror each emit their own correct link.
+   */
+  url: `${import.meta.env.SITE ?? 'https://nexora.vercel.app'}${BASE}/`,
 } as const;
 
 /**
