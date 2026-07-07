@@ -7,7 +7,7 @@
  * hardcode nothing. Adding a service / work / FAQ is one entry in an array.
  *
  * It mirrors the model in `nexora-prompt-claude-code.md` (hero, services,
- * works, process, niches, about, pillars, faq, testimonials, contact) and adds
+ * works, process, niches, about, pillars, faq, contact) and adds
  * the surrounding chrome (meta, nav, per-section eyebrows/headings, footer, ui
  * microcopy) so that copy is centralized too — never inlined in components.
  *
@@ -134,13 +134,6 @@ export interface FaqItem {
   answer: string;
 }
 
-/** Optional social proof; the section renders only when the array is non-empty. */
-export interface Testimonial {
-  quote: string;
-  author: string;
-  business: string;
-}
-
 /** Labels for the quote-request form fields and submit button. */
 export interface ContactForm {
   nameLabel: string;
@@ -196,7 +189,6 @@ export interface SectionHeaders {
   niches: SectionHeader;
   about: SectionHeader;
   pillars: SectionHeader;
-  testimonials: SectionHeader;
   faq: SectionHeader;
 }
 
@@ -213,7 +205,6 @@ export interface SiteContent {
   about: About;
   pillars: Pillar[];
   faq: FaqItem[];
-  testimonials: Testimonial[];
   contact: Contact;
   footer: Footer;
   ui: UiStrings;

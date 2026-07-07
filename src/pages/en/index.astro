@@ -2,10 +2,9 @@
 /**
  * English landing route (`/en/`) — international market.
  *
- * Mirrors `/` with the EN content tree: chrome + static sections 01–06 + the
- * optional Testimonials block. No auto-detect script here — a visitor on `/en/`
- * is already on their chosen locale; detection only runs from the canonical
- * root. Sections 07–09 and the islands land in Phase 3.
+ * Mirrors `/` with the EN content tree: chrome + sections 01–09 with their
+ * interactive islands. No auto-detect script here — a visitor on `/en/` is
+ * already on their chosen locale; detection only runs from the canonical root.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
@@ -16,7 +15,6 @@ import Works from '../../components/sections/Works.astro';
 import Process from '../../components/sections/Process.astro';
 import Niches from '../../components/sections/Niches.astro';
 import About from '../../components/sections/About.astro';
-import Testimonials from '../../components/sections/Testimonials.astro';
 import WhyNexora from '../../components/sections/WhyNexora.astro';
 import Faq from '../../components/sections/Faq.tsx';
 import Contact from '../../components/sections/Contact.astro';
@@ -43,7 +41,6 @@ const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
     <Process content={content} />
     <Niches content={content} />
     <About content={content} />
-    <Testimonials content={content} />
     <WhyNexora content={content} />
     <Faq
       client:visible

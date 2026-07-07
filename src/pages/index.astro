@@ -2,9 +2,9 @@
 /**
  * Spanish landing route (`/`) — default locale, Ecuador market.
  *
- * Composes the chrome (Header/Footer) and static sections 01–06 + the optional
- * Testimonials block, all driven by the ES content tree. Sections 07–09 (Why
- * Nexora, FAQ, Contact) and the interactive islands land in Phase 3.
+ * Composes the chrome (Header/Footer) and static sections 01–06, all driven by
+ * the ES content tree, plus sections 07–09 (Why Nexora, FAQ, Contact) with
+ * their interactive islands.
  *
  * Auto-detect: the inline head script runs once and bounces a non-Spanish,
  * first-time visitor to `/en/` — never overriding a stored manual choice.
@@ -18,7 +18,6 @@ import Works from '../components/sections/Works.astro';
 import Process from '../components/sections/Process.astro';
 import Niches from '../components/sections/Niches.astro';
 import About from '../components/sections/About.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
 import WhyNexora from '../components/sections/WhyNexora.astro';
 import Faq from '../components/sections/Faq.tsx';
 import Contact from '../components/sections/Contact.astro';
@@ -47,7 +46,6 @@ const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
     <Process content={content} />
     <Niches content={content} />
     <About content={content} />
-    <Testimonials content={content} />
     <WhyNexora content={content} />
     <Faq
       client:visible

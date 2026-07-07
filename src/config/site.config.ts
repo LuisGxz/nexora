@@ -7,10 +7,10 @@
  * Locale-independent. Translated copy lives in `site.es.ts` / `site.en.ts`;
  * colors/typography live in the design tokens.
  *
- * ⚠️ PENDING REAL VALUES (owner to provide; wired in the final phase): the
- * WhatsApp number, email and social handles below are placeholders. Search
- * `PENDING` before launch. Analytics id comes from the environment
- * (`PUBLIC_GA_ID`) — never commit a real id or any secret to the repo.
+ * ⚠️ PENDING REAL VALUES (owner to provide): the social handles below are
+ * placeholders. Search `PENDING` before launch. Analytics id comes from the
+ * environment (`PUBLIC_GA_ID`) — never commit a real id or any secret to the
+ * repo.
  */
 
 /**
@@ -25,8 +25,8 @@ export const brand = {
   legalName: 'Nexora Software',
   tagline: 'Estudio de Software',
   location: 'Guayaquil, Ecuador',
-  /** PENDING: real contact email. */
-  email: 'hola@nexora.dev',
+  /** Contact email — leads write here or via WhatsApp; owner replies from it. */
+  email: 'admin@spektova.com',
   /**
    * Canonical public URL of the active deploy (vCard `URL:` field). Derived
    * from the Astro `site` + `base` pair so the Vercel root deploy and the
@@ -38,9 +38,8 @@ export const brand = {
 /**
  * WhatsApp contact in E.164 WITHOUT the leading `+` or spaces — this is the
  * exact form `wa.me/<number>` requires.
- * ⚠️ PENDING: replace with the real number before launch.
  */
-export const whatsappNumber = '593900000000';
+export const whatsappNumber = '593995402939';
 
 /**
  * Live demo URLs referenced by `works[]` (same key in both locales). Each demo

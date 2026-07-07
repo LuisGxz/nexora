@@ -57,10 +57,6 @@ export const siteEn: SiteContent = {
       eyebrow: 'Why Nexora',
       heading: 'Why trust us',
     },
-    testimonials: {
-      eyebrow: 'Testimonials',
-      heading: 'What clients say',
-    },
     faq: {
       eyebrow: 'FAQ',
       heading: 'Frequently asked questions',
@@ -194,8 +190,6 @@ export const siteEn: SiteContent = {
       answer: 'Yes. I work with clients anywhere in the world; we coordinate everything over WhatsApp wherever you are.',
     },
   ],
-
-  testimonials: [],
 
   contact: {
     heading: 'Tell me about your project',

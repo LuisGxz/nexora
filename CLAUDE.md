@@ -29,7 +29,7 @@ npx astro check        # typecheck Astro + TS
 4. **Trabajos / Demos** lists ONLY Nexora's own work (live demos + freelance projects).
 5. **Nothing hardcoded.** All copy + lists in `src/content/site.es.ts` / `site.en.ts`. All theme from tokens. All config in `src/config/site.config.ts`. Changing one color token must recolor the whole site.
 6. **No invented assets.** If something is missing from `nexora-brand/`, list what's missing — don't fabricate colors/fonts/spacing/icons.
-7. Testimonials block renders ONLY if `testimonials[]` is non-empty.
+7. **No testimonials section** — removed entirely by owner decision (2026-07). Do not reintroduce the component, types, or content fields unless the owner asks.
 
 ## Conventions
 - All code, identifiers, filenames, and docs in **English**.
