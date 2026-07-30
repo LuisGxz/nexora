@@ -142,16 +142,17 @@ export const siteEs: SiteContent = {
     heading: 'Una casa de software con experiencia real',
     body:
       'Nexora es un estudio de software con base en Guayaquil que trabaja con negocios de todo el mundo. Construimos webs, sistemas y aplicaciones a la medida, con método: alcance claro, avances visibles y entregas que funcionan. Detrás hay experiencia real en banca y producto, con años desarrollando software en producción. Lo lidera Luis como desarrollador principal; trabajamos como estudio y hablamos de "nuestro proceso".',
-    // ⚠️ PENDING: confirm exact roles/periods with the owner. Listed as
-    // professional background (where the developer has worked), NOT as clients.
+    // Trayectoria profesional real (dónde ha trabajado el desarrollador),
+    // NO clientes de Nexora. Orden: más reciente primero.
     experience: [
-      { company: 'Banco de Machala', role: 'Desarrollo de software', period: '—' },
-      { company: 'Viamatica', role: 'Desarrollo de software', period: '—' },
-      { company: 'Relolink', role: 'Desarrollo de producto', period: '—' },
+      { company: 'Relolink', role: 'Desarrollador Full-stack', period: 'abr. 2024 — actualidad' },
+      { company: 'Banco de Machala', role: 'Arquitecto de Software Jr', period: 'ago. 2023 — abr. 2024' },
+      { company: 'Viamatica', role: 'Ingeniero de Software', period: 'feb. 2021 — abr. 2024' },
     ],
     products: ['Faktova', 'Turnia', 'Spektova'],
     links: [
       { label: 'Portafolio', href: social.portfolio, icon: 'ui-github' },
+      { label: 'LinkedIn', href: social.linkedin, icon: 'ui-external' },
       { label: 'Fiverr', href: social.fiverr, icon: 'ui-external' },
     ],
   },

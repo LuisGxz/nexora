@@ -78,15 +78,16 @@ Bilingual model: ES at `/`, EN at `/en/`. First visit auto-detects (`navigator.l
 
 These ship as clearly-marked placeholders. Search the repo for `PENDING` and set:
 
-| What | Where |
-|---|---|
-| Production domain | `astro.config.mjs` → `site` (drives canonical / hreflang / sitemap / OG URLs) |
-| WhatsApp number (E.164, no `+`) | `src/config/site.config.ts` → `whatsappNumber` |
-| Live demo URLs | ✅ done — `src/config/site.config.ts` → `demoUrls` points at the 5 demos shipped from `public/demos/<slug>/` (previews in `public/works/`) |
-| Contact email | `src/config/site.config.ts` → `brand.email` |
-| Social handles | `src/config/site.config.ts` → `social` |
-| Employer roles / periods | `src/content/site.es.ts` + `site.en.ts` → `about.experience` |
-| GA measurement id | Vercel env `PUBLIC_GA_ID` |
+| What | Where | Status |
+|---|---|---|
+| WhatsApp number (E.164, no `+`) | `src/config/site.config.ts` → `whatsappNumber` | ✅ `593995402939` |
+| Contact email | `src/config/site.config.ts` → `brand.email` | ✅ `admin@spektova.com` |
+| Live demo URLs | `src/config/site.config.ts` → `demoUrls` (5 demos from `public/demos/<slug>/`, previews in `public/works/`) | ✅ |
+| Employer roles / periods | `src/content/site.es.ts` + `site.en.ts` → `about.experience` | ✅ real roles + periods |
+| LinkedIn / portfolio | `src/config/site.config.ts` → `social` | ✅ personal profiles (no company page yet) |
+| **Fiverr profile URL** | `src/config/site.config.ts` → `social.fiverr` | ⚠️ `'#'` — link stays hidden until set |
+| **GA measurement id** | Vercel env `PUBLIC_GA_ID` (Production) | ⚠️ unset → analytics is a no-op |
+| Custom domain | `astro.config.mjs` → `vercelSite` (drives canonical / hreflang / sitemap / OG) | Deferred — sharing `nexora-gye.vercel.app` |
 
 The OG share images in `public/og/` carry the brand asset's own `nexora.studio` text — re-export from `nexora-brand/social/og-share-card.svg` if the domain/wording changes.
 
@@ -107,4 +108,4 @@ Add `PUBLIC_GA_ID` in *Vercel → Settings → Environment Variables* (Productio
 
 ## Definition of Done (plan §11)
 
-No pricing · employers only as experience (not clients) · language auto-detect + persistent manual toggle · hero value + CTA above the fold · 9 sections matching mockups (07 & 03 reinterpreted) · testimonials render only when non-empty · quote form composes the WhatsApp message · WhatsApp clicks fire an analytics event · hreflang + sitemap + OG present · vCard downloads, demos link out when real · one-token recolor · no hardcoded copy outside `src/content/` · Lighthouse 95+. Remaining: production deploy (owner's Vercel login + the PENDING real values above).
+No pricing · employers only as experience (not clients) · language auto-detect + persistent manual toggle · hero value + CTA above the fold · 9 sections matching mockups (07 & 03 reinterpreted) · quote form composes the WhatsApp message · WhatsApp clicks fire an analytics event · hreflang + sitemap + OG present · vCard downloads, 5 demos live · one-token recolor · no hardcoded copy outside `src/content/` · Lighthouse 100×4. Deployed on both targets. Remaining: the two ⚠️ rows above (Fiverr URL, GA id).

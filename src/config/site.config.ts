@@ -7,10 +7,10 @@
  * Locale-independent. Translated copy lives in `site.es.ts` / `site.en.ts`;
  * colors/typography live in the design tokens.
  *
- * ⚠️ PENDING REAL VALUES (owner to provide): the social handles below are
- * placeholders. Search `PENDING` before launch. Analytics id comes from the
- * environment (`PUBLIC_GA_ID`) — never commit a real id or any secret to the
- * repo.
+ * ⚠️ PENDING REAL VALUES (owner to provide): the Fiverr profile URL below is
+ * still a placeholder. Search `PENDING` before launch. Analytics id comes from
+ * the environment (`PUBLIC_GA_ID`) — never commit a real id or any secret to
+ * the repo.
  */
 
 /**
@@ -68,13 +68,13 @@ export const demoPreviews = {
 } as const;
 
 /**
- * Social / professional profile URLs. ⚠️ PENDING: confirm before launch.
- * `portfolio` is the lead developer's GitHub portfolio, surfaced in About so
- * visitors can see who builds Nexora.
+ * Professional profile URLs surfaced in About so visitors can see who builds
+ * Nexora. Personal profiles by design — there is no company page yet; a `'#'`
+ * value hides its link (see `About.astro`), so an unset profile never ships a
+ * dead link.
  */
 export const social = {
-  instagram: 'https://instagram.com/nexora',
-  linkedin: 'https://linkedin.com/company/nexora',
+  linkedin: 'https://www.linkedin.com/in/luis-chiquito-vera-579b81223/',
   portfolio: 'https://luisgxz.github.io/portfolio/',
   /** ⚠️ PENDING: real Fiverr profile URL (placeholder hides the link). */
   fiverr: '#',
