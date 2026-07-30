@@ -84,12 +84,11 @@ These ship as clearly-marked placeholders. Search the repo for `PENDING` and set
 | Contact email | `src/config/site.config.ts` → `brand.email` | ✅ `admin@spektova.com` |
 | Live demo URLs | `src/config/site.config.ts` → `demoUrls` (5 demos from `public/demos/<slug>/`, previews in `public/works/`) | ✅ |
 | Employer roles / periods | `src/content/site.es.ts` + `site.en.ts` → `about.experience` | ✅ real roles + periods |
-| LinkedIn / portfolio | `src/config/site.config.ts` → `social` | ✅ personal profiles (no company page yet) |
-| **Fiverr profile URL** | `src/config/site.config.ts` → `social.fiverr` | ⚠️ `'#'` — link stays hidden until set |
+| LinkedIn / portfolio / Fiverr | `src/config/site.config.ts` → `social` | ✅ personal profiles (no company page yet) |
 | **GA measurement id** | Vercel env `PUBLIC_GA_ID` (Production) | ⚠️ unset → analytics is a no-op |
 | Custom domain | `astro.config.mjs` → `vercelSite` (drives canonical / hreflang / sitemap / OG) | Deferred — sharing `nexora-gye.vercel.app` |
 
-The OG share images in `public/og/` carry the brand asset's own `nexora.studio` text — re-export from `nexora-brand/social/og-share-card.svg` if the domain/wording changes.
+The OG share images in `public/og/` are rasterized from `nexora-brand/social/og-share-card.svg` and carry the live domain (`nexora-gye.vercel.app`) in their footer text — re-export both locales if the domain or wording changes. The brand SVG itself stays untouched (read-only kit); the domain swap + EN translation happen at raster time.
 
 ---
 

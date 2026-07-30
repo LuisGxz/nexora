@@ -241,8 +241,23 @@ Token estimates: small file ~500, medium ~2,000, large ~5,000.
 
 ---
 
+## Phase 10: Real Values + Share Assets ✅
+**Goal**: Close every owner-pending placeholder so the live site carries real contact channels, real professional history and share cards that match the deployed domain.
+**Depends on**: Phase 9 (both deploys live).
+**Changes**:
+- `site.config.ts` — real WhatsApp (`593995402939`) + contact email (`admin@spektova.com`); `social` now holds the real LinkedIn, GitHub portfolio and **Fiverr** (`fiverr.com/luischv`, canonical form — no `es.` locale prefix, no `public_mode` query, so it opens in the visitor's language). Dropped the unused Instagram / company-page placeholders (dead config, never rendered by any component).
+- `site.es.ts` / `site.en.ts` — `about.experience` carries real roles + periods (Relolink, Banco de Machala, Viamatica; most recent first), replacing the em-dash placeholders. Still framed as professional background, never as clients. LinkedIn added to `about.links`.
+- `public/og/*.png` — re-rasterized both locale cards so the footer reads `nexora-gye.vercel.app` instead of the brand kit's `nexora.studio`. Domain swap + EN translation happen at raster time; the brand SVG stays read-only.
+- Testimonials removed entirely (owner decision) — component, types and content fields gone; `CLAUDE.md` rule 7 records it.
+- `README.md` / `PHASES.md` — PENDING table now per-row status; only the GA id remains open.
+**Verified**: `astro check` → 0 errors; build clean; both deploys serve the new content (checked `luis-chiquito-vera` + `abr. 2024` / `Apr 2024` on `/` and `/en/`).
+**Still open (needs owner action, not code)**: `PUBLIC_GA_ID` — create a GA4 property, add the `G-XXXXXXXXXX` in *Vercel → Settings → Environment Variables* (Production), redeploy. Until then analytics is a no-op by design and the site ships zero gtag JS.
+
+---
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.
-- **Real values pending from owner**: WhatsApp E.164 number, demo URLs, analytics (GA) id, email, social handles, actual `works[]` content. Use clearly-marked placeholders in `site.config.ts` until provided.
+- **All owner values are now real** (Phase 10). The single exception is the GA measurement id, which is environment-injected and intentionally absent from the repo.
+- **Fiverr link is live in About.** Note the positioning trade-off: a marketplace link can invite price comparison against the studio's private quoting. It ships because the owner asked for it; removing it later is a one-line change (`social.fiverr = '#'` re-hides it via the `About.astro` filter).
 - `turnia-saas-reservas-plan.md` and `nexora-documento-administrativo.docx` are out of scope for this landing build (Turnia is a separate product; the .docx is internal admin).

@@ -7,10 +7,9 @@
  * Locale-independent. Translated copy lives in `site.es.ts` / `site.en.ts`;
  * colors/typography live in the design tokens.
  *
- * ⚠️ PENDING REAL VALUES (owner to provide): the Fiverr profile URL below is
- * still a placeholder. Search `PENDING` before launch. Analytics id comes from
- * the environment (`PUBLIC_GA_ID`) — never commit a real id or any secret to
- * the repo.
+ * All contact channels and profile URLs here are real. The only value still
+ * pending is the analytics id, which comes from the environment
+ * (`PUBLIC_GA_ID`) — never commit a real id or any secret to the repo.
  */
 
 /**
@@ -76,8 +75,11 @@ export const demoPreviews = {
 export const social = {
   linkedin: 'https://www.linkedin.com/in/luis-chiquito-vera-579b81223/',
   portfolio: 'https://luisgxz.github.io/portfolio/',
-  /** ⚠️ PENDING: real Fiverr profile URL (placeholder hides the link). */
-  fiverr: '#',
+  /**
+   * Canonical Fiverr profile (no `es.` locale prefix, no `public_mode` query) so
+   * the link resolves in the visitor's own language instead of forcing Spanish.
+   */
+  fiverr: 'https://www.fiverr.com/luischv',
 } as const;
 
 /**
