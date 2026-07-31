@@ -77,6 +77,20 @@ export const demoPreviews = {
 } as const;
 
 /**
+ * Public sites of Nexora's own products, listed in the About panel. Keys mirror
+ * the `products[]` entries in both locale files so a product and its URL always
+ * travel together.
+ *
+ * `faktova` is registered but has no site yet, so its entry is marked `hidden`
+ * in the content tree — the URL waits here rather than being invented later.
+ */
+export const productUrls = {
+  turnia: 'https://turniaapp.com',
+  spektova: 'https://spektova.com',
+  faktova: 'https://faktova.com',
+} as const;
+
+/**
  * Professional profile URLs surfaced in About so visitors can see who builds
  * Nexora. Personal profiles by design — there is no company page yet; a `'#'`
  * value hides its link (see `About.astro`), so an unset profile never ships a
@@ -108,6 +122,7 @@ export const siteConfig = {
   brand,
   whatsappNumber,
   demoUrls,
+  productUrls,
   social,
   analyticsId,
   vcardPath,

@@ -115,11 +115,26 @@ export interface AboutLink {
   icon: IconKey;
 }
 
+/**
+ * One of Nexora's own products, shown in the About panel.
+ *
+ * `url` is optional so a product can be listed before it has a public site;
+ * without it the card renders as plain text instead of a dead link. `hidden`
+ * keeps an unlaunched product in the content tree — so its name and URL are
+ * ready — while omitting it from the rendered page, which is cleaner than
+ * commenting the entry out and losing it.
+ */
+export interface Product {
+  name: string;
+  url?: string;
+  hidden?: boolean;
+}
+
 export interface About {
   heading: string;
   body: string;
   experience: Experience[];
-  products: string[];
+  products: Product[];
   links: AboutLink[];
 }
 

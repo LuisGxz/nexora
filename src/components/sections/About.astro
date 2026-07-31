@@ -22,6 +22,12 @@ const { about, sections, ui } = content;
 
 /** Hide a profile link until its real URL is wired in `site.config.ts`. */
 const visibleLinks = about.links.filter((link) => link.href && link.href !== '#');
+
+/**
+ * Drop products flagged `hidden` (unlaunched) so the panel never advertises a
+ * product with no site, while the entry stays in the content tree ready to ship.
+ */
+const visibleProducts = about.products.filter((product) => !product.hidden);
 ---
 
 <section id="estudio" class="bg-background">
@@ -78,9 +84,21 @@ const visibleLinks = about.links.filter((link) => link.href && link.href !== '#'
       </p>
       <ul class="flex flex-col gap-3">
         {
-          about.products.map((product) => (
-            <li class="rounded-xl border border-border-dark bg-navy-800 px-5 py-4 font-display text-h4 font-semibold">
-              {product}
+          visibleProducts.map((product) => (
+            <li class="rounded-xl border border-border-dark bg-navy-800 font-display text-h4 font-semibold transition-colors duration-base ease-standard hover:border-cyan">
+              {product.url ? (
+                <a
+                  href={product.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-between gap-3 px-5 py-4"
+                >
+                  {product.name}
+                  <Icon name="ui-external" class="h-[1.1rem] w-[1.1rem] shrink-0 text-cyan" />
+                </a>
+              ) : (
+                <span class="block px-5 py-4">{product.name}</span>
+              )}
             </li>
           ))
         }

@@ -9,7 +9,7 @@
  * Voice mirrors the Spanish: owner-facing, pain-first, confident, no hype.
  */
 import type { SiteContent } from './types';
-import { demoPreviews, demoUrls, social } from '../config/site.config';
+import { demoPreviews, demoUrls, productUrls, social } from '../config/site.config';
 
 export const siteEn: SiteContent = {
   meta: {
@@ -143,11 +143,18 @@ export const siteEn: SiteContent = {
     // Real professional background (where the developer has worked),
     // NOT Nexora clients. Ordered most recent first.
     experience: [
+      { company: 'Fiverr', role: 'Freelance Developer', period: '2021 — present (5 years)' },
       { company: 'Relolink', role: 'Full-stack Developer', period: 'Apr 2024 — present' },
       { company: 'Banco de Machala', role: 'Software Architect Jr', period: 'Aug 2023 — Apr 2024' },
       { company: 'Viamatica', role: 'Software Engineer', period: 'Feb 2021 — Apr 2024' },
     ],
-    products: ['Faktova', 'Turnia', 'Spektova'],
+    // `hidden` keeps a product in the tree but off the page: Faktova already has
+    // a domain but no public site yet.
+    products: [
+      { name: 'Turnia', url: productUrls.turnia },
+      { name: 'Spektova', url: productUrls.spektova },
+      { name: 'Faktova', url: productUrls.faktova, hidden: true },
+    ],
     links: [
       { label: 'Portfolio', href: social.portfolio, icon: 'ui-github' },
       { label: 'LinkedIn', href: social.linkedin, icon: 'ui-external' },
@@ -157,7 +164,7 @@ export const siteEn: SiteContent = {
 
   pillars: [
     { stat: '+5 years', label: 'building real software' },
-    { stat: 'Own products', label: 'Faktova, Turnia and Spektova in production' },
+    { stat: 'Own products', label: 'Turnia and Spektova in production' },
     { stat: 'Fast delivery', label: 'your site in days; systems with an exact date' },
   ],
 

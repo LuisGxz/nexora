@@ -11,7 +11,7 @@
  * exaggeration (see `nexora-brand/brand-guidelines.md`).
  */
 import type { SiteContent } from './types';
-import { demoPreviews, demoUrls, social } from '../config/site.config';
+import { demoPreviews, demoUrls, productUrls, social } from '../config/site.config';
 
 export const siteEs: SiteContent = {
   meta: {
@@ -145,11 +145,18 @@ export const siteEs: SiteContent = {
     // Trayectoria profesional real (dónde ha trabajado el desarrollador),
     // NO clientes de Nexora. Orden: más reciente primero.
     experience: [
+      { company: 'Fiverr', role: 'Desarrollador Freelance', period: '2021 — actualidad (5 años)' },
       { company: 'Relolink', role: 'Desarrollador Full-stack', period: 'abr. 2024 — actualidad' },
       { company: 'Banco de Machala', role: 'Arquitecto de Software Jr', period: 'ago. 2023 — abr. 2024' },
       { company: 'Viamatica', role: 'Ingeniero de Software', period: 'feb. 2021 — abr. 2024' },
     ],
-    products: ['Faktova', 'Turnia', 'Spektova'],
+    // `hidden` oculta el producto sin sacarlo del árbol de contenido: Faktova
+    // ya tiene dominio pero aún no tiene sitio público.
+    products: [
+      { name: 'Turnia', url: productUrls.turnia },
+      { name: 'Spektova', url: productUrls.spektova },
+      { name: 'Faktova', url: productUrls.faktova, hidden: true },
+    ],
     links: [
       { label: 'Portafolio', href: social.portfolio, icon: 'ui-github' },
       { label: 'LinkedIn', href: social.linkedin, icon: 'ui-external' },
@@ -159,7 +166,7 @@ export const siteEs: SiteContent = {
 
   pillars: [
     { stat: '+5 años', label: 'construyendo software de verdad' },
-    { stat: 'Productos propios', label: 'Faktova, Turnia y Spektova en producción' },
+    { stat: 'Productos propios', label: 'Turnia y Spektova en producción' },
     { stat: 'Entregas rápidas', label: 'tu web en días; sistemas con fecha exacta' },
   ],
 
