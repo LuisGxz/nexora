@@ -12,6 +12,8 @@
  * (`PUBLIC_GA_ID`) — never commit a real id or any secret to the repo.
  */
 
+import { PRIMARY_ORIGIN } from './domain.mjs';
+
 /**
  * Deploy base path (no trailing slash) so config-built URLs resolve both under
  * the GitHub Pages `/nexora/` subpath and at a future root domain.
@@ -24,14 +26,22 @@ export const brand = {
   legalName: 'Nexora Software',
   tagline: 'Estudio de Software',
   location: 'Guayaquil, Ecuador',
-  /** Contact email — leads write here or via WhatsApp; owner replies from it. */
-  email: 'admin@spektova.com',
+  /**
+   * Contact email — leads write here or via WhatsApp; owner replies from it.
+   *
+   * Delivered as a Google Workspace **domain alias** of the owner's existing
+   * `spektova.com` tenant: no extra mailbox license, and replies send natively
+   * from this address (a plain forwarder could only receive). Requires Google's
+   * MX records on `nexoradevs.com` — without them this address bounces, so keep
+   * it in sync with the Workspace domain list.
+   */
+  email: 'hola@nexoradevs.com',
   /**
    * Canonical public URL of the active deploy (vCard `URL:` field). Derived
    * from the Astro `site` + `base` pair so the Vercel root deploy and the
    * GitHub Pages `/nexora/` mirror each emit their own correct link.
    */
-  url: `${import.meta.env.SITE ?? 'https://nexora.vercel.app'}${BASE}/`,
+  url: `${import.meta.env.SITE ?? PRIMARY_ORIGIN}${BASE}/`,
 } as const;
 
 /**

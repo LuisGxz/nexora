@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
+import { PRIMARY_ORIGIN } from './src/config/domain.mjs';
 
 /**
  * Astro project configuration for the Nexora landing.
@@ -31,13 +32,14 @@ import react from '@astrojs/react';
 const onVercel = !!process.env.VERCEL;
 // Pinned to the project's primary production domain (added via
 // `vercel domains add`) so canonical/OG/sitemap URLs stay stable even though
-// each deploy also gets hashed + default aliases.
-const vercelSite = 'https://nexora-gye.vercel.app';
+// each deploy also gets hashed + default aliases. Apex is canonical; `www` and
+// the legacy `nexora-gye.vercel.app` alias both 308 here (see README).
+const vercelSite = PRIMARY_ORIGIN;
 
 export default defineConfig({
-  // Vercel: root deploy (primary share link). GitHub Pages: project subpath
-  // https://luisgxz.github.io/nexora/ (kept as mirror). A future custom domain
-  // only needs its own site/base pair here.
+  // Vercel: root deploy on the custom domain (primary, canonical). GitHub Pages:
+  // project subpath https://luisgxz.github.io/nexora/ (kept as mirror). Swapping
+  // the domain again only needs its own site/base pair here.
   site: onVercel ? vercelSite : 'https://luisgxz.github.io',
   base: onVercel ? '/' : '/nexora',
   output: 'static',

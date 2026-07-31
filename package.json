@@ -9,7 +9,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "og": "node scripts/render-og.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",

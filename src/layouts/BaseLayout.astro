@@ -21,6 +21,7 @@
  * @prop ogAlt - Alt text for the social share image (localized).
  */
 import { brand, analyticsId } from '../config/site.config';
+import { PRIMARY_ORIGIN } from '../config/domain.mjs';
 import { LOCALES, DEFAULT_LOCALE, pathForLocale, withBase } from '../lib/i18n';
 import { gaBootstrapScript } from '../lib/analytics';
 import type { Locale } from '../content/types';
@@ -42,7 +43,7 @@ const {
   ogAlt = 'Nexora — Estudio de software en Guayaquil',
 } = Astro.props;
 
-const site = Astro.site ?? new URL('https://luisgxz.github.io');
+const site = Astro.site ?? new URL(PRIMARY_ORIGIN);
 const canonical = new URL(withBase(path), site).href;
 const ogImageFile = lang === 'en' ? '/og/og-share-en.png' : '/og/og-share.png';
 const ogImage = new URL(withBase(ogImageFile), site).href;

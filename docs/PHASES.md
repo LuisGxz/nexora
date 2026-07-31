@@ -255,9 +255,31 @@ Token estimates: small file ~500, medium ~2,000, large ~5,000.
 
 ---
 
+## Phase 11: Custom Domain `nexoradevs.com` ✅
+**Goal**: Move the canonical origin off the Vercel subdomain onto the owned domain, and make any future domain change a one-line edit.
+**Depends on**: Phase 10 (real values shipped).
+**Why this domain**: `nexora.com` is registered (since 2013, renewed to 2027) and every short `nexora*` variant plus every `nexora.*` TLD is taken — ~180 candidates checked via Verisign RDAP. Single-word `.com`s (real or invented, ES/EN) are exhausted: 0 free out of ~100. Compounds were the only available tier, so a rebrand would have bought an equal-quality domain while costing the logo (the mark is an **N monogram** built from nodes) plus the whole brand kit. Keeping Nexora was strictly cheaper.
+**Changes**:
+- **`src/config/domain.mjs` (new)** — `PRIMARY_DOMAIN` / `PRIMARY_ORIGIN`, the single source of truth. Plain ESM because its three consumers can't share a TS import graph: `astro.config.mjs` (Node, pre-Vite), `site.config.ts` + `BaseLayout.astro` (Vite), `scripts/render-og.mjs` (plain Node).
+- `astro.config.mjs` — `vercelSite` now imports `PRIMARY_ORIGIN`; no literal domain left.
+- `site.config.ts` — `brand.url` fallback from `PRIMARY_ORIGIN`; `brand.email` → `hola@nexoradevs.com`.
+- `BaseLayout.astro` — `Astro.site` fallback from `PRIMARY_ORIGIN` (was the Pages host).
+- **`scripts/render-og.mjs` (new)** + `npm run og` — re-rasterizes both locale share cards from the read-only brand SVG, injecting the live domain and the EN translation at raster time. Throws if the brand SVG's text nodes drift, so a card with a stale domain can't ship silently. Replaces the previous manual re-export.
+**Vercel setup (CLI, account `luisgxz`)**: `nexoradevs.com` + `www.nexoradevs.com` added to project `nexora`. `nexora-gye.vercel.app` kept as a legacy alias.
+**Verified**: `astro check` → 0 errors. Both build targets correct — `VERCEL=1` emits `https://nexoradevs.com/` across canonical, hreflang, `og:url`, `og:image`, sitemap, robots and the vCard `URL:`/`EMAIL:`; the default build still emits the `luisgxz.github.io/nexora/` subpath unchanged. Zero `nexora-gye` / `spektova` references left in `dist/`.
+**DNS**: ✅ Cloudflare `A` records for apex + `www` → `76.76.21.21` (DNS only). Live and verified — `/`, `/en/`, vCard, sitemap, OG and all 5 demos return 200 on `https://nexoradevs.com` with a valid certificate.
+**Email**: `hola@nexoradevs.com` is provisioned as a **Google Workspace domain alias** of the owner's existing `spektova.com` tenant, not as a forwarder. Rationale: `spektova.com` already runs Workspace (MX `aspmx.l.google.com`), and a domain alias costs nothing, needs no extra license, and lets the address *send* as well as receive — a Cloudflare Email Routing forwarder would receive only, so replies would expose `spektova.com` to leads. Workspace allows up to 20 domain aliases, so the owner's other projects reuse the same single mailbox.
+**Analytics**: ✅ `PUBLIC_GA_ID` set in Vercel (Production) and verified live — `gtag/js` plus the delegated `cta_whatsapp` listener ship on both `/` and `/en/`. The id stays out of the repo by convention; it is baked in at build, so changing it needs a redeploy. This closes the last item carried from Phase 10.
+**Search Console**: domain property added for `nexoradevs.com`; `sitemap.xml` submitted (verified live, both locale routes with `hreflang` alternates, declared in `robots.txt`).
+**⚠️ Operational constraint**: DNS must stay at Cloudflare. Vercel's "DNS Change Recommended" hint proposes moving the nameservers to Vercel — doing so would drop the Google Workspace MX/SPF/DKIM records and break `hola@nexoradevs.com`.
+**Still open (owner action, not code)**: ① **Duplicate DKIM** — `google._domainkey.nexoradevs.com` currently answers with two different keys, which makes DKIM ambiguous and fails authentication. Keep the key beginning `…CAQEAn1ob80FNx…` (the one Google issued for this domain), delete the one beginning `…CAQEAuQVYcXvA6ehh…`, then run "Start authentication" in Workspace. Neither key is truncated. ② End-to-end mail test: DNS being correct does not prove the Workspace domain alias and the `hola` user alias exist — send a real message to `hola@nexoradevs.com` and reply from it to confirm the From header. ③ `www` serves a duplicate 200 instead of a 308 to the apex; canonical already points at the apex so SEO is safe, but set `www` to Redirect in *Vercel → Domains*.
+
+---
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.
-- **All owner values are now real** (Phase 10). The single exception is the GA measurement id, which is environment-injected and intentionally absent from the repo.
+- **All owner values are now real** (Phase 10) and the site is canonical on its own domain (Phase 11). Exceptions, all environment/DNS-side and intentionally absent from the repo: the GA measurement id, the Cloudflare DNS records and the email-routing rule.
+- **Domain changes are a one-line edit** to `src/config/domain.mjs`, followed by `npm run og` + redeploy. Do not reintroduce literal domains anywhere else.
 - **Fiverr link is live in About.** Note the positioning trade-off: a marketplace link can invite price comparison against the studio's private quoting. It ships because the owner asked for it; removing it later is a one-line change (`social.fiverr = '#'` re-hides it via the `About.astro` filter).
 - `turnia-saas-reservas-plan.md` and `nexora-documento-administrativo.docx` are out of scope for this landing build (Turnia is a separate product; the .docx is internal admin).
