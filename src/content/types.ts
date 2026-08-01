@@ -58,18 +58,30 @@ export interface SectionHeader {
   subheading?: string;
 }
 
+/**
+ * Above-the-fold block. `eyebrow` is the small studio label above the headline;
+ * it is deliberately separate from `footer.tagline` so the footer can carry the
+ * city while the rest of the page stays location-free.
+ */
 export interface Hero {
+  eyebrow: string;
   headline: string;
   subheadline: string;
   ctaPrimary: string;
   ctaSecondary: string;
 }
 
-/** One service card: icon + title + the pain it removes. No price. */
+/**
+ * One service card: icon + title + the outcome the client gets.
+ *
+ * `benefit` states what Nexora delivers ("we push your business up in Google
+ * searches"), never the visitor's problem — owner-facing and forward-looking by
+ * editorial rule. No price.
+ */
 export interface Service {
   icon: IconKey;
   title: string;
-  pain: string;
+  benefit: string;
 }
 
 /**
@@ -116,24 +128,31 @@ export interface AboutLink {
 }
 
 /**
- * One of Nexora's own products, shown in the About panel.
+ * One of Nexora's own products, shown as a card in the About panel.
  *
- * `url` is optional so a product can be listed before it has a public site;
- * without it the card renders as plain text instead of a dead link. `hidden`
- * keeps an unlaunched product in the content tree — so its name and URL are
- * ready — while omitting it from the rendered page, which is cleaner than
- * commenting the entry out and losing it.
+ * `description` says what the product does in one line — with only three of
+ * them, a bare name list reads as a thin credential, while a described card
+ * reads as a portfolio. `url` is optional so an unlaunched product still ships
+ * as a card instead of a dead link; pair that case with `status` (e.g. "En
+ * desarrollo") so the missing link is explained rather than merely absent.
  */
 export interface Product {
   name: string;
+  description: string;
   url?: string;
-  hidden?: boolean;
+  status?: string;
 }
 
+/**
+ * "Sobre Nexora" content. Framed as a studio and a team — never a named
+ * individual — while `experience` still carries the real professional
+ * background that backs it (see `productsIntro` for the own-products lead).
+ */
 export interface About {
   heading: string;
   body: string;
   experience: Experience[];
+  productsIntro: string;
   products: Product[];
   links: AboutLink[];
 }

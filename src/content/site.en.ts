@@ -6,17 +6,26 @@
  * Past employers appear only under `about.experience` (background), never as
  * clients in `works`. Demo URLs come from `site.config.ts` (single source).
  *
- * Voice mirrors the Spanish: owner-facing, pain-first, confident, no hype.
+ * Voice mirrors the Spanish: outcome-first, spoken as a studio ("we" — never
+ * "I", never a named person), confident, no hype.
+ *
+ * Audience is deliberately open: the reader may be an individual, a freelancer
+ * or a company, so no string assumes "your business". Address the reader as
+ * "you" and talk about the project, never about what they are — the mixed
+ * audience is signalled implicitly (via `niches`), never stated.
+ *
+ * The city appears ONLY in `footer.tagline`; no other string says where Nexora
+ * is based.
  */
 import type { SiteContent } from './types';
 import { demoPreviews, demoUrls, productUrls, social } from '../config/site.config';
 
 export const siteEn: SiteContent = {
   meta: {
-    title: 'Nexora · Software Studio | Websites, systems and apps for your business',
+    title: 'Nexora · Software Studio | Websites, systems and apps built to measure',
     description:
-      'Software studio in Guayaquil. Websites, systems and custom apps, built to measure: your landing in days and an exact date for every project.',
-    ogAlt: 'Nexora — Software studio in Guayaquil',
+      'Software studio. Websites, systems and custom apps, built to measure: your landing in days and an exact date for every project.',
+    ogAlt: 'Nexora — Software studio',
   },
 
   nav: [
@@ -31,8 +40,8 @@ export const siteEn: SiteContent = {
   sections: {
     services: {
       eyebrow: 'Services',
-      heading: 'What we build for your business',
-      subheading: 'No generic templates. Every project solves a concrete pain.',
+      heading: 'What we build for you',
+      subheading: 'No generic templates. Every project is built around a concrete goal.',
     },
     works: {
       eyebrow: 'Work',
@@ -46,12 +55,12 @@ export const siteEn: SiteContent = {
     },
     niches: {
       eyebrow: "Who it's for",
-      heading: 'Businesses we work with',
-      subheading: "If your niche isn't on the list, message me anyway.",
+      heading: 'Who we work with',
+      subheading: "If you don't find yours on the list, message us anyway.",
     },
     about: {
       eyebrow: 'About Nexora',
-      heading: 'A software house with real experience',
+      heading: 'The team behind every project',
     },
     pillars: {
       eyebrow: 'Why Nexora',
@@ -64,21 +73,50 @@ export const siteEn: SiteContent = {
   },
 
   hero: {
-    headline: 'Websites, systems and apps for your business, built to measure.',
+    eyebrow: 'Software studio',
+    headline: 'Websites, systems and apps, built to your measure.',
     subheadline:
-      "We're a software studio in Guayaquil. Your landing can be live in days; for systems and apps we give you an exact date in the proposal. Custom-built, with a clear method and visible progress.",
-    ctaPrimary: 'Tell me about your project',
+      "We're a software studio building custom websites, systems and apps. Your landing can be live in days; for systems and apps we give you an exact date in the proposal, with a clear method and visible progress.",
+    ctaPrimary: 'Tell us about your project',
     ctaSecondary: 'See our work',
   },
 
   services: [
-    { icon: 'service-web', title: 'Website & landing page', pain: "You're not on Google and your competitors are." },
-    { icon: 'service-qr-menu', title: 'Digital QR menu', pain: 'You reprint the menu every time a price changes.' },
-    { icon: 'service-booking', title: 'Booking system', pain: 'You lose hours answering "any slots free?".' },
-    { icon: 'service-catalog', title: 'Catalog + WhatsApp', pain: 'You sell on Instagram and it\'s a mess.' },
-    { icon: 'service-portfolio', title: 'Professional portfolio', pain: "Your work is good, but it doesn't look serious." },
-    { icon: 'service-memberships', title: 'Membership dashboard', pain: "You don't know who paid or who's overdue." },
-    { icon: 'service-custom-apps', title: 'Custom apps & systems', pain: "You need something no off-the-shelf tool offers." },
+    {
+      icon: 'service-web',
+      title: 'Website & landing page',
+      benefit: 'We lift your presence in Google searches with a fast, clear site built to turn visits into customers.',
+    },
+    {
+      icon: 'service-qr-menu',
+      title: 'Digital QR menu',
+      benefit: 'Your menu lives online and updates instantly: change a price and customers see it on the next scan.',
+    },
+    {
+      icon: 'service-booking',
+      title: 'Booking system',
+      benefit: 'A system that manages your slots automatically and takes bookings 24/7, without you answering the phone.',
+    },
+    {
+      icon: 'service-catalog',
+      title: 'Catalog + WhatsApp',
+      benefit: 'We put your whole catalog behind a single link and send every order straight to your WhatsApp.',
+    },
+    {
+      icon: 'service-portfolio',
+      title: 'Professional portfolio',
+      benefit: 'We present your work at the level it deserves, so winning new clients takes less effort.',
+    },
+    {
+      icon: 'service-memberships',
+      title: 'Membership dashboard',
+      benefit: 'Track payments, renewals and member access from a single dashboard, in real time.',
+    },
+    {
+      icon: 'service-custom-apps',
+      title: 'Custom apps & systems',
+      benefit: 'We design and build the exact system your operation needs, fitted to the way you already work.',
+    },
   ],
 
   works: [
@@ -120,10 +158,10 @@ export const siteEn: SiteContent = {
   ],
 
   process: [
-    { step: '01', title: 'Contact', description: 'Tell me what you need over WhatsApp. No commitment.' },
-    { step: '02', title: 'Proposal', description: 'I send a custom proposal with scope and an exact date.' },
-    { step: '03', title: 'Development', description: 'I build with visible progress; you review at each milestone.' },
-    { step: '04', title: 'Delivery', description: 'I hand it over working, with domain and everything ready to use.' },
+    { step: '01', title: 'Contact', description: 'You get in touch with us and share your requirements.' },
+    { step: '02', title: 'Proposal', description: 'We prepare a proposal with detailed scope and an exact delivery date.' },
+    { step: '03', title: 'Development', description: 'We build with visible progress and a review with you at every milestone.' },
+    { step: '04', title: 'Delivery', description: 'We hand the project over working, with domain and access in your name.' },
   ],
 
   niches: [
@@ -133,27 +171,41 @@ export const siteEn: SiteContent = {
     { icon: 'service-memberships', label: 'Gyms & academies' },
     { icon: 'service-catalog', label: 'Shops & boutiques' },
     { icon: 'service-web', label: 'Events' },
+    { icon: 'service-portfolio', label: 'Independent professionals' },
     { icon: 'service-custom-apps', label: 'Companies & startups' },
   ],
 
   about: {
-    heading: 'A software house with real experience',
+    heading: 'The team behind every project',
     body:
-      'Nexora is a software studio based in Guayaquil, working with businesses worldwide. We build custom websites, systems and apps, with method: clear scope, visible progress, and deliveries that work. Behind it is real experience in banking and product, with years of shipping software in production. Luis leads as principal developer; we work as a studio and talk about "our process".',
-    // Real professional background (where the developer has worked),
-    // NOT Nexora clients. Ordered most recent first.
+      'Nexora is a software studio working with clients anywhere in the world. We build custom websites, systems and apps with a clear method: defined scope, visible progress, and deliveries that work. Our team brings extensive experience across the software industry — banking, product, and software running in production — and that track record is what backs every project.',
+    // Real professional background of the team, NOT Nexora clients.
+    // Ordered most recent first.
     experience: [
-      { company: 'Fiverr', role: 'Freelance Developer', period: '2021 — present (5 years)' },
-      { company: 'Relolink', role: 'Full-stack Developer', period: 'Apr 2024 — present' },
-      { company: 'Banco de Machala', role: 'Software Architect Jr', period: 'Aug 2023 — Apr 2024' },
-      { company: 'Viamatica', role: 'Software Engineer', period: 'Feb 2021 — Apr 2024' },
+      { company: 'Fiverr', role: 'Freelance development', period: '2021 — present (5 years)' },
+      { company: 'Relolink', role: 'Full-stack development', period: 'Apr 2024 — present' },
+      { company: 'Banco de Machala', role: 'Software architecture', period: 'Aug 2023 — Apr 2024' },
+      { company: 'Viamatica', role: 'Software engineering', period: 'Feb 2021 — Apr 2024' },
     ],
-    // `hidden` keeps a product in the tree but off the page: Faktova already has
-    // a domain but no public site yet.
+    productsIntro: 'Software we design, build and run ourselves.',
+    // Faktova has no public site yet: it ships without `url` and with a `status`,
+    // so the card explains the missing link instead of dropping the product.
     products: [
-      { name: 'Turnia', url: productUrls.turnia },
-      { name: 'Spektova', url: productUrls.spektova },
-      { name: 'Faktova', url: productUrls.faktova, hidden: true },
+      {
+        name: 'Turnia',
+        description: 'Booking and scheduling app we deploy for anyone who works by appointment.',
+        url: productUrls.turnia,
+      },
+      {
+        name: 'Spektova',
+        description: 'E-commerce platform for selling online, with catalog and orders.',
+        url: productUrls.spektova,
+      },
+      {
+        name: 'Faktova',
+        description: 'Internal invoicing system, focused on nationwide operations.',
+        status: 'In development',
+      },
     ],
     links: [
       { label: 'Portfolio', href: social.portfolio, icon: 'ui-github' },
@@ -163,7 +215,7 @@ export const siteEn: SiteContent = {
   },
 
   pillars: [
-    { stat: '+5 years', label: 'building real software' },
+    { stat: '+5 years', label: 'of team experience in software development' },
     { stat: 'Own products', label: 'Turnia and Spektova in production' },
     { stat: 'Fast delivery', label: 'your site in days; systems with an exact date' },
   ],
@@ -171,11 +223,11 @@ export const siteEn: SiteContent = {
   faq: [
     {
       question: 'How long does delivery take?',
-      answer: 'Most landing pages and sites ship in 3 to 5 days. For larger systems and apps, I give you an exact date in the proposal.',
+      answer: 'Most landing pages and sites ship in 3 to 5 days. For larger systems and apps, we give you an exact date in the proposal.',
     },
     {
       question: 'How much does it cost?',
-      answer: 'Every project is custom. Message me on WhatsApp with what you need and I\'ll put together a proposal, no commitment.',
+      answer: 'Every project is custom. Get in touch on WhatsApp with your requirements and we put together a proposal.',
     },
     {
       question: 'How do payments work?',
@@ -187,27 +239,27 @@ export const siteEn: SiteContent = {
     },
     {
       question: 'Who provides the domain?',
-      answer: 'I handle it for you or we use the one you already have. The domain and all access stay in your name.',
+      answer: 'We handle it for you or we use the one you already have. The domain and all access stay in your name.',
     },
     {
       question: 'How many changes can I request?',
       answer: 'Two rounds of changes included during development. They\'re usually more than enough.',
     },
     {
-      question: 'Do you work with businesses outside Ecuador?',
-      answer: 'Yes. I work with clients anywhere in the world; we coordinate everything over WhatsApp wherever you are.',
+      question: 'Do you work with clients in other countries?',
+      answer: 'Yes. We work with clients anywhere in the world and coordinate everything over WhatsApp, wherever you are.',
     },
   ],
 
   contact: {
-    heading: 'Tell me about your project',
-    subheading: 'Message me on WhatsApp and I reply personally. No endless forms.',
+    heading: 'Tell us about your project',
+    subheading: 'Get in touch on WhatsApp with your requirements and we reply shortly.',
     form: {
-      nameLabel: 'Your name',
-      businessTypeLabel: 'Business type',
+      nameLabel: 'Name',
+      businessTypeLabel: 'What do you do?',
       needLabel: 'What do you need?',
-      namePlaceholder: 'e.g. Maria',
-      businessTypePlaceholder: 'e.g. Barbershop',
+      namePlaceholder: 'Who are we speaking with?',
+      businessTypePlaceholder: 'e.g. Barbershop, consultancy, personal project',
       needPlaceholder: 'e.g. A website with online booking',
       submitLabel: 'Send on WhatsApp',
     },
@@ -231,7 +283,7 @@ export const siteEn: SiteContent = {
     skipToContent: 'Skip to content',
     viewDemo: 'View demo',
     faqMoreQuestion: 'Another question?',
-    experienceLabel: 'Experience',
+    experienceLabel: 'Team background',
     productsLabel: 'Own products',
   },
 };

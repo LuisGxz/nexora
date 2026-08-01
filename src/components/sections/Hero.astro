@@ -2,11 +2,14 @@
 /**
  * Hero (section 01) — the above-the-fold value statement on a dark band.
  *
- * What: eyebrow location signal, the headline + subheadline, the primary and
+ * What: the studio eyebrow, the headline + subheadline, the primary and
  * secondary CTAs, and the own-products strip. Why dark: sets the page rhythm
  * (hero / process / contact are the dark bands per brand guidelines). The
  * primary CTA funnels to contact; the secondary jumps to the demos — there is
  * NO pricing anywhere. All copy comes from `hero` / `about.products`.
+ *
+ * The eyebrow reads `hero.eyebrow`, not `footer.tagline`: the city belongs to
+ * the footer only, so the two must not share a string.
  *
  * @prop content - active locale content tree.
  */
@@ -18,7 +21,10 @@ interface Props {
 }
 
 const { content } = Astro.props;
-const { hero, about, footer } = content;
+const { hero, about } = content;
+
+/** Product names only — the strip is a credential line, not the product cards. */
+const productNames = about.products.map((product) => product.name).join('  ·  ');
 ---
 
 <section
@@ -27,7 +33,7 @@ const { hero, about, footer } = content;
 >
   <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-9 md:px-6 md:py-10">
     <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
-      {footer.tagline}
+      {hero.eyebrow}
     </p>
 
     <h1 class="max-w-3xl font-display text-h1 md:text-display">
@@ -52,7 +58,7 @@ const { hero, about, footer } = content;
         {content.ui.productsLabel}
       </p>
       <p class="font-display text-body-lg font-semibold text-text-on-dark">
-        {about.products.join('  ·  ')}
+        {productNames}
       </p>
     </div>
   </div>

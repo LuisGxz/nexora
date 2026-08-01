@@ -3,9 +3,11 @@
  * Contact (section 09) — the conversion close, on a dark band.
  *
  * What: the headline + lead, the primary WhatsApp button, the quote-form island,
- * the vCard download, and the contact facts (location / email / products). Why
- * two on-ramps: a one-tap prefilled WhatsApp chat for high-intent leads, and the
+ * the vCard download, and the contact facts (email / own products). Why two
+ * on-ramps: a one-tap prefilled WhatsApp chat for high-intent leads, and the
  * form for those who want to say more first — both land in WhatsApp, no server.
+ *
+ * No location here by editorial rule: the city appears only in the footer.
  *
  * Number/email/paths come from `site.config.ts` (single source); the raw number
  * is never rendered as scrapable text — only inside the `wa.me` href.
@@ -26,6 +28,9 @@ const { content } = Astro.props;
 const { contact, about, ui } = content;
 
 const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
+
+/** Product names only — the described cards live in the About panel. */
+const productNames = about.products.map((product) => product.name).join(' · ');
 ---
 
 <section id="contacto" class="bg-navy-900 text-text-on-dark">
@@ -56,23 +61,17 @@ const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
       </a>
 
       <dl class="mt-2 grid grid-cols-2 gap-5 border-t border-border-dark pt-6">
-        <div class="flex flex-col gap-1">
-          <dt class="text-caption font-semibold uppercase tracking-widest text-text-muted-dark">
-            {brand.tagline}
-          </dt>
-          <dd class="text-body text-text-muted-dark">{brand.location}</dd>
-        </div>
-        <div class="flex flex-col gap-1">
+        <div class="col-span-2 flex flex-col gap-1 sm:col-span-1">
           <dt class="text-caption font-semibold uppercase tracking-widest text-text-muted-dark">Email</dt>
           <dd class="text-body text-text-muted-dark">
-            <a href={`mailto:${brand.email}`} class="hover:text-cyan">{brand.email}</a>
+            <a href={`mailto:${brand.email}`} class="break-all hover:text-cyan">{brand.email}</a>
           </dd>
         </div>
-        <div class="col-span-2 flex flex-col gap-1">
+        <div class="col-span-2 flex flex-col gap-1 sm:col-span-1">
           <dt class="text-caption font-semibold uppercase tracking-widest text-text-muted-dark">
             {ui.productsLabel}
           </dt>
-          <dd class="text-body text-text-muted-dark">{about.products.join(' · ')}</dd>
+          <dd class="text-body text-text-muted-dark">{productNames}</dd>
         </div>
       </dl>
     </div>

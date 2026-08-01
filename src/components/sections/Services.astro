@@ -3,8 +3,9 @@
  * Services (section 02) — what Nexora builds, one card per pain.
  *
  * What: the section header plus a responsive grid of service cards, each an
- * icon chip + title + the pain it removes — all from `services[]`. Why
- * pain-first copy: speaks to the business owner, not the developer. NO prices.
+ * icon chip + title + the outcome it delivers — all from `services[]`. Why
+ * benefit-first copy: it states what the client gets, not what they lack, and
+ * reads the same for an individual or a company. NO prices.
  *
  * @prop content - active locale content tree.
  */
@@ -32,7 +33,7 @@ const { services, sections } = content;
               <Icon name={service.icon} class="h-6 w-6" />
             </span>
             <h3 class="font-display text-h4 text-text-primary">{service.title}</h3>
-            <p class="text-small text-text-muted">{service.pain}</p>
+            <p class="text-small text-text-muted">{service.benefit}</p>
           </li>
         ))
       }

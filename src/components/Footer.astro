@@ -18,6 +18,9 @@ interface Props {
 const { content } = Astro.props;
 const { footer, about, ui } = content;
 
+/** Product names only — the panel with descriptions lives in About. */
+const productNames = about.products.map((product) => product.name).join('  ·  ');
+
 const logo = logoRaw
   .replace(/\s(width|height)="[^"]*"/g, '')
   .replace(/\scolor="[^"]*"/g, '');
@@ -39,7 +42,7 @@ const logo = logoRaw
           {ui.productsLabel}
         </p>
         <p class="font-display text-body-lg font-semibold">
-          {about.products.join('  ·  ')}
+          {productNames}
         </p>
       </div>
     </div>

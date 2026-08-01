@@ -33,21 +33,24 @@ const SVG_PLACEHOLDER_DOMAIN = 'nexora.studio';
  * Per-locale card copy. `headTop` / `headLead` / `headAccent` reproduce the
  * two-line headline where only the last words carry the accent color; `sub` is
  * the service strip. Keys mirror the site's locales.
+ *
+ * Neither the city nor "your business" appears here: the card must match the
+ * page, which states no location and assumes nothing about who the reader is.
  */
 const LOCALES = {
   es: {
     file: 'og-share.png',
-    headTop: 'Software que tu',
-    headLead: 'negocio ',
-    headAccent: 'necesita',
-    sub: 'Sitios · sistemas · apps a medida — Guayaquil, Ecuador',
+    headTop: 'Software hecho',
+    headLead: 'a tu ',
+    headAccent: 'medida',
+    sub: 'Sitios · sistemas · apps a medida',
   },
   en: {
     file: 'og-share-en.png',
-    headTop: 'Software your',
-    headLead: 'business ',
-    headAccent: 'needs',
-    sub: 'Websites · systems · custom apps — Guayaquil, Ecuador',
+    headTop: 'Software built',
+    headLead: 'to your ',
+    headAccent: 'measure',
+    sub: 'Websites · systems · custom apps',
   },
 };
 

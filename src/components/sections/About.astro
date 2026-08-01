@@ -2,10 +2,11 @@
 /**
  * About / "El estudio" (section 06) — who Nexora is.
  *
- * What: heading + body, the founder's prior employers framed strictly as
- * professional background (NEVER as clients), and a dark panel listing Nexora's
- * own products. Why faceless: no founder photo — the body and the work carry
- * the trust. All copy from `about` + `ui` labels.
+ * What: heading + body, the team's prior employers framed strictly as
+ * professional background (NEVER as clients), and a dark panel of cards for
+ * Nexora's own products. Why faceless: no photo and no named individual — the
+ * body, the track record and the products carry the trust. All copy from
+ * `about` + `ui` labels.
  *
  * @prop content - active locale content tree.
  */
@@ -22,12 +23,6 @@ const { about, sections, ui } = content;
 
 /** Hide a profile link until its real URL is wired in `site.config.ts`. */
 const visibleLinks = about.links.filter((link) => link.href && link.href !== '#');
-
-/**
- * Drop products flagged `hidden` (unlaunched) so the panel never advertises a
- * product with no site, while the entry stays in the content tree ready to ship.
- */
-const visibleProducts = about.products.filter((product) => !product.hidden);
 ---
 
 <section id="estudio" class="bg-background">
@@ -78,29 +73,48 @@ const visibleProducts = about.products.filter((product) => !product.hidden);
       </div>
     </div>
 
-    <div class="flex flex-col gap-4 rounded-2xl bg-navy-900 p-6 text-text-on-dark md:p-7">
-      <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
-        {ui.productsLabel}
-      </p>
-      <ul class="flex flex-col gap-3">
+    <div class="flex flex-col gap-5 rounded-2xl bg-navy-900 p-6 text-text-on-dark md:p-7">
+      <div class="flex flex-col gap-2">
+        <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
+          {ui.productsLabel}
+        </p>
+        <p class="text-small text-text-muted-dark">{about.productsIntro}</p>
+      </div>
+
+      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
         {
-          visibleProducts.map((product) => (
-            <li class="rounded-xl border border-border-dark bg-navy-800 font-display text-h4 font-semibold transition-colors duration-base ease-standard hover:border-cyan">
-              {product.url ? (
-                <a
+          about.products.map((product) => {
+            const Wrapper = product.url ? 'a' : 'div';
+            return (
+              <li
+                class:list={[
+                  'rounded-xl border border-border-dark bg-navy-800 transition-colors duration-base ease-standard',
+                  product.url && 'hover:border-cyan',
+                ]}
+              >
+                <Wrapper
                   href={product.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-3 px-5 py-4"
+                  target={product.url ? '_blank' : undefined}
+                  rel={product.url ? 'noopener noreferrer' : undefined}
+                  class="flex h-full flex-col gap-2 px-5 py-4"
                 >
-                  {product.name}
-                  <Icon name="ui-external" class="h-[1.1rem] w-[1.1rem] shrink-0 text-cyan" />
-                </a>
-              ) : (
-                <span class="block px-5 py-4">{product.name}</span>
-              )}
-            </li>
-          ))
+                  <span class="flex items-center justify-between gap-3">
+                    <span class="font-display text-h4 font-semibold">{product.name}</span>
+                    {product.url ? (
+                      <Icon name="ui-external" class="h-[1.1rem] w-[1.1rem] shrink-0 text-cyan" />
+                    ) : (
+                      product.status && (
+                        <span class="shrink-0 rounded-full border border-border-dark px-2 py-1 text-caption uppercase tracking-widest text-text-muted-dark">
+                          {product.status}
+                        </span>
+                      )
+                    )}
+                  </span>
+                  <span class="text-small text-text-muted-dark">{product.description}</span>
+                </Wrapper>
+              </li>
+            );
+          })
         }
       </ul>
     </div>
