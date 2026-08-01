@@ -33,3 +33,6 @@ docs/turnia-saas-reservas-plan.md
 docs/*.zip
 
 .vercel
+
+# claude code - machine-local settings
+.claude/settings.local.json

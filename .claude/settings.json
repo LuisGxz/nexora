@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "WebSearch",
+      "WebFetch",
+
+      "PowerShell(git *)",
+      "Bash(git *)",
+      "Bash(gh *)",
+
+      "PowerShell(npm *)",
+      "PowerShell(npx *)",
+      "PowerShell(node *)",
+      "PowerShell(pnpm *)",
+      "PowerShell(corepack *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+
+      "PowerShell(vercel *)",
+      "PowerShell(npx vercel *)",
+      "Bash(npx vercel *)",
+
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell(Select-String *)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(Invoke-WebRequest *)",
+      "PowerShell(Measure-Object *)",
+      "PowerShell(Remove-Item *)",
+      "Bash(ls *)",
+      "Bash(grep *)",
+      "Bash(curl -s *)",
+      "Bash(cd *)"
+    ],
+    "ask": [
+      "PowerShell(git push --force*)",
+      "Bash(git push --force*)",
+      "PowerShell(git reset --hard*)",
+      "Bash(git reset --hard*)",
+      "PowerShell(corepack pnpm exec supabase db push*)",
+      "PowerShell(corepack pnpm exec supabase config push*)"
+    ]
+  }
+}
