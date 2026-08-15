@@ -14,6 +14,7 @@ import { useState } from 'react';
 import type { ContactForm } from '../content/types';
 import { waLink, fillTemplate } from '../lib/whatsapp';
 import { trackWhatsappCta } from '../lib/analytics';
+import { withBase } from '../lib/i18n';
 
 interface QuoteFormProps {
   /** Field labels, placeholders and submit text from the content tree. */
@@ -46,6 +47,10 @@ export default function QuoteForm({ labels, template, number }: QuoteFormProps) 
         const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
         trackWhatsappCta('quote_form', lang);
         window.open(waLink(number, text), '_blank', 'noopener,noreferrer');
+        // C3 (fase 12): WhatsApp se abre en pestaña nueva y ESTA pestaña aterriza en la página
+        // de gracias — la URL medible que antes no existía. Su pageview es la conversión: la
+        // meta de GA4/Ads se define sobre esa ruta, sin eventos a medida.
+        window.location.assign(withBase(lang === 'en' ? '/en/thanks/' : '/gracias/'));
       }}
       className="flex flex-col gap-4"
     >

@@ -1,0 +1,46 @@
+---
+/**
+ * Migas de pan (fase 12 · C5) — el rastro visible que acompaña al `BreadcrumbList` del JSON-LD.
+ *
+ * Obligatorias desde que existen páginas de servicio (A5): con una sola página no había
+ * jerarquía que mostrar; ahora la hay, y las migas contestan dónde estoy y cómo vuelvo. La
+ * última miga no es enlace — un enlace a donde ya estás promete de más — y el bloque es un
+ * `nav` con su aria, porque es navegación de verdad.
+ *
+ * @prop items - Las migas en orden; la última es la página actual (sin `href`).
+ * @prop label - El aria-label del bloque (`ui.breadcrumbsLabel`).
+ */
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  label: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+<nav aria-label={label} class="flex flex-wrap items-center gap-2 text-small text-text-muted">
+  {
+    items.map((item, index) => (
+      <span class="flex items-center gap-2">
+        {index > 0 && <span aria-hidden="true">›</span>}
+        {item.href ? (
+          <a
+            href={item.href}
+            class="font-medium transition-colors duration-base ease-standard hover:text-text-primary"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <span aria-current="page" class="font-semibold text-text-primary">
+            {item.label}
+          </span>
+        )}
+      </span>
+    ))
+  }
+</nav>

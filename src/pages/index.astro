@@ -24,9 +24,13 @@ import Contact from '../components/sections/Contact.astro';
 import { getContent, firstVisitRedirectScript } from '../lib/i18n';
 import { whatsappNumber } from '../config/site.config';
 import { waLink } from '../lib/whatsapp';
+import { faqPageJsonLd, jsonLdString } from '../lib/jsonld';
 
 const content = getContent('es');
 const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
+// A3 · Las MISMAS preguntas visibles, como datos. Emitido desde Astro y no desde la isla React:
+// el crawler no debe depender de la hidratación para leerlas.
+const faqJsonLd = jsonLdString(faqPageJsonLd(content.faq));
 ---
 
 <BaseLayout
@@ -37,11 +41,12 @@ const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
   ogAlt={content.meta.ogAlt}
 >
   <script is:inline set:html={firstVisitRedirectScript()} slot="head" />
+  <script is:inline type="application/ld+json" set:html={faqJsonLd} slot="head" />
 
   <Header content={content} locale="es" />
   <main id="contenido" tabindex="-1">
     <Hero content={content} />
-    <Services content={content} />
+    <Services content={content} locale="es" />
     <Works content={content} />
     <Process content={content} />
     <Niches content={content} />

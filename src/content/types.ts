@@ -82,6 +82,12 @@ export interface Service {
   icon: IconKey;
   title: string;
   benefit: string;
+  /**
+   * Slug de la página de servicio propia (fase 12 · A5), cuando existe. La tarjeta de la landing
+   * se vuelve un enlace "ver más"; sin slug, la tarjeta queda como siempre. El slug es el del
+   * idioma del árbol: `web-profesional` en ES, `professional-website` en EN.
+   */
+  pageSlug?: string;
 }
 
 /**
@@ -213,6 +219,13 @@ export interface UiStrings {
   faqMoreQuestion: string;
   experienceLabel: string;
   productsLabel: string;
+  /** Fase 12 · el "ver más" de una tarjeta de servicio con página propia (A5). */
+  viewService: string;
+  /** Fase 12 · la primera miga (C5) y el aria del bloque de migas. */
+  breadcrumbHome: string;
+  breadcrumbsLabel: string;
+  /** Fase 12 · el enlace del footer a la política (decisión D). */
+  privacyLink: string;
 }
 
 /** Headers for every titled section, keyed by section id. */
@@ -224,6 +237,73 @@ export interface SectionHeaders {
   about: SectionHeader;
   pillars: SectionHeader;
   faq: SectionHeader;
+}
+
+/**
+ * El caso de una página de servicio (fase 12 · C4): problema → decisión → resultado, con el
+ * demo enlazado al final. Es lo que convierte un demo en contenido — el demo muestra QUÉ se
+ * construyó; el caso cuenta QUÉ problema resolvió.
+ */
+export interface CaseStudy {
+  heading: string;
+  problem: string;
+  decision: string;
+  result: string;
+  demoLabel: string;
+  demoUrl: string;
+}
+
+/**
+ * Una página de servicio (fase 12 · A5): una URL por intención de búsqueda.
+ *
+ * Los slugs van EN EL IDIOMA de su árbol (`web-profesional` / `professional-website`): estas
+ * páginas existen para rankear la consulta tal como se escribe, y un slug en inglés en la
+ * página española regala esa señal. `esSlug`/`enSlug` viajan en las dos para que cada página
+ * sepa su alternate hreflang sin adivinar.
+ */
+export interface ServicePage {
+  slug: string;
+  /** El slug del ESPEJO en el otro idioma, para el hreflang y el toggle. */
+  altSlug: string;
+  metaTitle: string;
+  metaDescription: string;
+  heading: string;
+  intro: string;
+  includesHeading: string;
+  includes: string[];
+  caseStudy: CaseStudy;
+  faqHeading: string;
+  faq: FaqItem[];
+  ctaHeading: string;
+  ctaLabel: string;
+  /** El prefill de WhatsApp propio del servicio: llega diciendo qué quiere. */
+  whatsappPrefill: string;
+}
+
+/** La página de gracias (fase 12 · C3): el momento medible de la conversión. */
+export interface ThanksPage {
+  metaTitle: string;
+  heading: string;
+  body: string;
+  backLabel: string;
+}
+
+/** La política de privacidad (fase 12 · decisión D): GA4 no recolecta sin política publicada. */
+export interface PrivacyPage {
+  metaTitle: string;
+  metaDescription: string;
+  heading: string;
+  updated: string;
+  /** Secciones tituladas; el cuerpo admite varios párrafos. */
+  sections: { heading: string; body: string[] }[];
+  contactLine: string;
+}
+
+/** La 404 propia (fase 12 · B1): con marca y salida, no un callejón. */
+export interface NotFoundPage {
+  heading: string;
+  body: string;
+  backLabel: string;
 }
 
 /** The full, locale-complete content tree. */
@@ -242,4 +322,9 @@ export interface SiteContent {
   contact: Contact;
   footer: Footer;
   ui: UiStrings;
+  /** Fase 12: las páginas de servicio (A5) con sus casos (C4). */
+  servicePages: ServicePage[];
+  thanks: ThanksPage;
+  privacy: PrivacyPage;
+  notFound: NotFoundPage;
 }

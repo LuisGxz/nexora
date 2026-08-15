@@ -1,0 +1,37 @@
+---
+/**
+ * English thank-you page (fase 12 · C3): `/en/thanks/` — mirror of `/gracias/`.
+ * Same reasoning: the measurable conversion moment, noindex on purpose.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getContent, pathForLocale } from '../../lib/i18n';
+
+const content = getContent('en');
+---
+
+<BaseLayout
+  title={content.thanks.metaTitle}
+  description={content.thanks.body}
+  lang="en"
+  path="/en/thanks/"
+  ogAlt={content.meta.ogAlt}
+  altPaths={{ es: '/gracias/', en: '/en/thanks/' }}
+  noindex
+>
+  <Header content={content} locale="en" />
+  <main id="contenido" tabindex="-1" class="bg-navy-900 text-text-on-dark">
+    <div class="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-start justify-center gap-4 px-4 py-9 md:px-6">
+      <h1 class="font-display text-h1">{content.thanks.heading}</h1>
+      <p class="max-w-xl text-body-lg text-text-muted-dark">{content.thanks.body}</p>
+      <a
+        href={pathForLocale('en')}
+        class="inline-flex items-center gap-2 rounded-xl bg-blue px-5 py-3 font-display text-body font-semibold text-text-on-dark transition duration-base ease-standard hover:brightness-95"
+      >
+        {content.thanks.backLabel}
+      </a>
+    </div>
+  </main>
+  <Footer content={content} locale="en" />
+</BaseLayout>

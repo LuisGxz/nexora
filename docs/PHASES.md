@@ -273,9 +273,102 @@ Token estimates: small file ~500, medium ~2,000, large ~5,000.
 **Search Console**: domain property added for `nexoradevs.com`; `sitemap.xml` submitted (verified live, both locale routes with `hreflang` alternates, declared in `robots.txt`).
 **⚠️ Operational constraint**: DNS must stay at Cloudflare. Vercel's "DNS Change Recommended" hint proposes moving the nameservers to Vercel — doing so would drop the Google Workspace MX/SPF/DKIM records and break `hola@nexoradevs.com`.
 **`www` redirect**: ✅ 308 to the apex with the path preserved, via a host-matched `redirects` rule in `vercel.json` (kept in the repo rather than set in the dashboard, so it survives a project re-create). The legacy `nexora-gye.vercel.app` alias intentionally does **not** redirect — Vercel ignores `has: host` redirects for its own `.vercel.app` domains, and a 404 there would be worse than a duplicate since that link was used for outreach; its canonical already points at the apex.
-**Still open (owner action, not code)**: ① **Duplicate DKIM** — `google._domainkey.nexoradevs.com` currently answers with two different keys, which makes DKIM ambiguous and fails authentication. Keep the key beginning `…CAQEAn1ob80FNx…` (the one Google issued for this domain), delete the one beginning `…CAQEAuQVYcXvA6ehh…`, then run "Start authentication" in Workspace. Neither key is truncated. ② End-to-end mail test: DNS being correct does not prove the Workspace domain alias and the `hola` user alias exist — send a real message to `hola@nexoradevs.com` and reply from it to confirm the From header. ③ `www` serves a duplicate 200 instead of a 308 to the apex; canonical already points at the apex so SEO is safe, but set `www` to Redirect in *Vercel → Domains*.
+**Still open (owner action, not code)**: ~~① **Duplicate DKIM**~~ ✅ **verificado 2026-08-09** — `google._domainkey.nexoradevs.com` responde con **una sola** clave, la que Google emitió para este dominio (`…CAQEAn1ob80FNx…`); la duplicada ya no está. ② End-to-end mail test: DNS being correct does not prove the Workspace domain alias and the `hola` user alias exist — send a real message to `hola@nexoradevs.com` and reply from it to confirm the From header. **Es el único ítem que queda abierto en Nexora.** ~~③ `www` serves a duplicate 200~~ ✅ **verificado 2026-08-09** — `https://www.nexoradevs.com/` devuelve `308` con `Location: https://nexoradevs.com/`, servido por la regla `has: host` de `vercel.json`.
 
 ---
+
+## Fase 12: SEO, indexación y conversión ⬜
+
+> **Orden de ejecución**: [`../../docs/MVP-VENDIBLE.md`](../../docs/MVP-VENDIBLE.md) §5, bloque
+> *"En paralelo · Nexora"* (N1–N6). **Nexora no espera a Turnia**: la fase entera cuesta menos que
+> un paquete de Turnia, es independiente, y es la que trae los leads.
+**Objetivo**: que Google indexe el sitio rápido y que la landing deje de perder leads por huecos de confianza. No es reconstruir nada: la base técnica está sana, faltan capas encima.
+**Depende de**: Fase 11 (dominio propio, GA y Search Console ya en pie).
+**Auditoría base**: 2026-08-13, contra el checklist de 20 puntos de conversión local + los 18 indicadores de "sitio vibecodeado". Medido en vivo sobre `https://nexoradevs.com`, no sobre el repo.
+
+### Lo que ya está bien — no tocar
+El sitio **no** dispara ninguna de las señales de "hecho a las apuradas", salvo dos:
+`view-source` trae 70 KB de HTML real (7.7 K de texto visible sin ejecutar JS) · dominio propio · **exactamente 1 `<h1>` y 8 `<h2>`** · títulos y descriptions distintos por locale · canonical + `hreflang` es/en/x-default · OG + Twitter card con `og:image:alt`, una imagen por idioma · **0 imágenes sin `alt`** (5 en vivo) · `robots.txt` no bloquea a nadie y declara el sitemap · `<html lang>` correcto por ruta · favicon SVG · **ningún source map referenciado** · JS total **187 KB sin comprimir** (~60 KB gzip), de los cuales 182 KB son el runtime de React y sólo 5 KB las tres islas — Astro está haciendo su trabajo · CTA de WhatsApp visible sobre el pliegue · 7 FAQ · GA4 activo con el evento `cta_whatsapp`.
+Las dos excepciones son **404** y **datos estructurados**, y las dos caen en 12.A.
+
+### 12.A · Indexación — lo único que mueve la aguja con Google
+El sitemap **está bien y no es el problema**. Verificado en vivo: XML válido, 2 URLs, `xhtml:link` con `hreflang` es/en/x-default, declarado en `robots.txt`, ya enviado en Search Console (Fase 11). Que Google tarde no es un defecto del sitemap.
+El problema es que **sólo existen 2 URLs**. Un sitio de una página, sin enlaces entrantes y sin contenido propio, se indexa lento porque no hay nada que indexar. Lo que lo desbloquea, en orden de impacto:
+
+| | Qué | Por qué |
+|---|---|---|
+| **A1** | **`<lastmod>` en `sitemap.xml.ts`** | Hoy el sitemap no lo lleva. `changefreq` y `priority` Google los ignora; `lastmod` **sí** lo usa para decidir si vale la pena re-rastrear. Sin él, cada redeploy es invisible. Fecha de build, no `new Date()` en cada request — es un endpoint prerenderizado. |
+| **A2** | **JSON-LD `Organization` + `WebSite`** en `BaseLayout.astro` | **Cero JSON-LD en toda la página hoy.** Es el único indicador de "vibecodeado" que el sitio sí dispara. Da nombre, logo, URL, `sameAs` (LinkedIn/GitHub/Fiverr) y el canal de contacto. Es lo que arma el panel de marca y lo que leen los LLM al citar. |
+| **A3** | **JSON-LD `FAQPage`** sobre las 7 preguntas | Las preguntas ya existen y están escritas; sólo hay que emitirlas también como datos. Es el camino más corto a un resultado enriquecido, y las FAQ son exactamente lo que la gente escribe en Google. Emitirlo desde el Astro que envuelve la isla, no desde React — el crawler no debe depender de la hidratación. |
+| **A4** | **Sacar los 5 demos de `noindex`** y meterlos al sitemap | Verificado: `/demos/bravo-barber/` responde 200 con `<title>` y description propias, **pero lleva `noindex`** — 5 URLs de contenido real invisibles para Google. Van con canonical propio (hoy no tienen) y una línea que diga que son demos de Nexora, para que no compitan con la home ni parezcan negocios reales. |
+| **A5** | **Páginas de servicio** — una URL por servicio | El techo estructural: una sola página no puede rankear para varias intenciones. 4–6 URLs, cada una con su título, description, `Service` schema y CTA propio. Es la diferencia entre aspirar a "Nexora" y aspirar a "desarrollo de software Guayaquil". **Es la tarea más grande de la fase y la que más rinde.** |
+| **A6** | **`llms.txt`** en la raíz | No existe. Barato: un archivo de texto que le dice a los buscadores con IA qué hace el estudio y adónde mandar a la gente. Cada vez más tráfico llega por ahí. |
+
+**Realista sobre plazos**: nada de esto hace que Google indexe "ya". A1–A4 pueden estar el mismo día y hacen que valga la pena rastrear; A5 es lo que trae tráfico de búsqueda, y eso rinde en semanas, no en horas. La vía rápida real es pedir indexación manualmente en Search Console por cada URL nueva.
+
+### 12.B · Huecos técnicos
+- **B1 · Página 404 propia** (`src/pages/404.astro`). Hoy Vercel sirve su página genérica — el status 404 es correcto, pero la página es un callejón sin salida: ni marca, ni menú, ni CTA. Con el detalle bilingüe: `/en/no-existe` también cae ahí, así que el copy debe funcionar en los dos idiomas o detectar el prefijo `/en/`.
+- **B2 · `favicon.ico` + `apple-touch-icon.png`.** Sólo hay `favicon.svg`. Safari, iOS al guardar en pantalla de inicio y varios rastreadores no leen SVG y muestran el globo gris.
+- **B3 · Verificar consola limpia en navegador real.** Es lo único del checklist que no pude medir sin abrir Chrome. Las tres islas (LanguageToggle, FAQ, QuoteForm) más el script de redirección de idioma son las sospechosas.
+- **B4 (opcional) · FAQ como `<details>/<summary>` estático.** Sacaría React de la ruta crítica en la mayoría de las visitas. 182 KB sin comprimir hoy se justifican por el formulario; si el FAQ deja de necesitarlos, sólo cargan cuando el visitante llega a cotizar.
+
+### 12.C · Conversión
+- **C1 · Promesa de respuesta concreta.** Hoy `site.es.ts` dice *"te respondemos a la brevedad"* — no promete nada. Cambiar por un plazo real y que se cumpla ("respondemos en menos de X horas hábiles"). Es de las cosas más baratas que suben la tasa de contacto, y hay que sostenerla.
+- **C2 · CTA fijo en móvil.** El header es `sticky top-0` con botón compacto de WhatsApp, que ya es más de lo que tienen la mayoría. Falta la barra inferior fija — en móvil el pulgar vive abajo. Medirlo con el evento `cta_whatsapp` que ya existe (`source` distingue el origen) antes de darlo por bueno.
+- **C3 · Página de gracias (`/gracias` + `/en/thanks`).** Hoy `QuoteForm` arma el `wa.me` y el visitante se va a WhatsApp: **no hay ningún momento medible de conversión**. Sin página de gracias no hay meta en GA4 ni conversión en Ads, y no se sabe qué porcentaje de los que abren el formulario terminan escribiendo. Abrir WhatsApp en pestaña nueva y dejar la de gracias detrás.
+- **C4 · Casos, no demos.** Los 5 demos se ven bien pero muestran *qué* se construyó, no *qué problema resolvió*. Problema → decisión → resultado, con el demo enlazado al final. Junto con A4 y A5 esto convierte el portafolio en contenido indexable en vez de una galería.
+- **C5 · Breadcrumbs + `BreadcrumbList`.** Sin sentido hoy (una sola página); **obligatorio en cuanto exista A5**. Anotado acá para que no se olvide al crear las páginas de servicio.
+
+### 12.D · Los cinco puntos que chocaban con reglas del proyecto — **decididos el 2026-08-13**
+Contexto y alternativas completas en `../../docs/CHECKLIST-VENDIBLE.md`. Acá queda lo que se decidió y qué trabajo genera.
+
+| Punto | Decisión | Qué implica |
+|---|---|---|
+| **Mapa + ubicación** | ✅ **Área de servicio, sin calle** | Ficha de **Google Business Profile** declarando "Guayaquil y alrededores". Se aparece en el mapa y en "cerca de mí" **sin publicar la dirección**. Enmienda registrada en `CLAUDE.md` regla 6. **Es acción del dueño, no código** — ver D1 abajo. |
+| **`LocalBusiness` schema** | ✅ **Sube a `ProfessionalService` con `areaServed`** | Reemplaza a `Organization` en 12.A2: mismo trabajo, un tipo más específico y sin `PostalAddress`. ⚠️ Sin dirección **no** hay resultado enriquecido local — el que pone a Nexora en el mapa es el perfil de Google, no el schema. El schema acompaña. |
+| **Reseñas reales** | 🟨 **Sí, condicionado** | El componente vuelve **cuando existan 2–3 reseñas verificables**, y sale al aire con ellas — nunca vacío ni con relleno. `CLAUDE.md` regla 5 enmendada. `Review`/`AggregateRating` en JSON-LD entra **con** las reseñas, jamás antes. Ver D2. |
+| **Foto de equipo** | ❌ **Se mantiene el "faceless"** | Regla 2 intacta. Era el punto de menor impacto de los cinco; queda cerrado y no se vuelve a abrir. |
+| **Política de privacidad** | ✅ **Se hace — no era una decisión** | GA4 recolecta datos hoy sin política publicada. `/privacidad` + `/en/privacy`, enlazada desde el footer. Dos URLs indexables de regalo. **Es lo único bloqueante de toda la fase.** |
+
+**D1 · Google Business Profile (acción del dueño, no código)** — crear la ficha como negocio de área de servicio: categoría, área "Guayaquil y alrededores", teléfono, sitio web, horario. Google va a pedir **verificar** una dirección en privado aunque no se publique; ese es el paso que la gente abandona y sin él la ficha no existe. Cuando esté viva, enlazarla desde el footer y añadir su URL al `sameAs` del schema (12.A2).
+
+**D2 · Pedir las reseñas (acción del dueño)** — el bloqueo real no es el componente, es tener a quién pedirle. Con la ficha de D1 viva, las reseñas de Google son las que más pesan y las que se pueden citar sin inventar nada. Recién ahí se reintroduce el componente y el `AggregateRating`.
+
+**Recomendación de orden**: privacidad + 12.A1–A4 primero — son de horas y desbloquean el rastreo. En paralelo D1, porque la verificación de Google tarda días de calendario y no depende de código: cuanto antes se lance, antes rinde. Después C1+C3 (promesa y medición, para saber si algo de esto sirve). A5+C4 al final, que es donde está el trabajo de verdad. D2 cuando D1 esté vivo.
+
+### ✅ Cierre de la parte de código — 2026-08-15
+
+Todo lo que era código salió en una sola pasada (gates: `astro check` 0 errores + `npm run build`
+limpio, páginas nuevas verificadas con capturas a 1440 y 390 px):
+
+- **Privacidad** — `/privacidad/` + `/en/privacy/`, texto en el árbol de contenido (GA4, WhatsApp,
+  LOPDP), enlazada desde el footer en los dos idiomas. ⚠️ Pendiente del dueño: la revisión legal,
+  como los textos de Turnia.
+- **A1** — `<lastmod>` (fecha de build) en todo el sitemap.
+- **A2 + D1(schema)** — `ProfessionalService` (con `areaServed`, sin `PostalAddress`) + `WebSite`
+  en el `BaseLayout`, o sea en TODAS las páginas. Sin `Review`/`AggregateRating`, por regla.
+- **A3** — `FAQPage` con las mismas siete preguntas visibles, emitido desde Astro en `/` y `/en/`.
+- **A4** — los 5 demos sin `noindex`, con canonical propio al dominio primario, en el sitemap, y
+  con una insignia fija «Demo de Nexora · nexoradevs.com» (estilos inline: no puede chocar con el
+  CSS de cada demo).
+- **A5 + C4 + C5** — **cuatro páginas de servicio por idioma** (`/servicios/web-profesional/`,
+  `sistema-de-reservas`, `menu-digital-qr`, `software-a-medida` y sus espejos `/en/services/...`),
+  cada una con su **caso** (problema → decisión → resultado → demo), FAQ propia, CTA con prefill
+  propio, migas visibles + `BreadcrumbList`, `Service` schema y `hreflang` al espejo real (el
+  `BaseLayout` ganó `altPaths` para eso). Slugs en el idioma de cada árbol a propósito: la página
+  existe para rankear la consulta tal como se escribe.
+- **A6** — `/llms.txt` como endpoint (el nombre y el dominio son variables de config).
+- **B1** — 404 propia bilingüe (ES por defecto; un script mínimo muestra el bloque EN si la URL
+  perdida era de `/en/`). Con marca, explicación y salida al inicio.
+- **B2** — `favicon.ico` (16/32/48) + `apple-touch-icon.png` (180), rasterizados del SVG real.
+- **C1** — la promesa concreta: «te respondemos en menos de 24 horas hábiles» (ES y EN).
+- **C3** — `/gracias/` + `/en/thanks/` (noindex): el formulario abre WhatsApp en pestaña nueva y
+  navega ahí — el pageview de esa URL ES la conversión medible que no existía.
+
+**Lo que NO entró, con razón**: **C2** (barra inferior fija en móvil) — ya existe el botón sticky
+de WhatsApp y el header sticky; la barra se decide con datos del embudo nuevo, no antes. **B4**
+(FAQ estático) — opcional, el formulario justifica React igual. **B3** (consola limpia en
+navegador real) — se verifica contra el sitio vivo tras el deploy. **D1/D2** — del dueño.
 
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.

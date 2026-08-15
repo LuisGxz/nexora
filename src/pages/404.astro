@@ -1,0 +1,74 @@
+---
+/**
+ * La 404 propia (fase 12 · B1) — con marca y salida, no el callejón genérico de Vercel.
+ *
+ * Astro estático emite UN solo `404.html` para todo el sitio, así que la página tiene que
+ * servir en los dos idiomas. El truco es mínimo y honesto: el español es el contenido por
+ * defecto (sin JS se ve español, el idioma del mercado), y un script de tres líneas muestra el
+ * bloque inglés cuando la URL perdida empezaba con `/en/` — el mismo criterio del detector de
+ * primera visita: decidir por lo que la URL ya dice.
+ *
+ * `noindex` explícito: una 404 indexada es ruido, y el status 404 real ya lo pone Vercel al
+ * servir `404.html`.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getContent, pathForLocale, withBase } from '../lib/i18n';
+
+const es = getContent('es');
+const en = getContent('en');
+
+/**
+ * Muestra el bloque EN y esconde el ES cuando la URL perdida era del árbol inglés.
+ *
+ * Por `style.display` y no por el atributo `hidden`: los bloques llevan la clase `flex`, y una
+ * clase con `display` le GANA al `[hidden]{display:none}` del navegador — con `hidden` los dos
+ * idiomas quedaban apilados en pantalla. El inline style es el único que le gana a la clase.
+ */
+const langSwapScript = `(function(){try{var enBase=${JSON.stringify(withBase('/en/'))};if(location.pathname.indexOf(enBase)===0){document.documentElement.lang='en';var s=document.getElementById('nf-es');var e=document.getElementById('nf-en');if(s)s.style.display='none';if(e)e.style.display='flex';}}catch(_){}})();`;
+---
+
+<BaseLayout
+  title={`404 · ${es.notFound.heading}`}
+  description={es.notFound.body}
+  lang="es"
+  path="/404"
+  ogAlt={es.meta.ogAlt}
+  noindex
+>
+  <Header content={es} locale="es" />
+  <main id="contenido" tabindex="-1" class="bg-navy-900 text-text-on-dark">
+    <div
+      id="nf-es"
+      class="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-start justify-center gap-4 px-4 py-9 md:px-6"
+    >
+      <p class="font-mono text-small text-cyan">404</p>
+      <h1 class="font-display text-h1">{es.notFound.heading}</h1>
+      <p class="max-w-xl text-body-lg text-text-muted-dark">{es.notFound.body}</p>
+      <a
+        href={pathForLocale('es')}
+        class="inline-flex items-center gap-2 rounded-xl bg-blue px-5 py-3 font-display text-body font-semibold text-text-on-dark transition duration-base ease-standard hover:brightness-95"
+      >
+        {es.notFound.backLabel}
+      </a>
+    </div>
+    <div
+      id="nf-en"
+      style="display: none"
+      class="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-start justify-center gap-4 px-4 py-9 md:px-6"
+    >
+      <p class="font-mono text-small text-cyan">404</p>
+      <h1 class="font-display text-h1">{en.notFound.heading}</h1>
+      <p class="max-w-xl text-body-lg text-text-muted-dark">{en.notFound.body}</p>
+      <a
+        href={pathForLocale('en')}
+        class="inline-flex items-center gap-2 rounded-xl bg-blue px-5 py-3 font-display text-body font-semibold text-text-on-dark transition duration-base ease-standard hover:brightness-95"
+      >
+        {en.notFound.backLabel}
+      </a>
+    </div>
+  </main>
+  <Footer content={es} />
+  <script is:inline set:html={langSwapScript} />
+</BaseLayout>

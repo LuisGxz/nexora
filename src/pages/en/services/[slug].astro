@@ -1,0 +1,74 @@
+---
+/**
+ * English service page (fase 12 · A5): `/en/services/<slug>/` — mirror of `/servicios/<slug>/`.
+ *
+ * Same structure, EN content tree; the `hreflang` points at the Spanish twin via `altSlug`.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/ui/Breadcrumbs.astro';
+import ServicePageBody from '../../../components/sections/ServicePageBody.astro';
+import { getContent, pathForLocale, withBase } from '../../../lib/i18n';
+import { whatsappNumber } from '../../../config/site.config';
+import { waLink } from '../../../lib/whatsapp';
+import { breadcrumbJsonLd, jsonLdString, serviceJsonLd } from '../../../lib/jsonld';
+import { PRIMARY_ORIGIN } from '../../../config/domain.mjs';
+import type { ServicePage } from '../../../content/types';
+
+export function getStaticPaths() {
+  return getContent('en').servicePages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: ServicePage;
+}
+
+const { page } = Astro.props;
+const content = getContent('en');
+const path = `/en/services/${page.slug}/`;
+const waHref = waLink(whatsappNumber, page.whatsappPrefill);
+
+const site = Astro.site ?? new URL(PRIMARY_ORIGIN);
+const pageUrl = new URL(withBase(path), site).href;
+const homeUrl = new URL(pathForLocale('en'), site).href;
+
+const jsonLd = jsonLdString([
+  serviceJsonLd(page, pageUrl),
+  breadcrumbJsonLd([
+    { name: content.ui.breadcrumbHome, url: homeUrl },
+    { name: page.heading, url: pageUrl },
+  ]),
+]);
+---
+
+<BaseLayout
+  title={page.metaTitle}
+  description={page.metaDescription}
+  lang="en"
+  path={path}
+  ogAlt={content.meta.ogAlt}
+  altPaths={{ es: `/servicios/${page.altSlug}/`, en: path }}
+>
+  <script is:inline type="application/ld+json" set:html={jsonLd} slot="head" />
+
+  <Header content={content} locale="en" />
+  <main id="contenido" tabindex="-1">
+    <div class="bg-background">
+      <div class="mx-auto max-w-4xl px-4 py-4 md:px-6">
+        <Breadcrumbs
+          label={content.ui.breadcrumbsLabel}
+          items={[
+            { label: content.ui.breadcrumbHome, href: pathForLocale('en') },
+            { label: page.heading },
+          ]}
+        />
+      </div>
+    </div>
+    <ServicePageBody page={page} content={content} waHref={waHref} />
+  </main>
+  <Footer content={content} locale="en" />
+</BaseLayout>

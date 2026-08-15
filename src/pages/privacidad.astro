@@ -1,0 +1,55 @@
+---
+/**
+ * Política de privacidad en español (fase 12 · decisión D): `/privacidad/`.
+ *
+ * Era LO ÚNICO BLOQUEANTE de la fase: GA4 recolecta hoy y no había política publicada. El
+ * texto vive en el árbol de contenido como todo lo demás; esta ruta solo lo compone. Sí se
+ * indexa — es un documento público, y de paso una URL indexable más.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { getContent, pathForLocale } from '../lib/i18n';
+
+const content = getContent('es');
+const p = content.privacy;
+---
+
+<BaseLayout
+  title={p.metaTitle}
+  description={p.metaDescription}
+  lang="es"
+  path="/privacidad/"
+  ogAlt={content.meta.ogAlt}
+  altPaths={{ es: '/privacidad/', en: '/en/privacy/' }}
+>
+  <Header content={content} locale="es" />
+  <main id="contenido" tabindex="-1" class="bg-background">
+    <div class="mx-auto flex max-w-3xl flex-col gap-6 px-4 py-8 md:px-6">
+      <Breadcrumbs
+        label={content.ui.breadcrumbsLabel}
+        items={[
+          { label: content.ui.breadcrumbHome, href: pathForLocale('es') },
+          { label: p.heading },
+        ]}
+      />
+      <div class="flex flex-col gap-2">
+        <h1 class="font-display text-h1 text-text-primary">{p.heading}</h1>
+        <p class="text-small text-text-muted">{p.updated}</p>
+      </div>
+      {
+        p.sections.map((section) => (
+          <section class="flex flex-col gap-3">
+            <h2 class="font-display text-h3 text-text-primary">{section.heading}</h2>
+            {section.body.map((paragraph) => (
+              <p class="text-body text-text-muted">{paragraph}</p>
+            ))}
+          </section>
+        ))
+      }
+      <p class="text-body font-medium text-text-primary">{p.contactLine}</p>
+    </div>
+  </main>
+  <Footer content={content} />
+</BaseLayout>

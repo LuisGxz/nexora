@@ -24,6 +24,7 @@ import { brand, analyticsId } from '../config/site.config';
 import { PRIMARY_ORIGIN } from '../config/domain.mjs';
 import { LOCALES, DEFAULT_LOCALE, pathForLocale, withBase } from '../lib/i18n';
 import { gaBootstrapScript } from '../lib/analytics';
+import { jsonLdString, professionalServiceJsonLd, webSiteJsonLd } from '../lib/jsonld';
 import type { Locale } from '../content/types';
 import '../styles/global.css';
 
@@ -33,6 +34,15 @@ interface Props {
   lang?: Locale;
   path?: string;
   ogAlt?: string;
+  /**
+   * Fase 12 · Los caminos ES/EN de ESTA página, para el `hreflang`. Sin ellos, los alternates
+   * apuntan a las portadas — correcto para la landing y mentiroso para cualquier página nueva:
+   * una página de servicio que declare a la portada como su alternate le enseña a Google que su
+   * traducción es otra cosa.
+   */
+  altPaths?: { es: string; en: string };
+  /** Fase 12 · C3: la página de gracias se alcanza pero no se indexa — es una meta, no contenido. */
+  noindex?: boolean;
 }
 
 const {
@@ -41,6 +51,8 @@ const {
   lang = 'es',
   path = '/',
   ogAlt = 'Nexora — Estudio de software',
+  altPaths,
+  noindex = false,
 } = Astro.props;
 
 const site = Astro.site ?? new URL(PRIMARY_ORIGIN);
@@ -48,12 +60,22 @@ const canonical = new URL(withBase(path), site).href;
 const ogImageFile = lang === 'en' ? '/og/og-share-en.png' : '/og/og-share.png';
 const ogImage = new URL(withBase(ogImageFile), site).href;
 
-/** hreflang alternates for both locales, plus x-default → the default locale. */
+/** hreflang alternates: los de ESTA página si vinieron, o las portadas (el caso original). */
 const alternates = LOCALES.map((locale) => ({
   hreflang: locale,
-  href: new URL(pathForLocale(locale), site).href,
+  href: altPaths
+    ? new URL(withBase(altPaths[locale]), site).href
+    : new URL(pathForLocale(locale), site).href,
 }));
-const xDefaultHref = new URL(pathForLocale(DEFAULT_LOCALE), site).href;
+const xDefaultHref = altPaths
+  ? new URL(withBase(altPaths[DEFAULT_LOCALE]), site).href
+  : new URL(pathForLocale(DEFAULT_LOCALE), site).href;
+
+/**
+ * A2 · La ficha del estudio y el sitio como entidad, en TODAS las páginas: era el único
+ * indicador de "sitio armado a la ligera" que la auditoría encontró disparado (cero JSON-LD).
+ */
+const baseJsonLd = jsonLdString([professionalServiceJsonLd(), webSiteJsonLd()]);
 
 /** OG locale codes: ES targets Ecuador, EN international. */
 const ogLocale = lang === 'es' ? 'es_EC' : 'en_US';
@@ -66,11 +88,15 @@ const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_EC';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    {/* B2 · Safari, iOS y varios rastreadores no leen SVG: sin estos dos mostraban el globo gris. */}
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href={withBase('/favicon.ico')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase('/apple-touch-icon.png')} />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     {alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
     <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
@@ -116,6 +142,8 @@ const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_EC';
         </>
       )
     }
+
+    <script is:inline type="application/ld+json" set:html={baseJsonLd} />
 
     <slot name="head" />
   </head>

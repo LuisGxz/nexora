@@ -1,0 +1,51 @@
+---
+/**
+ * English privacy policy (fase 12 · decisión D): `/en/privacy/` — mirror of `/privacidad/`.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import { getContent, pathForLocale } from '../../lib/i18n';
+
+const content = getContent('en');
+const p = content.privacy;
+---
+
+<BaseLayout
+  title={p.metaTitle}
+  description={p.metaDescription}
+  lang="en"
+  path="/en/privacy/"
+  ogAlt={content.meta.ogAlt}
+  altPaths={{ es: '/privacidad/', en: '/en/privacy/' }}
+>
+  <Header content={content} locale="en" />
+  <main id="contenido" tabindex="-1" class="bg-background">
+    <div class="mx-auto flex max-w-3xl flex-col gap-6 px-4 py-8 md:px-6">
+      <Breadcrumbs
+        label={content.ui.breadcrumbsLabel}
+        items={[
+          { label: content.ui.breadcrumbHome, href: pathForLocale('en') },
+          { label: p.heading },
+        ]}
+      />
+      <div class="flex flex-col gap-2">
+        <h1 class="font-display text-h1 text-text-primary">{p.heading}</h1>
+        <p class="text-small text-text-muted">{p.updated}</p>
+      </div>
+      {
+        p.sections.map((section) => (
+          <section class="flex flex-col gap-3">
+            <h2 class="font-display text-h3 text-text-primary">{section.heading}</h2>
+            {section.body.map((paragraph) => (
+              <p class="text-body text-text-muted">{paragraph}</p>
+            ))}
+          </section>
+        ))
+      }
+      <p class="text-body font-medium text-text-primary">{p.contactLine}</p>
+    </div>
+  </main>
+  <Footer content={content} locale="en" />
+</BaseLayout>

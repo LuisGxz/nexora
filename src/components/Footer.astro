@@ -8,15 +8,21 @@
  *
  * @prop content - active locale content tree (footer, about.products, ui).
  */
-import type { SiteContent } from '../content/types';
+import type { Locale, SiteContent } from '../content/types';
 import logoRaw from '../assets/logo/nexora-logo-mono.svg?raw';
+import { withBase } from '../lib/i18n';
 
 interface Props {
   content: SiteContent;
+  /** Fase 12: decide el árbol del enlace de privacidad. Opcional para no romper llamadores viejos. */
+  locale?: Locale;
 }
 
-const { content } = Astro.props;
+const { content, locale = 'es' } = Astro.props;
 const { footer, about, ui } = content;
+
+/** Fase 12 · decisión D: la política enlazada desde el footer, como pide el propio documento. */
+const privacyHref = withBase(locale === 'en' ? '/en/privacy/' : '/privacidad/');
 
 /** Product names only — the panel with descriptions lives in About. */
 const productNames = about.products.map((product) => product.name).join('  ·  ');
@@ -51,7 +57,15 @@ const logo = logoRaw
       class="flex flex-col gap-2 border-t border-border-dark pt-6 text-small text-text-muted-dark md:flex-row md:items-center md:justify-between"
     >
       <p>{footer.rights}</p>
-      <p>{footer.localSignal}</p>
+      <div class="flex flex-wrap items-center gap-4">
+        <a
+          href={privacyHref}
+          class="underline-offset-4 transition-colors duration-base ease-standard hover:text-text-on-dark hover:underline"
+        >
+          {ui.privacyLink}
+        </a>
+        <p>{footer.localSignal}</p>
+      </div>
     </div>
   </div>
 </footer>

@@ -21,9 +21,12 @@ import Contact from '../../components/sections/Contact.astro';
 import { getContent } from '../../lib/i18n';
 import { whatsappNumber } from '../../config/site.config';
 import { waLink } from '../../lib/whatsapp';
+import { faqPageJsonLd, jsonLdString } from '../../lib/jsonld';
 
 const content = getContent('en');
 const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
+// A3 · Espejo del root: las mismas preguntas visibles, como datos, desde Astro.
+const faqJsonLd = jsonLdString(faqPageJsonLd(content.faq));
 ---
 
 <BaseLayout
@@ -33,10 +36,11 @@ const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
   path="/en/"
   ogAlt={content.meta.ogAlt}
 >
+  <script is:inline type="application/ld+json" set:html={faqJsonLd} slot="head" />
   <Header content={content} locale="en" />
   <main id="contenido" tabindex="-1">
     <Hero content={content} />
-    <Services content={content} />
+    <Services content={content} locale="en" />
     <Works content={content} />
     <Process content={content} />
     <Niches content={content} />
@@ -53,5 +57,5 @@ const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
     />
     <Contact content={content} />
   </main>
-  <Footer content={content} />
+  <Footer content={content} locale="en" />
 </BaseLayout>

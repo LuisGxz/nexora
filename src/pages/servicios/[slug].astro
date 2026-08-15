@@ -1,0 +1,83 @@
+---
+/**
+ * Página de servicio en español (fase 12 · A5): `/servicios/<slug>/`.
+ *
+ * Una URL por intención de búsqueda — el techo estructural que una landing sola no puede
+ * romper: una página no rankea para varias intenciones. Prerender por `getStaticPaths` desde
+ * el árbol de contenido: agregar la quinta página es una entrada en `servicePages`, no una
+ * ruta nueva.
+ *
+ * El `hreflang` apunta al ESPEJO de esta página (`altSlug`), no a la portada — por eso
+ * BaseLayout ganó `altPaths`. Emite `Service` + `BreadcrumbList`; las migas visibles (C5) son
+ * el mismo rastro que el JSON-LD declara.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import ServicePageBody from '../../components/sections/ServicePageBody.astro';
+import { getContent, pathForLocale, withBase } from '../../lib/i18n';
+import { whatsappNumber } from '../../config/site.config';
+import { waLink } from '../../lib/whatsapp';
+import { breadcrumbJsonLd, jsonLdString, serviceJsonLd } from '../../lib/jsonld';
+import { PRIMARY_ORIGIN } from '../../config/domain.mjs';
+import type { ServicePage } from '../../content/types';
+
+export function getStaticPaths() {
+  return getContent('es').servicePages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: ServicePage;
+}
+
+const { page } = Astro.props;
+const content = getContent('es');
+const path = `/servicios/${page.slug}/`;
+const waHref = waLink(whatsappNumber, page.whatsappPrefill);
+
+const site = Astro.site ?? new URL(PRIMARY_ORIGIN);
+const pageUrl = new URL(withBase(path), site).href;
+const homeUrl = new URL(pathForLocale('es'), site).href;
+
+const jsonLd = jsonLdString([
+  serviceJsonLd(page, pageUrl),
+  breadcrumbJsonLd([
+    { name: content.ui.breadcrumbHome, url: homeUrl },
+    { name: page.heading, url: pageUrl },
+  ]),
+]);
+---
+
+<BaseLayout
+  title={page.metaTitle}
+  description={page.metaDescription}
+  lang="es"
+  path={path}
+  ogAlt={content.meta.ogAlt}
+  altPaths={{ es: path, en: `/en/services/${page.altSlug}/` }}
+>
+  <script is:inline type="application/ld+json" set:html={jsonLd} slot="head" />
+
+  <Header content={content} locale="es" />
+  <main id="contenido" tabindex="-1">
+    {/* Migas sobre fondo claro a propósito: sus grises están medidos contra el claro, y una
+        franja propia las separa del hero oscuro sin pelear contraste. */}
+    <div class="bg-background">
+      <div class="mx-auto max-w-4xl px-4 py-4 md:px-6">
+        <Breadcrumbs
+          label={content.ui.breadcrumbsLabel}
+          items={[
+            { label: content.ui.breadcrumbHome, href: pathForLocale('es') },
+            { label: page.heading },
+          ]}
+        />
+      </div>
+    </div>
+    <ServicePageBody page={page} content={content} waHref={waHref} />
+  </main>
+  <Footer content={content} />
+</BaseLayout>

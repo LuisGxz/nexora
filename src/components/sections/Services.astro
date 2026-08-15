@@ -9,16 +9,23 @@
  *
  * @prop content - active locale content tree.
  */
-import type { SiteContent } from '../../content/types';
+import type { Locale, SiteContent } from '../../content/types';
 import SectionEyebrow from '../ui/SectionEyebrow.astro';
 import Icon from '../ui/Icon.astro';
+import { withBase } from '../../lib/i18n';
 
 interface Props {
   content: SiteContent;
+  /** Fase 12 · A5: decide el prefijo de la página de servicio enlazada desde la tarjeta. */
+  locale?: Locale;
 }
 
-const { content } = Astro.props;
+const { content, locale = 'es' } = Astro.props;
 const { services, sections } = content;
+
+/** El href de la página propia de un servicio, en el árbol del idioma activo. */
+const serviceHref = (slug: string) =>
+  withBase(locale === 'es' ? `/servicios/${slug}/` : `/en/services/${slug}/`);
 ---
 
 <section id="servicios" class="bg-background">
@@ -34,6 +41,17 @@ const { services, sections } = content;
             </span>
             <h3 class="font-display text-h4 text-text-primary">{service.title}</h3>
             <p class="text-small text-text-muted">{service.benefit}</p>
+            {/* A5 · La tarjeta enlaza su página propia cuando existe: el camino interno que le
+                dice a Google (y al visitante) que hay más que una tarjeta. */}
+            {service.pageSlug && (
+              <a
+                href={serviceHref(service.pageSlug)}
+                class="mt-auto inline-flex items-center gap-1 text-small font-semibold text-blue transition-colors duration-base ease-standard hover:text-blue-700"
+              >
+                {content.ui.viewService}
+                <Icon name="ui-arrow" class="h-4 w-4" />
+              </a>
+            )}
           </li>
         ))
       }
