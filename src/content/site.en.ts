@@ -502,7 +502,7 @@ export const siteEn: SiteContent = {
     metaDescription:
       'Nexora Software privacy policy: what data this site collects, what it is used for, and how to exercise your rights.',
     heading: 'Privacy policy',
-    updated: 'Last updated: August 15, 2026',
+    updated: 'Last updated: August 17, 2026',
     sections: [
       {
         heading: 'Who we are',
@@ -514,7 +514,7 @@ export const siteEn: SiteContent = {
         heading: 'What data we collect',
         body: [
           'This site has no user accounts and no forms that store data on our servers. When you use the contact form, the message is composed on your own device and sent through WhatsApp from your app: we only receive what you choose to send us in that chat.',
-          'We use Google Analytics 4 to measure visits in aggregate: which pages are viewed and from what kind of device. This measurement uses anonymous identifiers and we do not use it to identify you.',
+          'We use Google Analytics 4 to measure visits in aggregate: which pages are viewed and from what kind of device. This measurement uses cookies with pseudonymous identifiers and we do not use it to identify you.',
         ],
       },
       {
@@ -528,6 +528,7 @@ export const siteEn: SiteContent = {
         heading: 'Third-party services',
         body: [
           'This site is hosted on Vercel and uses Google Analytics (measurement) and Google Fonts (typography). WhatsApp processes the messages you choose to send us through that channel under its own policies.',
+          'These providers operate from the United States, so measurement data is processed outside Ecuador under each provider’s contractual safeguards.',
         ],
       },
       {

@@ -508,7 +508,7 @@ export const siteEs: SiteContent = {
     metaDescription:
       'Política de privacidad de Nexora Software: qué datos se recogen en este sitio, para qué se usan y cómo ejercer tus derechos.',
     heading: 'Política de privacidad',
-    updated: 'Última actualización: 15 de agosto de 2026',
+    updated: 'Última actualización: 17 de agosto de 2026',
     sections: [
       {
         heading: 'Quiénes somos',
@@ -520,7 +520,7 @@ export const siteEs: SiteContent = {
         heading: 'Qué datos recogemos',
         body: [
           'Este sitio no tiene cuentas de usuario ni formularios que guarden datos en nuestros servidores. Cuando usas el formulario de contacto, el mensaje se arma en tu propio dispositivo y se envía por WhatsApp desde tu aplicación: nosotros recibimos únicamente lo que decides enviarnos por ese chat.',
-          'Usamos Google Analytics 4 para medir visitas de forma agregada: qué páginas se ven y desde qué tipo de dispositivo. Esta medición usa identificadores anónimos y no la usamos para identificarte.',
+          'Usamos Google Analytics 4 para medir visitas de forma agregada: qué páginas se ven y desde qué tipo de dispositivo. Esta medición usa cookies con identificadores seudónimos y no la usamos para identificarte.',
         ],
       },
       {
@@ -534,6 +534,7 @@ export const siteEs: SiteContent = {
         heading: 'Servicios de terceros',
         body: [
           'Este sitio se aloja en Vercel y usa Google Analytics (medición) y Google Fonts (tipografías). WhatsApp procesa los mensajes que decides enviarnos por ese canal según sus propias políticas.',
+          'Estos proveedores operan desde Estados Unidos, por lo que los datos de medición se procesan fuera del Ecuador con las salvaguardas contractuales de cada uno.',
         ],
       },
       {
