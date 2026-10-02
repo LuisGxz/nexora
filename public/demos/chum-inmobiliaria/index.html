@@ -141,12 +141,33 @@ h1 em { font-style: normal; color: var(--gold-2); }
 .viewer-loading.off { display: none; }
 .viewer-note { position: absolute; left: 18px; bottom: 76px; z-index: 3; font-size: 11px; color: #8F9592; max-width: 38ch; line-height: 1.5; }
 @media (max-width: 960px) { .viewer-note { display: none; } }
+@media (max-width: 960px) {
+  .hero-grid { display: flex; flex-direction: column; }
+  .viewer { order: -1; min-height: 70vh; border-top: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .hero-copy { padding-top: 36px; }
+  .viewer-tag .tag:nth-child(2) { display: none; }
+  .viewer-hint { display: block; top: auto; right: auto; left: 18px; bottom: 74px; padding: 6px 10px; border-radius: 8px; background: rgba(18, 20, 19, 0.6); color: #D7DAD7; font-size: 10.5px; }
+  .dock { left: 0; right: 0; bottom: 0; padding: 0 14px 14px; flex-wrap: nowrap; justify-content: flex-start; gap: 8px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .dock::-webkit-scrollbar { display: none; }
+  .dock-group { flex-wrap: nowrap; gap: 8px; }
+  .chip { flex: none; min-height: 40px; padding: 0 12px; font-size: 12px; }
+}
+@media (pointer: coarse) { .viewer canvas { touch-action: pan-y; } }
 
 /* ========== RIBBON ========== */
-.ribbon { background: var(--gold); color: var(--white); }
-.ribbon-track { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 32px; padding: 14px clamp(18px, 4vw, 48px); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.ribbon { background: var(--gold); color: var(--white); overflow: hidden; }
+.ribbon-inner { display: flex; }
+.ribbon-track { flex: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 32px; padding: 14px clamp(18px, 4vw, 48px); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
 .ribbon-track span::before { content: "•"; margin-right: 32px; color: rgba(255,255,255,0.7); }
 .ribbon-track span:first-child::before { display: none; }
+.ribbon-track + .ribbon-track { display: none; }
+@keyframes chRibbon { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 960px) {
+  .ribbon-inner { width: max-content; animation: chRibbon 24s linear infinite; }
+  .ribbon-track, .ribbon-track + .ribbon-track { flex: none; display: flex; flex-wrap: nowrap; gap: 0; padding: 13px 0; }
+  .ribbon-track span { padding-right: 32px; }
+  .ribbon-track span::before, .ribbon-track span:first-child::before { display: inline; margin-right: 32px; }
+}
 
 /* ========== SERVICIOS ========== */
 .services-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin: 0 0 40px; }
@@ -174,6 +195,11 @@ h1 em { font-style: normal; color: var(--gold-2); }
 .proj-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin: 0 0 24px; }
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
 .tab { min-height: 44px; padding: 0 16px; border: 1.5px solid var(--ink); border-radius: var(--r); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; background: transparent; transition: background 0.15s ease, color 0.15s ease; }
+@media (max-width: 640px) {
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -18px 24px; padding: 2px 18px 6px; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: none; }
+}
 .tab.on, .tab:hover { background: var(--ink); color: var(--white); }
 .proj-intro { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px 24px; margin: 0 0 18px; animation: chFade 0.3s ease; }
 .proj-intro h3 { font-size: 22px; }
@@ -196,7 +222,13 @@ h1 em { font-style: normal; color: var(--gold-2); }
 
 /* ========== ANTES / DESPUÉS ========== */
 .compare-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
-@media (max-width: 900px) { .compare-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .compare-grid { grid-template-columns: 1fr; }
+  .compare-grid > div:first-child { display: contents; }
+  .compare-grid .lede { margin-bottom: 24px; }
+  .compare { order: 4; margin: 0 auto 32px; }
+  .steps { order: 5; margin-top: 0; }
+}
 .compare { position: relative; aspect-ratio: 3 / 4; max-height: 640px; margin: 0 auto; width: 100%; max-width: 480px; overflow: hidden; background: var(--charcoal); border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.1); user-select: none; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .compare .after { clip-path: inset(0 0 0 50%); }
@@ -229,7 +261,7 @@ h1 em { font-style: normal; color: var(--gold-2); }
 /* ========== CURIOSIDADES + APRENDE ========== */
 .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 @media (max-width: 1000px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .fact-card { padding: 16px 14px; } .fact-card b { font-size: 24px; } .fact-card p { font-size: 12.5px; } }
 .fact-card { background: var(--white); border: 1px solid var(--mist); border-radius: var(--r-lg); padding: 22px 20px; }
 .fact-card b { display: block; font-size: clamp(28px, 3vw, 38px); font-weight: 700; color: var(--gold-ink); line-height: 1; margin-bottom: 10px; }
 .fact-card p { font-size: 14px; color: var(--gray); line-height: 1.55; }
@@ -396,8 +428,13 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
 </section>
 
 <div class="ribbon" aria-hidden="true">
-  <div class="ribbon-track">
-    <span>Arquitectura</span><span>Topografía</span><span>Trámites municipales</span><span>Construcción</span><span>Bienes raíces</span><span>Avalúos</span>
+  <div class="ribbon-inner">
+    <div class="ribbon-track">
+      <span>Arquitectura</span><span>Topografía</span><span>Trámites municipales</span><span>Construcción</span><span>Bienes raíces</span><span>Avalúos</span>
+    </div>
+    <div class="ribbon-track">
+      <span>Arquitectura</span><span>Topografía</span><span>Trámites municipales</span><span>Construcción</span><span>Bienes raíces</span><span>Avalúos</span>
+    </div>
   </div>
 </div>
 
@@ -795,7 +832,7 @@ const viewer3d = {
   theta: 0.8, phi: 1.05, radius: 26, target: null,
   autoRotate: true, exploded: false, plan: false, night: false, focus: -1,
   dragging: false, lastX: 0, lastY: 0, idleTimer: null, pinchDist: 0,
-  planT: 0,
+  planT: 0, touched: false,
 
   /**
    * Levanta la escena, el modelo procedural y los controles. Si WebGL falla, el visor
@@ -839,6 +876,22 @@ const viewer3d = {
     window.addEventListener('resize', () => this.resize());
     document.getElementById('viewerLoading').classList.add('off');
     this.loop();
+    this.intro();
+  },
+
+  /**
+   * Presentación: a los pocos segundos de cargar, los niveles se separan y vuelven a
+   * cerrarse una vez, para que quien entra descubra que el modelo es interactivo.
+   * Se cancela si la persona ya tocó el visor.
+   */
+  intro() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    setTimeout(() => {
+      if (this.touched) return;
+      this.exploded = true; this.syncChips();
+      setTimeout(() => { if (!this.touched) { this.exploded = false; this.syncChips(); } }, 2400);
+    }, 1400);
   },
 
   fail() {
@@ -939,7 +992,8 @@ const viewer3d = {
 
   buildControls() {
     const c = this.renderer.domElement;
-    const stop = () => { this.autoRotate = false; this.syncChips(); clearTimeout(this.idleTimer); this.idleTimer = setTimeout(() => { if (!this.dragging && !this.plan) { this.autoRotate = true; this.syncChips(); } }, 4000); };
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) document.getElementById('viewerHint').textContent = 'Arrastra para girar · pellizca para acercar';
+    const stop = () => { this.touched = true; this.autoRotate = false; this.syncChips(); clearTimeout(this.idleTimer); this.idleTimer = setTimeout(() => { if (!this.dragging && !this.plan) { this.autoRotate = true; this.syncChips(); } }, 4000); };
     c.addEventListener('pointerdown', (e) => { this.dragging = true; this.lastX = e.clientX; this.lastY = e.clientY; c.setPointerCapture(e.pointerId); stop(); });
     c.addEventListener('pointermove', (e) => {
       if (!this.dragging) return;
@@ -959,6 +1013,7 @@ const viewer3d = {
       this.pinchDist = d;
     }, { passive: true });
 
+    this.el.querySelectorAll('.chip, .floor-btn').forEach(b => b.addEventListener('pointerdown', () => { this.touched = true; }));
     document.getElementById('chipRotate').onclick = () => { this.autoRotate = !this.autoRotate; if (this.autoRotate) this.setPlan(false); this.syncChips(); };
     document.getElementById('chipExplode').onclick = () => { this.exploded = !this.exploded; this.syncChips(); };
     document.getElementById('chipPlan').onclick = () => { this.setPlan(!this.plan); };
