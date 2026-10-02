@@ -286,6 +286,10 @@
 
   /* Image error handler */
   img[data-error] { display: none; }
+  .sheet-wa-btn { background: #FFFCF4; color: #2E211B; border: 1px solid #D6C6A8; }
+  .sheet-wa-btn:hover { border-color: #7E2F35; filter: none; }
+  [data-wa-float] { background: #25D366; }
+  .wa-ico { color: #FFFFFF; }
 </style>
 </head>
 <body>
@@ -391,7 +395,7 @@
           <span class="sheet-total-label">TOTAL</span>
           <span class="sheet-total-amount" id="orderTotal">$0</span>
         </div>
-        <button class="sheet-cta" onclick="confirmOrder()"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Pedir por WhatsApp</button>
+        <button class="sheet-cta" onclick="confirmOrder()"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-logo"/></svg>Pedir por WhatsApp</button>
         <p class="sheet-note">RETIRO O DELIVERY CERCANO · PAGAS AL RECIBIR</p>
       </div>
       <!-- Order success -->
@@ -401,7 +405,7 @@
         <p class="sheet-success-msg">Envíanos el mensaje por WhatsApp y te confirmamos el tiempo de entrega.</p>
         <div class="sheet-preview" id="orderMsgPreview"></div>
         <div class="sheet-actions">
-          <a id="orderWALink" href="#" target="_blank" rel="noopener" class="sheet-wa-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Enviar por WhatsApp</a>
+          <a id="orderWALink" href="#" target="_blank" rel="noopener" class="sheet-wa-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-logo"/></svg>Enviar por WhatsApp</a>
           <button class="sheet-reset-btn" onclick="resetOrder()">Nuevo pedido</button>
         </div>
       </div>
@@ -467,7 +471,7 @@
           <p class="res-success-msg">Envíanos el mensaje por WhatsApp y te confirmamos en minutos.</p>
           <div class="res-success-preview" id="resMsgPreview"></div>
           <div class="sheet-actions">
-            <a id="resWALink" href="#" target="_blank" rel="noopener" class="sheet-wa-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Enviar por WhatsApp</a>
+            <a id="resWALink" href="#" target="_blank" rel="noopener" class="sheet-wa-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-logo"/></svg>Enviar por WhatsApp</a>
             <button class="sheet-reset-btn" onclick="resetRes()">Hacer otra reserva</button>
           </div>
         </div>
@@ -570,7 +574,7 @@
         </div>
         <div class="ubicacion-buttons">
           <a href="https://www.google.com/maps/search/?api=1&query=Numa+Pompilio+Llona+212+Las+Penas+Guayaquil" target="_blank" rel="noopener" class="ubicacion-btn">Cómo llegar ↗</a>
-          <a href="https://wa.me/593987612045?text=Hola+La+Sazón,+quiero+información." target="_blank" rel="noopener" class="ubicacion-btn" style="background: #1FAE55; color: #08240F; border-color: #1FAE55;"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>WhatsApp</a>
+          <a href="https://wa.me/593987612045?text=Hola+La+Sazón,+quiero+información." target="_blank" rel="noopener" class="ubicacion-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-logo"/></svg>WhatsApp</a>
         </div>
       </div>
       <a href="https://www.google.com/maps/search/?api=1&query=Numa+Pompilio+Llona+212+Las+Penas+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" class="ubicacion-map">
@@ -621,7 +625,7 @@
     <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
   </a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><g transform="translate(4.8 4.8) scale(0.6)"><path fill="#FFFFFF" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></g></symbol><symbol id="wa-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></symbol></svg>
 </div>
 
 <script>

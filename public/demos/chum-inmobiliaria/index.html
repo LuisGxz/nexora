@@ -305,6 +305,10 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
 .float-wa { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); color: var(--wa-ink); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 28px rgba(0,0,0,0.4); transition: transform 0.15s ease; }
 .float-wa:hover { transform: scale(1.07); }
 .float-wa svg { width: 32px; height: 32px; }
+.btn.wa { background: #FFFFFF; color: var(--ink); border-color: #FFFFFF; }
+.btn.wa:hover { background: var(--stone); border-color: var(--stone); color: var(--ink); }
+.float-wa { color: #FFFFFF; }
+.social a.wa:hover { color: #FFFFFF; }
 </style>
 </head>
 <body>
@@ -359,7 +363,7 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
       <h1>Un sueño cumplido <em>en cada plano.</em></h1>
       <p class="hero-sub">Arquitectura, topografía, trámites municipales, construcción, bienes raíces y avalúos en Guayaquil. Un solo equipo acompaña cada etapa, desde el terreno hasta la escritura.</p>
       <div class="hero-ctas">
-        <a id="heroWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Escríbanos por WhatsApp</a>
+        <a id="heroWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-logo"/></svg>Contáctanos</a>
         <a href="#proyectos" class="btn light">Ver proyectos</a>
       </div>
       <div class="hero-facts">
@@ -375,7 +379,7 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
         <span class="tag"><span class="dot"></span>Modelo interactivo</span>
         <span class="tag">Residencia tipo · 2 plantas + terraza</span>
       </div>
-      <div class="viewer-hint" id="viewerHint">Arrastre para girar · rueda para acercar</div>
+      <div class="viewer-hint" id="viewerHint">Arrastra para girar · rueda para acercar</div>
       <div class="floors" id="floorsPanel"></div>
       <p class="viewer-note">Modelo de muestra. En esta vista se cargan los proyectos del estudio en 3D (formato GLB/OBJ) o sus recorridos virtuales.</p>
       <div class="dock">
@@ -435,7 +439,7 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
       <div>
         <div class="eyebrow light">Construcción · Proyecto B-01</div>
         <h2>Antes y después de una remodelación</h2>
-        <p class="lede">Deslice el comparador para ver la transformación de un baño de 15 m² en Guayaquil (2023). Así se documenta cada avance al cliente, con fotografías del propio equipo.</p>
+        <p class="lede">Desliza el comparador para ver la transformación de un baño de 15 m² en Guayaquil (2023). Así se documenta cada avance al cliente, con fotografías del propio equipo.</p>
         <ol class="steps">
           <li><div><b>Consulta y visita al terreno</b><span>Levantamiento de necesidades, presupuesto estimado y revisión de la normativa aplicable.</span></div></li>
           <li><div><b>Topografía y diseño</b><span>Levantamiento georreferenciado, anteproyecto y planos definitivos.</span></div></li>
@@ -542,19 +546,19 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
     <div class="contact-head">
       <div class="eyebrow light">Contacto</div>
       <h2>Consultas</h2>
-      <p class="lede" style="margin: 0 auto;">Cuéntenos qué necesita y le respondemos con una propuesta. Atendemos por WhatsApp, correo electrónico y en nuestra oficina.</p>
+      <p class="lede" style="margin: 0 auto;">Cuéntanos qué necesitas y te respondemos con una propuesta. Atendemos por WhatsApp, correo electrónico y en nuestra oficina.</p>
     </div>
     <div class="contact-grid">
       <div class="form-card">
         <div id="fForm" class="fstate on">
           <div class="form-grid">
             <label><span class="label">Nombre <i>*</i></span><input id="fName" class="input" type="text" placeholder="Nombre y apellido" autocomplete="name"></label>
-            <div id="eName" class="ferr" style="display:none;">Escriba su nombre para poder responderle.</div>
+            <div id="eName" class="ferr" style="display:none;">Escribe tu nombre para poder responderte.</div>
             <label><span class="label">Whatsapp <i>*</i></span><input id="fPhone" class="input" type="tel" placeholder="+593 99 000 0000" autocomplete="tel"></label>
-            <div id="ePhone" class="ferr" style="display:none;">Indique un número de WhatsApp.</div>
+            <div id="ePhone" class="ferr" style="display:none;">Indica tu número de WhatsApp.</div>
             <label><span class="label">Correo electrónico <i>*</i></span><input id="fEmail" class="input" type="email" placeholder="nombre@correo.com" autocomplete="email"></label>
             <div id="eEmail" class="ferr" style="display:none;"></div>
-            <label><span class="label">Comentario o mensaje</span><textarea id="fMsg" class="input" placeholder="Terreno, ubicación, metros, plazo o cualquier detalle que considere útil."></textarea></label>
+            <label><span class="label">Comentario o mensaje</span><textarea id="fMsg" class="input" placeholder="Terreno, ubicación, metros, plazo o cualquier detalle que consideres útil."></textarea></label>
             <button type="button" class="btn solid" id="fSubmit">Enviar</button>
             <p class="fnote">Al enviar, elige continuar por WhatsApp o por correo electrónico.</p>
           </div>
@@ -564,10 +568,10 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
           <div class="success">
             <div class="check">✓</div>
             <h3>Consulta lista, <span id="sName"></span>.</h3>
-            <p>Elija el canal por el que desea enviarla. Le respondemos en horario de oficina.</p>
+            <p>Elige el canal por el que quieras enviarla. Te respondemos en horario de oficina.</p>
             <pre class="preview" id="sPreview"></pre>
             <div class="success-actions">
-              <a id="sWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Enviar por WhatsApp</a>
+              <a id="sWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-logo"/></svg>Enviar por WhatsApp</a>
               <a id="sMail" href="#" class="btn">Enviar por correo</a>
               <button type="button" class="btn sm" id="fEdit" style="border:none;text-decoration:underline;">Editar</button>
             </div>
@@ -638,11 +642,11 @@ footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,
   </div>
 </footer>
 
-<a id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Escríbanos por WhatsApp" class="float-wa">
+<a id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" class="float-wa">
   <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
 </a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><g transform="translate(4.8 4.8) scale(0.6)"><path fill="#FFFFFF" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></g></symbol>
   <symbol id="wa-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></symbol>
   <symbol id="ch-mark" viewBox="0 0 48 48"><rect x="1" y="1" width="46" height="46" rx="8" fill="none" stroke="#B99A5B" stroke-width="1.5"/><path d="M8 40V22h5v18zm7 0V16h5v24zm7 0V10h6v30zm8 0V18h5l5 6v16z" fill="#F6F4F0"/></symbol>
 </svg>
@@ -757,7 +761,7 @@ function submitForm() {
   mark(name, 'eName', !name.value.trim());
   mark(phone, 'ePhone', !phone.value.trim());
   const em = email.value.trim();
-  mark(email, 'eEmail', !em || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em), !em ? 'Escriba su correo electrónico.' : 'Revise el formato del correo electrónico.');
+  mark(email, 'eEmail', !em || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em), !em ? 'Escribe tu correo electrónico.' : 'Revisa el formato del correo electrónico.');
   if (bad) return;
   show('fLoading');
   setTimeout(() => {
@@ -838,7 +842,7 @@ const viewer3d = {
   },
 
   fail() {
-    document.getElementById('viewerLoading').innerHTML = 'Su navegador no permite mostrar el modelo 3D.';
+    document.getElementById('viewerLoading').innerHTML = 'Tu navegador no permite mostrar el modelo 3D.';
   },
 
   mat(color, opts) { return new THREE.MeshStandardMaterial(Object.assign({ color, roughness: 0.85, metalness: 0.02 }, opts || {})); },
