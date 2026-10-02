@@ -154,7 +154,12 @@ h1 em { font-style: normal; color: var(--gold-2); }
   .dock-group { flex-wrap: nowrap; gap: 8px; }
   .chip { flex: none; min-height: 40px; padding: 0 12px; font-size: 12px; }
 }
-@media (pointer: coarse) { .viewer canvas { touch-action: pan-y; } }
+@media (pointer: coarse) {
+  .viewer canvas { touch-action: pan-y; }
+  nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(18, 20, 19, 0.97); }
+  .tag, .chip, .floor-btn { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(18, 20, 19, 0.9); }
+  .ribbon-inner { will-change: transform; }
+}
 
 /* ========== RIBBON ========== */
 .ribbon { background: var(--gold); color: var(--white); overflow: hidden; }
@@ -834,7 +839,7 @@ const viewer3d = {
   theta: 0.8, phi: 1.05, radius: 26, target: null,
   autoRotate: true, exploded: false, plan: false, night: false, focus: -1,
   dragging: false, lastX: 0, lastY: 0, idleTimer: null, pinchDist: 0,
-  planT: 0, touched: false,
+  planT: 0, touched: false, visible: true, running: false, coarse: false,
 
   /**
    * Levanta la escena, el modelo procedural y los controles. Si WebGL falla, el visor
@@ -846,9 +851,10 @@ const viewer3d = {
     try {
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     } catch (e) { this.fail(); return; }
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.coarse = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.coarse ? 1.5 : 2));
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = this.coarse ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.el.appendChild(this.renderer.domElement);
 
@@ -861,7 +867,7 @@ const viewer3d = {
     this.sun = new THREE.DirectionalLight(0xfff3dc, 1.35);
     this.sun.position.set(14, 22, 10);
     this.sun.castShadow = true;
-    this.sun.shadow.mapSize.set(2048, 2048);
+    this.sun.shadow.mapSize.set(this.coarse ? 1024 : 2048, this.coarse ? 1024 : 2048);
     this.sun.shadow.camera.left = -22; this.sun.shadow.camera.right = 22;
     this.sun.shadow.camera.top = 22; this.sun.shadow.camera.bottom = -22;
     this.sun.shadow.camera.near = 1; this.sun.shadow.camera.far = 80;
@@ -877,8 +883,30 @@ const viewer3d = {
     this.resize();
     window.addEventListener('resize', () => this.resize());
     document.getElementById('viewerLoading').classList.add('off');
-    this.loop();
+    this.watchVisibility();
+    this.start();
     this.intro();
+  },
+
+  /**
+   * Solo dibuja mientras el visor está en pantalla y la pestaña visible: fuera de vista
+   * el bucle se detiene y el desplazamiento del resto de la página no compite con WebGL.
+   */
+  watchVisibility() {
+    this.visible = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        this.visible = entries[0].isIntersecting;
+        if (this.visible) this.start();
+      }, { rootMargin: '120px 0px' }).observe(this.el);
+    }
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) this.start(); });
+  },
+
+  start() {
+    if (this.running) return;
+    this.running = true;
+    this.loop();
   },
 
   /**
@@ -1073,6 +1101,7 @@ const viewer3d = {
   },
 
   loop() {
+    if (!this.visible || document.hidden) { this.running = false; return; }
     requestAnimationFrame(() => this.loop());
     if (this.autoRotate && !this.dragging) this.theta += 0.0035;
     this.planT += ((this.plan ? 1 : 0) - this.planT) * 0.08;
