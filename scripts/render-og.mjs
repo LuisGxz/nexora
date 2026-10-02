@@ -40,17 +40,17 @@ const SVG_PLACEHOLDER_DOMAIN = 'nexora.studio';
 const LOCALES = {
   es: {
     file: 'og-share.png',
-    headTop: 'Software hecho',
-    headLead: 'a tu ',
-    headAccent: 'medida',
-    sub: 'Sitios · sistemas · apps a medida',
+    headTop: 'Desarrollo',
+    headLead: 'de ',
+    headAccent: 'software',
+    sub: 'Páginas web · sistemas · aplicaciones',
   },
   en: {
     file: 'og-share-en.png',
-    headTop: 'Software built',
-    headLead: 'to your ',
-    headAccent: 'measure',
-    sub: 'Websites · systems · custom apps',
+    headTop: 'Software',
+    headLead: '',
+    headAccent: 'development',
+    sub: 'Websites · systems · applications',
   },
 };
 
