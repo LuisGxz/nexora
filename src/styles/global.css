@@ -20,8 +20,8 @@
   :root {
     /* Brand */
     --color-navy: #0b1530;
-    --color-blue: #2563eb;
-    --color-blue-hover: #1d4fd7;
+    --color-blue: #1d4fd7;
+    --color-blue-hover: #1740b0;
     --color-cyan: #22d3ee;
     --color-slate: #5b6470;
 
@@ -34,26 +34,28 @@
     --color-navy-500: #3b4f7e;
 
     /* Blue ramp */
+    --color-blue-800: #1740b0;
     --color-blue-700: #1d4fd7;
     --color-blue-600: #2563eb;
     --color-blue-500: #3b82f6;
     --color-blue-400: #60a5fa;
     --color-blue-100: #dbe6fe;
-    --color-blue-50: #eff4ff;
+    --color-blue-50: #eef3ff;
 
     /* Semantic */
-    --color-background: #f8fafc;
+    --color-background: #f6f8fc;
     --color-background-dark: #0b1530;
     --color-surface: #ffffff;
     --color-surface-dark: #111e3d;
-    --color-primary: #2563eb;
+    --color-primary: #1d4fd7;
     --color-primary-text: #ffffff;
     --color-accent: #22d3ee;
     --color-text-primary: #0b1530;
-    --color-text-on-dark: #f8fafc;
-    --color-text-muted: #5b6470;
-    --color-text-muted-dark: #94a3b8;
-    --color-border: #e2e8f0;
+    --color-text-on-dark: #ffffff;
+    --color-text-muted: #4a5670;
+    --color-text-muted-dark: #c5cee2;
+    --color-border: #e4e9f2;
+    --color-border-strong: #b6c2da;
     --color-border-dark: #1b294f;
     --color-success: #10b981;
     --color-warning: #f59e0b;
@@ -61,16 +63,16 @@
     --color-whatsapp: #25d366;
 
     /* Typography */
-    --font-display: 'Space Grotesk', 'Geist', 'Sora', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
 
     /* Radii */
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
-    --radius-2xl: 28px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
     --radius-full: 9999px;
 
     /* Shadows */
@@ -101,7 +103,7 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: var(--color-surface);
     color: var(--color-text-primary);
     font-family: var(--font-body);
     line-height: 1.6;

@@ -2,13 +2,15 @@
 /**
  * Button — the landing's call-to-action, rendered as an anchor.
  *
- * What: a themable link styled as a button in one of three variants. Why an
+ * What: a themable link styled as a button in one of four variants. Why an
  * anchor and not a <button>: every CTA on this static page navigates — an
- * in-page anchor now, a `wa.me` deep-link once Phase 3 wires `whatsapp.ts` —
- * there are no form submits at this layer. Colors come from tokens only.
+ * in-page anchor, a `wa.me` deep-link or a `mailto:` — there are no form
+ * submits at this layer. Colors and radius come from tokens only; the minimum
+ * height keeps every variant at or above the 44 px touch target.
  *
  * @prop href - destination (anchor id or URL).
- * @prop variant - 'primary' (blue) | 'secondary' (outline, dark bg) | 'whatsapp' (green).
+ * @prop variant - 'primary' (blue) | 'secondary' (outline, light bg) |
+ *   'inverse' (white, dark bg) | 'outline-dark' (outline, dark bg).
  * @prop size - 'md' (default, hero/section CTAs) | 'sm' (compact, header chrome).
  * @prop icon - optional leading IconKey.
  * @prop class - extra utilities (width/layout overrides).
@@ -19,7 +21,7 @@ import Icon from './Icon.astro';
 
 interface Props {
   href: string;
-  variant?: 'primary' | 'secondary' | 'whatsapp';
+  variant?: 'primary' | 'secondary' | 'inverse' | 'outline-dark';
   size?: 'md' | 'sm';
   icon?: IconKey;
   class?: string;
@@ -32,14 +34,16 @@ const base =
   'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-base ease-standard';
 
 const sizes: Record<NonNullable<Props['size']>, string> = {
-  md: 'px-5 py-3 text-body',
-  sm: 'px-4 py-2 text-small',
+  md: 'min-h-[3.25rem] px-5 text-body',
+  sm: 'min-h-[2.75rem] px-4 text-small',
 };
 
 const variants: Record<NonNullable<Props['variant']>, string> = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700',
-  secondary: 'border border-border-dark text-text-on-dark hover:bg-navy-800',
-  whatsapp: 'bg-whatsapp text-navy-900 hover:brightness-95',
+  primary: 'bg-blue-700 text-white hover:bg-blue-800',
+  secondary:
+    'border border-border-strong bg-surface text-text-primary hover:border-blue-700 hover:text-blue-700',
+  inverse: 'bg-surface text-navy-900 hover:bg-blue-50',
+  'outline-dark': 'border border-navy-500 text-text-on-dark hover:bg-navy-800',
 };
 
 const iconSize = size === 'sm' ? 'h-[18px] w-[18px]' : 'h-5 w-5';

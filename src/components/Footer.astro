@@ -1,12 +1,13 @@
 ---
 /**
- * Footer — closing chrome on a dark band, shared by both locales.
+ * Footer — closing chrome on a light band, shared by both locales.
  *
- * What: brand lockup, tagline, own-products signal, local-trust line (RUC /
- * invoicing) and the rights notice — all from `footer` + `about.products` +
- * `ui`. Why faceless: the work is the hero, so no people or founder imagery.
+ * What: brand lockup, tagline (the only place the city appears), the
+ * local-trust line (RUC / invoicing), the privacy link and the rights notice —
+ * all from `footer` + `ui`. Why faceless: the work is the hero, so no people or
+ * founder imagery.
  *
- * @prop content - active locale content tree (footer, about.products, ui).
+ * @prop content - active locale content tree (footer, ui).
  */
 import type { Locale, SiteContent } from '../content/types';
 import logoRaw from '../assets/logo/nexora-logo-mono.svg?raw';
@@ -19,53 +20,39 @@ interface Props {
 }
 
 const { content, locale = 'es' } = Astro.props;
-const { footer, about, ui } = content;
+const { footer, ui } = content;
 
 /** Fase 12 · decisión D: la política enlazada desde el footer, como pide el propio documento. */
 const privacyHref = withBase(locale === 'en' ? '/en/privacy/' : '/privacidad/');
-
-/** Product names only — the panel with descriptions lives in About. */
-const productNames = about.products.map((product) => product.name).join('  ·  ');
 
 const logo = logoRaw
   .replace(/\s(width|height)="[^"]*"/g, '')
   .replace(/\scolor="[^"]*"/g, '');
 ---
 
-<footer class="border-t border-border-dark bg-navy-950 text-text-on-dark">
-  <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:px-6">
-    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-      <div class="flex flex-col gap-3">
+<footer class="border-t border-border bg-surface text-text-muted">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-small md:px-6">
+    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
         <span
-          class="flex h-8 items-center text-text-on-dark [&>svg]:h-full [&>svg]:w-auto"
+          class="flex h-7 items-center text-text-primary [&>svg>g]:text-blue-700 [&>svg]:h-full [&>svg]:w-auto [&_text]:font-display"
           set:html={logo}
         />
-        <p class="text-small text-text-muted-dark">{footer.tagline}</p>
+        <p class="font-semibold text-text-primary">{footer.tagline}</p>
       </div>
-
-      <div class="flex flex-col gap-2 md:items-end">
-        <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
-          {ui.productsLabel}
-        </p>
-        <p class="font-display text-body-lg font-semibold">
-          {productNames}
-        </p>
-      </div>
+      <p>{footer.localSignal}</p>
     </div>
 
     <div
-      class="flex flex-col gap-2 border-t border-border-dark pt-6 text-small text-text-muted-dark md:flex-row md:items-center md:justify-between"
+      class="flex flex-col gap-1 border-t border-border pt-4 md:flex-row md:items-center md:justify-between"
     >
       <p>{footer.rights}</p>
-      <div class="flex flex-wrap items-center gap-4">
-        <a
-          href={privacyHref}
-          class="underline-offset-4 transition-colors duration-base ease-standard hover:text-text-on-dark hover:underline"
-        >
-          {ui.privacyLink}
-        </a>
-        <p>{footer.localSignal}</p>
-      </div>
+      <a
+        href={privacyHref}
+        class="flex min-h-[2.75rem] items-center underline-offset-4 transition-colors duration-base ease-standard hover:text-blue-700 hover:underline"
+      >
+        {ui.privacyLink}
+      </a>
     </div>
   </div>
 </footer>

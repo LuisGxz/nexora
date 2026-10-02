@@ -21,8 +21,8 @@ export const GET: APIRoute = ({ site }) => {
 
   const body = `# ${brand.legalName}
 
-> Estudio de software en ${brand.location}. Páginas web, sistemas y aplicaciones a la medida,
-> para clientes de cualquier parte del mundo, en español y en inglés.
+> Estudio de software en ${brand.location}. Diseño y desarrollo de páginas web, sistemas y
+> aplicaciones a medida, para clientes de cualquier país, en español y en inglés.
 
 ## Qué hacemos
 
@@ -34,7 +34,6 @@ export const GET: APIRoute = ({ site }) => {
 ## Productos propios
 
 - Turnia (reservas y agenda): ${productUrls.turnia}
-- Spektova (comercio electrónico): ${productUrls.spektova}
 
 ## Páginas
 
@@ -45,6 +44,7 @@ export const GET: APIRoute = ({ site }) => {
 ## Contacto
 
 - Correo: ${brand.email}
+- WhatsApp, desde la sección de contacto del sitio.
 - El formulario del sitio abre un chat de WhatsApp con el mensaje ya armado.
 `;
 

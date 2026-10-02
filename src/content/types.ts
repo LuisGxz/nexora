@@ -69,17 +69,23 @@ export interface Hero {
   subheadline: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  /**
+   * La tarjeta de la propuesta (rediseño 2026-10-01): rótulo, título y la lista de lo que
+   * se entrega por escrito. Es la prueba que acompaña al titular — cada renglón debe ser
+   * algo que la propuesta real contiene.
+   */
+  proposalEyebrow: string;
+  proposalHeading: string;
+  proposalItems: string[];
 }
 
 /**
- * One service card: icon + title + the outcome the client gets.
+ * One service card: title + what the service is.
  *
- * `benefit` states what Nexora delivers ("we push your business up in Google
- * searches"), never the visitor's problem — owner-facing and forward-looking by
- * editorial rule. No price.
+ * `benefit` describes what Nexora delivers, never the visitor's problem and never a
+ * comparison with an alternative — forward-looking by editorial rule. No price.
  */
 export interface Service {
-  icon: IconKey;
   title: string;
   benefit: string;
   /**
@@ -101,6 +107,16 @@ export interface Work {
   result: string;
   url?: string;
   image?: string;
+  /** Estado junto al tipo (p. ej. «En producción») para un producto propio en operación. */
+  badge?: string;
+  /** Texto del enlace cuando no es un demo (p. ej. «Ver proyecto»); por omisión `ui.viewDemo`. */
+  linkLabel?: string;
+}
+
+/** La última casilla de servicios: el llamado para lo que no está en la lista. */
+export interface ServicesCta {
+  heading: string;
+  label: string;
 }
 
 /** One step in the 4-step process. `step` is the display index ("01"…). */
@@ -110,9 +126,8 @@ export interface ProcessStep {
   description: string;
 }
 
-/** One target industry: icon + label. */
+/** One target industry. El orden del arreglo es editorial: de mayor a menor escala. */
 export interface Niche {
-  icon: IconKey;
   label: string;
 }
 
@@ -134,36 +149,20 @@ export interface AboutLink {
 }
 
 /**
- * One of Nexora's own products, shown as a card in the About panel.
+ * "Sobre Nexora" content. Framed as a studio — never a named individual — while
+ * `experience` carries the real professional background that backs it.
  *
- * `description` says what the product does in one line — with only three of
- * them, a bare name list reads as a thin credential, while a described card
- * reads as a portfolio. `url` is optional so an unlaunched product still ships
- * as a card instead of a dead link; pair that case with `status` (e.g. "En
- * desarrollo") so the missing link is explained rather than merely absent.
- */
-export interface Product {
-  name: string;
-  description: string;
-  url?: string;
-  status?: string;
-}
-
-/**
- * "Sobre Nexora" content. Framed as a studio and a team — never a named
- * individual — while `experience` still carries the real professional
- * background that backs it (see `productsIntro` for the own-products lead).
+ * Sin productos propios desde el rediseño del 2026-10-01: Turnia se muestra como
+ * un proyecto más en `works`, y lo que no está en operación no se anuncia.
  */
 export interface About {
   heading: string;
   body: string;
   experience: Experience[];
-  productsIntro: string;
-  products: Product[];
   links: AboutLink[];
 }
 
-/** A trust pillar / key stat for "Por qué Nexora" (repurposed §07, no prices). */
+/** A trust pillar / key stat, shown as the strip under the hero (no prices). */
 export interface Pillar {
   stat: string;
   label: string;
@@ -196,6 +195,11 @@ export interface Contact {
   subheading: string;
   form: ContactForm;
   whatsappCtaLabel: string;
+  /** El segundo canal: todo punto de contacto ofrece WhatsApp y correo. */
+  emailCtaLabel: string;
+  /** Título y línea de la franja de canales que cierra la sección de proyectos. */
+  channelsHeading: string;
+  channelsBody: string;
   whatsappPrefill: string;
   vcardLabel: string;
   prefillTemplate: string;
@@ -210,7 +214,6 @@ export interface Footer {
 
 /** Small, reused interface strings (CTAs, toggles, a11y labels). */
 export interface UiStrings {
-  stickyWhatsapp: string;
   openMenu: string;
   closeMenu: string;
   switchLanguage: string;
@@ -218,7 +221,6 @@ export interface UiStrings {
   viewDemo: string;
   faqMoreQuestion: string;
   experienceLabel: string;
-  productsLabel: string;
   /** Fase 12 · el "ver más" de una tarjeta de servicio con página propia (A5). */
   viewService: string;
   /** Fase 12 · la primera miga (C5) y el aria del bloque de migas. */
@@ -235,7 +237,6 @@ export interface SectionHeaders {
   process: SectionHeader;
   niches: SectionHeader;
   about: SectionHeader;
-  pillars: SectionHeader;
   faq: SectionHeader;
 }
 
@@ -313,6 +314,7 @@ export interface SiteContent {
   sections: SectionHeaders;
   hero: Hero;
   services: Service[];
+  servicesCta: ServicesCta;
   works: Work[];
   process: ProcessStep[];
   niches: Niche[];

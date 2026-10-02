@@ -1,10 +1,10 @@
 /**
  * FAQ (section 08) — keyboard-accessible accordion island.
  *
- * What: renders the FAQ section (eyebrow, heading, disclosure list, and a
- * "another question?" WhatsApp on-ramp) with one panel open at a time. Why a
- * React island: the accordion needs client state; everything else on the page
- * stays static. It hydrates `client:visible` since it sits below the fold.
+ * What: renders the FAQ section (eyebrow, heading, a link to the contact section
+ * for any other enquiry, and the disclosure list) with one panel open at a
+ * time. Why a React island: the accordion needs client state; everything else on
+ * the page stays static. It hydrates `client:visible` since it sits below the fold.
  *
  * A11y: each question is a real <button> (native Enter/Space) with
  * `aria-expanded` + `aria-controls`; the answer panel animates open/closed via a
@@ -22,45 +22,40 @@ interface FaqProps {
   heading: string;
   /** Question/answer pairs from the content tree. */
   items: FaqItem[];
-  /** "Another question?" prompt + CTA label + composed wa.me href. */
+  /** Label + in-page href of the "another enquiry" link under the heading. */
   moreLabel: string;
-  moreCtaLabel: string;
   moreHref: string;
 }
 
 /**
  * Accordion section component.
- * @param props - section copy, items and the closing WhatsApp CTA.
+ * @param props - section copy, items and the closing contact link.
  * @returns the full FAQ section element.
  */
-export default function Faq({
-  eyebrow,
-  heading,
-  items,
-  moreLabel,
-  moreCtaLabel,
-  moreHref,
-}: FaqProps) {
+export default function Faq({ eyebrow, heading, items, moreLabel, moreHref }: FaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="faq" className="bg-background">
-      <div className="mx-auto flex max-w-3xl flex-col gap-7 px-4 py-9 md:px-6">
-        <div className="flex flex-col gap-3">
-          <p className="text-caption font-semibold uppercase tracking-widest text-blue">{eyebrow}</p>
-          <h2 className="font-display text-h2 text-text-primary">{heading}</h2>
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 md:px-6 lg:grid-cols-[minmax(0,25rem)_minmax(0,1fr)] lg:gap-9 lg:py-9">
+        <div className="flex flex-col items-start gap-3">
+          <p className="text-small font-semibold text-blue-800">{eyebrow}</p>
+          <h2 className="font-display text-h2 text-text-primary md:text-h2-lg">{heading}</h2>
+          <a
+            href={moreHref}
+            className="inline-flex min-h-[2.75rem] items-center text-small font-semibold text-blue-700 transition-colors duration-base ease-standard hover:text-blue-800"
+          >
+            {moreLabel}
+          </a>
         </div>
 
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col self-start overflow-hidden rounded-lg border border-border bg-surface">
           {items.map((item, index) => {
             const isOpen = openIndex === index;
             const panelId = `faq-panel-${index}`;
             const buttonId = `faq-button-${index}`;
             return (
-              <li
-                key={item.question}
-                className="overflow-hidden rounded-xl border border-border bg-surface"
-              >
+              <li key={item.question} className="border-b border-border last:border-b-0">
                 <h3>
                   <button
                     type="button"
@@ -68,11 +63,11 @@ export default function Faq({
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-display text-h4 text-text-primary transition-colors hover:bg-background"
+                    className="flex min-h-[4rem] w-full items-center justify-between gap-4 px-5 py-3 text-left font-display text-h4 text-text-primary transition-colors duration-base ease-standard hover:bg-background"
                   >
                     <span>{item.question}</span>
                     <svg
-                      className={`h-5 w-5 shrink-0 text-blue transition-transform duration-base ${isOpen ? 'rotate-45' : ''}`}
+                      className={`h-5 w-5 shrink-0 text-blue-700 transition-transform duration-base ${isOpen ? 'rotate-45' : ''}`}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -109,20 +104,6 @@ export default function Faq({
             );
           })}
         </ul>
-
-        <div className="flex flex-col items-start gap-3 rounded-2xl bg-navy-900 p-6 text-text-on-dark">
-          <p className="font-display text-h4">{moreLabel}</p>
-          <a
-            href={moreHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-analytics-cta="whatsapp"
-            data-analytics-source="faq"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-body font-semibold text-white transition-colors hover:bg-blue-700"
-          >
-            {moreCtaLabel}
-          </a>
-        </div>
       </div>
     </section>
   );

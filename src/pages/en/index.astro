@@ -2,7 +2,7 @@
 /**
  * English landing route (`/en/`) — international market.
  *
- * Mirrors `/` with the EN content tree: chrome + sections 01–09 with their
+ * Mirrors `/` with the EN content tree: chrome + every section with their
  * interactive islands. No auto-detect script here — a visitor on `/en/` is
  * already on their chosen locale; detection only runs from the canonical root.
  */
@@ -15,16 +15,12 @@ import Works from '../../components/sections/Works.astro';
 import Process from '../../components/sections/Process.astro';
 import Niches from '../../components/sections/Niches.astro';
 import About from '../../components/sections/About.astro';
-import WhyNexora from '../../components/sections/WhyNexora.astro';
 import Faq from '../../components/sections/Faq.tsx';
 import Contact from '../../components/sections/Contact.astro';
 import { getContent } from '../../lib/i18n';
-import { whatsappNumber } from '../../config/site.config';
-import { waLink } from '../../lib/whatsapp';
 import { faqPageJsonLd, jsonLdString } from '../../lib/jsonld';
 
 const content = getContent('en');
-const faqMoreHref = waLink(whatsappNumber, content.contact.whatsappPrefill);
 // A3 · Espejo del root: las mismas preguntas visibles, como datos, desde Astro.
 const faqJsonLd = jsonLdString(faqPageJsonLd(content.faq));
 ---
@@ -45,15 +41,13 @@ const faqJsonLd = jsonLdString(faqPageJsonLd(content.faq));
     <Process content={content} />
     <Niches content={content} />
     <About content={content} />
-    <WhyNexora content={content} />
     <Faq
       client:visible
       eyebrow={content.sections.faq.eyebrow}
       heading={content.sections.faq.heading}
       items={content.faq}
       moreLabel={content.ui.faqMoreQuestion}
-      moreCtaLabel={content.contact.whatsappCtaLabel}
-      moreHref={faqMoreHref}
+      moreHref="#contacto"
     />
     <Contact content={content} />
   </main>

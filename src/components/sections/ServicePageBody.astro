@@ -36,7 +36,7 @@ const { page, content, waHref } = Astro.props;
       rel="noopener noreferrer"
       data-analytics-cta="whatsapp"
       data-analytics-source={`service_${page.slug}`}
-      class="inline-flex w-fit items-center gap-2 rounded-xl bg-whatsapp px-5 py-3 font-display text-body font-semibold text-navy-900 transition duration-base ease-standard hover:brightness-95"
+      class="inline-flex w-fit items-center gap-2 min-h-[3.25rem] rounded-lg bg-surface px-5 font-display text-body font-semibold text-navy-900 transition-colors duration-base ease-standard hover:bg-blue-50"
     >
       <Icon name="ui-whatsapp" class="h-5 w-5" />
       {page.ctaLabel}
@@ -65,13 +65,13 @@ const { page, content, waHref } = Astro.props;
 <section class="bg-surface">
   <div class="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-8 md:px-6">
     <h2 class="font-display text-h2 text-text-primary">{page.caseStudy.heading}</h2>
-    <div class="flex flex-col gap-4 rounded-xl border border-border bg-background p-5">
+    <div class="flex flex-col gap-4 rounded-lg border border-border bg-background p-5">
       <p class="text-body text-text-muted">{page.caseStudy.problem}</p>
       <p class="text-body text-text-muted">{page.caseStudy.decision}</p>
       <p class="text-body font-medium text-text-primary">{page.caseStudy.result}</p>
       <a
         href={page.caseStudy.demoUrl}
-        class="inline-flex w-fit items-center gap-1 text-small font-semibold text-blue transition-colors duration-base ease-standard hover:text-blue-700"
+        class="inline-flex w-fit items-center gap-1 text-small font-semibold text-blue transition-colors duration-base ease-standard hover:text-blue-800"
       >
         {page.caseStudy.demoLabel}
         <Icon name="ui-arrow" class="h-4 w-4" />
@@ -86,7 +86,7 @@ const { page, content, waHref } = Astro.props;
     <ol class="grid gap-4 sm:grid-cols-2">
       {
         content.process.map((step) => (
-          <li class="flex flex-col gap-2 rounded-xl border border-border bg-surface p-5">
+          <li class="flex flex-col gap-2 rounded-lg border border-border bg-surface p-5">
             <span class="font-mono text-small text-blue">{step.step}</span>
             <h3 class="font-display text-h4 text-text-primary">{step.title}</h3>
             <p class="text-small text-text-muted">{step.description}</p>
@@ -103,7 +103,7 @@ const { page, content, waHref } = Astro.props;
     <div class="flex flex-col gap-3">
       {
         page.faq.map((item) => (
-          <details class="group rounded-xl border border-border bg-background p-5">
+          <details class="group rounded-lg border border-border bg-background p-5">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-3 font-display text-h4 text-text-primary">
               {item.question}
               <span
@@ -130,7 +130,7 @@ const { page, content, waHref } = Astro.props;
       rel="noopener noreferrer"
       data-analytics-cta="whatsapp"
       data-analytics-source={`service_${page.slug}_footer`}
-      class="inline-flex items-center gap-2 rounded-xl bg-whatsapp px-5 py-3 font-display text-body font-semibold text-navy-900 transition duration-base ease-standard hover:brightness-95"
+      class="inline-flex items-center gap-2 min-h-[3.25rem] rounded-lg bg-surface px-5 font-display text-body font-semibold text-navy-900 transition-colors duration-base ease-standard hover:bg-blue-50"
     >
       <Icon name="ui-whatsapp" class="h-5 w-5" />
       {page.ctaLabel}

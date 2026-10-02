@@ -370,6 +370,32 @@ de WhatsApp y el header sticky; la barra se decide con datos del embudo nuevo, n
 (FAQ estático) — opcional, el formulario justifica React igual. **B3** (consola limpia en
 navegador real) — se verifica contra el sitio vivo tras el deploy. **D1/D2** — del dueño.
 
+## Fase 13: Rediseño «blanco y azul» + lenguaje formal ⬜
+
+**Estado al 2026-10-01: construida en la rama `redesign/blanco-azul`, sin desplegar.** Falta la
+ronda del dueño sobre la rama y el despliegue manual.
+
+Qué cambió, por decisión del dueño sobre el lienzo «Nexora · Propuestas de rediseño»:
+
+- **Tokens**: blanco + azul (`#0B1530` tinta, `#1D4FD7` acción), una sola familia (Hanken
+  Grotesk), radios de 4 a 8 px. `tailwind.config.mjs` y `global.css` mandan; `nexora-brand/tokens/`
+  conserva los valores anteriores.
+- **Voz**: formal, de plataforma a usuario (usted o impersonal), sin comparaciones y sin plazos
+  prometidos. Aplica a la portada, las cuatro páginas de servicio, gracias, 404 y privacidad (ES);
+  el EN pasó al mismo registro.
+- **Contenido**: hero con la tarjeta «Lo que se entrega por escrito» y la franja de pilares
+  (la sección «Por qué Nexora» desaparece); servicios sin iconos y con la casilla de contacto;
+  Turnia como primera tarjeta de proyectos; proceso en una franja; sectores ordenados de mayor a
+  menor escala; «Trayectoria» sin productos propios; contacto con WhatsApp y correo.
+- **Puertas**: `npx astro check` (0 errores) y `npm run build` (15 páginas) en verde; revisado en
+  1440 y 390 sobre el build, sin desbordes ni errores de consola.
+
+**Pendiente antes de desplegar**: (1) las tarjetas OG (`scripts/render-og.mjs`) todavía dicen
+«a medida» con la tipografía anterior — regenerarlas con el titular nuevo; (2) el logo sigue
+siendo el actual, con cuatro opciones dibujadas en el lienzo sin decidir; (3) confirmar que la
+propuesta real contiene los siete renglones de la tarjeta del hero; (4) Lighthouse y el
+`CHECKLIST-VENDIBLE.md` contra la vista previa.
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.

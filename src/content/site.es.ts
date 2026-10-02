@@ -7,14 +7,16 @@
  * Past employers appear only under `about.experience` (background), never as
  * clients in `works`. Demo URLs come from `site.config.ts` (single source).
  *
- * Voice: speak as a studio ("nosotros" — never "yo", never a named person), lead
- * with the outcome the client gets, confident without exaggeration (see
- * `nexora-brand/brand-guidelines.md`).
+ * Voz (rediseño 2026-10-01): formal, de plataforma a usuario. Se habla como
+ * estudio ("nosotros" o impersonal — nunca "yo", nunca una persona con nombre)
+ * y al lector de **usted** ("Contáctenos", "su proyecto"), nunca de tú. El texto
+ * dice lo que se ofrece: sin comparaciones ("no es X, sino Y", "sin plantillas")
+ * y sin prometer plazos ("en pocos días") — la fecha se establece en la propuesta.
  *
  * Audience is deliberately open: the reader may be an individual, a freelancer
- * or a company, so no string assumes "tu negocio" / "tu empresa". Address the
- * reader as "tú" and talk about the project, never about what they are — the
- * mixed audience is signalled implicitly (via `niches`), never stated.
+ * or a company, so no string assumes "su negocio" / "su empresa". Se habla del
+ * proyecto, nunca de lo que el lector es — the mixed audience is signalled
+ * implicitly (via `niches`), never stated.
  *
  * The city appears ONLY in `footer.tagline`; no other string says where Nexora
  * is based.
@@ -24,194 +26,187 @@ import { demoPreviews, demoUrls, productUrls, social } from '../config/site.conf
 
 export const siteEs: SiteContent = {
   meta: {
-    title: 'Nexora · Estudio de Software | Webs, sistemas y apps a la medida',
+    title: 'Nexora · Estudio de software | Desarrollo de páginas web, sistemas y aplicaciones',
     description:
-      'Estudio de software. Páginas web, sistemas y aplicaciones a la medida: tu landing en pocos días y una fecha exacta para cada proyecto.',
+      'Estudio de software. Diseño y desarrollo de páginas web, sistemas y aplicaciones a medida, con alcance y fecha de entrega establecidos en la propuesta.',
     ogAlt: 'Nexora — Estudio de software',
   },
 
   nav: [
     { label: 'Servicios', anchor: 'servicios' },
-    { label: 'Trabajos', anchor: 'demos' },
+    { label: 'Proyectos', anchor: 'demos' },
     { label: 'Proceso', anchor: 'proceso' },
-    { label: 'Sobre Nexora', anchor: 'estudio' },
-    { label: 'FAQ', anchor: 'faq' },
-    { label: 'Contacto', anchor: 'contacto' },
+    { label: 'Trayectoria', anchor: 'estudio' },
+    { label: 'Preguntas frecuentes', anchor: 'faq' },
   ],
 
   sections: {
     services: {
       eyebrow: 'Servicios',
-      heading: 'Lo que construimos para ti',
-      subheading: 'Sin plantillas genéricas. Cada proyecto se construye alrededor de un objetivo concreto.',
+      heading: 'Lo que desarrollamos',
     },
     works: {
-      eyebrow: 'Trabajos',
+      eyebrow: 'Proyectos',
       heading: 'Demos y proyectos reales',
-      subheading: 'Trabajo propio de Nexora. Míralo funcionando.',
+      subheading: 'Proyectos desarrollados por Nexora, disponibles para su consulta.',
     },
     process: {
       eyebrow: 'Proceso',
       heading: 'Cómo trabajamos',
-      subheading: 'Método claro, de la primera idea a la entrega.',
     },
     niches: {
-      eyebrow: 'Para quién',
+      eyebrow: 'Sectores',
       heading: 'Con quiénes trabajamos',
-      subheading: 'Si no encuentras lo tuyo en la lista, escríbenos igual.',
     },
     about: {
       eyebrow: 'Sobre Nexora',
-      heading: 'El equipo detrás de cada proyecto',
-    },
-    pillars: {
-      eyebrow: 'Por qué Nexora',
-      heading: 'Por qué confiar en nosotros',
+      heading: 'Trayectoria en desarrollo de software',
     },
     faq: {
-      eyebrow: 'FAQ',
+      eyebrow: 'Consultas',
       heading: 'Preguntas frecuentes',
     },
   },
 
   hero: {
     eyebrow: 'Estudio de software',
-    headline: 'Páginas web, sistemas y aplicaciones hechas a tu medida.',
+    headline: 'Desarrollo de páginas web, sistemas y aplicaciones.',
     subheadline:
-      'Somos un estudio de software que construye webs, sistemas y aplicaciones a la medida. Tu landing puede estar lista en pocos días; para sistemas y apps te damos una fecha exacta en la propuesta, con método y avances que ves.',
-    ctaPrimary: 'Cuéntanos tu proyecto',
-    ctaSecondary: 'Ver trabajos',
+      'Nexora es un estudio de software que diseña y desarrolla páginas web, sistemas y aplicaciones a medida. Cada proyecto se define a partir de sus requerimientos y se entrega en la fecha establecida en la propuesta.',
+    ctaPrimary: 'Contáctenos',
+    ctaSecondary: 'Ver proyectos',
+    proposalEyebrow: 'Propuesta',
+    proposalHeading: 'Lo que se entrega por escrito',
+    proposalItems: [
+      'Levantamiento de requerimientos',
+      'Flujos y alcance del proyecto',
+      'Fecha de entrega',
+      'Revisión de avances en cada hito',
+      'Dos rondas de cambios incluidas',
+      'Primer mes de ajustes incluido',
+      'Dominio y accesos a nombre del cliente',
+    ],
   },
 
   services: [
     {
-      icon: 'service-web',
       title: 'Web y landing profesional',
-      benefit: 'Potenciamos tu presencia en las búsquedas de Google con un sitio rápido, claro y hecho para convertir visitas en clientes.',
+      benefit: 'Sitios rápidos y claros, optimizados para buscadores y orientados a convertir visitas en clientes.',
       pageSlug: 'web-profesional',
     },
     {
-      icon: 'service-qr-menu',
       title: 'Menú digital QR',
-      benefit: 'Tu carta vive en línea y se actualiza al instante: cambias un precio y tus clientes lo ven en el siguiente escaneo.',
+      benefit: 'Carta en línea que se actualiza al instante y se consulta desde un código QR.',
       pageSlug: 'menu-digital-qr',
     },
     {
-      icon: 'service-booking',
       title: 'Sistema de reservas',
-      benefit: 'Un sistema que gestiona tus turnos automáticamente y recibe reservas 24/7, sin que tengas que contestar el teléfono.',
+      benefit: 'Gestión automática de turnos y recepción de reservas las 24 horas.',
       pageSlug: 'sistema-de-reservas',
     },
     {
-      icon: 'service-catalog',
       title: 'Catálogo + WhatsApp',
-      benefit: 'Ordenamos todo tu catálogo en un solo enlace y llevamos cada pedido directo a tu WhatsApp.',
+      benefit: 'Catálogo completo en un solo enlace, con pedidos que llegan directamente a WhatsApp.',
     },
     {
-      icon: 'service-portfolio',
       title: 'Portafolio profesional',
-      benefit: 'Mostramos tu trabajo con el nivel que tiene, para que cerrar nuevos clientes te cueste menos.',
+      benefit: 'Presentación del trabajo profesional con el nivel que requiere.',
     },
     {
-      icon: 'service-memberships',
       title: 'Panel de membresías',
-      benefit: 'Controlas pagos, vencimientos y accesos de tus socios desde un panel, en tiempo real.',
+      benefit: 'Control de pagos, vencimientos y accesos de socios en tiempo real.',
     },
     {
-      icon: 'service-custom-apps',
       title: 'Apps y sistemas a medida',
-      benefit: 'Diseñamos y desarrollamos el sistema exacto que tu operación necesita, integrado a la forma en que ya trabajas.',
+      benefit: 'Diseño y desarrollo del sistema que la operación requiere, integrado a su forma de trabajo.',
       pageSlug: 'software-a-medida',
     },
   ],
 
+  servicesCta: {
+    heading: '¿Necesita un desarrollo a medida?',
+    label: 'Contáctenos',
+  },
+
+  // Turnia va primero: es el único producto propio en operación y se presenta como
+  // un proyecto más, no en un bloque aparte de "productos".
   works: [
     {
-      title: 'Barbería con reservas online',
+      title: 'Turnia',
+      clientType: 'Producto propio',
+      badge: 'En producción',
+      result: 'Plataforma de reservas y agenda para negocios que trabajan con turnos y citas.',
+      url: productUrls.turnia,
+      image: demoPreviews.turnia,
+      linkLabel: 'Ver proyecto',
+    },
+    {
+      title: 'Barbería con reservas en línea',
       clientType: 'Barbería',
-      result: 'Reservas 24/7 sin contestar el teléfono.',
+      result: 'Reservas las 24 horas, sin atención telefónica.',
       url: demoUrls.barbershop,
       image: demoPreviews.barbershop,
     },
     {
       title: 'Menú digital QR para restaurante',
       clientType: 'Restaurante',
-      result: 'Menú que se actualiza sin reimprimir nada.',
+      result: 'Menú que se actualiza sin reimpresiones.',
       url: demoUrls.restaurant,
       image: demoPreviews.restaurant,
     },
     {
       title: 'Agenda para consultorio',
       clientType: 'Consultorio médico',
-      result: 'Pacientes que reservan solos su cita.',
+      result: 'Pacientes que reservan su cita en línea.',
       url: demoUrls.clinic,
       image: demoPreviews.clinic,
     },
     {
       title: 'Landing para evento',
       clientType: 'Organizador de eventos',
-      result: 'Inscripciones y confirmaciones en un solo link.',
+      result: 'Inscripciones y confirmaciones en un solo enlace.',
       url: demoUrls.event,
       image: demoPreviews.event,
     },
     {
       title: 'Sitio corporativo para PYME',
       clientType: 'Empresa de servicios',
-      result: 'Presencia profesional en Google en pocos días.',
+      result: 'Presencia profesional en buscadores.',
       url: demoUrls.corporate,
       image: demoPreviews.corporate,
     },
   ],
 
   process: [
-    { step: '01', title: 'Contacto', description: 'Te comunicas con nosotros y nos compartes tus requerimientos.' },
-    { step: '02', title: 'Propuesta', description: 'Te preparamos una propuesta con el alcance detallado y una fecha exacta de entrega.' },
-    { step: '03', title: 'Desarrollo', description: 'Desarrollamos con avances visibles y una revisión contigo en cada hito.' },
-    { step: '04', title: 'Entrega', description: 'Entregamos el proyecto funcionando, con dominio y accesos a tu nombre.' },
+    { step: '01', title: 'Contacto', description: 'Recepción de la necesidad del proyecto.' },
+    { step: '02', title: 'Propuesta', description: 'Requerimientos, flujos, alcance y fecha de entrega.' },
+    { step: '03', title: 'Desarrollo', description: 'Avances visibles y revisión en cada hito.' },
+    { step: '04', title: 'Entrega', description: 'Proyecto en funcionamiento, con dominio y accesos a nombre del cliente.' },
   ],
 
+  // Orden editorial: de mayor a menor escala.
   niches: [
-    { icon: 'service-booking', label: 'Barberías y peluquerías' },
-    { icon: 'service-qr-menu', label: 'Restaurantes y cafeterías' },
-    { icon: 'service-booking', label: 'Consultorios y clínicas' },
-    { icon: 'service-memberships', label: 'Gimnasios y academias' },
-    { icon: 'service-catalog', label: 'Tiendas y boutiques' },
-    { icon: 'service-web', label: 'Eventos' },
-    { icon: 'service-portfolio', label: 'Profesionales independientes' },
-    { icon: 'service-custom-apps', label: 'Empresas y startups' },
+    { label: 'Empresas y startups' },
+    { label: 'Consultorios y clínicas' },
+    { label: 'Eventos' },
+    { label: 'Gimnasios y academias' },
+    { label: 'Restaurantes y cafeterías' },
+    { label: 'Tiendas y boutiques' },
+    { label: 'Barberías y peluquerías' },
+    { label: 'Profesionales independientes' },
   ],
 
   about: {
-    heading: 'El equipo detrás de cada proyecto',
+    heading: 'Trayectoria en desarrollo de software',
     body:
-      'Nexora es un estudio de software que trabaja con clientes de cualquier parte del mundo. Construimos webs, sistemas y aplicaciones a la medida con un método claro: alcance definido, avances visibles y entregas que funcionan. Nuestro equipo cuenta con una amplia experiencia en el sector del desarrollo —banca, producto y software corriendo en producción— y esa trayectoria es la que respalda cada proyecto.',
+      'Nexora trabaja con clientes de cualquier país. El conocimiento del estudio proviene de años de desarrollo en banca, producto y software en producción, y respalda cada proyecto que se entrega.',
     // Trayectoria profesional real del equipo, NO clientes de Nexora.
     // Orden: más reciente primero.
     experience: [
-      { company: 'Fiverr', role: 'Desarrollo Freelance', period: '2021 — actualidad (5 años)' },
-      { company: 'Relolink', role: 'Desarrollo Full-stack', period: 'abr. 2024 — actualidad' },
-      { company: 'Banco de Machala', role: 'Arquitectura de Software', period: 'ago. 2023 — abr. 2024' },
-      { company: 'Viamatica', role: 'Ingeniería de Software', period: 'feb. 2021 — abr. 2024' },
-    ],
-    productsIntro: 'Software que diseñamos, construimos y operamos nosotros mismos.',
-    // Faktova no tiene sitio público todavía: va sin `url` y con `status`, para
-    // que la tarjeta explique la ausencia del enlace en vez de omitir el producto.
-    products: [
-      {
-        name: 'Turnia',
-        description: 'Aplicación de reservas y agenda que implementamos para quienes trabajan con turnos y citas.',
-        url: productUrls.turnia,
-      },
-      {
-        name: 'Spektova',
-        description: 'Plataforma de comercio electrónico para vender en línea, con catálogo y pedidos.',
-        url: productUrls.spektova,
-      },
-      {
-        name: 'Faktova',
-        description: 'Sistema interno de facturación, enfocado en la operación a nivel nacional.',
-        status: 'En desarrollo',
-      },
+      { company: 'Fiverr', role: 'Desarrollo freelance', period: '2021 — actualidad' },
+      { company: 'Relolink', role: 'Desarrollo full-stack', period: 'abr. 2024 — actualidad' },
+      { company: 'Banco de Machala', role: 'Arquitectura de software', period: 'ago. 2023 — abr. 2024' },
+      { company: 'Viamatica', role: 'Ingeniería de software', period: 'feb. 2021 — abr. 2024' },
     ],
     links: [
       { label: 'Portafolio', href: social.portfolio, icon: 'ui-github' },
@@ -221,60 +216,64 @@ export const siteEs: SiteContent = {
   },
 
   pillars: [
-    { stat: '+5 años', label: 'de experiencia del equipo en desarrollo' },
-    { stat: 'Productos propios', label: 'Turnia y Spektova en producción' },
-    { stat: 'Entregas rápidas', label: 'tu web en días; sistemas con fecha exacta' },
+    { stat: '+5 años', label: 'de experiencia en desarrollo de software' },
+    { stat: 'Proceso definido', label: 'requerimientos, propuesta, desarrollo y entrega' },
+    { stat: 'Fecha de entrega', label: 'establecida por escrito en cada propuesta' },
   ],
 
   faq: [
     {
-      question: '¿Cuánto tardan en entregar?',
-      answer: 'La mayoría de landing pages y sitios salen en 3 a 5 días. Para sistemas y apps más grandes, te damos una fecha exacta en la propuesta.',
+      question: '¿Cuál es el tiempo de entrega?',
+      answer: 'La fecha de entrega se establece en la propuesta, de acuerdo con los requerimientos de cada proyecto.',
     },
     {
-      question: '¿Cuánto cuesta?',
-      answer: 'Cada proyecto es a medida. Comunícate con nosotros por WhatsApp con tus requerimientos y te preparamos una propuesta.',
+      question: '¿Cuál es el costo de un proyecto?',
+      answer: 'Cada proyecto se cotiza a medida. Con los requerimientos recibidos por WhatsApp o por correo se prepara una propuesta.',
     },
     {
-      question: '¿Cómo son los pagos?',
-      answer: 'Mitad para empezar y mitad antes de publicar. Sin sorpresas.',
+      question: '¿Cómo se realizan los pagos?',
+      answer: 'La mitad al iniciar el proyecto y la mitad antes de la publicación.',
     },
     {
-      question: '¿Incluye mantenimiento?',
-      answer: 'El primer mes de ajustes va incluido. Después puedes contratar mantenimiento mensual si lo necesitas.',
+      question: '¿El servicio incluye mantenimiento?',
+      answer: 'El primer mes de ajustes está incluido. Después es posible contratar mantenimiento mensual.',
     },
     {
-      question: '¿Quién pone el dominio?',
-      answer: 'Lo gestionamos por ti o usamos el que ya tengas. El dominio y los accesos quedan a tu nombre.',
+      question: '¿A nombre de quién queda el dominio?',
+      answer: 'Nexora gestiona el dominio o utiliza el que el cliente ya tenga. El dominio y los accesos quedan a nombre del cliente.',
     },
     {
-      question: '¿Cuántos cambios puedo pedir?',
-      answer: 'Dos rondas de cambios incluidas durante el desarrollo. Suelen ser más que suficientes.',
+      question: '¿Cuántos cambios se pueden solicitar?',
+      answer: 'El desarrollo incluye dos rondas de cambios.',
     },
     {
       question: '¿Trabajan con clientes de otros países?',
-      answer: 'Sí. Trabajamos con clientes en cualquier parte del mundo y coordinamos todo por WhatsApp, sin importar dónde estés.',
+      answer: 'Sí. Nexora trabaja con clientes de cualquier país y coordina cada proyecto por WhatsApp o por correo.',
     },
   ],
 
   contact: {
-    heading: 'Cuéntanos tu proyecto',
+    heading: 'Contáctenos',
     // C1 (fase 12): promesa CONCRETA — "a la brevedad" no promete nada. El plazo es el S6 del
     // plan del estudio y tiene que poder cumplirse; si cambia, cambia acá y en site.en.ts.
-    subheading: 'Comunícate con nosotros por WhatsApp con tus requerimientos y te respondemos en menos de 24 horas hábiles.',
+    subheading:
+      'Escríbanos por WhatsApp o por correo electrónico con los requerimientos de su proyecto. Respondemos en menos de 24 horas hábiles.',
     form: {
       nameLabel: 'Nombre',
-      businessTypeLabel: '¿A qué te dedicas?',
-      needLabel: '¿Qué necesitas?',
-      namePlaceholder: '¿Con quién hablamos?',
-      businessTypePlaceholder: 'Ej. Barbería, consultora, proyecto personal',
-      needPlaceholder: 'Ej. Una web con reservas online',
+      businessTypeLabel: 'Actividad o empresa',
+      needLabel: 'Requerimiento',
+      namePlaceholder: 'Nombre y apellido',
+      businessTypePlaceholder: 'Sector o nombre de la empresa',
+      needPlaceholder: 'Descripción breve del proyecto',
       submitLabel: 'Enviar por WhatsApp',
     },
-    whatsappCtaLabel: 'Escríbenos por WhatsApp',
-    whatsappPrefill: 'Hola Nexora, quiero información sobre un proyecto.',
+    whatsappCtaLabel: 'WhatsApp',
+    emailCtaLabel: 'Correo electrónico',
+    channelsHeading: 'Escríbanos',
+    channelsBody: 'Atendemos consultas por WhatsApp y por correo electrónico.',
+    whatsappPrefill: 'Hola Nexora, solicito información sobre un proyecto.',
     vcardLabel: 'Guardar contacto',
-    prefillTemplate: 'Hola, soy {name} ({businessType}). Necesito: {need}',
+    prefillTemplate: 'Hola, soy {name} ({businessType}). Requerimiento: {need}',
   },
 
   footer: {
@@ -284,18 +283,16 @@ export const siteEs: SiteContent = {
   },
 
   ui: {
-    stickyWhatsapp: 'WhatsApp',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
     switchLanguage: 'Cambiar a inglés',
     skipToContent: 'Saltar al contenido',
     viewDemo: 'Ver demo',
-    faqMoreQuestion: '¿Otra pregunta?',
-    experienceLabel: 'Trayectoria del equipo',
-    productsLabel: 'Productos propios',
+    faqMoreQuestion: '¿Tiene otra consulta? Contáctenos',
+    experienceLabel: 'Trayectoria',
     viewService: 'Ver servicio',
     breadcrumbHome: 'Inicio',
-    breadcrumbsLabel: 'Dónde estás',
+    breadcrumbsLabel: 'Ubicación en el sitio',
     privacyLink: 'Privacidad',
   },
 
@@ -309,196 +306,195 @@ export const siteEs: SiteContent = {
       altSlug: 'professional-website',
       metaTitle: 'Página web profesional | Nexora',
       metaDescription:
-        'Diseño y desarrollo de páginas web profesionales: rápidas, claras y hechas para convertir visitas en clientes. Tu web lista en días, con dominio a tu nombre.',
-      heading: 'Una página web profesional que trabaja por ti',
+        'Diseño y desarrollo de páginas web profesionales: rápidas, claras y orientadas a convertir visitas en clientes, con dominio a nombre del cliente.',
+      heading: 'Páginas web profesionales',
       intro:
-        'Un sitio rápido y claro es la diferencia entre aparecer en Google y que te encuentren de verdad. Diseñamos y desarrollamos webs y landings a la medida — sin plantillas genéricas — pensadas para que quien te visita entienda qué haces y te escriba.',
+        'Nexora diseña y desarrolla sitios web y landings a medida, rápidos y claros, para que el visitante comprenda la oferta y se ponga en contacto.',
       includesHeading: 'Qué incluye',
       includes: [
-        'Diseño a la medida, alineado a tu identidad y a tu objetivo.',
+        'Diseño a medida, alineado a la identidad y al objetivo del proyecto.',
         'Optimización para buscadores desde el primer día: títulos, descripciones y datos estructurados.',
-        'Carga rápida y diseño que se ve bien en teléfono y en computadora.',
-        'Dominio y accesos a tu nombre, siempre.',
-        'Un mes de ajustes incluido después de publicar.',
+        'Carga rápida y diseño adaptado a teléfono y computadora.',
+        'Dominio y accesos a nombre del cliente.',
+        'Un mes de ajustes incluido después de la publicación.',
       ],
       caseStudy: {
-        heading: 'Un caso: presencia profesional para una PYME',
+        heading: 'Caso: presencia profesional para una PYME',
         problem:
-          'Una empresa de servicios no aparecía en Google: su presencia era una página de redes sociales, y los clientes potenciales que la buscaban por nombre no encontraban nada que inspirara confianza.',
+          'Una empresa de servicios no aparecía en Google: su única presencia era una página en redes sociales, y quienes la buscaban por su nombre no encontraban un sitio que la respaldara.',
         decision:
-          'Construimos un sitio corporativo claro: qué hace la empresa, para quién y cómo contactarla, con la estructura técnica que Google espera — sin adornos que estorben la respuesta.',
+          'Se construyó un sitio corporativo claro: qué hace la empresa, para quién y cómo contactarla, con la estructura técnica que requieren los buscadores.',
         result:
-          'Presencia profesional en línea en pocos días, lista para aparecer en las búsquedas de su marca y respaldar cada cotización con un enlace serio.',
+          'Presencia profesional en línea, preparada para aparecer en las búsquedas de la marca y respaldar cada cotización con un enlace propio.',
         demoLabel: 'Ver el demo de sitio corporativo',
         demoUrl: demoUrls.corporate,
       },
       faqHeading: 'Preguntas frecuentes',
       faq: [
         {
-          question: '¿Cuánto tarda una página web?',
-          answer: 'La mayoría de landings y sitios salen en 3 a 5 días. Si tu proyecto necesita más páginas o integraciones, te damos una fecha exacta en la propuesta.',
+          question: '¿Cuál es el tiempo de entrega de una página web?',
+          answer: 'La fecha de entrega se establece en la propuesta, de acuerdo con el número de páginas e integraciones del proyecto.',
         },
         {
-          question: '¿Puedo actualizarla yo después?',
-          answer: 'Sí. Entregamos el sitio con lo necesario para que puedas pedir cambios o hacerlos tú; el primer mes de ajustes va incluido.',
+          question: '¿Es posible actualizar el sitio después de la entrega?',
+          answer: 'Sí. El sitio se entrega preparado para solicitar cambios o realizarlos directamente; el primer mes de ajustes está incluido.',
         },
         {
-          question: '¿Incluye el dominio y el hosting?',
-          answer: 'Gestionamos ambos por ti o usamos los que ya tengas. Queden con quien queden, los accesos son tuyos.',
+          question: '¿Incluye dominio y hosting?',
+          answer: 'Nexora gestiona ambos o utiliza los que el cliente ya tenga. En todos los casos, los accesos quedan a nombre del cliente.',
         },
       ],
-      ctaHeading: '¿Hablamos de tu web?',
-      ctaLabel: 'Cotizar mi página web',
-      whatsappPrefill: 'Hola Nexora, quiero una página web profesional.',
+      ctaHeading: 'Solicite la propuesta para su página web',
+      ctaLabel: 'Solicitar propuesta',
+      whatsappPrefill: 'Hola Nexora, solicito información sobre una página web profesional.',
     },
     {
       slug: 'sistema-de-reservas',
       altSlug: 'booking-system',
-      metaTitle: 'Sistema de reservas online | Nexora',
+      metaTitle: 'Sistema de reservas en línea | Nexora',
       metaDescription:
-        'Sistema de reservas online para citas y turnos: tus clientes reservan solos 24/7, con confirmaciones y recordatorios automáticos. Sin contestar el teléfono.',
-      heading: 'Reservas online que se atienden solas',
+        'Sistema de reservas en línea para citas y turnos: recepción de reservas las 24 horas, con confirmaciones y recordatorios automáticos.',
+      heading: 'Sistema de reservas en línea',
       intro:
-        'Cada llamada para agendar una cita es tiempo que no se dedica a atender. Un sistema de reservas recibe las citas a cualquier hora, confirma solo y recuerda solo — y quien agenda ve únicamente los horarios que de verdad están libres.',
+        'El sistema recibe reservas a cualquier hora, las confirma y envía recordatorios de forma automática. Quien reserva ve únicamente los horarios disponibles.',
       includesHeading: 'Qué incluye',
       includes: [
-        'Página de reservas propia: servicio, profesional y horario, sin exigir cuentas ni descargas.',
+        'Página de reservas propia: servicio, profesional y horario, sin cuentas ni descargas.',
         'Confirmaciones y recordatorios automáticos por correo.',
         'Agenda administrable: horarios, servicios y equipo se gestionan desde un panel.',
-        'Sin dobles reservas: el sistema garantiza que un mismo cupo no se venda dos veces.',
-        'Respaldado por Turnia, nuestro producto propio de reservas corriendo en producción.',
+        'Control de cupos: un mismo horario no se reserva dos veces.',
+        'Respaldado por Turnia, la plataforma de reservas de Nexora, en producción.',
       ],
       caseStudy: {
-        heading: 'Un caso: la barbería que dejó de contestar el teléfono',
+        heading: 'Caso: barbería con reservas en línea',
         problem:
-          'Una barbería perdía reservas cada vez que el equipo estaba ocupado atendiendo: el teléfono sonaba, nadie contestaba, y esa cita se iba a otro lado.',
+          'Una barbería perdía reservas cuando el equipo estaba ocupado atendiendo: las llamadas quedaban sin respuesta.',
         decision:
-          'Publicamos su página de reservas en línea: los clientes eligen barbero, servicio y horario desde el celular, y la agenda se administra desde un panel simple.',
+          'Se publicó su página de reservas en línea: los clientes eligen barbero, servicio y horario desde el celular, y la agenda se administra desde un panel.',
         result:
-          'Reservas entrando 24/7 sin interrumpir el trabajo, y una agenda que se llena sola — también fuera del horario de atención.',
+          'Reservas las 24 horas, sin interrumpir la atención, también fuera del horario del local.',
         demoLabel: 'Ver el demo de barbería con reservas',
         demoUrl: demoUrls.barbershop,
       },
       faqHeading: 'Preguntas frecuentes',
       faq: [
         {
-          question: '¿Mis clientes tienen que crear una cuenta?',
-          answer: 'No. Reservan con su nombre y su teléfono, y reciben la confirmación por correo con todo lo necesario para cambiar o cancelar su cita.',
+          question: '¿Los clientes deben crear una cuenta?',
+          answer: 'No. Reservan con su nombre y su teléfono, y reciben por correo la confirmación con lo necesario para modificar o cancelar la cita.',
         },
         {
-          question: '¿Sirve para consultorios, spas o gimnasios?',
-          answer: 'Sí. Funciona para cualquier operación de citas y turnos: barberías, consultorios, spas, academias y más.',
+          question: '¿Es aplicable a consultorios, spas o gimnasios?',
+          answer: 'Sí. Funciona para cualquier operación de citas y turnos: barberías, consultorios, spas, academias y otros.',
         },
         {
-          question: '¿Qué pasa si dos personas quieren el mismo horario?',
-          answer: 'El sistema lo impide: cuando alguien toma un cupo, deja de estar disponible para el resto en ese mismo instante.',
+          question: '¿Qué ocurre si dos personas solicitan el mismo horario?',
+          answer: 'El sistema lo impide: cuando un cupo se reserva, deja de estar disponible para los demás en ese mismo instante.',
         },
       ],
-      ctaHeading: '¿Tu agenda se llena sola desde este mes?',
-      ctaLabel: 'Cotizar mi sistema de reservas',
-      whatsappPrefill: 'Hola Nexora, quiero un sistema de reservas online.',
+      ctaHeading: 'Solicite la propuesta para su sistema de reservas',
+      ctaLabel: 'Solicitar propuesta',
+      whatsappPrefill: 'Hola Nexora, solicito información sobre un sistema de reservas en línea.',
     },
     {
       slug: 'menu-digital-qr',
       altSlug: 'qr-digital-menu',
       metaTitle: 'Menú digital QR para restaurantes | Nexora',
       metaDescription:
-        'Menú digital con código QR: tu carta en línea, siempre actualizada, sin reimprimir nada. Cambias un plato o un precio y se ve al instante.',
-      heading: 'Tu carta, siempre al día y sin reimprimir',
+        'Menú digital con código QR: la carta en línea, siempre actualizada. Cada cambio de plato o de precio se publica al instante.',
+      heading: 'Menú digital con código QR',
       intro:
-        'Reimprimir la carta por un cambio de precio es pagar dos veces el mismo error. Con un menú digital QR la carta vive en línea: se escanea desde la mesa, carga rápido, y cualquier cambio se publica al instante.',
+        'La carta se publica en línea, se consulta desde un código QR en la mesa y cualquier cambio queda visible al instante.',
       includesHeading: 'Qué incluye',
       includes: [
-        'Carta en línea con tu identidad: categorías, fotos, precios y descripciones.',
+        'Carta en línea con la identidad del local: categorías, fotos, precios y descripciones.',
         'Código QR listo para imprimir en mesas, mostrador o empaques.',
-        'Actualizaciones al instante: cambias un plato y se ve en el siguiente escaneo.',
-        'Carga rápida pensada para el celular y para la señal del local.',
+        'Actualización inmediata: cada cambio se ve en el siguiente escaneo.',
+        'Carga rápida, optimizada para el celular y para la señal del local.',
       ],
       caseStudy: {
-        heading: 'Un caso: el restaurante que dejó de reimprimir',
+        heading: 'Caso: restaurante con carta digital',
         problem:
-          'Un restaurante ajustaba precios y platos cada temporada, y cada ajuste era una reimpresión completa de cartas — con el costo y los días de espera de por medio.',
+          'Un restaurante ajustaba precios y platos cada temporada, y cada ajuste implicaba reimprimir todas las cartas.',
         decision:
-          'Llevamos la carta a un menú digital con QR: una sola fuente en línea, administrable sin conocimientos técnicos, con las fotos y el orden que el local ya usaba.',
+          'La carta se trasladó a un menú digital con QR: una sola fuente en línea, administrable sin conocimientos técnicos, con las fotos y el orden que el local ya utilizaba.',
         result:
-          'Cambios publicados en minutos y cero reimpresiones desde entonces: la carta de la mesa siempre coincide con la de la cocina.',
+          'Cambios publicados en minutos y una carta que siempre coincide con la de la cocina.',
         demoLabel: 'Ver el demo de menú QR',
         demoUrl: demoUrls.restaurant,
       },
       faqHeading: 'Preguntas frecuentes',
       faq: [
         {
-          question: '¿Puedo cambiar precios y platos yo?',
-          answer: 'Sí. La carta se administra desde un panel simple; cambias lo que necesites y queda publicado al instante.',
+          question: '¿El local puede modificar precios y platos?',
+          answer: 'Sí. La carta se administra desde un panel; cada cambio queda publicado al instante.',
         },
         {
-          question: '¿Funciona sin buena señal en el local?',
-          answer: 'El menú está optimizado para cargar rápido incluso con conexiones lentas, que es el caso típico dentro de un local.',
+          question: '¿Funciona con señal limitada dentro del local?',
+          answer: 'El menú está optimizado para cargar con rapidez también en conexiones lentas.',
         },
         {
-          question: '¿Sirve también para cafeterías o food trucks?',
-          answer: 'Sí. Cualquier negocio con carta o catálogo de productos puede usarlo — el QR va donde esté tu cliente.',
+          question: '¿Es aplicable a cafeterías o food trucks?',
+          answer: 'Sí. Cualquier negocio con carta o catálogo de productos puede utilizarlo.',
         },
       ],
-      ctaHeading: '¿Dejamos la carta siempre al día?',
-      ctaLabel: 'Cotizar mi menú digital',
-      whatsappPrefill: 'Hola Nexora, quiero un menú digital QR.',
+      ctaHeading: 'Solicite la propuesta para su menú digital',
+      ctaLabel: 'Solicitar propuesta',
+      whatsappPrefill: 'Hola Nexora, solicito información sobre un menú digital QR.',
     },
     {
       slug: 'software-a-medida',
       altSlug: 'custom-software',
       metaTitle: 'Software a medida: apps y sistemas | Nexora',
       metaDescription:
-        'Desarrollo de software a medida: sistemas, paneles y aplicaciones construidos alrededor de tu operación, con alcance definido y fecha exacta de entrega.',
-      heading: 'El sistema exacto que tu operación necesita',
+        'Desarrollo de software a medida: sistemas, paneles y aplicaciones construidos alrededor de la operación, con alcance definido y fecha de entrega.',
+      heading: 'Software a medida: sistemas y aplicaciones',
       intro:
-        'Cuando las hojas de cálculo y las herramientas genéricas se quedan cortas, lo que sigue no es adaptarse a un software ajeno: es construir el propio. Diseñamos y desarrollamos sistemas, paneles y aplicaciones alrededor de la forma en que ya trabajas.',
+        'Nexora diseña y desarrolla sistemas, paneles y aplicaciones construidos alrededor de la operación de cada cliente y de su forma de trabajo.',
       includesHeading: 'Qué incluye',
       includes: [
-        'Levantamiento del proceso real: entendemos la operación antes de proponer pantallas.',
-        'Propuesta con alcance detallado y fecha exacta de entrega.',
-        'Desarrollo con avances visibles y una revisión contigo en cada hito.',
-        'Entrega funcionando, con accesos y código a tu nombre.',
-        'La experiencia de nuestros productos propios — Turnia y Spektova — corriendo en producción.',
+        'Levantamiento del proceso: se analiza la operación antes de definir pantallas.',
+        'Propuesta con requerimientos, flujos, alcance y fecha de entrega.',
+        'Desarrollo con avances visibles y revisión en cada hito.',
+        'Entrega en funcionamiento, con accesos y código a nombre del cliente.',
+        'El respaldo de Turnia, producto propio de Nexora en producción.',
       ],
       caseStudy: {
-        heading: 'Un caso: la agenda del consultorio',
+        heading: 'Caso: agenda para un consultorio',
         problem:
-          'Un consultorio coordinaba sus citas por teléfono y cuaderno: huecos sin llenar, pacientes sin recordatorio y una agenda que solo una persona sabía leer.',
+          'Un consultorio coordinaba sus citas por teléfono y cuaderno: horarios sin ocupar, pacientes sin recordatorio y una agenda que solo una persona podía interpretar.',
         decision:
-          'Construimos una agenda en línea a la medida del flujo del consultorio: los pacientes reservan solos, el equipo ve el día de un vistazo y los recordatorios salen sin que nadie los mande.',
+          'Se construyó una agenda en línea ajustada al flujo del consultorio: los pacientes reservan en línea, el equipo consulta el día completo y los recordatorios se envían de forma automática.',
         result:
-          'Menos ausencias, una agenda legible para todo el equipo, y la recepción dedicada a recibir pacientes en vez de a perseguirlos.',
+          'Menos ausencias y una agenda legible para todo el equipo.',
         demoLabel: 'Ver el demo de agenda para consultorio',
         demoUrl: demoUrls.clinic,
       },
       faqHeading: 'Preguntas frecuentes',
       faq: [
         {
-          question: '¿Cómo saben cuánto va a tardar?',
-          answer: 'Primero entendemos el alcance; después lo escribimos en una propuesta con fecha exacta. Sin alcance definido no prometemos fechas — y por eso las cumplimos.',
+          question: '¿Cómo se determina el plazo?',
+          answer: 'Primero se define el alcance; después se documenta en una propuesta con fecha de entrega.',
         },
         {
-          question: '¿Puedo empezar por algo chico?',
-          answer: 'Sí, y suele ser lo recomendable: un primer módulo que resuelva el dolor más caro, y crecer desde ahí con el sistema ya en uso.',
+          question: '¿Es posible iniciar con un alcance reducido?',
+          answer: 'Sí. Es habitual iniciar con un primer módulo y ampliar el sistema una vez que está en uso.',
         },
         {
-          question: '¿El código queda a mi nombre?',
-          answer: 'Sí. Código, dominio y accesos quedan a tu nombre — el proyecto es tuyo, también en los papeles.',
+          question: '¿El código queda a nombre del cliente?',
+          answer: 'Sí. Código, dominio y accesos quedan a nombre del cliente.',
         },
       ],
-      ctaHeading: '¿Conversamos sobre tu operación?',
-      ctaLabel: 'Cotizar mi sistema',
-      whatsappPrefill: 'Hola Nexora, necesito un sistema a medida.',
+      ctaHeading: 'Solicite la propuesta para su sistema',
+      ctaLabel: 'Solicitar propuesta',
+      whatsappPrefill: 'Hola Nexora, solicito información sobre un sistema a medida.',
     },
   ],
 
   // ── Fase 12 · C3 · La página de gracias: el momento medible de la conversión ──
   thanks: {
     metaTitle: 'Gracias | Nexora',
-    heading: '¡Gracias por escribirnos!',
-    body:
-      'Tu mensaje ya está en camino por WhatsApp. Te respondemos en menos de 24 horas hábiles — mientras tanto, puedes seguir mirando nuestros trabajos.',
+    heading: 'Gracias por escribirnos',
+    body: 'Su mensaje fue enviado por WhatsApp. Respondemos en menos de 24 horas hábiles.',
     backLabel: 'Volver al inicio',
   },
 
@@ -506,51 +502,51 @@ export const siteEs: SiteContent = {
   privacy: {
     metaTitle: 'Política de privacidad | Nexora',
     metaDescription:
-      'Política de privacidad de Nexora Software: qué datos se recogen en este sitio, para qué se usan y cómo ejercer tus derechos.',
+      'Política de privacidad de Nexora Software: qué datos se recogen en este sitio, para qué se usan y cómo ejercer los derechos sobre ellos.',
     heading: 'Política de privacidad',
     updated: 'Última actualización: 17 de agosto de 2026',
     sections: [
       {
         heading: 'Quiénes somos',
         body: [
-          'Este sitio pertenece a Nexora Software, un estudio de software con base en Guayaquil, Ecuador. Puedes contactarnos en hola@nexoradevs.com.',
+          'Este sitio pertenece a Nexora Software, un estudio de software con base en Guayaquil, Ecuador. El correo de contacto es hola@nexoradevs.com.',
         ],
       },
       {
         heading: 'Qué datos recogemos',
         body: [
-          'Este sitio no tiene cuentas de usuario ni formularios que guarden datos en nuestros servidores. Cuando usas el formulario de contacto, el mensaje se arma en tu propio dispositivo y se envía por WhatsApp desde tu aplicación: nosotros recibimos únicamente lo que decides enviarnos por ese chat.',
-          'Usamos Google Analytics 4 para medir visitas de forma agregada: qué páginas se ven y desde qué tipo de dispositivo. Esta medición usa cookies con identificadores seudónimos y no la usamos para identificarte.',
+          'Este sitio no tiene cuentas de usuario ni formularios que guarden datos en nuestros servidores. Cuando se utiliza el formulario de contacto, el mensaje se arma en el dispositivo del usuario y se envía por WhatsApp desde su aplicación: Nexora recibe únicamente lo que el usuario decide enviar por ese chat.',
+          'Usamos Google Analytics 4 para medir visitas de forma agregada: qué páginas se ven y desde qué tipo de dispositivo. Esta medición usa cookies con identificadores seudónimos y no se utiliza para identificar a los usuarios.',
         ],
       },
       {
         heading: 'Para qué los usamos',
         body: [
-          'Los datos de contacto que nos envías por WhatsApp o correo se usan solo para responderte y preparar tu propuesta. La medición de visitas se usa solo para mejorar el sitio.',
-          'No vendemos ni compartimos tus datos con terceros para publicidad.',
+          'Los datos de contacto enviados por WhatsApp o por correo se usan únicamente para responder y preparar la propuesta. La medición de visitas se usa únicamente para mejorar el sitio.',
+          'No vendemos ni compartimos datos con terceros con fines publicitarios.',
         ],
       },
       {
         heading: 'Servicios de terceros',
         body: [
-          'Este sitio se aloja en Vercel y usa Google Analytics (medición) y Google Fonts (tipografías). WhatsApp procesa los mensajes que decides enviarnos por ese canal según sus propias políticas.',
+          'Este sitio se aloja en Vercel y usa Google Analytics (medición) y Google Fonts (tipografías). WhatsApp procesa los mensajes que el usuario decide enviar por ese canal según sus propias políticas.',
           'Estos proveedores operan desde Estados Unidos, por lo que los datos de medición se procesan fuera del Ecuador con las salvaguardas contractuales de cada uno.',
         ],
       },
       {
-        heading: 'Tus derechos',
+        heading: 'Derechos del usuario',
         body: [
-          'Puedes pedirnos acceso, corrección o eliminación de los datos que nos hayas enviado escribiendo a hola@nexoradevs.com. Respondemos dentro de los plazos que establece la Ley Orgánica de Protección de Datos Personales del Ecuador.',
+          'El usuario puede solicitar acceso, corrección o eliminación de los datos enviados escribiendo a hola@nexoradevs.com. Respondemos dentro de los plazos que establece la Ley Orgánica de Protección de Datos Personales del Ecuador.',
         ],
       },
     ],
-    contactLine: '¿Dudas sobre esta política? Escríbenos a hola@nexoradevs.com.',
+    contactLine: 'Para consultas sobre esta política, escriba a hola@nexoradevs.com.',
   },
 
   // ── Fase 12 · B1 · La 404 propia: con marca y salida, no un callejón ──────────
   notFound: {
     heading: 'Esta página no existe',
-    body: 'El enlace puede estar mal escrito o la página ya no está. Lo que sí está: nuestros trabajos, el proceso y el contacto — todo en el inicio.',
+    body: 'El enlace puede estar mal escrito o la página ya no está disponible. Los servicios, los proyectos y el contacto se encuentran en el inicio.',
     backLabel: 'Ir al inicio',
   },
 };

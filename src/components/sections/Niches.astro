@@ -1,51 +1,39 @@
 ---
 /**
- * Niches / "Para quién" (section 05) — who Nexora serves.
+ * Niches / "Sectores" (section 05) — who Nexora works with.
  *
- * What: the section header plus a grid of chips (icon + label) from `niches[]`,
- * closed by a "not on the list? message anyway" CTA to contact. The list spans
- * independent professionals through companies, which is how the page signals a
- * mixed audience without ever stating it. Why a CTA here: the header already
- * invites off-list visitors, so the button funnels that intent straight to
- * WhatsApp. NO prices.
+ * What: the section header beside a list of sectors from `niches[]`. The order
+ * of the array is editorial (larger scale first), and the list spans companies
+ * through independent professionals, which is how the page signals a mixed
+ * audience without ever stating it. NO prices.
  *
  * @prop content - active locale content tree.
  */
 import type { SiteContent } from '../../content/types';
 import SectionEyebrow from '../ui/SectionEyebrow.astro';
-import Icon from '../ui/Icon.astro';
 
 interface Props {
   content: SiteContent;
 }
 
 const { content } = Astro.props;
-const { niches, sections, contact } = content;
+const { niches, sections } = content;
 ---
 
-<section id="para-quien" class="bg-background">
-  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+<section id="para-quien" class="bg-surface">
+  <div
+    class="mx-auto grid max-w-6xl gap-6 px-4 pt-8 md:px-6 lg:grid-cols-[minmax(0,25rem)_minmax(0,1fr)] lg:gap-9 lg:pt-9"
+  >
     <SectionEyebrow header={sections.niches} />
 
-    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+    <ul class="flex flex-wrap gap-2 sm:grid sm:grid-cols-2 sm:gap-3">
       {
         niches.map((niche) => (
-          <li class="flex flex-col items-start gap-3 rounded-xl border border-border bg-surface p-5 shadow-sm">
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue">
-              <Icon name={niche.icon} class="h-6 w-6" />
-            </span>
-            <span class="font-display text-h4 text-text-primary">{niche.label}</span>
+          <li class="flex min-h-[2.75rem] items-center rounded-lg border border-border px-4 text-small font-medium text-text-primary sm:min-h-[3.5rem] sm:px-5 sm:text-body">
+            {niche.label}
           </li>
         ))
       }
     </ul>
-
-    <a
-      href="#contacto"
-      class="inline-flex items-center gap-1 self-center text-body font-semibold text-blue transition-colors hover:text-blue-700"
-    >
-      {contact.whatsappCtaLabel}
-      <Icon name="ui-arrow" class="h-4 w-4" />
-    </a>
   </div>
 </section>

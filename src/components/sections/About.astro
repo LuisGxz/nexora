@@ -1,12 +1,11 @@
 ---
 /**
- * About / "El estudio" (section 06) — who Nexora is.
+ * About / "Trayectoria" (section 06) — what backs the studio.
  *
- * What: heading + body, the team's prior employers framed strictly as
- * professional background (NEVER as clients), and a dark panel of cards for
- * Nexora's own products. Why faceless: no photo and no named individual — the
- * body, the track record and the products carry the trust. All copy from
- * `about` + `ui` labels.
+ * What: heading + body and the profile links on one side; on the other, the
+ * team's prior employers framed strictly as professional background (NEVER as
+ * clients). Why faceless: no photo and no named individual — the body and the
+ * track record carry the trust. All copy from `about` + `ui` labels.
  *
  * @prop content - active locale content tree.
  */
@@ -25,8 +24,8 @@ const { about, sections, ui } = content;
 const visibleLinks = about.links.filter((link) => link.href && link.href !== '#');
 ---
 
-<section id="estudio" class="bg-background">
-  <div class="mx-auto grid max-w-6xl gap-7 px-4 py-9 md:px-6 lg:grid-cols-2 lg:gap-8">
+<section id="estudio" class="bg-surface">
+  <div class="mx-auto grid max-w-6xl gap-7 px-4 py-8 md:px-6 lg:grid-cols-2 lg:gap-9 lg:py-9">
     <div class="flex flex-col gap-5">
       <SectionEyebrow header={sections.about} />
       <p class="max-w-prose text-body-lg text-text-muted">{about.body}</p>
@@ -40,7 +39,7 @@ const visibleLinks = about.links.filter((link) => link.href && link.href !== '#'
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-small font-semibold text-text-primary shadow-sm transition-colors duration-base ease-standard hover:border-blue hover:text-blue"
+                  class="inline-flex min-h-[2.75rem] items-center gap-2 rounded-lg border border-border-strong bg-surface px-4 text-small font-semibold text-text-primary transition-colors duration-base ease-standard hover:border-blue-700 hover:text-blue-700"
                 >
                   <Icon name={link.icon} class="h-[1.1rem] w-[1.1rem]" />
                   {link.label}
@@ -50,71 +49,25 @@ const visibleLinks = about.links.filter((link) => link.href && link.href !== '#'
           </ul>
         )
       }
-
-      <div class="flex flex-col gap-3">
-        <p class="text-caption font-semibold uppercase tracking-widest text-blue">
-          {ui.experienceLabel}
-        </p>
-        <ul class="flex flex-col gap-3">
-          {
-            about.experience.map((job) => (
-              <li class="flex items-baseline justify-between gap-4 border-b border-border pb-3">
-                <div class="flex flex-col">
-                  <span class="font-display text-body font-semibold text-text-primary">
-                    {job.company}
-                  </span>
-                  <span class="text-small text-text-muted">{job.role}</span>
-                </div>
-                <span class="shrink-0 text-small text-text-muted">{job.period}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
     </div>
 
-    <div class="flex flex-col gap-5 rounded-2xl bg-navy-900 p-6 text-text-on-dark md:p-7">
-      <div class="flex flex-col gap-2">
-        <p class="text-caption font-semibold uppercase tracking-widest text-cyan">
-          {ui.productsLabel}
-        </p>
-        <p class="text-small text-text-muted-dark">{about.productsIntro}</p>
-      </div>
-
-      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+    <div class="flex flex-col self-start rounded-lg border border-border">
+      <p class="border-b border-border px-5 py-4 text-small font-semibold text-text-muted">
+        {ui.experienceLabel}
+      </p>
+      <ul class="flex flex-col">
         {
-          about.products.map((product) => {
-            const Wrapper = product.url ? 'a' : 'div';
-            return (
-              <li
-                class:list={[
-                  'rounded-xl border border-border-dark bg-navy-800 transition-colors duration-base ease-standard',
-                  product.url && 'hover:border-cyan',
-                ]}
-              >
-                <Wrapper
-                  href={product.url}
-                  target={product.url ? '_blank' : undefined}
-                  rel={product.url ? 'noopener noreferrer' : undefined}
-                  class="flex h-full flex-col gap-2 px-5 py-4"
-                >
-                  <span class="flex items-center justify-between gap-3">
-                    <span class="font-display text-h4 font-semibold">{product.name}</span>
-                    {product.url ? (
-                      <Icon name="ui-external" class="h-[1.1rem] w-[1.1rem] shrink-0 text-cyan" />
-                    ) : (
-                      product.status && (
-                        <span class="shrink-0 rounded-full border border-border-dark px-2 py-1 text-caption uppercase tracking-widest text-text-muted-dark">
-                          {product.status}
-                        </span>
-                      )
-                    )}
-                  </span>
-                  <span class="text-small text-text-muted-dark">{product.description}</span>
-                </Wrapper>
-              </li>
-            );
-          })
+          about.experience.map((job) => (
+            <li class="flex flex-col gap-1 border-b border-border px-5 py-4 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+              <div class="flex flex-col">
+                <span class="font-display text-h4 text-text-primary">{job.company}</span>
+                <span class="text-small text-text-muted">{job.role}</span>
+              </div>
+              <span class="text-small text-text-muted sm:shrink-0 sm:whitespace-nowrap">
+                {job.period}
+              </span>
+            </li>
+          ))
         }
       </ul>
     </div>

@@ -7,7 +7,7 @@
  * Graph + Twitter cards) and the GA analytics bootstrap. Pages only compose
  * content and pass their locale/path/meta in.
  *
- * Fonts: Space Grotesk (display) + Inter (body) are preconnected and loaded once
+ * Fonts: Hanken Grotesk (one family for display and body) is preconnected and loaded once
  * here — preconnect shaves the font round-trip (better LCP); a single <link>
  * avoids the render-blocking @import pattern.
  *
@@ -47,7 +47,7 @@ interface Props {
 
 const {
   title = 'Nexora · Estudio de Software',
-  description = 'Páginas web, sistemas y aplicaciones hechas a tu medida.',
+  description = 'Desarrollo de páginas web, sistemas y aplicaciones.',
   lang = 'es',
   path = '/',
   ogAlt = 'Nexora — Estudio de software',
@@ -124,12 +124,12 @@ const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_EC';
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>

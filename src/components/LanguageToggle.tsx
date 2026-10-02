@@ -48,12 +48,12 @@ export default function LanguageToggle({
     window.location.href = path;
   };
 
-  const base = 'px-3 py-1 text-small font-semibold transition-colors rounded-full';
-  const active = 'bg-blue-600 text-white';
+  const base = 'px-3 py-1 text-small font-semibold transition-colors rounded-md';
+  const active = 'bg-blue-700 text-white';
   const idle = 'text-text-muted hover:text-text-primary';
 
   return (
-    <div className="flex items-center rounded-full bg-background p-0.5" role="group" aria-label={label}>
+    <div className="flex items-center rounded-lg bg-background p-0.5" role="group" aria-label={label}>
       <button
         type="button"
         onClick={() => choose('es', esPath)}

@@ -6,13 +6,16 @@
  * Past employers appear only under `about.experience` (background), never as
  * clients in `works`. Demo URLs come from `site.config.ts` (single source).
  *
- * Voice mirrors the Spanish: outcome-first, spoken as a studio ("we" — never
- * "I", never a named person), confident, no hype.
+ * Voice mirrors the Spanish (2026-10-01 redesign): formal, platform-to-user,
+ * spoken as a studio ("we" or impersonal — never "I", never a named person).
+ * The copy states what is offered: no comparisons ("not X but Y", "no
+ * templates") and no promised turnaround ("in days") — the delivery date is set
+ * in the proposal.
  *
  * Audience is deliberately open: the reader may be an individual, a freelancer
- * or a company, so no string assumes "your business". Address the reader as
- * "you" and talk about the project, never about what they are — the mixed
- * audience is signalled implicitly (via `niches`), never stated.
+ * or a company, so no string assumes "your business". The copy talks about the
+ * project, never about what the reader is — the mixed audience is signalled
+ * implicitly (via `niches`), never stated.
  *
  * The city appears ONLY in `footer.tagline`; no other string says where Nexora
  * is based.
@@ -22,126 +25,138 @@ import { demoPreviews, demoUrls, productUrls, social } from '../config/site.conf
 
 export const siteEn: SiteContent = {
   meta: {
-    title: 'Nexora · Software Studio | Websites, systems and apps built to measure',
+    title: 'Nexora · Software studio | Website, system and application development',
     description:
-      'Software studio. Websites, systems and custom apps, built to measure: your landing in days and an exact date for every project.',
+      'Software studio. Design and development of custom websites, systems and applications, with scope and delivery date set in the proposal.',
     ogAlt: 'Nexora — Software studio',
   },
 
   nav: [
     { label: 'Services', anchor: 'servicios' },
-    { label: 'Work', anchor: 'demos' },
+    { label: 'Projects', anchor: 'demos' },
     { label: 'Process', anchor: 'proceso' },
-    { label: 'About', anchor: 'estudio' },
+    { label: 'Background', anchor: 'estudio' },
     { label: 'FAQ', anchor: 'faq' },
-    { label: 'Contact', anchor: 'contacto' },
   ],
 
   sections: {
     services: {
       eyebrow: 'Services',
-      heading: 'What we build for you',
-      subheading: 'No generic templates. Every project is built around a concrete goal.',
+      heading: 'What we develop',
     },
     works: {
-      eyebrow: 'Work',
+      eyebrow: 'Projects',
       heading: 'Live demos and real projects',
-      subheading: "Nexora's own work. See it running.",
+      subheading: 'Projects developed by Nexora, available for review.',
     },
     process: {
       eyebrow: 'Process',
       heading: 'How we work',
-      subheading: 'A clear method, from first idea to delivery.',
     },
     niches: {
-      eyebrow: "Who it's for",
+      eyebrow: 'Sectors',
       heading: 'Who we work with',
-      subheading: "If you don't find yours on the list, message us anyway.",
     },
     about: {
       eyebrow: 'About Nexora',
-      heading: 'The team behind every project',
-    },
-    pillars: {
-      eyebrow: 'Why Nexora',
-      heading: 'Why trust us',
+      heading: 'A track record in software development',
     },
     faq: {
-      eyebrow: 'FAQ',
+      eyebrow: 'Enquiries',
       heading: 'Frequently asked questions',
     },
   },
 
   hero: {
     eyebrow: 'Software studio',
-    headline: 'Websites, systems and apps, built to your measure.',
+    headline: 'Website, system and application development.',
     subheadline:
-      "We're a software studio building custom websites, systems and apps. Your landing can be live in days; for systems and apps we give you an exact date in the proposal, with a clear method and visible progress.",
-    ctaPrimary: 'Tell us about your project',
-    ctaSecondary: 'See our work',
+      'Nexora is a software studio that designs and develops custom websites, systems and applications. Every project is defined from its requirements and delivered on the date set in the proposal.',
+    ctaPrimary: 'Contact us',
+    ctaSecondary: 'View projects',
+    proposalEyebrow: 'Proposal',
+    proposalHeading: 'What is delivered in writing',
+    proposalItems: [
+      'Requirements gathering',
+      'Project flows and scope',
+      'Delivery date',
+      'Progress review at every milestone',
+      'Two rounds of changes included',
+      'First month of adjustments included',
+      "Domain and access in the client's name",
+    ],
   },
 
   services: [
     {
-      icon: 'service-web',
       title: 'Website & landing page',
-      benefit: 'We lift your presence in Google searches with a fast, clear site built to turn visits into customers.',
+      benefit: 'Fast, clear sites, optimized for search engines and built to turn visits into customers.',
       pageSlug: 'professional-website',
     },
     {
-      icon: 'service-qr-menu',
       title: 'Digital QR menu',
-      benefit: 'Your menu lives online and updates instantly: change a price and customers see it on the next scan.',
+      benefit: 'An online menu that updates instantly and is opened from a QR code.',
       pageSlug: 'qr-digital-menu',
     },
     {
-      icon: 'service-booking',
       title: 'Booking system',
-      benefit: 'A system that manages your slots automatically and takes bookings 24/7, without you answering the phone.',
+      benefit: 'Automatic slot management and bookings received 24 hours a day.',
       pageSlug: 'booking-system',
     },
     {
-      icon: 'service-catalog',
       title: 'Catalog + WhatsApp',
-      benefit: 'We put your whole catalog behind a single link and send every order straight to your WhatsApp.',
+      benefit: 'The full catalog behind a single link, with orders arriving directly on WhatsApp.',
     },
     {
-      icon: 'service-portfolio',
       title: 'Professional portfolio',
-      benefit: 'We present your work at the level it deserves, so winning new clients takes less effort.',
+      benefit: 'Professional work presented at the level it requires.',
     },
     {
-      icon: 'service-memberships',
       title: 'Membership dashboard',
-      benefit: 'Track payments, renewals and member access from a single dashboard, in real time.',
+      benefit: 'Payments, renewals and member access managed in real time.',
     },
     {
-      icon: 'service-custom-apps',
       title: 'Custom apps & systems',
-      benefit: 'We design and build the exact system your operation needs, fitted to the way you already work.',
+      benefit: 'Design and development of the system the operation requires, fitted to the way it works.',
       pageSlug: 'custom-software',
     },
   ],
 
+  servicesCta: {
+    heading: 'Need a custom development?',
+    label: 'Contact us',
+  },
+
+  // Turnia goes first: it is the only own product in operation and is presented
+  // as one more project, not in a separate "products" block.
   works: [
+    {
+      title: 'Turnia',
+      clientType: 'Own product',
+      badge: 'In production',
+      result: 'Booking and scheduling platform for businesses that work by appointment.',
+      url: productUrls.turnia,
+      image: demoPreviews.turnia,
+      linkLabel: 'View project',
+    },
     {
       title: 'Barbershop with online booking',
       clientType: 'Barbershop',
-      result: 'Bookings 24/7 without answering the phone.',
+      result: 'Bookings 24 hours a day, with no phone handling.',
       url: demoUrls.barbershop,
       image: demoPreviews.barbershop,
     },
     {
       title: 'Digital QR menu for a restaurant',
       clientType: 'Restaurant',
-      result: 'A menu you update without reprinting anything.',
+      result: 'A menu that updates with no reprinting.',
       url: demoUrls.restaurant,
       image: demoPreviews.restaurant,
     },
     {
       title: 'Scheduling for a medical office',
       clientType: 'Medical office',
-      result: 'Patients book their own appointments.',
+      result: 'Patients book their appointments online.',
       url: demoUrls.clinic,
       image: demoPreviews.clinic,
     },
@@ -155,61 +170,42 @@ export const siteEn: SiteContent = {
     {
       title: 'Corporate site for an SMB',
       clientType: 'Services company',
-      result: 'A professional presence on Google in days.',
+      result: 'A professional presence on search engines.',
       url: demoUrls.corporate,
       image: demoPreviews.corporate,
     },
   ],
 
   process: [
-    { step: '01', title: 'Contact', description: 'You get in touch with us and share your requirements.' },
-    { step: '02', title: 'Proposal', description: 'We prepare a proposal with detailed scope and an exact delivery date.' },
-    { step: '03', title: 'Development', description: 'We build with visible progress and a review with you at every milestone.' },
-    { step: '04', title: 'Delivery', description: 'We hand the project over working, with domain and access in your name.' },
+    { step: '01', title: 'Contact', description: 'The project need is received.' },
+    { step: '02', title: 'Proposal', description: 'Requirements, flows, scope and delivery date.' },
+    { step: '03', title: 'Development', description: 'Visible progress and a review at every milestone.' },
+    { step: '04', title: 'Delivery', description: "A working project, with domain and access in the client's name." },
   ],
 
+  // Editorial order: from larger to smaller scale.
   niches: [
-    { icon: 'service-booking', label: 'Barbershops & salons' },
-    { icon: 'service-qr-menu', label: 'Restaurants & cafés' },
-    { icon: 'service-booking', label: 'Clinics & medical offices' },
-    { icon: 'service-memberships', label: 'Gyms & academies' },
-    { icon: 'service-catalog', label: 'Shops & boutiques' },
-    { icon: 'service-web', label: 'Events' },
-    { icon: 'service-portfolio', label: 'Independent professionals' },
-    { icon: 'service-custom-apps', label: 'Companies & startups' },
+    { label: 'Companies & startups' },
+    { label: 'Clinics & medical offices' },
+    { label: 'Events' },
+    { label: 'Gyms & academies' },
+    { label: 'Restaurants & cafés' },
+    { label: 'Shops & boutiques' },
+    { label: 'Barbershops & salons' },
+    { label: 'Independent professionals' },
   ],
 
   about: {
-    heading: 'The team behind every project',
+    heading: 'A track record in software development',
     body:
-      'Nexora is a software studio working with clients anywhere in the world. We build custom websites, systems and apps with a clear method: defined scope, visible progress, and deliveries that work. Our team brings extensive experience across the software industry — banking, product, and software running in production — and that track record is what backs every project.',
+      "Nexora works with clients in any country. The studio's knowledge comes from years of development in banking, product and software running in production, and it backs every project delivered.",
     // Real professional background of the team, NOT Nexora clients.
     // Ordered most recent first.
     experience: [
-      { company: 'Fiverr', role: 'Freelance development', period: '2021 — present (5 years)' },
+      { company: 'Fiverr', role: 'Freelance development', period: '2021 — present' },
       { company: 'Relolink', role: 'Full-stack development', period: 'Apr 2024 — present' },
       { company: 'Banco de Machala', role: 'Software architecture', period: 'Aug 2023 — Apr 2024' },
       { company: 'Viamatica', role: 'Software engineering', period: 'Feb 2021 — Apr 2024' },
-    ],
-    productsIntro: 'Software we design, build and run ourselves.',
-    // Faktova has no public site yet: it ships without `url` and with a `status`,
-    // so the card explains the missing link instead of dropping the product.
-    products: [
-      {
-        name: 'Turnia',
-        description: 'Booking and scheduling app we deploy for anyone who works by appointment.',
-        url: productUrls.turnia,
-      },
-      {
-        name: 'Spektova',
-        description: 'E-commerce platform for selling online, with catalog and orders.',
-        url: productUrls.spektova,
-      },
-      {
-        name: 'Faktova',
-        description: 'Internal invoicing system, focused on nationwide operations.',
-        status: 'In development',
-      },
     ],
     links: [
       { label: 'Portfolio', href: social.portfolio, icon: 'ui-github' },
@@ -219,59 +215,63 @@ export const siteEn: SiteContent = {
   },
 
   pillars: [
-    { stat: '+5 years', label: 'of team experience in software development' },
-    { stat: 'Own products', label: 'Turnia and Spektova in production' },
-    { stat: 'Fast delivery', label: 'your site in days; systems with an exact date' },
+    { stat: '+5 years', label: 'of experience in software development' },
+    { stat: 'Defined process', label: 'requirements, proposal, development and delivery' },
+    { stat: 'Delivery date', label: 'set in writing in every proposal' },
   ],
 
   faq: [
     {
-      question: 'How long does delivery take?',
-      answer: 'Most landing pages and sites ship in 3 to 5 days. For larger systems and apps, we give you an exact date in the proposal.',
+      question: 'What is the delivery time?',
+      answer: 'The delivery date is set in the proposal, according to the requirements of each project.',
     },
     {
-      question: 'How much does it cost?',
-      answer: 'Every project is custom. Get in touch on WhatsApp with your requirements and we put together a proposal.',
+      question: 'What does a project cost?',
+      answer: 'Every project is quoted individually. A proposal is prepared from the requirements received by WhatsApp or email.',
     },
     {
-      question: 'How do payments work?',
-      answer: 'Half to start and half before launch. No surprises.',
+      question: 'How are payments made?',
+      answer: 'Half when the project starts and half before launch.',
     },
     {
       question: 'Is maintenance included?',
-      answer: 'The first month of adjustments is included. After that you can add monthly maintenance if you need it.',
+      answer: 'The first month of adjustments is included. Monthly maintenance can be contracted afterwards.',
     },
     {
-      question: 'Who provides the domain?',
-      answer: 'We handle it for you or we use the one you already have. The domain and all access stay in your name.',
+      question: 'Whose name is the domain registered in?',
+      answer: "Nexora manages the domain or uses the one the client already has. The domain and all access remain in the client's name.",
     },
     {
-      question: 'How many changes can I request?',
-      answer: 'Two rounds of changes included during development. They\'re usually more than enough.',
+      question: 'How many changes can be requested?',
+      answer: 'Development includes two rounds of changes.',
     },
     {
       question: 'Do you work with clients in other countries?',
-      answer: 'Yes. We work with clients anywhere in the world and coordinate everything over WhatsApp, wherever you are.',
+      answer: 'Yes. Nexora works with clients in any country and coordinates every project by WhatsApp or email.',
     },
   ],
 
   contact: {
-    heading: 'Tell us about your project',
+    heading: 'Contact us',
     // C1 (fase 12): promesa concreta, espejo de site.es.ts.
-    subheading: 'Get in touch on WhatsApp with your requirements and we reply within 24 business hours.',
+    subheading:
+      'Write to us on WhatsApp or by email with the requirements of your project. We reply within 24 business hours.',
     form: {
       nameLabel: 'Name',
-      businessTypeLabel: 'What do you do?',
-      needLabel: 'What do you need?',
-      namePlaceholder: 'Who are we speaking with?',
-      businessTypePlaceholder: 'e.g. Barbershop, consultancy, personal project',
-      needPlaceholder: 'e.g. A website with online booking',
+      businessTypeLabel: 'Activity or company',
+      needLabel: 'Requirement',
+      namePlaceholder: 'First and last name',
+      businessTypePlaceholder: 'Sector or company name',
+      needPlaceholder: 'Brief description of the project',
       submitLabel: 'Send on WhatsApp',
     },
-    whatsappCtaLabel: 'Message us on WhatsApp',
-    whatsappPrefill: "Hi Nexora, I'd like info about a project.",
+    whatsappCtaLabel: 'WhatsApp',
+    emailCtaLabel: 'Email',
+    channelsHeading: 'Write to us',
+    channelsBody: 'Enquiries are answered on WhatsApp and by email.',
+    whatsappPrefill: 'Hello Nexora, I am requesting information about a project.',
     vcardLabel: 'Save contact',
-    prefillTemplate: 'Hi, I\'m {name} ({businessType}). I need: {need}',
+    prefillTemplate: 'Hello, I am {name} ({businessType}). Requirement: {need}',
   },
 
   footer: {
@@ -281,18 +281,16 @@ export const siteEn: SiteContent = {
   },
 
   ui: {
-    stickyWhatsapp: 'WhatsApp',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     switchLanguage: 'Switch to Spanish',
     skipToContent: 'Skip to content',
     viewDemo: 'View demo',
-    faqMoreQuestion: 'Another question?',
-    experienceLabel: 'Team background',
-    productsLabel: 'Own products',
-    viewService: 'See service',
+    faqMoreQuestion: 'Another enquiry? Contact us',
+    experienceLabel: 'Background',
+    viewService: 'View service',
     breadcrumbHome: 'Home',
-    breadcrumbsLabel: 'You are here',
+    breadcrumbsLabel: 'Location in the site',
     privacyLink: 'Privacy',
   },
 
@@ -303,196 +301,195 @@ export const siteEn: SiteContent = {
       altSlug: 'web-profesional',
       metaTitle: 'Professional website design | Nexora',
       metaDescription:
-        'Professional website design and development: fast, clear sites built to turn visits into customers. Your website ready in days, with the domain in your name.',
-      heading: 'A professional website that works for you',
+        "Professional website design and development: fast, clear sites built to turn visits into customers, with the domain in the client's name.",
+      heading: 'Professional websites',
       intro:
-        'A fast, clear site is the difference between existing on Google and actually being found. We design and build custom websites and landing pages — no generic templates — made so whoever visits understands what you do and reaches out.',
+        'Nexora designs and develops custom websites and landing pages, fast and clear, so that visitors understand the offer and get in touch.',
       includesHeading: "What's included",
       includes: [
-        'Custom design, aligned with your identity and your goal.',
+        "Custom design, aligned with the project's identity and goal.",
         'Search-ready from day one: titles, descriptions and structured data.',
-        'Fast loading and a design that works on phones and desktops alike.',
-        'Domain and access in your name, always.',
+        'Fast loading and a design adapted to phones and desktops.',
+        "Domain and access in the client's name.",
         'One month of adjustments included after launch.',
       ],
       caseStudy: {
-        heading: 'A case: a professional presence for an SMB',
+        heading: 'Case: a professional presence for an SMB',
         problem:
-          "A services company didn't show up on Google: its only presence was a social media page, and potential clients searching its name found nothing that inspired trust.",
+          'A services company did not appear on Google: its only presence was a social media page, and those searching for it by name found no site to back the company.',
         decision:
-          'We built a clear corporate site: what the company does, for whom, and how to reach it — with the technical structure Google expects and nothing in the way of the answer.',
+          'A clear corporate site was built: what the company does, for whom, and how to reach it, with the technical structure search engines require.',
         result:
-          'A professional online presence in days, ready to surface for brand searches and to back every quote with a serious link.',
+          'A professional online presence, ready to appear in brand searches and to back every quote with its own link.',
         demoLabel: 'See the corporate site demo',
         demoUrl: demoUrls.corporate,
       },
       faqHeading: 'Frequently asked questions',
       faq: [
         {
-          question: 'How long does a website take?',
-          answer: 'Most landing pages and sites ship in 3 to 5 days. If your project needs more pages or integrations, we give you an exact date in the proposal.',
+          question: 'What is the delivery time for a website?',
+          answer: 'The delivery date is set in the proposal, according to the number of pages and integrations in the project.',
         },
         {
-          question: 'Can I update it myself afterwards?',
-          answer: 'Yes. We deliver the site ready for you to request changes or make them yourself; the first month of adjustments is included.',
+          question: 'Can the site be updated after delivery?',
+          answer: 'Yes. The site is delivered ready for changes to be requested or made directly; the first month of adjustments is included.',
         },
         {
           question: 'Does it include domain and hosting?',
-          answer: 'We manage both for you or use the ones you already have. Wherever they live, the access is yours.',
+          answer: "Nexora manages both or uses the ones the client already has. In every case, access remains in the client's name.",
         },
       ],
-      ctaHeading: 'Shall we talk about your website?',
-      ctaLabel: 'Quote my website',
-      whatsappPrefill: 'Hi Nexora, I want a professional website.',
+      ctaHeading: 'Request the proposal for your website',
+      ctaLabel: 'Request a proposal',
+      whatsappPrefill: 'Hello Nexora, I am requesting information about a professional website.',
     },
     {
       slug: 'booking-system',
       altSlug: 'sistema-de-reservas',
       metaTitle: 'Online booking system | Nexora',
       metaDescription:
-        'Online booking system for appointments: your customers book on their own 24/7, with automatic confirmations and reminders. No more answering the phone.',
-      heading: 'Online bookings that handle themselves',
+        'Online booking system for appointments: bookings received 24 hours a day, with automatic confirmations and reminders.',
+      heading: 'Online booking system',
       intro:
-        'Every phone call to schedule an appointment is time taken away from the person in the chair. A booking system takes appointments at any hour, confirms on its own and reminds on its own — and whoever books only ever sees the slots that are truly free.',
+        'The system receives bookings at any hour, confirms them and sends reminders automatically. Whoever books sees only the available slots.',
       includesHeading: "What's included",
       includes: [
-        'Your own booking page: service, professional and time — no accounts or downloads required.',
+        'A dedicated booking page: service, professional and time, with no accounts or downloads.',
         'Automatic confirmations and reminders by email.',
-        'A manageable diary: hours, services and team run from one dashboard.',
-        'No double bookings: the system guarantees the same slot is never sold twice.',
-        'Backed by Turnia, our own booking product running in production.',
+        'A manageable diary: hours, services and team are run from one dashboard.',
+        'Slot control: the same time is never booked twice.',
+        "Backed by Turnia, Nexora's booking platform, in production.",
       ],
       caseStudy: {
-        heading: 'A case: the barbershop that stopped answering the phone',
+        heading: 'Case: a barbershop with online booking',
         problem:
-          'A barbershop lost bookings every time the team was busy cutting: the phone rang, nobody answered, and that appointment went somewhere else.',
+          'A barbershop lost bookings when the team was busy with customers: calls went unanswered.',
         decision:
-          'We published its online booking page: customers pick barber, service and time from their phone, and the diary is managed from one simple dashboard.',
+          'Its online booking page was published: customers choose barber, service and time from their phone, and the diary is managed from a dashboard.',
         result:
-          'Bookings coming in 24/7 without interrupting the work, and a diary that fills itself — outside opening hours too.',
+          'Bookings 24 hours a day, with no interruption to the work, outside opening hours too.',
         demoLabel: 'See the barbershop booking demo',
         demoUrl: demoUrls.barbershop,
       },
       faqHeading: 'Frequently asked questions',
       faq: [
         {
-          question: 'Do my customers need to create an account?',
-          answer: 'No. They book with their name and phone, and get a confirmation email with everything they need to change or cancel their appointment.',
+          question: 'Do customers need to create an account?',
+          answer: 'No. They book with their name and phone, and receive a confirmation email with everything needed to change or cancel the appointment.',
         },
         {
-          question: 'Does it work for clinics, spas or gyms?',
-          answer: 'Yes. It fits any appointment-based operation: barbershops, medical offices, spas, academies and more.',
+          question: 'Is it suitable for clinics, spas or gyms?',
+          answer: 'Yes. It works for any appointment-based operation: barbershops, medical offices, spas, academies and others.',
         },
         {
-          question: 'What if two people want the same slot?',
-          answer: 'The system prevents it: the moment someone takes a slot, it stops being available to everyone else.',
+          question: 'What happens if two people request the same slot?',
+          answer: 'The system prevents it: once a slot is booked, it stops being available to everyone else at that same moment.',
         },
       ],
-      ctaHeading: 'Want your diary filling itself this month?',
-      ctaLabel: 'Quote my booking system',
-      whatsappPrefill: 'Hi Nexora, I want an online booking system.',
+      ctaHeading: 'Request the proposal for your booking system',
+      ctaLabel: 'Request a proposal',
+      whatsappPrefill: 'Hello Nexora, I am requesting information about an online booking system.',
     },
     {
       slug: 'qr-digital-menu',
       altSlug: 'menu-digital-qr',
       metaTitle: 'Digital QR menu for restaurants | Nexora',
       metaDescription:
-        'Digital menu with QR code: your menu online, always current, nothing to reprint. Change a dish or a price and it shows instantly.',
-      heading: 'Your menu, always current — nothing to reprint',
+        'Digital menu with QR code: the menu online, always current. Every change of dish or price is published instantly.',
+      heading: 'Digital menu with QR code',
       intro:
-        "Reprinting the menu over a price change is paying twice for the same mistake. With a digital QR menu the menu lives online: it's scanned from the table, loads fast, and any change is published instantly.",
+        'The menu is published online, opened from a QR code at the table, and any change is visible instantly.',
       includesHeading: "What's included",
       includes: [
-        'An online menu with your identity: categories, photos, prices and descriptions.',
+        "An online menu with the venue's identity: categories, photos, prices and descriptions.",
         'A QR code ready to print for tables, counter or packaging.',
-        'Instant updates: change a dish and it shows on the next scan.',
-        'Fast loading built for phones and for the signal inside a venue.',
+        'Immediate updates: every change shows on the next scan.',
+        'Fast loading, optimized for phones and for the signal inside a venue.',
       ],
       caseStudy: {
-        heading: 'A case: the restaurant that stopped reprinting',
+        heading: 'Case: a restaurant with a digital menu',
         problem:
-          'A restaurant adjusted prices and dishes every season, and every adjustment meant reprinting the full set of menus — with the cost and the waiting days that come with it.',
+          'A restaurant adjusted prices and dishes every season, and every adjustment meant reprinting all the menus.',
         decision:
-          'We moved the menu to a digital QR menu: one online source, manageable without technical skills, with the photos and ordering the venue already used.',
+          'The menu was moved to a digital QR menu: one online source, manageable without technical skills, with the photos and ordering the venue already used.',
         result:
-          'Changes published in minutes and zero reprints since: the menu at the table always matches the one in the kitchen.',
+          'Changes published in minutes and a menu that always matches the one in the kitchen.',
         demoLabel: 'See the QR menu demo',
         demoUrl: demoUrls.restaurant,
       },
       faqHeading: 'Frequently asked questions',
       faq: [
         {
-          question: 'Can I change prices and dishes myself?',
-          answer: 'Yes. The menu is managed from a simple panel; change what you need and it publishes instantly.',
+          question: 'Can the venue change prices and dishes?',
+          answer: 'Yes. The menu is managed from a panel; every change is published instantly.',
         },
         {
-          question: 'Does it work with poor signal inside the venue?',
-          answer: 'The menu is optimized to load fast even on slow connections — the typical case inside a venue.',
+          question: 'Does it work with limited signal inside the venue?',
+          answer: 'The menu is optimized to load quickly on slow connections as well.',
         },
         {
-          question: 'Does it also work for cafés or food trucks?',
-          answer: 'Yes. Any business with a menu or product catalog can use it — the QR goes wherever your customer is.',
+          question: 'Is it suitable for cafés or food trucks?',
+          answer: 'Yes. Any business with a menu or product catalog can use it.',
         },
       ],
-      ctaHeading: 'Shall we keep the menu always current?',
-      ctaLabel: 'Quote my digital menu',
-      whatsappPrefill: 'Hi Nexora, I want a digital QR menu.',
+      ctaHeading: 'Request the proposal for your digital menu',
+      ctaLabel: 'Request a proposal',
+      whatsappPrefill: 'Hello Nexora, I am requesting information about a digital QR menu.',
     },
     {
       slug: 'custom-software',
       altSlug: 'software-a-medida',
       metaTitle: 'Custom software: apps & systems | Nexora',
       metaDescription:
-        'Custom software development: systems, dashboards and applications built around your operation, with a defined scope and an exact delivery date.',
-      heading: 'The exact system your operation needs',
+        'Custom software development: systems, dashboards and applications built around the operation, with a defined scope and a delivery date.',
+      heading: 'Custom software: systems and applications',
       intro:
-        "When spreadsheets and generic tools fall short, the next step isn't adapting to someone else's software: it's building your own. We design and build systems, dashboards and applications around the way you already work.",
+        "Nexora designs and develops systems, dashboards and applications built around each client's operation and the way it works.",
       includesHeading: "What's included",
       includes: [
-        'Mapping the real process: we understand the operation before proposing screens.',
-        'A proposal with a detailed scope and an exact delivery date.',
-        'Development with visible progress and a review with you at every milestone.',
-        'Delivered working, with access and code in your name.',
-        'The experience of our own products — Turnia and Spektova — running in production.',
+        'Process mapping: the operation is analysed before any screen is defined.',
+        'A proposal with requirements, flows, scope and delivery date.',
+        'Development with visible progress and a review at every milestone.',
+        "Delivered working, with access and code in the client's name.",
+        "The backing of Turnia, Nexora's own product in production.",
       ],
       caseStudy: {
-        heading: "A case: the medical office's diary",
+        heading: 'Case: scheduling for a medical office',
         problem:
-          'A medical office coordinated appointments by phone and notebook: unfilled gaps, patients with no reminder, and a diary only one person knew how to read.',
+          'A medical office coordinated appointments by phone and notebook: unfilled slots, patients with no reminder, and a diary only one person could read.',
         decision:
-          "We built an online diary shaped around the office's flow: patients book on their own, the team sees the day at a glance, and reminders go out without anyone sending them.",
+          "An online diary was built around the office's flow: patients book online, the team sees the full day, and reminders are sent automatically.",
         result:
-          'Fewer no-shows, a diary the whole team can read, and a front desk that welcomes patients instead of chasing them.',
+          'Fewer no-shows and a diary the whole team can read.',
         demoLabel: 'See the medical office demo',
         demoUrl: demoUrls.clinic,
       },
       faqHeading: 'Frequently asked questions',
       faq: [
         {
-          question: 'How do you know how long it will take?',
-          answer: "First we understand the scope; then we write it into a proposal with an exact date. Without a defined scope we don't promise dates — which is why we keep them.",
+          question: 'How is the timeline determined?',
+          answer: 'The scope is defined first; it is then documented in a proposal with a delivery date.',
         },
         {
-          question: 'Can I start small?',
-          answer: 'Yes, and it is usually the right call: a first module that solves the most expensive pain, then grow from there with the system already in use.',
+          question: 'Is it possible to start with a reduced scope?',
+          answer: 'Yes. It is common to start with a first module and extend the system once it is in use.',
         },
         {
-          question: 'Does the code stay in my name?',
-          answer: 'Yes. Code, domain and access stay in your name — the project is yours, on paper too.',
+          question: "Does the code remain in the client's name?",
+          answer: "Yes. Code, domain and access remain in the client's name.",
         },
       ],
-      ctaHeading: 'Shall we talk about your operation?',
-      ctaLabel: 'Quote my system',
-      whatsappPrefill: 'Hi Nexora, I need a custom system.',
+      ctaHeading: 'Request the proposal for your system',
+      ctaLabel: 'Request a proposal',
+      whatsappPrefill: 'Hello Nexora, I am requesting information about a custom system.',
     },
   ],
 
   // ── Fase 12 · C3 · Thank-you page ─────────────────────────────────────────────
   thanks: {
     metaTitle: 'Thank you | Nexora',
-    heading: 'Thanks for reaching out!',
-    body:
-      'Your message is on its way via WhatsApp. We reply within 24 business hours — in the meantime, feel free to keep browsing our work.',
+    heading: 'Thank you for writing to us',
+    body: 'Your message was sent on WhatsApp. We reply within 24 business hours.',
     backLabel: 'Back to home',
   },
 
@@ -543,8 +540,8 @@ export const siteEn: SiteContent = {
 
   // ── Fase 12 · B1 · Custom 404 ─────────────────────────────────────────────────
   notFound: {
-    heading: "This page doesn't exist",
-    body: "The link may be mistyped or the page is gone. What is here: our work, our process and our contact — all on the home page.",
+    heading: 'This page does not exist',
+    body: 'The link may be mistyped or the page is no longer available. Services, projects and contact details are on the home page.',
     backLabel: 'Go to home',
   },
 };

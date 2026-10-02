@@ -66,7 +66,8 @@ export const demoUrls = {
 /**
  * Preview screenshots for the `works[]` cards (960×540 webp under
  * `public/works/`), captured from each live demo's hero at 1280×720. Keys
- * mirror `demoUrls` so a demo and its preview always travel together.
+ * mirror `demoUrls` so a demo and its preview always travel together. `turnia`
+ * is the same kind of capture, taken from the live product's home page.
  */
 export const demoPreviews = {
   barbershop: `${BASE}/works/bravo-barber.webp`,
@@ -74,6 +75,7 @@ export const demoPreviews = {
   clinic: `${BASE}/works/dental-aurora.webp`,
   event: `${BASE}/works/andrea-y-mateo.webp`,
   corporate: `${BASE}/works/vertice.webp`,
+  turnia: `${BASE}/works/turnia.webp`,
 } as const;
 
 /**

@@ -11,6 +11,8 @@
  * @prop tone - 'light' (default) or 'dark' background context.
  * @prop as - heading element level (default 'h2'; use 'h1' only once per page).
  * @prop align - text alignment (default 'left').
+ * @prop compact - keeps the heading at its small size on every breakpoint, for
+ *   sections that sit beside their content instead of above it.
  */
 import type { SectionHeader } from '../../content/types';
 
@@ -19,21 +21,29 @@ interface Props {
   tone?: 'light' | 'dark';
   as?: 'h1' | 'h2';
   align?: 'left' | 'center';
+  compact?: boolean;
 }
 
-const { header, tone = 'light', as: Heading = 'h2', align = 'left' } = Astro.props;
+const {
+  header,
+  tone = 'light',
+  as: Heading = 'h2',
+  align = 'left',
+  compact = false,
+} = Astro.props;
 
-const eyebrowColor = tone === 'dark' ? 'text-cyan' : 'text-blue';
+const eyebrowColor = tone === 'dark' ? 'text-blue-400' : 'text-blue-800';
 const headingColor = tone === 'dark' ? 'text-text-on-dark' : 'text-text-primary';
 const subColor = tone === 'dark' ? 'text-text-muted-dark' : 'text-text-muted';
 const alignClass = align === 'center' ? 'items-center text-center' : 'items-start';
+const headingSize = compact ? 'text-h2' : 'text-h2 md:text-h2-lg';
 ---
 
 <div class:list={['flex flex-col gap-3', alignClass]}>
-  <p class:list={['text-caption font-semibold uppercase tracking-widest', eyebrowColor]}>
+  <p class:list={['text-small font-semibold', eyebrowColor]}>
     {header.eyebrow}
   </p>
-  <Heading class:list={['font-display text-h2', headingColor]}>{header.heading}</Heading>
+  <Heading class:list={['font-display', headingSize, headingColor]}>{header.heading}</Heading>
   {
     header.subheading && (
       <p class:list={['max-w-prose text-body-lg', subColor]}>{header.subheading}</p>

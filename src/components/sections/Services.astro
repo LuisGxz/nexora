@@ -1,11 +1,12 @@
 ---
 /**
- * Services (section 02) — what Nexora builds, one card per pain.
+ * Services (section 02) — what Nexora develops, one card per service.
  *
- * What: the section header plus a responsive grid of service cards, each an
- * icon chip + title + the outcome it delivers — all from `services[]`. Why
- * benefit-first copy: it states what the client gets, not what they lack, and
- * reads the same for an individual or a company. NO prices.
+ * What: the section header plus a responsive grid of service cards (title +
+ * what the service is, from `services[]`), closed by a call-to-action card for
+ * anything that is not on the list. Why descriptive copy: it states what is
+ * delivered, with no comparison and no assumption about the reader, so it reads
+ * the same for an individual or a company. NO prices.
  *
  * @prop content - active locale content tree.
  */
@@ -21,7 +22,7 @@ interface Props {
 }
 
 const { content, locale = 'es' } = Astro.props;
-const { services, sections } = content;
+const { services, servicesCta, sections } = content;
 
 /** El href de la página propia de un servicio, en el árbol del idioma activo. */
 const serviceHref = (slug: string) =>
@@ -29,16 +30,13 @@ const serviceHref = (slug: string) =>
 ---
 
 <section id="servicios" class="bg-background">
-  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-9 md:px-6">
+  <div class="mx-auto flex max-w-6xl flex-col gap-7 px-4 py-8 md:px-6 lg:py-9">
     <SectionEyebrow header={sections.services} />
 
-    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
         services.map((service) => (
-          <li class="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow duration-base ease-standard hover:shadow-md">
-            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue">
-              <Icon name={service.icon} class="h-6 w-6" />
-            </span>
+          <li class="flex flex-col gap-3 rounded-lg border border-border bg-surface p-5">
             <h3 class="font-display text-h4 text-text-primary">{service.title}</h3>
             <p class="text-small text-text-muted">{service.benefit}</p>
             {/* A5 · La tarjeta enlaza su página propia cuando existe: el camino interno que le
@@ -46,7 +44,7 @@ const serviceHref = (slug: string) =>
             {service.pageSlug && (
               <a
                 href={serviceHref(service.pageSlug)}
-                class="mt-auto inline-flex items-center gap-1 text-small font-semibold text-blue transition-colors duration-base ease-standard hover:text-blue-700"
+                class="mt-auto inline-flex min-h-[2.75rem] items-center gap-1 text-small font-semibold text-blue-700 transition-colors duration-base ease-standard hover:text-blue-800"
               >
                 {content.ui.viewService}
                 <Icon name="ui-arrow" class="h-4 w-4" />
@@ -55,6 +53,18 @@ const serviceHref = (slug: string) =>
           </li>
         ))
       }
+      <li class="flex">
+        <a
+          href="#contacto"
+          class="flex min-h-[10rem] w-full flex-col justify-between gap-5 rounded-lg bg-blue-700 p-5 text-white transition-colors duration-base ease-standard hover:bg-blue-800"
+        >
+          <span class="font-display text-h4">{servicesCta.heading}</span>
+          <span class="inline-flex items-center gap-1 text-small font-semibold">
+            {servicesCta.label}
+            <Icon name="ui-arrow" class="h-4 w-4" />
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
 </section>

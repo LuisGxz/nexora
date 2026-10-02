@@ -1,11 +1,13 @@
 /**
  * QuoteForm — the contact quote-request island.
  *
- * What: three fields (name / business type / need) that, on submit, compose a
- * prefilled WhatsApp message from `prefillTemplate` and open the `wa.me` chat.
- * Why an island with NO backend: the spec forbids servers/storage — the form
- * never POSTs; it only builds a deep-link from the typed values and hands the
- * lead off to WhatsApp already qualified. Hydrates `client:visible`.
+ * What: three fields (name / activity or company / requirement) that, on submit,
+ * compose a prefilled WhatsApp message from `prefillTemplate` and open the
+ * `wa.me` chat. Why an island with NO backend: the spec forbids servers/storage —
+ * the form never POSTs; it only builds a deep-link from the typed values and
+ * hands the lead off to WhatsApp already qualified. Hydrates `client:visible`.
+ *
+ * It renders on a light card, so labels use the primary text color.
  *
  * A11y: native <form> submit (Enter works), every input has a bound <label>,
  * required fields use the constraint API so empty submits are blocked natively.
@@ -37,7 +39,8 @@ export default function QuoteForm({ labels, template, number }: QuoteFormProps) 
 
 
   const fieldClass =
-    'rounded-lg border border-border bg-surface px-4 py-3 text-body text-text-primary placeholder:text-text-muted focus-visible:border-blue';
+    'min-h-[3rem] rounded-lg border border-border-strong bg-surface px-4 py-3 text-body text-text-primary placeholder:text-text-muted focus-visible:border-blue-700';
+  const labelClass = 'text-small font-semibold text-text-primary';
 
   return (
     <form
@@ -55,7 +58,7 @@ export default function QuoteForm({ labels, template, number }: QuoteFormProps) 
       className="flex flex-col gap-4"
     >
       <div className="flex flex-col gap-2">
-        <label htmlFor="qf-name" className="text-small font-semibold text-text-on-dark">
+        <label htmlFor="qf-name" className={labelClass}>
           {labels.nameLabel}
         </label>
         <input
@@ -71,7 +74,7 @@ export default function QuoteForm({ labels, template, number }: QuoteFormProps) 
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="qf-business" className="text-small font-semibold text-text-on-dark">
+        <label htmlFor="qf-business" className={labelClass}>
           {labels.businessTypeLabel}
         </label>
         <input
@@ -86,7 +89,7 @@ export default function QuoteForm({ labels, template, number }: QuoteFormProps) 
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="qf-need" className="text-small font-semibold text-text-on-dark">
+        <label htmlFor="qf-need" className={labelClass}>
           {labels.needLabel}
         </label>
         <textarea
@@ -103,7 +106,7 @@ export default function QuoteForm({ labels, template, number }: QuoteFormProps) 
 
       <button
         type="submit"
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-whatsapp px-5 py-3 text-body font-semibold text-navy-900 transition-colors hover:brightness-95"
+        className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 text-body font-semibold text-white transition-colors duration-base ease-standard hover:bg-blue-800"
       >
         {labels.submitLabel}
       </button>
