@@ -400,6 +400,29 @@ rojo — el checklist dice que una landing sin cuentas no los necesita, así que
 sitio; (5) la petición de GA4 no se pudo confirmar desde esta máquina (su DNS no resuelve
 `googletagmanager.com`): la etiqueta está en el HTML, falta verla llegar desde otro equipo.
 
+## Fase 14: Identidad de las demos + demo de arquitectura ⬜
+
+**Estado al 2026-10-01: construida en la rama `demos/identidad`, sin pasar a `main`** (en Nexora el
+push a `main` despliega). Pedido del dueño en `docs/nexora-demos/request.txt`.
+
+- **Bravo Barber** reescrita entera con identidad «street»: negro + amarillo ácido, Anton + Archivo,
+  cinta, stickers, marquesina, tablero de precios, galería en mosaico; el flujo de reserva de 4 pasos
+  se conserva tal cual.
+- **Las cinco demos**: botón flotante y botones de WhatsApp con el icono oficial (símbolo SVG
+  `#wa-icon`), y copy sin comparaciones ni negaciones («Tu empresa creció, tus procesos todavía no»,
+  «sin letra pequeña», «cero apuro», «no un junior»…). La Sazón suma sello «desde 2016» y papel
+  rayado en el menú.
+- **Nueva: `public/demos/chum-inmobiliaria/`** — propuesta real para Chum Inmobiliaria (datos de
+  contacto, servicios y tagline tomados de chuminmobiliaria.com; sus fotos en `img/`). Hero con visor
+  3D procedural en Three.js r128 (girar, explotar niveles, planta, noche, enfoque por piso),
+  comparador plano/obra, galería filtrable con imágenes de referencia marcadas, formulario a
+  WhatsApp/correo. `noindex` y **fuera de `works[]`** hasta que el amigo la apruebe.
+- Vistas previas de `public/works/*.webp` regeneradas. Revisado en 1440 y 390 sobre `file://` con
+  Playwright: sin desbordes ni errores de consola.
+
+**Pendiente**: visto bueno del dueño sobre la vista previa; renders reales de Chum para reemplazar
+las imágenes de referencia; decidir si la demo de arquitectura entra en «Proyectos» de la landing.
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.

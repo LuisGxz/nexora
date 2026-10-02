@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Chum Inmobiliaria — Arquitectura, topografía, trámites municipales, construcción, bienes raíces y avalúos en Guayaquil. Un sueño cumplido en cada plano.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#121413">
+<title>Chum Inmobiliaria — Arquitectura y construcción en Guayaquil</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect fill='%23121413' width='48' height='48'/><path d='M8 40V22h5v18zm7 0V16h5v24zm7 0V10h6v30zm8 0V18h5l5 6v16z' fill='%23B99A5B'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #121413;
+  --ink-2: #1C1F1E;
+  --charcoal: #2B2F2E;
+  --stone: #ECE8E1;
+  --stone-2: #F6F4F0;
+  --white: #FFFFFF;
+  --mist: #D8D3C9;
+  --gray: #6F7572;
+  --gold: #B99A5B;
+  --gold-2: #D4B978;
+  --gold-ink: #7A6232;
+  --wa: #25D366;
+  --wa-ink: #06220F;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', system-ui, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--stone-2); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+input, button, select, textarea { font: inherit; }
+button { cursor: pointer; border: none; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--gold); color: var(--white); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@keyframes chFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes chSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ========== PRIMITIVES ========== */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 48px); }
+.serif { font-family: var(--serif); font-weight: 500; line-height: 1.02; letter-spacing: -0.01em; }
+.eyebrow { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 16px; }
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+.eyebrow.center { justify-content: center; }
+.eyebrow.center::before { display: none; }
+.eyebrow.light { color: var(--gold-2); }
+h2.serif { font-size: clamp(38px, 5.4vw, 66px); margin: 0 0 16px; }
+.lede { color: var(--gray); font-size: clamp(15px, 1.4vw, 17.5px); line-height: 1.7; max-width: 58ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; font-weight: 600; font-size: 14.5px; letter-spacing: 0.02em; border: 1px solid var(--ink); color: var(--ink); background: transparent; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+.btn:hover { background: var(--ink); color: var(--white); }
+.btn.solid { background: var(--ink); color: var(--white); }
+.btn.solid:hover { background: var(--charcoal); border-color: var(--charcoal); }
+.btn.gold { background: var(--gold); color: var(--white); border-color: var(--gold); }
+.btn.gold:hover { background: var(--gold-ink); border-color: var(--gold-ink); }
+.btn.light { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.btn.light:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
+.btn.wa { background: var(--wa); color: var(--wa-ink); border-color: var(--wa); }
+.btn.wa:hover { background: #1fb85a; border-color: #1fb85a; color: var(--wa-ink); }
+.btn.sm { min-height: 44px; padding: 0 18px; font-size: 13.5px; }
+.btn .ico { width: 20px; height: 20px; flex: none; }
+.section { position: relative; }
+.section .wrap { padding-top: clamp(64px, 9vw, 120px); padding-bottom: clamp(64px, 9vw, 120px); }
+.rule { height: 1px; background: var(--mist); }
+.dark { background: var(--ink); color: var(--stone-2); }
+.dark .lede { color: #B4B9B5; }
+.dark .rule { background: rgba(255,255,255,0.12); }
+
+/* ========== NAV ========== */
+nav { position: sticky; top: 0; z-index: 50; background: rgba(18, 20, 19, 0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--stone-2); }
+.nav-row { max-width: 1240px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 48px); height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 12px; flex: none; }
+.logo-mark { width: 38px; height: 38px; flex: none; }
+.logo-text { display: flex; flex-direction: column; line-height: 1; }
+.logo-text b { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: 0.14em; }
+.logo-text small { font-size: 8.5px; font-weight: 600; letter-spacing: 0.3em; color: var(--gold-2); margin-top: 3px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: #C9CDC9; transition: color 0.15s ease; }
+.nav-links a:hover { color: var(--gold-2); }
+@media (max-width: 960px) { .nav-links { display: none; } }
+
+/* ========== HERO + VIEWER ========== */
+#inicio { background: var(--ink); color: var(--stone-2); position: relative; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); min-height: calc(100vh - 72px); }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; min-height: 0; } }
+.hero-copy { padding: clamp(44px, 6vw, 88px) clamp(18px, 4vw, 48px) clamp(40px, 5vw, 72px) clamp(18px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+@media (min-width: 961px) { .hero-copy { padding-left: max(clamp(18px, 4vw, 48px), calc((100vw - 1240px) / 2 + 48px)); } }
+h1.serif { font-size: clamp(48px, 6.4vw, 92px); margin: 0 0 22px; color: var(--white); }
+h1 em { font-style: italic; color: var(--gold-2); }
+.hero-sub { color: #B4B9B5; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.7; max-width: 50ch; margin: 0 0 30px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 40px; }
+.hero-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; border-top: 1px solid rgba(255,255,255,0.14); padding-top: 22px; }
+.fact b { display: block; font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 500; line-height: 1; color: var(--white); }
+.fact span { display: block; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #8F9592; margin-top: 8px; }
+
+.viewer { position: relative; min-height: 520px; background: radial-gradient(900px 600px at 60% 40%, #2E3331 0%, #121413 70%); border-left: 1px solid rgba(255,255,255,0.08); }
+@media (max-width: 960px) { .viewer { min-height: 460px; border-left: none; border-top: 1px solid rgba(255,255,255,0.08); } }
+.viewer.night { background: radial-gradient(900px 600px at 60% 40%, #141A26 0%, #070A10 70%); }
+.viewer canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; touch-action: none; cursor: grab; }
+.viewer canvas:active { cursor: grabbing; }
+.viewer-tag { position: absolute; top: 18px; left: 18px; z-index: 3; display: flex; flex-direction: column; gap: 6px; }
+.tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; background: rgba(18, 20, 19, 0.72); border: 1px solid rgba(255,255,255,0.14); font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-2); backdrop-filter: blur(6px); }
+.tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold-2); }
+.viewer-hint { position: absolute; top: 18px; right: 18px; z-index: 3; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8F9592; }
+.dock { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 3; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.dock-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; background: rgba(18, 20, 19, 0.78); border: 1px solid rgba(255,255,255,0.18); color: var(--stone-2); font-size: 12.5px; font-weight: 600; backdrop-filter: blur(6px); transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+.chip:hover { border-color: var(--gold-2); }
+.chip.on { background: var(--gold); border-color: var(--gold); color: var(--white); }
+.chip .ico { width: 16px; height: 16px; }
+.floors { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); z-index: 3; display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 960px) { .floors { display: none; } .viewer-hint { display: none; } }
+.floor-btn { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 150px; padding: 10px 12px; background: rgba(18, 20, 19, 0.72); border: 1px solid rgba(255,255,255,0.14); color: var(--stone-2); text-align: left; backdrop-filter: blur(6px); transition: border-color 0.15s ease, background 0.15s ease; }
+.floor-btn:hover { border-color: var(--gold-2); }
+.floor-btn.on { border-color: var(--gold); background: rgba(185, 154, 91, 0.22); }
+.floor-btn b { font-family: var(--serif); font-size: 18px; font-weight: 600; }
+.floor-btn span { font-size: 11px; color: #B4B9B5; }
+.viewer-loading { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #B4B9B5; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ink); }
+.viewer-loading .spin { width: 26px; height: 26px; border: 2px solid rgba(255,255,255,0.15); border-top-color: var(--gold-2); border-radius: 50%; animation: chSpin 0.8s linear infinite; }
+.viewer-loading.off { display: none; }
+.viewer-note { position: absolute; left: 18px; bottom: 76px; z-index: 3; font-size: 11px; color: #8F9592; max-width: 36ch; line-height: 1.5; }
+@media (max-width: 960px) { .viewer-note { display: none; } }
+
+/* ========== RIBBON ========== */
+.ribbon { background: var(--gold); color: var(--white); overflow: hidden; }
+.ribbon-track { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 36px; padding: 14px clamp(18px, 4vw, 48px); font-family: var(--serif); font-size: 19px; font-style: italic; }
+.ribbon-track span::before { content: "◆"; font-size: 8px; vertical-align: middle; margin-right: 36px; color: rgba(255,255,255,0.7); font-style: normal; }
+.ribbon-track span:first-child::before { display: none; }
+
+/* ========== SERVICIOS ========== */
+.services-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin: 0 0 44px; }
+@media (max-width: 860px) { .services-head { grid-template-columns: 1fr; } }
+.services-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 1000px) { .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+.svc { background: var(--white); border: 1px solid var(--mist); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.svc:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -24px rgba(18, 20, 19, 0.35); }
+.svc-img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--stone); }
+.svc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.svc:hover .svc-img img { transform: scale(1.04); }
+.svc-num { position: absolute; top: 14px; left: 14px; font-family: var(--serif); font-size: 15px; font-weight: 600; letter-spacing: 0.1em; color: var(--white); background: rgba(18, 20, 19, 0.7); padding: 5px 10px; }
+.svc-body { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.svc-title { font-family: var(--serif); font-size: 28px; font-weight: 600; line-height: 1; }
+.svc-list { list-style: none; display: grid; gap: 7px; color: var(--gray); font-size: 14px; line-height: 1.5; }
+.svc-list li { display: flex; gap: 10px; align-items: baseline; }
+.svc-list li::before { content: ""; width: 5px; height: 5px; background: var(--gold); flex: none; transform: translateY(-2px); }
+.svc-cta { margin-top: auto; padding-top: 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-ink); }
+.svc-cta:hover { text-decoration: underline; }
+
+/* ========== PROYECTOS ========== */
+#proyectos { background: var(--stone); }
+.proj-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin: 0 0 30px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter { min-height: 42px; padding: 0 16px; border: 1px solid var(--ink); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; transition: background 0.15s ease, color 0.15s ease; }
+.filter.on, .filter:hover { background: var(--ink); color: var(--white); }
+.proj-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 220px; gap: 14px; }
+.proj { position: relative; overflow: hidden; background: var(--charcoal); grid-column: span 4; animation: chFade 0.35s ease; }
+.proj.wide { grid-column: span 8; }
+.proj.tall { grid-row: span 2; }
+@media (max-width: 1000px) { .proj, .proj.wide { grid-column: span 6; } }
+@media (max-width: 640px) { .proj-grid { grid-auto-rows: 200px; } .proj, .proj.wide { grid-column: span 12; } .proj.tall { grid-row: span 1; } }
+.proj img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.proj:hover img { transform: scale(1.05); }
+.proj-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px; background: linear-gradient(0deg, rgba(18, 20, 19, 0.85), transparent); color: var(--white); display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.proj-cap b { display: block; font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1; }
+.proj-cap span { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-2); margin-top: 6px; }
+.proj-cap .where { font-size: 11px; color: #C9CDC9; text-align: right; white-space: nowrap; }
+.proj-note { margin-top: 18px; display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--gray); }
+.proj-note::before { content: ""; width: 10px; height: 10px; border: 1px dashed var(--gold-ink); }
+
+/* ========== COMPARADOR ========== */
+.compare-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+@media (max-width: 900px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--charcoal); border: 1px solid rgba(255,255,255,0.1); user-select: none; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare .after { clip-path: inset(0 0 0 50%); }
+.compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--gold-2); transform: translateX(-1px); pointer-events: none; }
+.compare-handle::after { content: "◂ ▸"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%; background: var(--gold); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+.compare input[type="range"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.compare-label { position: absolute; top: 14px; padding: 6px 10px; background: rgba(18, 20, 19, 0.7); color: var(--white); font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; pointer-events: none; }
+.compare-label.l { left: 14px; }
+.compare-label.r { right: 14px; }
+.steps { list-style: none; display: grid; gap: 0; counter-reset: step; margin-top: 28px; }
+.steps li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.12); }
+.steps li:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+.steps li::before { counter-increment: step; content: "0" counter(step); font-family: var(--serif); font-size: 34px; font-weight: 500; color: var(--gold-2); line-height: 1; }
+.steps b { display: block; font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1.05; margin-bottom: 4px; }
+.steps span { color: #B4B9B5; font-size: 14px; line-height: 1.6; }
+
+/* ========== NOSOTROS ========== */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+.about-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--stone); }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo::after { content: ""; position: absolute; inset: 18px; border: 1px solid rgba(255,255,255,0.65); pointer-events: none; }
+.quote { font-family: var(--serif); font-size: clamp(26px, 3vw, 38px); font-weight: 500; font-style: italic; line-height: 1.2; color: var(--ink); margin: 0 0 22px; }
+.about p { color: var(--gray); font-size: 15.5px; line-height: 1.75; margin: 0 0 14px; }
+.values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+@media (max-width: 640px) { .values { grid-template-columns: 1fr; } }
+.value { border-top: 2px solid var(--gold); padding-top: 12px; }
+.value b { display: block; font-family: var(--serif); font-size: 22px; font-weight: 600; }
+.value span { font-size: 13px; color: var(--gray); line-height: 1.5; display: block; margin-top: 4px; }
+
+/* ========== CONTACTO ========== */
+#contacto { background: var(--ink); color: var(--stone-2); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 64px); align-items: start; }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-rows { display: grid; gap: 16px; margin: 26px 0; }
+.crow { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 14px; align-items: baseline; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; }
+.crow span { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8F9592; }
+.crow b { font-weight: 500; font-size: 15.5px; line-height: 1.55; color: var(--stone-2); }
+.crow a:hover { color: var(--gold-2); }
+.contact-ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+.form-card { background: var(--white); color: var(--ink); padding: clamp(22px, 3vw, 34px); }
+.form-grid { display: grid; gap: 14px; }
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.label { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin: 0 0 6px; }
+.input { width: 100%; border: 1px solid var(--mist); background: var(--white); padding: 13px 14px; font-size: 15px; color: var(--ink); outline: none; transition: border-color 0.15s ease; }
+.input:focus { border-color: var(--gold); }
+.input.error { border-color: #B23A2E; }
+textarea.input { min-height: 110px; resize: vertical; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { min-height: 40px; padding: 0 14px; border: 1px solid var(--mist); font-size: 13px; font-weight: 600; color: var(--gray); transition: all 0.15s ease; }
+.pill:hover { border-color: var(--gold); color: var(--ink); }
+.pill.on { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.ferr { font-size: 12.5px; font-weight: 600; color: #B23A2E; margin: -6px 0 0; }
+.fnote { text-align: center; font-size: 12.5px; color: var(--gray); }
+.fstate { display: none; }
+.fstate.on { display: block; animation: chFade 0.3s ease; }
+.success { text-align: center; padding: 10px 0; }
+.success .check { width: 60px; height: 60px; border-radius: 50%; background: rgba(185, 154, 91, 0.16); color: var(--gold-ink); display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 4px auto 16px; }
+.success h3 { font-family: var(--serif); font-size: 32px; font-weight: 600; margin: 0 0 8px; }
+.success p { color: var(--gray); font-size: 14.5px; line-height: 1.6; margin: 0 auto 16px; max-width: 44ch; }
+.preview { background: var(--stone-2); border: 1px dashed var(--mist); padding: 14px 16px; margin: 0 0 16px; text-align: left; font-size: 13px; line-height: 1.8; color: var(--charcoal); white-space: pre-wrap; }
+.success-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.map { position: relative; margin-top: 24px; min-height: 220px; border: 1px solid rgba(255,255,255,0.12); display: block; overflow: hidden; background: linear-gradient(0deg, transparent 0 46%, rgba(255,255,255,0.08) 46% 49%, transparent 49%), linear-gradient(90deg, transparent 0 34%, rgba(255,255,255,0.07) 34% 36.4%, transparent 36.4%), linear-gradient(58deg, transparent 0 58%, rgba(185, 154, 91, 0.3) 58% 60%, transparent 60%), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 34px), var(--ink-2); }
+.map-pin { position: absolute; top: 46%; left: 35%; width: 16px; height: 16px; border-radius: 50%; background: var(--gold-2); border: 3px solid var(--ink); box-shadow: 0 0 0 10px rgba(185, 154, 91, 0.2); }
+.map-label { position: absolute; top: calc(46% + 26px); left: 35%; transform: translateX(-40%); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--gold-2); padding: 5px 10px; white-space: nowrap; }
+.map-cta { position: absolute; right: 14px; bottom: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-2); }
+
+/* ========== FOOTER ========== */
+footer { background: var(--ink); color: #B4B9B5; border-top: 1px solid rgba(255,255,255,0.1); }
+.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: clamp(24px, 4vw, 48px); padding: clamp(40px, 6vw, 64px) 0 32px; }
+@media (max-width: 860px) { .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; color: var(--stone-2); }
+.footer-tagline { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--gold-2); margin: 0 0 8px; }
+.footer-col-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); margin: 0 0 12px; }
+.footer-col a, .footer-col p { display: block; font-size: 14px; line-height: 2; color: #B4B9B5; }
+.footer-col a:hover { color: var(--white); }
+.footer-legal { border-top: 1px solid rgba(255,255,255,0.1); padding: 18px 0 28px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; font-size: 12px; color: #8F9592; }
+.footer-legal a { color: var(--gold-2); }
+
+/* ========== FLOATING WHATSAPP ========== */
+.float-wa { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); color: var(--wa-ink); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 28px rgba(0,0,0,0.4); transition: transform 0.15s ease; }
+.float-wa:hover { transform: scale(1.07); }
+.float-wa svg { width: 32px; height: 32px; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-row">
+    <a href="#inicio" class="logo" aria-label="Chum Inmobiliaria — inicio">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#ch-mark"/></svg>
+      <span class="logo-text"><b>CHUM</b><small>INMOBILIARIA</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="btn gold sm">Solicitar cotización</a>
+  </div>
+</nav>
+
+<!-- ============ HERO + VISOR 3D ============ -->
+<section id="inicio">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow light">Arquitectura · Construcción · Bienes raíces</div>
+      <h1 class="serif">Un sueño cumplido<br><em>en cada plano.</em></h1>
+      <p class="hero-sub">Diseñamos, levantamos, tramitamos y construimos en Guayaquil. Desde el terreno hasta la escritura, con un solo equipo responsable de cada etapa.</p>
+      <div class="hero-ctas">
+        <a id="heroWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Escríbanos por WhatsApp</a>
+        <a href="#proyectos" class="btn light">Ver proyectos</a>
+      </div>
+      <div class="hero-facts">
+        <div class="fact"><b>6</b><span>Áreas de servicio</span></div>
+        <div class="fact"><b>BIM</b><span>Modelado 3D en cada diseño</span></div>
+        <div class="fact"><b>GYE</b><span>Guayaquil y la costa</span></div>
+      </div>
+    </div>
+
+    <div class="viewer" id="viewer">
+      <div class="viewer-loading" id="viewerLoading"><span class="spin"></span>Cargando modelo 3D</div>
+      <div class="viewer-tag">
+        <span class="tag"><span class="dot"></span>Modelo interactivo</span>
+        <span class="tag">Residencia tipo · 2 plantas + terraza</span>
+      </div>
+      <div class="viewer-hint" id="viewerHint">Arrastre para girar · rueda para acercar</div>
+      <div class="floors" id="floorsPanel"></div>
+      <p class="viewer-note">Modelo de muestra. En esta vista se cargan los proyectos del estudio en 3D (formato GLB/OBJ) o sus recorridos virtuales.</p>
+      <div class="dock">
+        <div class="dock-group">
+          <button class="chip on" id="chipRotate" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>Girar</button>
+          <button class="chip" id="chipExplode" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Niveles</button>
+          <button class="chip" id="chipPlan" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><path d="M4 12h8V4M12 12v8"/></svg>Planta</button>
+          <button class="chip" id="chipNight" type="button"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Noche</button>
+        </div>
+        <button class="chip" id="chipReset" type="button">Reiniciar vista</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <span>Arquitectura</span><span>Topografía</span><span>Trámites municipales</span><span>Construcción</span><span>Bienes raíces</span><span>Avalúos</span>
+  </div>
+</div>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios" class="section">
+  <div class="wrap">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow">Servicios</div>
+        <h2 class="serif">Un solo equipo,<br>de principio a fin</h2>
+      </div>
+      <p class="lede">Seis áreas que se complementan: el levantamiento alimenta el diseño, el diseño define los permisos y los permisos habilitan la obra. Cada etapa queda documentada y a nombre del cliente.</p>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ PROYECTOS ============ -->
+<section id="proyectos" class="section">
+  <div class="wrap">
+    <div class="proj-head">
+      <div>
+        <div class="eyebrow">Proyectos</div>
+        <h2 class="serif" style="margin: 0;">Obras y diseños</h2>
+      </div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="proj-grid" id="projGrid"></div>
+    <p class="proj-note">Imágenes de referencia. Este espacio se completa con los renders y fotografías de obra del estudio.</p>
+  </div>
+</section>
+
+<!-- ============ DEL PLANO A LA OBRA ============ -->
+<section id="proceso" class="section dark">
+  <div class="wrap">
+    <div class="compare-grid">
+      <div>
+        <div class="eyebrow light">Proceso</div>
+        <h2 class="serif">Del plano<br>a la obra</h2>
+        <p class="lede">Deslice el comparador para ver cómo un proyecto pasa del diseño a la construcción terminada. Así se documenta cada avance al cliente.</p>
+        <ol class="steps">
+          <li><div><b>Consulta y visita al terreno</b><span>Levantamiento de necesidades, presupuesto estimado y revisión de la normativa aplicable.</span></div></li>
+          <li><div><b>Topografía y diseño</b><span>Levantamiento georreferenciado, anteproyecto en 3D y planos definitivos.</span></div></li>
+          <li><div><b>Permisos municipales</b><span>Legalización, permisos de construcción y trámites ante el municipio.</span></div></li>
+          <li><div><b>Construcción</b><span>Dirección técnica, cronograma y reportes de avance con fotografías.</span></div></li>
+          <li><div><b>Entrega y escrituras</b><span>Obra terminada, planos finales y acompañamiento legal en la escrituración.</span></div></li>
+        </ol>
+      </div>
+      <div class="compare" id="compare">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80" alt="Planos arquitectónicos" crossorigin="anonymous">
+        <img class="after" id="compareAfter" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80" alt="Residencia terminada" crossorigin="anonymous">
+        <div class="compare-handle" id="compareHandle"></div>
+        <span class="compare-label l">Plano</span>
+        <span class="compare-label r">Obra</span>
+        <input type="range" id="compareRange" min="0" max="100" value="50" aria-label="Comparar plano y obra terminada">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section id="nosotros" class="section">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=1000&q=80" alt="Detalle de fachada" crossorigin="anonymous" loading="lazy">
+      </div>
+      <div class="about">
+        <div class="eyebrow">Nosotros</div>
+        <p class="quote">“Construyendo tu legado.”</p>
+        <p>Chum Inmobiliaria comenzó como una oficina que ofrecía soluciones de diseño y construcción en viviendas de interés social. Hoy integra arquitectura, topografía, trámites, construcción, bienes raíces y avalúos bajo un mismo equipo.</p>
+        <p>Cada proyecto se diseña de forma personalizada, con el objetivo de que el cliente viva intensamente el tiempo presente en un espacio hecho a su medida.</p>
+        <div class="values">
+          <div class="value"><b>Diseño propio</b><span>Planos, modelado BIM y renders del propio estudio.</span></div>
+          <div class="value"><b>Respaldo legal</b><span>Permisos, legalización y asesoría en cada etapa.</span></div>
+          <div class="value"><b>Obra a cargo</b><span>Dirección técnica y equipo profesional en sitio.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto" class="section">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow light">Contacto</div>
+        <h2 class="serif">Solicite una<br>cotización</h2>
+        <p class="lede">Cuéntenos qué necesita y le respondemos con una propuesta. Atendemos por WhatsApp, correo y en nuestra oficina.</p>
+        <div class="contact-rows">
+          <div class="crow"><span>Oficina</span><b>Dr. Miguel Martínez Serrano #404<br>y Av. Dr. Adolfo Alvear Ordoñez, Guayaquil</b></div>
+          <div class="crow"><span>Teléfono</span><b><a href="tel:+59342204499">04 220 4499</a></b></div>
+          <div class="crow"><span>Celular</span><b><a href="tel:+593993817128">+593 99 381 7128</a><br><a href="tel:+593990877323">+593 99 087 7323</a></b></div>
+          <div class="crow"><span>Correo</span><b><a href="mailto:info@chuminmobiliaria.com">info@chuminmobiliaria.com</a></b></div>
+        </div>
+        <div class="contact-ctas">
+          <a id="contactWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>WhatsApp</a>
+          <a href="mailto:info@chuminmobiliaria.com" class="btn light">Correo electrónico</a>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Dr.+Miguel+Martinez+Serrano+404+Guayaquil" target="_blank" rel="noopener" class="map" aria-label="Abrir la oficina en Google Maps">
+          <span class="map-pin"></span>
+          <span class="map-label">Chum Inmobiliaria</span>
+          <span class="map-cta">Abrir en Google Maps ↗</span>
+        </a>
+      </div>
+
+      <div class="form-card">
+        <div id="fForm" class="fstate on">
+          <div class="form-grid">
+            <div class="form-row">
+              <label><span class="label">Nombre *</span><input id="fName" class="input" type="text" placeholder="Nombre y apellido" autocomplete="name"></label>
+              <label><span class="label">Teléfono</span><input id="fPhone" class="input" type="tel" placeholder="+593 9…" autocomplete="tel"></label>
+            </div>
+            <div id="eName" class="ferr" style="display:none;">Escriba su nombre para poder responderle.</div>
+            <div>
+              <span class="label">Servicio de interés *</span>
+              <div class="pills" id="pills"></div>
+            </div>
+            <label><span class="label">Describa su proyecto *</span><textarea id="fMsg" class="input" placeholder="Terreno, ubicación, metros, plazo o cualquier detalle que considere útil."></textarea></label>
+            <div id="eMsg" class="ferr" style="display:none;">Describa brevemente su proyecto.</div>
+            <button type="button" class="btn solid" id="fSubmit" style="width: 100%;">Enviar solicitud</button>
+            <p class="fnote">Al enviar, elige continuar por WhatsApp o por correo.</p>
+          </div>
+        </div>
+        <div id="fLoading" class="fstate"><div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:56px 0;color:var(--gray);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;"><span class="spin" style="width:26px;height:26px;border:2px solid var(--mist);border-top-color:var(--gold);border-radius:50%;animation:chSpin 0.8s linear infinite;"></span>Preparando su solicitud</div></div>
+        <div id="fSuccess" class="fstate">
+          <div class="success">
+            <div class="check">✓</div>
+            <h3>Solicitud lista, <span id="sName"></span>.</h3>
+            <p>Elija el canal por el que desea enviarla. Le respondemos en horario de oficina.</p>
+            <pre class="preview" id="sPreview"></pre>
+            <div class="success-actions">
+              <a id="sWa" href="#" target="_blank" rel="noopener" class="btn wa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Enviar por WhatsApp</a>
+              <a id="sMail" href="#" class="btn">Enviar por correo</a>
+              <button type="button" class="btn sm" id="fEdit" style="border:none;text-decoration:underline;">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#ch-mark"/></svg>
+          <span class="logo-text"><b>CHUM</b><small>INMOBILIARIA</small></span>
+        </div>
+        <p class="footer-tagline">Un sueño cumplido en cada plano.</p>
+        <p>Guayaquil, Ecuador.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Servicios</div>
+        <a href="#servicios">Arquitectura</a><a href="#servicios">Topografía</a><a href="#servicios">Trámites municipales</a><a href="#servicios">Construcción</a><a href="#servicios">Bienes raíces</a><a href="#servicios">Avalúos</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Contacto</div>
+        <a href="tel:+59342204499">04 220 4499</a><a href="tel:+593993817128">+593 99 381 7128</a><a href="mailto:info@chuminmobiliaria.com">info@chuminmobiliaria.com</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Redes</div>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© <span id="year">2026</span> Chum Inmobiliaria. Propuesta de rediseño con imágenes de referencia.</span>
+      <span>Diseño y desarrollo · <a href="../../" target="_blank" rel="noopener">Nexora</a></span>
+    </div>
+  </div>
+</footer>
+
+<a id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Escríbanos por WhatsApp" class="float-wa">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
+</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></symbol>
+  <symbol id="ch-mark" viewBox="0 0 48 48"><rect x="1" y="1" width="46" height="46" fill="none" stroke="#B99A5B" stroke-width="1.5"/><path d="M8 40V22h5v18zm7 0V16h5v24zm7 0V10h6v30zm8 0V18h5l5 6v16z" fill="#F6F4F0"/></symbol>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const CONFIG = {
+  whatsappNumber: '593993817128',
+  email: 'info@chuminmobiliaria.com',
+  waIntro: 'Hola Chum Inmobiliaria, solicito información sobre un proyecto.'
+};
+
+const SERVICES = [
+  { n: '01', title: 'Arquitectura', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80', alt: 'Residencia moderna de diseño', items: ['Diseño residencial, comercial e industrial', 'Modelado BIM y renders 3D', 'Proyectos sostenibles, paisajismo e interiores'] },
+  { n: '02', title: 'Topografía', img: 'img/topografia.webp', alt: 'Equipo de topografía en terreno', items: ['Levantamientos georreferenciados', 'Nivelación, lotizaciones y subdivisiones', 'Modelado 3D del terreno y diseño de urbanizaciones'] },
+  { n: '03', title: 'Trámites municipales', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80', alt: 'Planos y herramientas de dibujo', items: ['Legalización de terrenos', 'Permisos de construcción', 'Cambios de zonificación y división de propiedades'] },
+  { n: '04', title: 'Construcción', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80', alt: 'Obra en construcción', items: ['Proyectos inmobiliarios llave en mano', 'Dirección y gestión de obra', 'Equipo profesional en sitio'] },
+  { n: '05', title: 'Bienes raíces', img: 'img/bienes-raices.webp', alt: 'Edificios frente al mar en la costa ecuatoriana', items: ['Compra, venta y arriendo de propiedades', 'Análisis de mercado', 'Asesoría legal en la negociación'] },
+  { n: '06', title: 'Avalúos', img: 'img/avaluos.webp', alt: 'Edificio de oficinas en Guayaquil', items: ['Bienes inmuebles', 'Maquinaria y vehículos', 'Activos agrícolas e industriales'] }
+];
+
+const PROJECTS = [
+  { cat: 'Residencial', name: 'Casa Samborondón', where: 'Vía a Samborondón', img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1400&q=80', cls: 'wide' },
+  { cat: 'Residencial', name: 'Residencia Los Ceibos', where: 'Guayaquil', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80', cls: 'tall' },
+  { cat: 'Interiores', name: 'Departamento Puerto Santa Ana', where: 'Guayaquil', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80', cls: '' },
+  { cat: 'Comercial', name: 'Edificio corporativo', where: 'Kennedy Norte', img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1000&q=80', cls: '' },
+  { cat: 'Residencial', name: 'Villa Punta Blanca', where: 'Santa Elena', img: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1400&q=80', cls: 'wide' },
+  { cat: 'Urbanización', name: 'Conjunto Las Palmas', where: 'Daule', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80', cls: '' },
+  { cat: 'Interiores', name: 'Cocina y sala integradas', where: 'Guayaquil', img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=80', cls: '' },
+  { cat: 'Comercial', name: 'Local comercial', where: 'Urdesa', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80', cls: '' }
+];
+const CATS = ['Todos', 'Residencial', 'Comercial', 'Interiores', 'Urbanización'];
+const NEEDS = ['Arquitectura', 'Topografía', 'Trámites municipales', 'Construcción', 'Bienes raíces', 'Avalúos'];
+
+const state = { cat: 'Todos', need: 'Arquitectura' };
+
+/**
+ * Pinta las tarjetas de servicio desde SERVICES.
+ */
+function renderServices() {
+  document.getElementById('servicesGrid').innerHTML = SERVICES.map(s => `
+    <article class="svc">
+      <div class="svc-img"><img src="${s.img}" alt="${s.alt}" loading="lazy"${s.img.startsWith('http') ? ' crossorigin="anonymous"' : ''}><span class="svc-num">${s.n}</span></div>
+      <div class="svc-body">
+        <h3 class="svc-title">${s.title}</h3>
+        <ul class="svc-list">${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        <a href="#contacto" class="svc-cta" onclick="pickNeedByName('${s.title}')">Solicitar este servicio →</a>
+      </div>
+    </article>`).join('');
+}
+
+/**
+ * Pinta filtros y galería de proyectos según la categoría activa.
+ */
+function renderProjects() {
+  document.getElementById('filters').innerHTML = CATS.map(c => `<button type="button" class="filter ${state.cat === c ? 'on' : ''}" onclick="setCat('${c}')">${c}</button>`).join('');
+  const list = PROJECTS.filter(p => state.cat === 'Todos' || p.cat === state.cat);
+  document.getElementById('projGrid').innerHTML = list.map(p => `
+    <figure class="proj ${state.cat === 'Todos' ? p.cls : ''}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" crossorigin="anonymous">
+      <figcaption class="proj-cap"><div><b>${p.name}</b><span>${p.cat}</span></div><span class="where">${p.where}</span></figcaption>
+    </figure>`).join('');
+}
+function setCat(c) { state.cat = c; renderProjects(); }
+
+/**
+ * Pastillas de servicio del formulario.
+ */
+function renderPills() {
+  document.getElementById('pills').innerHTML = NEEDS.map(n => `<button type="button" class="pill ${state.need === n ? 'on' : ''}" onclick="pickNeed('${n}')">${n}</button>`).join('');
+}
+function pickNeed(n) { state.need = n; renderPills(); }
+function pickNeedByName(n) { if (NEEDS.includes(n)) pickNeed(n); }
+
+/**
+ * Validación y envío del formulario: compone el mensaje y ofrece WhatsApp o correo.
+ */
+function submitForm() {
+  const name = document.getElementById('fName');
+  const phone = document.getElementById('fPhone');
+  const msg = document.getElementById('fMsg');
+  let bad = false;
+  const eName = document.getElementById('eName');
+  const eMsg = document.getElementById('eMsg');
+  if (!name.value.trim()) { eName.style.display = 'block'; name.classList.add('error'); bad = true; } else { eName.style.display = 'none'; name.classList.remove('error'); }
+  if (!msg.value.trim()) { eMsg.style.display = 'block'; msg.classList.add('error'); bad = true; } else { eMsg.style.display = 'none'; msg.classList.remove('error'); }
+  if (bad) return;
+  show('fLoading');
+  setTimeout(() => {
+    const text = 'Hola Chum Inmobiliaria. Soy ' + name.value.trim() + '.\nServicio: ' + state.need + '\n' + msg.value.trim() + (phone.value.trim() ? '\nTeléfono: ' + phone.value.trim() : '');
+    document.getElementById('sName').textContent = name.value.trim().split(' ')[0];
+    document.getElementById('sPreview').textContent = text;
+    document.getElementById('sWa').href = 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(text);
+    document.getElementById('sMail').href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Solicitud — ' + state.need) + '&body=' + encodeURIComponent(text);
+    show('fSuccess');
+  }, 700);
+}
+function show(id) { ['fForm', 'fLoading', 'fSuccess'].forEach(x => document.getElementById(x).classList.toggle('on', x === id)); }
+
+/**
+ * Comparador plano / obra: el rango controla el recorte de la imagen "después".
+ */
+function initCompare() {
+  const range = document.getElementById('compareRange');
+  const after = document.getElementById('compareAfter');
+  const handle = document.getElementById('compareHandle');
+  const apply = () => { after.style.clipPath = 'inset(0 0 0 ' + range.value + '%)'; handle.style.left = range.value + '%'; };
+  range.addEventListener('input', apply);
+  apply();
+}
+
+/* ============ VISOR 3D ============ */
+const viewer3d = {
+  el: null, renderer: null, scene: null, camera: null,
+  house: null, floors: [], windows: [], ground: null, grid: null,
+  amb: null, sun: null, lamp: null,
+  theta: 0.8, phi: 1.05, radius: 26, target: null,
+  autoRotate: true, exploded: false, plan: false, night: false, focus: -1,
+  dragging: false, lastX: 0, lastY: 0, idleTimer: null, pinchDist: 0,
+  planT: 0,
+
+  /**
+   * Levanta la escena, el modelo procedural y los controles. Si WebGL falla, el visor
+   * muestra un aviso y la página sigue funcionando.
+   */
+  init() {
+    this.el = document.getElementById('viewer');
+    if (typeof THREE === 'undefined') { this.fail(); return; }
+    try {
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) { this.fail(); return; }
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.el.appendChild(this.renderer.domElement);
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
+    this.target = new THREE.Vector3(0, 2.4, 0);
+
+    this.amb = new THREE.HemisphereLight(0xf2f0ea, 0x3a3f3c, 0.9);
+    this.scene.add(this.amb);
+    this.sun = new THREE.DirectionalLight(0xfff3dc, 1.35);
+    this.sun.position.set(14, 22, 10);
+    this.sun.castShadow = true;
+    this.sun.shadow.mapSize.set(2048, 2048);
+    this.sun.shadow.camera.left = -22; this.sun.shadow.camera.right = 22;
+    this.sun.shadow.camera.top = 22; this.sun.shadow.camera.bottom = -22;
+    this.sun.shadow.camera.near = 1; this.sun.shadow.camera.far = 80;
+    this.sun.shadow.bias = -0.0008;
+    this.scene.add(this.sun);
+    this.lamp = new THREE.PointLight(0xffd37a, 0, 30, 2);
+    this.lamp.position.set(0, 3.2, 0);
+    this.scene.add(this.lamp);
+
+    this.buildGround();
+    this.buildHouse();
+    this.buildControls();
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+    document.getElementById('viewerLoading').classList.add('off');
+    this.loop();
+  },
+
+  fail() {
+    document.getElementById('viewerLoading').innerHTML = 'Su navegador no permite mostrar el modelo 3D.';
+  },
+
+  mat(color, opts) { return new THREE.MeshStandardMaterial(Object.assign({ color, roughness: 0.85, metalness: 0.02 }, opts || {})); },
+
+  box(w, h, d, material, x, y, z, parent) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
+    m.position.set(x, y, z);
+    m.castShadow = true; m.receiveShadow = true;
+    (parent || this.scene).add(m);
+    return m;
+  },
+
+  buildGround() {
+    const g = new THREE.Mesh(new THREE.CircleGeometry(40, 64), this.mat(0xd9d4ca, { roughness: 1 }));
+    g.rotation.x = -Math.PI / 2;
+    g.receiveShadow = true;
+    this.scene.add(g);
+    this.ground = g;
+    const grid = new THREE.GridHelper(80, 80, 0x8f9592, 0x8f9592);
+    grid.material.opacity = 0.16; grid.material.transparent = true;
+    grid.position.y = 0.01;
+    this.scene.add(grid);
+    this.grid = grid;
+    const lawn = new THREE.Mesh(new THREE.PlaneGeometry(30, 22), this.mat(0x9fb37f, { roughness: 1 }));
+    lawn.rotation.x = -Math.PI / 2; lawn.position.set(0, 0.02, 0); lawn.receiveShadow = true;
+    this.scene.add(lawn);
+    const path = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 9), this.mat(0xcfc8bb, { roughness: 1 }));
+    path.rotation.x = -Math.PI / 2; path.position.set(2.6, 0.03, 9); path.receiveShadow = true;
+    this.scene.add(path);
+    const pool = new THREE.Mesh(new THREE.BoxGeometry(7, 0.3, 3.4), this.mat(0x6fb7c9, { roughness: 0.2, metalness: 0.1 }));
+    pool.position.set(-9.5, 0.05, 3.5); pool.receiveShadow = true;
+    this.scene.add(pool);
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(9, 0.12, 5.4), this.mat(0xb48a5c, { roughness: 0.9 }));
+    deck.position.set(-9.5, 0.04, 3.5); deck.receiveShadow = true;
+    this.scene.add(deck);
+    pool.position.y = 0.16;
+    for (const [x, z, s] of [[-12, -6, 1.3], [11, -7, 1.1], [12, 6, 1.5], [-13, 9, 1.0], [8, 10, 1.2]]) this.tree(x, z, s);
+  },
+
+  tree(x, z, s) {
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18 * s, 0.26 * s, 1.8 * s, 8), this.mat(0x6b4e35));
+    trunk.position.set(x, 0.9 * s, z); trunk.castShadow = true;
+    const crown = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5 * s, 1), this.mat(0x5f8a52, { flatShading: true }));
+    crown.position.set(x, 2.6 * s, z); crown.castShadow = true;
+    this.scene.add(trunk, crown);
+  },
+
+  /**
+   * Residencia tipo: zócalo, planta baja, planta alta en voladizo y terraza con pérgola.
+   * Cada nivel es un grupo para poder explotarlos y enfocarlos.
+   */
+  buildHouse() {
+    this.house = new THREE.Group();
+    this.scene.add(this.house);
+    const wall = this.mat(0xf1ede4);
+    const wallDark = this.mat(0x2b2f2e, { roughness: 0.7 });
+    const wood = this.mat(0xb3824f, { roughness: 0.8 });
+    const glass = this.mat(0x9fc4d4, { roughness: 0.1, metalness: 0.4, transparent: true, opacity: 0.55 });
+    const slab = this.mat(0xe6e1d7, { roughness: 0.9 });
+
+    const f0 = new THREE.Group(); f0.userData.base = 0;
+    this.box(13, 0.4, 10, slab, 0, 0.2, 0, f0);
+    this.box(11, 3.2, 8, wall, 0, 2.0, 0, f0);
+    this.box(0.12, 2.6, 6.5, glass, 5.56, 1.9, 0.2, f0);
+    this.box(6.5, 2.6, 0.12, glass, 1.2, 1.9, 4.06, f0);
+    this.box(3.2, 3.2, 0.3, wallDark, -3.2, 2.0, 4.0, f0);
+    this.box(2.4, 0.9, 0.12, glass, 2.6, 2.6, -4.06, f0);
+    for (let i = 0; i < 7; i++) this.box(0.12, 2.6, 0.5, wood, 5.9, 1.9, -2.6 + i * 0.9, f0);
+    this.box(11.4, 0.35, 8.4, slab, 0, 3.75, 0, f0);
+    this.windows.push(f0.children[2], f0.children[3], f0.children[5]);
+
+    const f1 = new THREE.Group(); f1.userData.base = 0;
+    this.box(9, 3.0, 7, wallDark, -1.6, 5.4, -0.4, f1);
+    this.box(0.12, 2.3, 5.5, glass, 2.96, 5.4, -0.4, f1);
+    this.box(7.5, 2.3, 0.12, glass, -1.6, 5.4, 3.16, f1);
+    this.box(3.6, 3.0, 0.3, wood, 1.2, 5.4, 3.2, f1);
+    for (let i = 0; i < 9; i++) this.box(0.1, 2.6, 0.08, wood, -5.9 + i * 0.3, 5.4, 3.25, f1);
+    this.box(9.6, 0.35, 7.6, slab, -1.6, 7.05, -0.4, f1);
+    this.windows.push(f1.children[1], f1.children[2]);
+
+    const f2 = new THREE.Group(); f2.userData.base = 0;
+    this.box(4.6, 0.12, 4.6, wood, 3.4, 3.98, 0.2, f2);
+    for (let i = 0; i < 4; i++) this.box(0.18, 2.6, 0.18, wallDark, 1.6 + (i % 2) * 3.6, 5.3, -1.6 + Math.floor(i / 2) * 3.6, f2);
+    for (let i = 0; i < 9; i++) this.box(4.2, 0.08, 0.14, wood, 3.4, 6.62, -1.8 + i * 0.45, f2);
+    this.box(0.9, 1.0, 0.9, wallDark, -4.6, 7.72, -2.4, f2);
+    const stair = new THREE.Group();
+    for (let i = 0; i < 9; i++) this.box(1.2, 0.18, 0.5, slab, 6.1, 0.5 + i * 0.4, -3.2 + i * 0.45, stair);
+    f2.add(stair);
+
+    this.floors = [f0, f1, f2];
+    this.floors.forEach(f => this.house.add(f));
+    this.house.position.set(0.8, 0, -0.5);
+    this.house.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); o.userData.op = o.material.opacity; } });
+  },
+
+  buildControls() {
+    const c = this.renderer.domElement;
+    const stop = () => { this.autoRotate = false; this.syncChips(); clearTimeout(this.idleTimer); this.idleTimer = setTimeout(() => { if (!this.dragging && !this.plan) { this.autoRotate = true; this.syncChips(); } }, 4000); };
+    c.addEventListener('pointerdown', (e) => { this.dragging = true; this.lastX = e.clientX; this.lastY = e.clientY; c.setPointerCapture(e.pointerId); stop(); });
+    c.addEventListener('pointermove', (e) => {
+      if (!this.dragging) return;
+      const dx = e.clientX - this.lastX, dy = e.clientY - this.lastY;
+      this.lastX = e.clientX; this.lastY = e.clientY;
+      this.theta -= dx * 0.006;
+      if (!this.plan) this.phi = Math.min(1.45, Math.max(0.35, this.phi - dy * 0.005));
+    });
+    const end = () => { this.dragging = false; stop(); };
+    c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
+    c.addEventListener('wheel', (e) => { e.preventDefault(); this.radius = Math.min(48, Math.max(14, this.radius + e.deltaY * 0.02)); stop(); }, { passive: false });
+    c.addEventListener('touchstart', (e) => { if (e.touches.length === 2) this.pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); }, { passive: true });
+    c.addEventListener('touchmove', (e) => {
+      if (e.touches.length !== 2) return;
+      const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      this.radius = Math.min(48, Math.max(14, this.radius + (this.pinchDist - d) * 0.05));
+      this.pinchDist = d;
+    }, { passive: true });
+
+    document.getElementById('chipRotate').onclick = () => { this.autoRotate = !this.autoRotate; if (this.autoRotate) this.setPlan(false); this.syncChips(); };
+    document.getElementById('chipExplode').onclick = () => { this.exploded = !this.exploded; this.syncChips(); };
+    document.getElementById('chipPlan').onclick = () => { this.setPlan(!this.plan); };
+    document.getElementById('chipNight').onclick = () => { this.setNight(!this.night); };
+    document.getElementById('chipReset').onclick = () => { this.theta = 0.8; this.phi = 1.05; this.radius = 26; this.exploded = false; this.focus = -1; this.setPlan(false); this.setNight(false); this.autoRotate = true; this.syncChips(); this.renderFloors(); };
+
+    this.renderFloors();
+  },
+
+  setPlan(on) { this.plan = on; if (on) this.autoRotate = false; this.syncChips(); },
+
+  setNight(on) {
+    this.night = on;
+    this.el.classList.toggle('night', on);
+    this.amb.intensity = on ? 0.25 : 0.9;
+    this.sun.intensity = on ? 0.18 : 1.35;
+    this.sun.color.set(on ? 0x8fa6ff : 0xfff3dc);
+    this.lamp.intensity = on ? 2.4 : 0;
+    this.ground.material.color.set(on ? 0x3a3d3b : 0xd9d4ca);
+    this.windows.forEach(w => { w.material.emissive.set(on ? 0xffc96a : 0x000000); w.material.emissiveIntensity = on ? 0.9 : 0; w.material.opacity = on ? 0.9 : 0.55; });
+    this.syncChips();
+  },
+
+  syncChips() {
+    document.getElementById('chipRotate').classList.toggle('on', this.autoRotate);
+    document.getElementById('chipExplode').classList.toggle('on', this.exploded);
+    document.getElementById('chipPlan').classList.toggle('on', this.plan);
+    document.getElementById('chipNight').classList.toggle('on', this.night);
+  },
+
+  renderFloors() {
+    const defs = [
+      { b: 'Terraza', s: 'Pérgola, deck y escalera' },
+      { b: 'Planta alta', s: '3 dormitorios · balcón' },
+      { b: 'Planta baja', s: 'Sala, cocina, estudio' }
+    ];
+    document.getElementById('floorsPanel').innerHTML = defs.map((d, i) => {
+      const idx = 2 - i;
+      return `<button type="button" class="floor-btn ${this.focus === idx ? 'on' : ''}" onclick="viewer3d.focusFloor(${idx})"><b>${d.b}</b><span>${d.s}</span></button>`;
+    }).join('');
+  },
+
+  focusFloor(i) {
+    this.focus = this.focus === i ? -1 : i;
+    this.exploded = this.focus !== -1;
+    this.syncChips();
+    this.renderFloors();
+  },
+
+  resize() {
+    const w = this.el.clientWidth, h = this.el.clientHeight;
+    this.renderer.setSize(w, h, false);
+    this.camera.aspect = w / h;
+    this.camera.updateProjectionMatrix();
+  },
+
+  loop() {
+    requestAnimationFrame(() => this.loop());
+    if (this.autoRotate && !this.dragging) this.theta += 0.0035;
+    this.planT += ((this.plan ? 1 : 0) - this.planT) * 0.08;
+    const phi = this.phi * (1 - this.planT) + 0.08 * this.planT;
+    const r = this.radius * (1 - this.planT) + 30 * this.planT;
+    this.camera.position.set(
+      this.target.x + r * Math.sin(phi) * Math.sin(this.theta),
+      this.target.y + r * Math.cos(phi),
+      this.target.z + r * Math.sin(phi) * Math.cos(this.theta)
+    );
+    this.camera.lookAt(this.target);
+    this.floors.forEach((f, i) => {
+      const goal = this.exploded ? i * 2.6 : 0;
+      f.position.y += (goal - f.position.y) * 0.08;
+      const dim = this.focus !== -1 && this.focus !== i;
+      f.traverse(o => { if (o.isMesh) { const t = dim ? 0.12 : o.userData.op; o.material.transparent = true; o.material.opacity += (t - o.material.opacity) * 0.12; } });
+    });
+    this.renderer.render(this.scene, this.camera);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const wa = 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(CONFIG.waIntro);
+  ['heroWa', 'contactWa', 'floatWa'].forEach(id => { document.getElementById(id).href = wa; });
+  renderServices();
+  renderProjects();
+  renderPills();
+  initCompare();
+  document.getElementById('fSubmit').addEventListener('click', submitForm);
+  document.getElementById('fEdit').addEventListener('click', () => show('fForm'));
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+  }));
+  document.addEventListener('error', (e) => { if (e.target && e.target.tagName === 'IMG') e.target.style.display = 'none'; }, true);
+  viewer3d.init();
+});
+</script>
+<a href="https://nexoradevs.com/" style="position:fixed;left:16px;bottom:16px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#0b1530;color:#f8fafc;font:600 12px/1 Inter,system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(7,12,28,.35)">Propuesta de Nexora · nexoradevs.com</a>
+</body>
+</html>

@@ -3,1393 +3,525 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Barbería de oficio en Urdesa. Cortes precisos, afeitado clásico con toalla caliente y tu turno listo en menos de un minuto — sin llamadas.">
-<meta name="theme-color" content="#0E0D0B">
+<meta name="description" content="Bravo Barber Co. — Barbería de oficio en Urdesa, Guayaquil. Fades, navaja y toalla caliente. Reserva tu turno en un minuto.">
+<meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://nexoradevs.com/demos/bravo-barber/">
 <title>Bravo Barber Co. — Barbería en Urdesa, Guayaquil</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect fill='%230E0D0B' width='48' height='48' rx='8'/><rect fill='%23C87F3F' x='16' y='16' width='16' height='16' rx='2' transform='rotate(45 24 24)'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect fill='%230A0A0A' width='48' height='48'/><path d='M10 36 L22 10 H30 L18 36 Z' fill='%23E9FF2E'/><path d='M26 36 L38 10 H42 L30 36 Z' fill='%23F5F2EA'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
+:root {
+  --ink: #0A0A0A;
+  --ink-2: #141414;
+  --ink-3: #1E1E1E;
+  --line: rgba(245, 242, 234, 0.14);
+  --paper: #F5F2EA;
+  --paper-2: #B8B3A8;
+  --paper-3: #7C786F;
+  --acid: #E9FF2E;
+  --acid-ink: #0A0A0A;
+  --flame: #FF4D1C;
+  --wa: #25D366;
+  --wa-ink: #06220F;
+  --display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --body: 'Archivo', system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  background: #0E0D0B;
-  color: #F2EDE6;
-  font-family: Inter, system-ui, sans-serif;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 input, button, select, textarea { font: inherit; }
-::selection { background: rgba(200, 127, 63, 0.4); }
-input::placeholder { color: rgba(242, 237, 230, 0.3); }
+::selection { background: var(--acid); color: var(--acid-ink); }
+input::placeholder { color: rgba(245, 242, 234, 0.32); }
+a { color: inherit; }
+button { padding: 0; border: none; background: none; color: inherit; cursor: pointer; font-family: inherit; }
+:focus-visible { outline: 3px solid var(--acid); outline-offset: 3px; }
+@keyframes bbSpin { to { transform: rotate(360deg); } }
+@keyframes bbFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bbMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto !important; }
+  .marquee-track { animation: none !important; }
 }
-@keyframes bbSpin { to { transform: rotate(360deg); } }
-@keyframes bbFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-a { color: inherit; }
-button { padding: 0; border: none; background: none; color: inherit; cursor: pointer; font-family: inherit; }
+
+/* ========== PRIMITIVES ========== */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 48px); }
+.display { font-family: var(--display); font-weight: 400; text-transform: uppercase; line-height: 0.9; letter-spacing: 0.005em; }
+.mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+.outline { color: transparent; -webkit-text-stroke: 2px var(--paper); }
+.acid { color: var(--acid); }
+.hazard {
+  height: 14px;
+  background: repeating-linear-gradient(-45deg, var(--acid) 0 18px, var(--ink) 18px 36px);
+}
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background: var(--acid);
+  color: var(--acid-ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 2px solid var(--acid-ink);
+  box-shadow: 4px 4px 0 var(--paper);
+  transform: rotate(-3deg);
+}
+.sticker.flame { background: var(--flame); color: var(--paper); border-color: var(--paper); box-shadow: 4px 4px 0 var(--acid); transform: rotate(4deg); }
+.sticker.paper { background: var(--paper); color: var(--ink); border-color: var(--ink); box-shadow: 4px 4px 0 var(--acid); transform: rotate(2deg); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 26px;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: transparent;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--acid); }
+.btn.solid { background: var(--acid); color: var(--acid-ink); border-color: var(--acid); }
+.btn.solid:hover { box-shadow: 4px 4px 0 var(--paper); }
+.btn.wa { background: var(--wa); color: var(--wa-ink); border-color: var(--wa); }
+.btn.wa:hover { box-shadow: 4px 4px 0 var(--paper); }
+.btn.sm { min-height: 44px; font-size: 18px; padding: 0 18px; }
+.btn .ico { width: 20px; height: 20px; flex: none; }
+.eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; }
+.eyebrow::before { content: ""; width: 34px; height: 3px; background: var(--acid); }
+.eyebrow .mono { color: var(--acid); }
+h2.display { font-size: clamp(54px, 9vw, 120px); margin: 0 0 18px; }
+.lede { color: var(--paper-2); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.6; max-width: 56ch; }
+.section { border-top: 2px solid var(--paper); position: relative; z-index: 2; }
+.section .wrap { padding-top: clamp(56px, 8vw, 110px); padding-bottom: clamp(56px, 8vw, 110px); }
 
 /* ========== NAV ========== */
 nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(14, 13, 11, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(242, 237, 230, 0.09);
+  background: var(--ink);
+  border-bottom: 2px solid var(--paper);
 }
-.nav-content {
-  max-width: 1160px;
+.nav-row {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(18px, 4vw, 44px);
-  height: 64px;
+  padding: 0 clamp(18px, 4vw, 48px);
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #F2EDE6;
-  flex: none;
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex: none; }
+.logo-mark { width: 34px; height: 34px; flex: none; }
+.logo-text { font-family: var(--display); font-size: 24px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; padding-top: 2px; }
+.logo-text em { font-style: normal; color: var(--acid); }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-2); text-decoration: none; transition: color 0.15s ease; }
+.nav-links a:hover { color: var(--acid); }
+@media (max-width: 860px) { .nav-links { display: none; } }
+
+/* ========== HERO ========== */
+#inicio { position: relative; z-index: 2; overflow: hidden; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: end;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(40px, 6vw, 72px);
 }
-.nav-rombo {
-  width: 9px;
-  height: 9px;
-  background: var(--bbA, #C87F3F);
-  transform: rotate(45deg);
-  display: block;
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 0 0 22px; }
+.hero-kicker .mono { color: var(--paper-2); }
+h1.display {
+  font-size: clamp(72px, 11.5vw, 168px);
+  line-height: 0.86;
+  margin: 0 0 24px;
 }
-.nav-wordmark {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 23px;
-  letter-spacing: 0.05em;
+h1 .outline { -webkit-text-stroke-width: clamp(2px, 0.3vw, 4px); }
+.hero-sub { margin: 0 0 28px; color: var(--paper-2); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.6; max-width: 46ch; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 36px; }
+.hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 2px solid var(--paper); }
+.stat { padding: 16px 14px; border-right: 2px solid var(--paper); }
+.stat:last-child { border-right: none; }
+.stat-val { font-family: var(--display); font-size: clamp(30px, 4vw, 48px); line-height: 1; }
+.stat-val .acid { color: var(--acid); }
+.stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper-3); margin-top: 6px; }
+.hero-photo { position: relative; aspect-ratio: 4 / 5; max-height: 640px; justify-self: end; width: 100%; }
+.hero-photo-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--paper);
+  background: var(--ink-2);
+  overflow: hidden;
+  transform: rotate(-2deg);
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15); mix-blend-mode: luminosity; }
+.hero-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(233, 255, 46, 0) 50%, rgba(233, 255, 46, 0.16) 100%);
+  pointer-events: none;
+}
+.hero-tape {
+  position: absolute;
+  width: 110px;
+  height: 30px;
+  background: var(--acid);
+  opacity: 0.92;
+  z-index: 3;
+}
+.hero-tape.tl { top: -12px; left: -28px; transform: rotate(-32deg); }
+.hero-tape.br { bottom: -10px; right: -30px; transform: rotate(-32deg); }
+.hero-sticker-1 { position: absolute; z-index: 4; top: 18px; right: -10px; }
+.hero-sticker-2 { position: absolute; z-index: 4; bottom: 26px; left: -14px; }
+.hero-big-bg {
+  position: absolute;
+  right: -2vw;
+  top: 8px;
+  font-family: var(--display);
+  font-size: clamp(120px, 22vw, 320px);
   line-height: 1;
-  padding-top: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 242, 234, 0.12);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
 }
-.nav-wordmark-accent { color: var(--bbA, #C87F3F); }
-.nav-links {
+
+/* ========== MARQUEE ========== */
+.marquee {
+  border-top: 2px solid var(--paper);
+  border-bottom: 2px solid var(--paper);
+  background: var(--acid);
+  color: var(--acid-ink);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: bbMarquee 26s linear infinite;
+}
+.marquee-item {
+  font-family: var(--display);
+  font-size: 30px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 26px;
 }
-.nav-links a {
-  color: #B7AFA4;
-  text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: color 0.15s ease;
-}
-.nav-links a:hover { color: #F2EDE6; }
-.nav-cta {
-  background: var(--bbA, #C87F3F);
-  color: #14100B;
-  text-decoration: none;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  padding: 11px 18px 9px;
-  border-radius: 4px;
-  white-space: nowrap;
-  line-height: 1;
-  transition: filter 0.15s ease;
-  flex: none;
-  display: inline-block;
-}
-.nav-cta:hover { filter: brightness(1.12); }
-@media (max-width: 767px) {
-  .nav-links { display: none; }
-}
+.marquee-item::after { content: ""; width: 12px; height: 12px; background: var(--acid-ink); transform: rotate(45deg); }
 
-/* ========== HERO ========== */
-#inicio {
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(242, 237, 230, 0.08);
-  background: radial-gradient(900px 420px at 85% -10%, var(--bbAglow, rgba(200, 127, 63, 0.15)), transparent 62%),
-              radial-gradient(700px 380px at -10% 110%, var(--bbAstripe, rgba(200, 127, 63, 0.06)), transparent 60%),
-              #0E0D0B;
-}
-.section-container {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: clamp(44px, 7vw, 92px) clamp(18px, 4vw, 44px);
-}
-.hero-grid {
+/* ========== SERVICIOS (price board) ========== */
+.board { border: 2px solid var(--paper); background: var(--ink-2); }
+.board-head {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
-  gap: clamp(32px, 5vw, 64px);
-  align-items: center;
-}
-.hero-left { }
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 18px;
-}
-.eyebrow-line {
-  width: 24px;
-  height: 1px;
-  background: var(--bbA, #C87F3F);
-}
-.eyebrow-text {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--bbA, #C87F3F);
-  text-transform: uppercase;
-}
-h1 {
-  margin: 0 0 18px;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-weight: 400;
-  font-size: clamp(52px, 7vw, 90px);
-  line-height: 0.92;
-  letter-spacing: 0.01em;
-}
-.h1-accent { color: var(--bbA, #C87F3F); }
-.hero-sub {
-  margin: 0 0 26px;
-  color: #B7AFA4;
-  font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.65;
-  max-width: 46ch;
-}
-.hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 0 0 34px;
-}
-.cta-primary {
-  background: var(--bbA, #C87F3F);
-  color: #14100B;
-  text-decoration: none;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  padding: 14px 28px 12px;
-  border-radius: 4px;
-  line-height: 1;
-  transition: filter 0.15s ease, transform 0.15s ease;
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-}
-.cta-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
-.cta-ghost {
-  border: 1px solid rgba(242, 237, 230, 0.25);
-  color: #F2EDE6;
-  text-decoration: none;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  padding: 14px 28px 12px;
-  border-radius: 4px;
-  line-height: 1;
-  transition: border-color 0.15s ease, color 0.15s ease;
-  cursor: pointer;
-  display: inline-block;
-}
-.cta-ghost:hover { border-color: var(--bbA, #C87F3F); color: var(--bbA, #C87F3F); }
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(24px, 4vw, 44px);
-  border-top: 1px solid rgba(242, 237, 230, 0.1);
-  padding-top: 22px;
-}
-.stat {
-  flex: 0 0 auto;
-}
-.stat-val {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 32px;
-  line-height: 1;
-  color: #F2EDE6;
-}
-.stat-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  grid-template-columns: 56px minmax(0, 1fr) 110px 120px 140px;
+  gap: 16px;
+  padding: 12px 20px;
+  border-bottom: 2px solid var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono);
   font-size: 10px;
-  letter-spacing: 0.14em;
-  color: #877F73;
-  margin-top: 4px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  font-weight: 700;
 }
-.stat-accent { color: var(--bbA, #C87F3F); }
-.hero-img-container {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  max-height: 560px;
-  border: 1px solid rgba(242, 237, 230, 0.12);
-  border-radius: 8px;
-  background: #14120F repeating-linear-gradient(45deg, transparent 0 9px, var(--bbAstripe, rgba(200, 127, 63, 0.05)) 9px 10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.img-placeholder {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(242, 237, 230, 0.42);
-  text-align: center;
-  padding: 0 18px;
-}
-.hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.82) contrast(1.06);
-}
-.hero-img-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(11, 10, 8, 0.12) 0%, transparent 30% 62%, rgba(11, 10, 8, 0.55) 100%);
-}
-.hero-img-tick {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-}
-.hero-img-tick-tl {
-  top: 12px;
-  left: 12px;
-  border-top: 2px solid var(--bbA, #C87F3F);
-  border-left: 2px solid var(--bbA, #C87F3F);
-}
-.hero-img-tick-br {
-  bottom: 12px;
-  right: 12px;
-  border-bottom: 2px solid var(--bbA, #C87F3F);
-  border-right: 2px solid var(--bbA, #C87F3F);
-}
-
-/* ========== SECTION HEADERS ========== */
-section {
-  border-bottom: 1px solid rgba(242, 237, 230, 0.08);
-}
-section > .section-container { padding: clamp(56px, 8vw, 100px) clamp(18px, 4vw, 44px); }
-h2 {
-  margin: 0 0 10px;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-weight: 400;
-  font-size: clamp(38px, 5.4vw, 58px);
-  line-height: 0.95;
-  letter-spacing: 0.015em;
-}
-.section-intro {
-  margin: 0 0 34px;
-  color: #B7AFA4;
-  font-size: 15px;
-  line-height: 1.65;
-  max-width: 56ch;
-}
-
-/* ========== SERVICIOS ========== */
-.services-grid {
+.board-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-  gap: 14px;
-}
-.service-card {
-  background: #15130F;
-  border: 1px solid rgba(242, 237, 230, 0.1);
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-.service-card:hover {
-  border-color: var(--bbAline, rgba(200, 127, 63, 0.4));
-  transform: translateY(-2px);
-}
-.service-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-}
-.service-name {
-  font-weight: 600;
-  font-size: 16px;
-}
-.service-price {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 30px;
-  line-height: 1;
-  color: var(--bbA, #C87F3F);
-  white-space: nowrap;
-}
-.service-desc {
-  margin: 0;
-  color: #B7AFA4;
-  font-size: 13.5px;
-  line-height: 1.55;
-  flex: 1;
-}
-.service-footer {
-  display: flex;
-  justify-content: space-between;
+  grid-template-columns: 56px minmax(0, 1fr) 110px 120px 140px;
+  gap: 16px;
   align-items: center;
-  border-top: 1px solid rgba(242, 237, 230, 0.08);
-  padding-top: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s ease;
 }
-.service-duration {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  color: #877F73;
-  border: 1px solid rgba(242, 237, 230, 0.14);
-  border-radius: 3px;
-  padding: 4px 8px;
-  text-transform: uppercase;
+.board-row:last-child { border-bottom: none; }
+.board-row:hover { background: var(--ink-3); }
+.board-num { font-family: var(--display); font-size: 24px; color: var(--paper-3); }
+.board-name { font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); text-transform: uppercase; line-height: 1; }
+.board-desc { color: var(--paper-2); font-size: 13.5px; margin-top: 6px; }
+.board-min { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--paper-2); }
+.board-price { font-family: var(--display); font-size: clamp(28px, 3vw, 40px); color: var(--acid); line-height: 1; }
+.board-cta { justify-self: end; }
+@media (max-width: 760px) {
+  .board-head { display: none; }
+  .board-row { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "num name" "num meta" "num cta"; row-gap: 10px; }
+  .board-num { grid-area: num; }
+  .board-name-cell { grid-area: name; }
+  .board-meta { grid-area: meta; display: flex; align-items: center; gap: 16px; }
+  .board-cta { grid-area: cta; justify-self: start; }
 }
-.service-book-link {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: var(--bbA, #C87F3F);
-  text-decoration: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: text-decoration 0.15s ease;
-}
-.service-book-link:hover { text-decoration: underline; }
+@media (min-width: 761px) { .board-meta { display: contents; } }
+.services-note { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
 /* ========== GALERÍA ========== */
-.gallery-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 0 0 30px;
-}
-.gallery-note {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  color: #877F73;
-  text-transform: uppercase;
-}
+.gallery-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px; margin: 0 0 28px; }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 180px;
   gap: 10px;
 }
 .gallery-tile {
   position: relative;
-  aspect-ratio: 4 / 5;
-  border: 1px solid rgba(242, 237, 230, 0.1);
-  border-radius: 6px;
-  background: #14120F;
-  display: flex;
-  align-items: flex-end;
   overflow: hidden;
+  border: 2px solid var(--paper);
+  background: var(--ink-2);
 }
-.gallery-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.82) contrast(1.05);
+.gallery-tile:nth-child(1) { grid-column: span 3; grid-row: span 2; }
+.gallery-tile:nth-child(2) { grid-column: span 3; }
+.gallery-tile:nth-child(3) { grid-column: span 2; }
+.gallery-tile:nth-child(4) { grid-column: span 1; }
+.gallery-tile:nth-child(5) { grid-column: span 2; }
+.gallery-tile:nth-child(6) { grid-column: span 4; }
+@media (max-width: 760px) {
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 160px; }
+  .gallery-tile:nth-child(n) { grid-column: span 1; grid-row: span 1; }
+  .gallery-tile:nth-child(1), .gallery-tile:nth-child(6) { grid-column: span 2; }
 }
-.gallery-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 58%, rgba(11, 10, 8, 0.72) 100%);
-}
-.gallery-caption {
-  position: relative;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  color: rgba(242, 237, 230, 0.88);
-  padding: 10px 12px;
-  text-transform: uppercase;
-}
+.gallery-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.12); transition: filter 0.3s ease, transform 0.4s ease; }
+.gallery-tile:hover img { filter: grayscale(0) contrast(1.05); transform: scale(1.04); }
+.gallery-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10, 10, 10, 0.75), transparent 45%); pointer-events: none; }
+.gallery-caption { position: absolute; left: 12px; bottom: 12px; z-index: 2; }
 
 /* ========== RESERVA (WIZARD) ========== */
-#reserva { background: #121110; }
-.booking-card {
-  background: #17150F;
-  border: 1px solid rgba(242, 237, 230, 0.11);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.booking-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(242, 237, 230, 0.09);
-  background: #131109;
-}
+#reserva { background: var(--ink-2); }
+.booking-head { text-align: center; margin: 0 0 32px; }
+.booking-head .eyebrow { justify-content: center; }
+.booking-head .eyebrow::before { display: none; }
+.booking-head .lede { margin: 0 auto; }
+.booking-card { border: 2px solid var(--paper); background: var(--ink); max-width: 900px; margin: 0 auto; }
+.booking-steps { display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--paper); background: var(--ink-2); }
 .booking-step-btn {
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 12px 8px;
-  border-radius: 4px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  gap: 8px;
+  padding: 14px 16px;
+  font-family: var(--mono);
   font-size: 10px;
-  letter-spacing: 0.1em;
-  white-space: nowrap;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  border: 1px solid transparent;
-  background: transparent;
-  color: rgba(242, 237, 230, 0.35);
+  color: var(--paper-3);
+  border-right: 1px solid var(--line);
   cursor: default;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.booking-step-btn:last-child { border-right: none; }
+.booking-step-btn .step-num { font-family: var(--display); font-size: 18px; letter-spacing: 0; }
+.booking-step-btn.active { background: var(--acid); color: var(--acid-ink); }
+.booking-step-btn.passed { color: var(--paper); }
+.booking-step-btn.passed .step-num { color: var(--acid); }
+.booking-step-btn.clickable { cursor: pointer; }
+.booking-step-btn.clickable:hover { background: var(--ink-3); color: var(--paper); }
+.booking-content { padding: clamp(18px, 3.5vw, 36px); min-height: 400px; }
+.step-page { animation: bbFade 0.28s ease; }
+.step-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-3); margin: 0 0 8px; }
+h3.display { font-size: clamp(34px, 5vw, 52px); margin: 0 0 20px; }
+.step1-rows { display: grid; gap: 10px; }
+.service-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  padding: 16px 18px; width: 100%; text-align: left;
+  border: 2px solid var(--line); background: var(--ink-2); color: var(--paper);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.service-row:hover { border-color: var(--paper); }
+.service-row.selected { border-color: var(--acid); background: rgba(233, 255, 46, 0.08); }
+.service-row-left { flex: 1; }
+.service-row-name { display: block; font-family: var(--display); font-size: 22px; text-transform: uppercase; line-height: 1; }
+.service-row-desc { display: block; color: var(--paper-3); font-size: 13px; margin-top: 5px; }
+.service-row-right { display: flex; align-items: center; gap: 14px; flex: none; }
+.service-row-min { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-3); }
+.service-row-price { font-family: var(--display); font-size: 30px; line-height: 1; color: var(--acid); }
+.step-header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 0 0 8px; }
+.step-header-info { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-3); }
+.step-change-btn { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--acid); white-space: nowrap; }
+.step-change-btn:hover { text-decoration: underline; }
+.barbers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.barber-row {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px; width: 100%; text-align: left;
+  border: 2px solid var(--line); background: var(--ink-2); color: var(--paper);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.barber-row:hover { border-color: var(--paper); }
+.barber-row.selected { border-color: var(--acid); background: rgba(233, 255, 46, 0.08); }
+.barber-avatar { width: 52px; height: 52px; border: 2px solid var(--paper); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 20px; color: var(--acid); flex: none; }
+.barber-name { display: block; font-family: var(--display); font-size: 20px; text-transform: uppercase; line-height: 1; }
+.barber-spec { display: block; color: var(--paper-3); font-size: 12.5px; margin-top: 4px; }
+.day-chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 12px; scrollbar-width: thin; }
+.day-chip {
+  flex: 0 0 auto; min-width: 78px; padding: 10px 8px 9px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  border: 2px solid var(--line); background: var(--ink-2); color: var(--paper);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.day-chip:hover:not(.disabled) { border-color: var(--paper); }
+.day-chip.disabled { cursor: not-allowed; opacity: 0.35; }
+.day-chip.selected { border-color: var(--acid); background: var(--acid); color: var(--acid-ink); }
+.day-chip.selected .day-wd, .day-chip.selected .day-mo, .day-chip.selected .day-tag { color: var(--acid-ink); }
+.day-wd { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-3); }
+.day-num { font-family: var(--display); font-size: 26px; line-height: 1; }
+.day-mo { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-3); }
+.day-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+.day-tag.full { color: var(--flame); }
+.day-tag.closed { color: var(--paper-3); }
+.slots-container { min-height: 200px; margin-top: 12px; }
+.slots-idle, .slots-loading { border: 2px dashed var(--line); padding: 36px 20px; text-align: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper-3); }
+.slots-loading { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spinner { width: 24px; height: 24px; border: 3px solid var(--line); border-top-color: var(--acid); border-radius: 50%; animation: bbSpin 0.7s linear infinite; }
+.day-full-panel { border: 2px solid var(--flame); background: rgba(255, 77, 28, 0.08); padding: 30px 20px; text-align: center; animation: bbFade 0.28s ease; }
+.day-full-title { font-family: var(--display); font-size: 32px; text-transform: uppercase; color: var(--flame); margin: 0 0 6px; }
+.day-full-desc { margin: 0 0 18px; color: var(--paper-2); font-size: 14px; line-height: 1.6; }
+.slots-grid { animation: bbFade 0.28s ease; }
+.slots-grid-inner { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
+.time-slot {
+  padding: 14px 6px; text-align: center; font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+  border: 2px solid var(--line); background: var(--ink-2); color: var(--paper);
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
-.booking-step-btn.active {
-  border-color: var(--bbA, #C87F3F);
-  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
-  color: #F2EDE6;
-}
-.booking-step-btn.passed { color: #B7AFA4; }
-.booking-step-btn.active .step-num,
-.booking-step-btn.passed .step-num {
-  color: var(--bbA, #C87F3F);
-  font-weight: 700;
-}
-.booking-step-btn:not(.passed):not(.active):hover { cursor: pointer; }
-.booking-step-btn.clickable:hover {
-  border-color: var(--bbA, #C87F3F);
-  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
-  color: #F2EDE6;
-}
-.booking-content {
-  padding: clamp(18px, 3.5vw, 34px);
-  min-height: 380px;
-}
-.step-page { animation: bbFade 0.28s ease; }
-.step-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: #877F73;
-  margin: 0 0 6px;
-  text-transform: uppercase;
-}
-h3 {
-  margin: 0 0 18px;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-weight: 400;
-  font-size: clamp(26px, 4vw, 34px);
-  letter-spacing: 0.02em;
-}
-.step1-rows {
-  display: grid;
-  gap: 10px;
-}
-.service-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  transition: border-color 0.15s ease, background 0.15s ease;
-  border: 1px solid rgba(242, 237, 230, 0.13);
-  background: #14110D;
-  color: #F2EDE6;
-}
-.service-row.selected {
-  border-color: var(--bbA, #C87F3F);
-  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
-}
-.service-row-left {
-  text-align: left;
-  flex: 1;
-}
-.service-row-name {
-  display: block;
-  font-weight: 600;
-  font-size: 15px;
-  color: #F2EDE6;
-}
-.service-row-desc {
-  display: block;
-  color: #877F73;
-  font-size: 12.5px;
-  margin-top: 2px;
-}
-.service-row-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: none;
-}
-.service-row-min {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: #877F73;
-  text-transform: uppercase;
-}
-.service-row-price {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--bbA, #C87F3F);
-}
-
-.step-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin: 0 0 6px;
-}
-.step-header-info {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: #877F73;
-  text-transform: uppercase;
-}
-.step-change-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  color: var(--bbA, #C87F3F);
-  white-space: nowrap;
-  text-transform: uppercase;
-  transition: text-decoration 0.15s ease;
-}
-.step-change-btn:hover { text-decoration: underline; }
-
-/* STEP 2: BARBERS */
-.barbers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
-  gap: 10px;
-}
-.barber-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  transition: border-color 0.15s ease, background 0.15s ease;
-  border: 1px solid rgba(242, 237, 230, 0.13);
-  background: #14110D;
-  color: #F2EDE6;
-}
-.barber-row.selected {
-  border-color: var(--bbA, #C87F3F);
-  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
-}
-.barber-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #0E0C0A;
-  border: 1px solid rgba(242, 237, 230, 0.14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 20px;
-  color: var(--bbA, #C87F3F);
-  flex: none;
-}
-.barber-info {
-  text-align: left;
-}
-.barber-name {
-  display: block;
-  font-weight: 600;
-  font-size: 14.5px;
-  color: #F2EDE6;
-}
-.barber-spec {
-  display: block;
-  color: #877F73;
-  font-size: 12px;
-  margin-top: 2px;
-}
-
-/* STEP 3: DATE & TIME */
-.day-chips {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 2px 2px 10px;
-  scrollbar-width: thin;
-}
-.day-chip {
-  flex: 0 0 auto;
-  min-width: 76px;
-  padding: 10px 8px 9px;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-  opacity: 1;
-  transition: border-color 0.15s ease, background 0.15s ease;
-  border: 1px solid rgba(242, 237, 230, 0.13);
-  background: #14110D;
-  color: #F2EDE6;
-}
-.day-chip.disabled {
-  cursor: not-allowed;
-  opacity: 0.38;
-}
-.day-chip.selected {
-  border-color: var(--bbA, #C87F3F);
-  background: var(--bbAsoft, rgba(200, 127, 63, 0.12));
-}
-.day-wd {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  color: #877F73;
-  text-transform: uppercase;
-}
-.day-num {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 24px;
-  line-height: 1;
-  color: #F2EDE6;
-}
-.day-mo {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  color: #877F73;
-  text-transform: uppercase;
-}
-.day-tag {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  margin-top: 2px;
-  text-transform: uppercase;
-}
-.day-tag.full { color: #E0A24E; }
-.day-tag.closed { color: rgba(242, 237, 230, 0.4); }
-
-.slots-container { min-height: 190px; margin-top: 14px; }
-.slots-idle {
-  border: 1px dashed rgba(242, 237, 230, 0.14);
-  border-radius: 8px;
-  padding: 34px 20px;
-  text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: #877F73;
-  text-transform: uppercase;
-}
-.slots-loading {
-  border: 1px dashed rgba(242, 237, 230, 0.14);
-  border-radius: 8px;
-  padding: 34px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-.spinner {
-  width: 22px;
-  height: 22px;
-  border: 2px solid rgba(242, 237, 230, 0.15);
-  border-top-color: var(--bbA, #C87F3F);
-  border-radius: 50%;
-  animation: bbSpin 0.7s linear infinite;
-}
-.loading-text {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  color: #877F73;
-  text-transform: uppercase;
-}
-.day-full-panel {
-  border: 1px solid rgba(224, 162, 78, 0.35);
-  background: rgba(224, 162, 78, 0.06);
-  border-radius: 8px;
-  padding: 30px 20px;
-  text-align: center;
-  animation: bbFade 0.28s ease;
-}
-.day-full-title {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 26px;
-  letter-spacing: 0.03em;
-  color: #E0A24E;
-  margin: 0 0 6px;
-}
-.day-full-desc {
-  margin: 0 0 18px;
-  color: #B7AFA4;
-  font-size: 13.5px;
-  line-height: 1.6;
-}
-.day-full-btn {
-  background: var(--bbA, #C87F3F);
-  color: #14100B;
-  border: none;
-  cursor: pointer;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  padding: 12px 22px 10px;
-  border-radius: 4px;
-  line-height: 1;
-  text-transform: uppercase;
-  transition: filter 0.15s ease;
-}
-.day-full-btn:hover { filter: brightness(1.12); }
-
-.slots-grid {
-  animation: bbFade 0.28s ease;
-}
-.slots-grid-inner {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
-  gap: 8px;
-}
-.time-slot {
-  padding: 13px 6px;
-  border-radius: 5px;
-  text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 12.5px;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-  border: 1px solid rgba(242, 237, 230, 0.13);
-  background: #14110D;
-  color: #F2EDE6;
-}
-.time-slot:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-.time-slot.selected {
-  border-color: var(--bbA, #C87F3F);
-  background: var(--bbA, #C87F3F);
-  color: #14100B;
-  font-weight: 700;
-}
-.time-slot.busy {
-  color: rgba(242, 237, 230, 0.28);
-  text-decoration: line-through;
-}
-.slots-legend {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  color: #877F73;
-  margin-top: 12px;
-  text-transform: uppercase;
-}
-
-/* STEP 4: CONFIRM */
-.summary-card {
-  background: #0F0D0A;
-  border: 1px solid rgba(242, 237, 230, 0.1);
-  border-radius: 8px;
-  padding: 16px 18px;
-  margin: 0 0 18px;
-}
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 14px;
-  padding: 8px 0;
-  border-bottom: 1px dashed rgba(242, 237, 230, 0.1);
-}
-.summary-row-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: #877F73;
-  flex: none;
-  text-transform: uppercase;
-}
-.summary-row-value {
-  font-size: 14px;
-  font-weight: 600;
-  text-align: right;
-}
-.summary-change-btn {
-  background: none;
-  border: none;
-  padding: 10px 0 2px;
-  cursor: pointer;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--bbA, #C87F3F);
-  text-transform: uppercase;
-  transition: text-decoration 0.15s ease;
-  width: 100%;
-  text-align: left;
-}
+.time-slot:hover:not(:disabled) { border-color: var(--paper); }
+.time-slot:disabled { cursor: not-allowed; opacity: 0.5; }
+.time-slot.selected { border-color: var(--acid); background: var(--acid); color: var(--acid-ink); font-weight: 700; }
+.time-slot.busy { color: var(--paper-3); text-decoration: line-through; }
+.slots-legend { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-3); margin-top: 12px; }
+.summary-card { border: 2px solid var(--paper); background: var(--ink-2); padding: 16px 18px; margin: 0 0 18px; }
+.summary-row { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+.summary-row-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper-3); flex: none; }
+.summary-row-value { font-size: 14.5px; font-weight: 600; text-align: right; }
+.summary-change-btn { padding: 12px 0 2px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--acid); width: 100%; text-align: left; }
 .summary-change-btn:hover { text-decoration: underline; }
-
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  gap: 12px;
-  margin: 0 0 6px;
-}
-.form-group {
-  display: block;
-}
-.form-label {
-  display: block;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: #877F73;
-  margin: 0 0 6px;
-  text-transform: uppercase;
-}
-.form-input {
-  width: 100%;
-  box-sizing: border-box;
-  background: #0E0C0A;
-  border: 1px solid rgba(242, 237, 230, 0.15);
-  border-radius: 6px;
-  padding: 13px 14px;
-  color: #F2EDE6;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.15s ease;
-}
-.form-input:focus {
-  border-color: var(--bbA, #C87F3F);
-}
-.form-input.error {
-  border-color: #E05B4E;
-}
-.form-error {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: #E05B4E;
-  margin: 6px 0 0;
-  text-transform: uppercase;
-}
-.confirm-btn {
-  width: 100%;
-  margin-top: 16px;
-  background: var(--bbA, #C87F3F);
-  color: #14100B;
-  border: none;
-  cursor: pointer;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 21px;
-  letter-spacing: 0.08em;
-  padding: 16px 20px 13px;
-  border-radius: 5px;
-  line-height: 1;
-  text-transform: uppercase;
-  transition: filter 0.15s ease;
-}
-.confirm-btn:hover { filter: brightness(1.12); }
-.confirm-note {
-  margin: 12px 0 0;
-  text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: #877F73;
-  line-height: 1.7;
-  text-transform: uppercase;
-}
-
-/* SUCCESS */
-.success-container {
-  animation: bbFade 0.35s ease;
-  text-align: center;
-  padding: 10px 0;
-}
-.success-check {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  border: 2px solid #4CAF6E;
-  color: #4CAF6E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  margin: 6px auto 16px;
-}
-.success-title {
-  margin: 0 0 8px;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-weight: 400;
-  font-size: clamp(28px, 4.4vw, 38px);
-  letter-spacing: 0.02em;
-}
-.success-desc {
-  margin: 0 auto 20px;
-  color: #B7AFA4;
-  font-size: 14.5px;
-  line-height: 1.65;
-  max-width: 46ch;
-}
-.success-msg-box {
-  background: #0F0D0A;
-  border: 1px dashed rgba(242, 237, 230, 0.16);
-  border-radius: 8px;
-  padding: 16px 18px;
-  margin: 0 0 20px;
-  text-align: left;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 12px;
-  line-height: 1.8;
-  color: #C9C2B6;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.success-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-.success-wa-btn {
-  background: #22C15E;
-  color: #06220F;
-  text-decoration: none;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  padding: 14px 26px 12px;
-  border-radius: 5px;
-  line-height: 1;
-  text-transform: uppercase;
-  transition: filter 0.15s ease;
-  display: inline-block;
-}
-.success-wa-btn:hover { filter: brightness(1.08); }
-.success-reset-btn {
-  background: none;
-  border: 1px solid rgba(242, 237, 230, 0.25);
-  color: #F2EDE6;
-  cursor: pointer;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  padding: 14px 26px 12px;
-  border-radius: 5px;
-  line-height: 1;
-  white-space: nowrap;
-  text-transform: uppercase;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.success-reset-btn:hover {
-  border-color: var(--bbA, #C87F3F);
-  color: var(--bbA, #C87F3F);
-}
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; margin: 0 0 6px; }
+.form-label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper-3); margin: 0 0 6px; }
+.form-input { width: 100%; background: var(--ink-2); border: 2px solid var(--line); padding: 14px; color: var(--paper); font-size: 15px; outline: none; transition: border-color 0.15s ease; }
+.form-input:focus { border-color: var(--acid); }
+.form-input.error { border-color: var(--flame); }
+.form-error { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--flame); margin: 8px 0 0; }
+.confirm-btn { width: 100%; margin-top: 16px; }
+.confirm-note { margin: 12px 0 0; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-3); line-height: 1.7; }
+.success-container { animation: bbFade 0.35s ease; text-align: center; padding: 10px 0; }
+.success-check { width: 66px; height: 66px; border: 3px solid var(--wa); color: var(--wa); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 6px auto 18px; font-weight: 700; }
+.success-title { font-size: clamp(36px, 5vw, 54px); margin: 0 0 10px; }
+.success-desc { margin: 0 auto 20px; color: var(--paper-2); font-size: 14.5px; line-height: 1.65; max-width: 46ch; }
+.success-msg-box { background: var(--ink-2); border: 2px dashed var(--line); padding: 16px 18px; margin: 0 0 20px; text-align: left; font-family: var(--mono); font-size: 12px; line-height: 1.8; color: var(--paper-2); white-space: pre-wrap; word-break: break-word; }
+.success-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
 /* ========== BARBEROS ========== */
-.barbers-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-  gap: 14px;
-}
-.barber-card {
-  background: #15130F;
-  border: 1px solid rgba(242, 237, 230, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: border-color 0.15s ease;
-}
-.barber-card:hover { border-color: var(--bbAline, rgba(200, 127, 63, 0.4)); }
-.barber-photo-container {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  background: #14120F;
-  border-bottom: 1px solid rgba(242, 237, 230, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.barber-initials {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 74px;
-  color: rgba(242, 237, 230, 0.07);
-  letter-spacing: 0.04em;
-}
-.barber-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.1) brightness(0.92);
-}
-.barber-photo-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(11, 10, 8, 0.55) 100%);
-}
-.barber-info-card {
-  padding: 16px 18px 18px;
-}
-.barber-card-name {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 26px;
-  letter-spacing: 0.03em;
-  line-height: 1;
-}
-.barber-card-spec {
-  color: #B7AFA4;
-  font-size: 13px;
-  margin: 6px 0 12px;
-}
-.barber-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.barber-chip {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  color: #877F73;
-  border: 1px solid rgba(242, 237, 230, 0.14);
-  border-radius: 3px;
-  padding: 4px 8px;
-  text-transform: uppercase;
-}
-.barber-chip-accent {
-  color: var(--bbA, #C87F3F);
-  border-color: var(--bbAline, rgba(200, 127, 63, 0.35));
-}
+.barbers-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+.barber-card { border: 2px solid var(--paper); background: var(--ink-2); position: relative; overflow: hidden; }
+.barber-photo-container { position: relative; aspect-ratio: 3 / 4; background: var(--ink-3); border-bottom: 2px solid var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.barber-initials { font-family: var(--display); font-size: 110px; color: rgba(245, 242, 234, 0.08); }
+.barber-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15); transition: filter 0.3s ease; }
+.barber-card:hover .barber-photo { filter: grayscale(0) contrast(1.05); }
+.barber-index { position: absolute; top: 12px; left: 12px; z-index: 2; font-family: var(--display); font-size: 44px; color: var(--acid); line-height: 1; text-shadow: 3px 3px 0 var(--ink); }
+.barber-info-card { padding: 18px; }
+.barber-card-name { font-family: var(--display); font-size: clamp(28px, 3vw, 36px); text-transform: uppercase; line-height: 0.95; }
+.barber-card-spec { color: var(--paper-2); font-size: 13.5px; margin: 8px 0 14px; }
+.barber-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.barber-chip { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-2); border: 1px solid var(--line); padding: 5px 9px; }
+.barber-chip-accent { color: var(--acid-ink); background: var(--acid); border-color: var(--acid); font-weight: 700; }
 
 /* ========== UBICACIÓN ========== */
-#ubicacion { background: #121110; }
-.location-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
-  gap: 16px;
-  align-items: stretch;
-}
-.location-card {
-  background: #15130F;
-  border: 1px solid rgba(242, 237, 230, 0.1);
-  border-radius: 8px;
-  padding: clamp(20px, 3vw, 28px);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.location-section {
-  flex: 1;
-}
-.location-section-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: #877F73;
-  margin: 0 0 8px;
-  text-transform: uppercase;
-}
-.location-section-title {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.5;
-}
-.location-section-desc {
-  color: #877F73;
-  font-size: 13px;
-  margin-top: 6px;
-}
-.location-hours {
-  color: #B7AFA4;
-  font-size: 13.5px;
-  line-height: 2;
-}
-.hours-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px dashed rgba(242, 237, 230, 0.12);
-  font-size: 14px;
-}
-.hours-row.today {
-  color: #F2EDE6;
-  font-weight: 600;
-}
-.hours-badge {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 8.5px;
-  letter-spacing: 0.1em;
-  color: var(--bbA, #C87F3F);
-  margin-left: 4px;
-  text-transform: uppercase;
-}
-.location-contact {
-  font-size: 15px;
-  font-weight: 600;
-}
-.location-contact-email {
-  color: #B7AFA4;
-  font-size: 13.5px;
-  margin-top: 2px;
-}
-.location-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: auto;
-}
-.location-btn {
-  border: 1px solid rgba(242, 237, 230, 0.25);
-  color: #F2EDE6;
-  text-decoration: none;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  padding: 12px 20px 10px;
-  border-radius: 4px;
-  line-height: 1;
-  text-transform: uppercase;
-  transition: border-color 0.15s ease, color 0.15s ease;
-  display: inline-block;
-}
-.location-btn:hover {
-  border-color: var(--bbA, #C87F3F);
-  color: var(--bbA, #C87F3F);
-}
-.location-btn-wa {
-  background: #22C15E;
-  color: #06220F;
-  border: none;
-}
-.location-btn-wa:hover {
-  filter: brightness(1.08);
-  border-color: transparent;
-}
+#ubicacion { background: var(--ink-2); }
+.location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px; align-items: stretch; }
+.location-card { border: 2px solid var(--paper); background: var(--ink); padding: clamp(20px, 3vw, 30px); display: flex; flex-direction: column; gap: 22px; }
+.location-section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-3); margin: 0 0 8px; }
+.location-section-title { font-family: var(--display); font-size: 24px; text-transform: uppercase; line-height: 1.05; }
+.location-section-desc { color: var(--paper-3); font-size: 13.5px; margin-top: 8px; }
+.hours-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 14px; color: var(--paper-2); }
+.hours-row.today { color: var(--paper); font-weight: 700; }
+.hours-badge { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--acid-ink); background: var(--acid); padding: 2px 6px; margin-left: 6px; font-weight: 700; }
+.location-contact { font-family: var(--display); font-size: 26px; }
+.location-contact-email { color: var(--paper-2); font-size: 14px; margin-top: 2px; }
+.location-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
 .map-link {
-  position: relative;
-  min-height: 320px;
-  border: 1px solid rgba(242, 237, 230, 0.12);
-  border-radius: 8px;
-  display: block;
-  overflow: hidden;
-  background: linear-gradient(0deg, transparent 0 46%, rgba(242, 237, 230, 0.07) 46% 49%, transparent 49%),
-              linear-gradient(90deg, transparent 0 30%, rgba(242, 237, 230, 0.06) 30% 32.4%, transparent 32.4%),
-              linear-gradient(64deg, transparent 0 62%, var(--bbAsoft, rgba(200, 127, 63, 0.12)) 62% 64%, transparent 64%),
-              repeating-linear-gradient(0deg, rgba(242, 237, 230, 0.025) 0 1px, transparent 1px 34px),
-              repeating-linear-gradient(90deg, rgba(242, 237, 230, 0.025) 0 1px, transparent 1px 34px),
-              #131110;
-  text-decoration: none;
-  color: inherit;
+  position: relative; min-height: 340px; border: 2px solid var(--paper); display: block; overflow: hidden; text-decoration: none; color: inherit;
+  background:
+    linear-gradient(0deg, transparent 0 46%, rgba(245, 242, 234, 0.12) 46% 49%, transparent 49%),
+    linear-gradient(90deg, transparent 0 30%, rgba(245, 242, 234, 0.1) 30% 32.4%, transparent 32.4%),
+    linear-gradient(64deg, transparent 0 62%, rgba(233, 255, 46, 0.25) 62% 64%, transparent 64%),
+    repeating-linear-gradient(0deg, rgba(245, 242, 234, 0.04) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, rgba(245, 242, 234, 0.04) 0 1px, transparent 1px 34px),
+    var(--ink);
 }
-.map-pin {
-  position: absolute;
-  top: 46.5%;
-  left: 31%;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--bbA, #C87F3F);
-  border: 3px solid #0E0D0B;
-  box-shadow: 0 0 0 8px var(--bbAsoft, rgba(200, 127, 63, 0.15));
-}
-.map-label {
-  position: absolute;
-  top: calc(46.5% + 26px);
-  left: 31%;
-  transform: translateX(-40%);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  color: #F2EDE6;
-  background: #0E0D0B;
-  border: 1px solid rgba(242, 237, 230, 0.18);
-  border-radius: 4px;
-  padding: 5px 9px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.map-hint-left {
-  position: absolute;
-  bottom: 12px;
-  left: 14px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: rgba(242, 237, 230, 0.5);
-  text-transform: uppercase;
-}
-.map-hint-right {
-  position: absolute;
-  bottom: 12px;
-  right: 14px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--bbA, #C87F3F);
-  text-transform: uppercase;
-}
+.map-pin { position: absolute; top: 46.5%; left: 31%; width: 18px; height: 18px; background: var(--acid); border: 3px solid var(--ink); box-shadow: 0 0 0 10px rgba(233, 255, 46, 0.18); transform: rotate(45deg); }
+.map-label { position: absolute; top: calc(46.5% + 28px); left: 31%; transform: translateX(-40%); }
+.map-hint-left { position: absolute; bottom: 12px; left: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-3); }
+.map-hint-right { position: absolute; bottom: 12px; right: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--acid); }
 
 /* ========== FOOTER ========== */
-footer {
-  background: #0B0A08;
-}
-.footer-content {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: clamp(40px, 6vw, 64px) clamp(18px, 4vw, 44px) 28px;
-}
-.footer-cols {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(28px, 5vw, 64px);
-  justify-content: space-between;
-  margin: 0 0 36px;
-}
-.footer-col {
-  max-width: 280px;
-}
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 10px;
-}
-.footer-brand-rombo {
-  width: 9px;
-  height: 9px;
-  background: var(--bbA, #C87F3F);
-  transform: rotate(45deg);
-  display: block;
-}
-.footer-brand-text {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.05em;
-  line-height: 1;
-  padding-top: 2px;
-}
-.footer-brand-accent { color: var(--bbA, #C87F3F); }
-.footer-tagline {
-  margin: 0;
-  color: #877F73;
-  font-size: 13px;
-  line-height: 1.65;
-}
-.footer-col-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: #877F73;
-  margin: 0 0 12px;
-  text-transform: uppercase;
-}
-.footer-col-text {
-  color: #B7AFA4;
-  font-size: 13.5px;
-  line-height: 2;
-}
-.footer-col-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.footer-link {
-  color: #B7AFA4;
-  text-decoration: none;
-  font-size: 13.5px;
-  transition: color 0.15s ease;
-}
-.footer-link:hover { color: var(--bbA, #C87F3F); }
-.footer-legal {
-  border-top: 1px solid rgba(242, 237, 230, 0.08);
-  padding-top: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: space-between;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: #5E584F;
-  text-transform: uppercase;
-}
+footer { border-top: 2px solid var(--paper); background: var(--ink); position: relative; z-index: 2; }
+.footer-wordmark { font-family: var(--display); font-size: clamp(56px, 12vw, 190px); line-height: 0.85; text-transform: uppercase; color: transparent; -webkit-text-stroke: 2px var(--paper); padding: clamp(28px, 4vw, 48px) 0 0; white-space: nowrap; overflow: hidden; }
+.footer-wordmark span { color: var(--acid); -webkit-text-stroke: 0; }
+.footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: clamp(24px, 4vw, 48px); padding: clamp(28px, 4vw, 48px) 0 36px; }
+.footer-col-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--acid); margin: 0 0 12px; }
+.footer-col-text { color: var(--paper-2); font-size: 14px; line-height: 2; }
+.footer-tagline { color: var(--paper-2); font-size: 14px; line-height: 1.65; }
+.footer-link { color: var(--paper-2); text-decoration: none; font-size: 14px; display: block; line-height: 2; }
+.footer-link:hover { color: var(--acid); }
+.footer-legal { border-top: 1px solid var(--line); padding: 18px 0 28px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-3); }
 
 /* ========== FLOATING WHATSAPP ========== */
 .float-wa {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 60;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #22C15E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--wa); color: var(--wa-ink);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), 0 0 0 3px var(--ink);
   transition: transform 0.15s ease;
 }
 .float-wa:hover { transform: scale(1.07); }
-.float-wa-text {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.04em;
-  color: #06220F;
-  padding-top: 2px;
-}
+.float-wa svg { width: 32px; height: 32px; }
 </style>
 </head>
 <body>
 
 <!-- ============ NAV ============ -->
 <nav>
-  <div class="nav-content">
-    <a href="#inicio" class="nav-logo" onclick="scrollToSection('inicio', event)">
-      <span class="nav-rombo"></span>
-      <span class="nav-wordmark">BRAVO BARBER <span class="nav-wordmark-accent">CO.</span></span>
+  <div class="nav-row">
+    <a href="#inicio" class="logo" onclick="scrollToSection('inicio', event)" aria-label="Bravo Barber Co. — inicio">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect fill="#F5F2EA" width="48" height="48"/><path d="M10 38 L22 10 H30 L18 38 Z" fill="#0A0A0A"/><path d="M26 38 L38 10 H42 L30 38 Z" fill="#0A0A0A"/></svg>
+      <span class="logo-text">Bravo <em>Barber</em> Co.</span>
     </a>
     <div class="nav-links">
       <a href="#servicios" onclick="scrollToSection('servicios', event)">Servicios</a>
@@ -1397,92 +529,88 @@ footer {
       <a href="#barberos" onclick="scrollToSection('barberos', event)">Barberos</a>
       <a href="#ubicacion" onclick="scrollToSection('ubicacion', event)">Ubicación</a>
     </div>
-    <a href="#reserva" class="nav-cta" onclick="scrollToSection('reserva', event)">RESERVAR TURNO</a>
+    <a href="#reserva" class="btn solid sm" onclick="scrollToSection('reserva', event)">Reservar turno</a>
   </div>
 </nav>
 
 <!-- ============ HERO ============ -->
 <section id="inicio">
-  <div class="section-container">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <div class="eyebrow">
-          <span class="eyebrow-line"></span>
-          <span class="eyebrow-text">URDESA · GUAYAQUIL · DESDE 2012</span>
-        </div>
-        <h1>CORTE LIMPIO.<br>NAVAJA CALIENTE.<br><span class="h1-accent">CERO VUELTAS.</span></h1>
-        <p class="hero-sub">Barbería de oficio en Urdesa. Fades precisos, afeitado clásico con toalla caliente y tu turno listo en menos de un minuto — sin llamadas.</p>
-        <div class="hero-ctas">
-          <button class="cta-primary" onclick="scrollToSection('reserva', event)">RESERVAR TURNO</button>
-          <button class="cta-ghost" onclick="scrollToSection('servicios', event)">VER SERVICIOS</button>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-val">14</div>
-            <div class="stat-label">Años de oficio</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">4.9<span class="stat-accent">★</span></div>
-            <div class="stat-label">380+ reseñas</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">3</div>
-            <div class="stat-label">Barberos de planta</div>
-          </div>
-        </div>
+  <div class="hero-big-bg" aria-hidden="true">URDESA</div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">
+        <span class="sticker">Desde 2012</span>
+        <span class="mono">Urdesa · Guayaquil</span>
       </div>
-      <div class="hero-img-container">
-        <span class="img-placeholder">IMG · barbero afeitando<br>con navaja, plano cerrado</span>
-        <img class="hero-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=80" alt="Barbero afeitando con navaja" crossorigin="anonymous">
-        <div class="hero-img-vignette"></div>
-        <div class="hero-img-tick hero-img-tick-tl"></div>
-        <div class="hero-img-tick hero-img-tick-br"></div>
+      <h1 class="display">Corte<br><span class="outline">limpio.</span><br><span class="acid">Navaja</span><br>caliente.</h1>
+      <p class="hero-sub">Barbería de oficio en Urdesa. Fades precisos, afeitado clásico con toalla caliente y tu turno reservado en menos de un minuto.</p>
+      <div class="hero-ctas">
+        <button class="btn solid" onclick="scrollToSection('reserva', event)">Reservar turno</button>
+        <button class="btn" onclick="scrollToSection('servicios', event)">Ver precios</button>
       </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-val">14</div><div class="stat-label">Años de oficio</div></div>
+        <div class="stat"><div class="stat-val">4.9<span class="acid">★</span></div><div class="stat-label">380+ reseñas</div></div>
+        <div class="stat"><div class="stat-val">3</div><div class="stat-label">Barberos de planta</div></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <span class="hero-tape tl" aria-hidden="true"></span>
+      <span class="hero-tape br" aria-hidden="true"></span>
+      <div class="hero-photo-frame">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=80" alt="Barbero afeitando con navaja" crossorigin="anonymous">
+      </div>
+      <span class="sticker flame hero-sticker-1">Walk-ins bienvenidos</span>
+      <span class="sticker paper hero-sticker-2">Toalla caliente · navaja libre</span>
     </div>
   </div>
 </section>
 
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
 <!-- ============ SERVICIOS ============ -->
-<section id="servicios">
-  <div class="section-container">
-    <div class="eyebrow">
-      <span class="eyebrow-line"></span>
-      <span class="eyebrow-text">SERVICIOS Y PRECIOS</span>
+<section id="servicios" class="section">
+  <div class="wrap">
+    <div class="eyebrow"><span class="mono">Servicios y precios</span></div>
+    <h2 class="display">Lo que<br>hacemos bien</h2>
+    <p class="lede" style="margin-bottom: 32px;">Precios cerrados. Pagas en el local: efectivo, transferencia o tarjeta.</p>
+    <div class="board">
+      <div class="board-head"><span>#</span><span>Servicio</span><span>Tiempo</span><span>Precio</span><span></span></div>
+      <div id="servicesGrid"></div>
     </div>
-    <h2>LO QUE HACEMOS BIEN</h2>
-    <p class="section-intro">Precios cerrados, sin sorpresas. Pagas en el local: efectivo, transferencia o tarjeta.</p>
-    <div class="services-grid" id="servicesGrid"></div>
+    <div class="services-note">
+      <span class="sticker paper">Corte niño hasta 12 años</span>
+      <span class="sticker">Combo corte + barba = $18</span>
+    </div>
   </div>
 </section>
 
 <!-- ============ GALERÍA ============ -->
-<section id="galeria">
-  <div class="section-container">
-    <div class="gallery-header">
+<section id="galeria" class="section">
+  <div class="wrap">
+    <div class="gallery-head">
       <div>
-        <div class="eyebrow">
-          <span class="eyebrow-line"></span>
-          <span class="eyebrow-text">GALERÍA</span>
-        </div>
-        <h2>TRABAJO RECIENTE</h2>
+        <div class="eyebrow"><span class="mono">Galería</span></div>
+        <h2 class="display" style="margin-bottom: 0;">Trabajo<br>reciente</h2>
       </div>
-      <div class="gallery-note">@BRAVOBARBER.GYE · ACTUALIZADO CADA SEMANA</div>
+      <span class="sticker flame">@bravobarber.gye · cada semana</span>
     </div>
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </section>
 
+<div class="hazard" aria-hidden="true"></div>
+
 <!-- ============ RESERVA ============ -->
-<section id="reserva">
-  <div class="section-container" style="max-width: 880px;">
-    <div style="text-align: center; margin: 0 0 30px;">
-      <div class="eyebrow" style="justify-content: center;">
-        <span class="eyebrow-line"></span>
-        <span class="eyebrow-text">RESERVA EN LÍNEA</span>
-        <span class="eyebrow-line"></span>
-      </div>
-      <h2>TU TURNO EN 30 SEGUNDOS</h2>
-      <p class="section-intro" style="margin: 0 auto;">Elige y confirma: el mensaje te queda listo en WhatsApp. Sin cuenta, sin pago online.</p>
+<section id="reserva" class="section">
+  <div class="wrap">
+    <div class="booking-head">
+      <div class="eyebrow"><span class="mono acid">Reserva en línea</span></div>
+      <h2 class="display">Tu turno en<br><span class="acid">30 segundos</span></h2>
+      <p class="lede">Elige y confirma: el mensaje queda listo en WhatsApp. Sin cuenta, el pago es en el local.</p>
     </div>
 
     <div class="booking-card">
@@ -1490,67 +618,67 @@ footer {
       <div class="booking-content">
         <!-- PASO 1 -->
         <div id="step1" class="step-page" style="display:none;">
-          <div class="step-label">PASO 1 DE 4</div>
-          <h3>¿QUÉ TE HACEMOS?</h3>
+          <div class="step-label">Paso 1 de 4</div>
+          <h3 class="display">¿Qué te hacemos?</h3>
           <div class="step1-rows" id="servicesStep1"></div>
         </div>
 
         <!-- PASO 2 -->
         <div id="step2" class="step-page" style="display:none;">
           <div class="step-header">
-            <span class="step-header-info"><span id="step2Label">PASO 2 DE 4</span></span>
-            <button class="step-change-btn" onclick="app.goStep(1)">← CAMBIAR SERVICIO</button>
+            <span class="step-header-info"><span id="step2Label">Paso 2 de 4</span></span>
+            <button class="step-change-btn" onclick="app.goStep(1)">← Cambiar servicio</button>
           </div>
-          <h3>¿CON QUIÉN?</h3>
+          <h3 class="display">¿Con quién?</h3>
           <div class="barbers-grid" id="barbersStep2"></div>
         </div>
 
         <!-- PASO 3 -->
         <div id="step3" class="step-page" style="display:none;">
           <div class="step-header">
-            <span class="step-header-info"><span id="step3Label">PASO 3 DE 4</span></span>
-            <button class="step-change-btn" onclick="app.goStep(2)">← CAMBIAR BARBERO</button>
+            <span class="step-header-info"><span id="step3Label">Paso 3 de 4</span></span>
+            <button class="step-change-btn" onclick="app.goStep(2)">← Cambiar barbero</button>
           </div>
-          <h3>¿CUÁNDO?</h3>
+          <h3 class="display">¿Cuándo?</h3>
           <div class="day-chips" id="dayChips"></div>
           <div class="slots-container" id="slotsContainer">
-            <div class="slots-idle">ELIGE UN DÍA PARA VER LOS HUECOS LIBRES</div>
+            <div class="slots-idle">Elige un día para ver los huecos libres</div>
           </div>
         </div>
 
         <!-- PASO 4 -->
         <div id="step4" class="step-page" style="display:none;">
-          <div class="step-label">PASO 4 DE 4</div>
-          <h3>CONFIRMA TU TURNO</h3>
+          <div class="step-label">Paso 4 de 4</div>
+          <h3 class="display">Confirma tu turno</h3>
           <div class="summary-card">
             <div id="summaryRows"></div>
-            <button class="summary-change-btn" onclick="app.goStep(1)">← CAMBIAR ALGO</button>
+            <button class="summary-change-btn" onclick="app.goStep(1)">← Cambiar algo</button>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">TU NOMBRE *</label>
-              <input type="text" id="nameInput" class="form-input" placeholder="Ej. Carlos Andrade" onchange="app.setName(this.value)">
+              <label class="form-label" for="nameInput">Tu nombre *</label>
+              <input type="text" id="nameInput" class="form-input" placeholder="Nombre y apellido" onchange="app.setName(this.value)">
             </div>
             <div class="form-group">
-              <label class="form-label">TELÉFONO (OPCIONAL)</label>
+              <label class="form-label" for="phoneInput">Teléfono (opcional)</label>
               <input type="tel" id="phoneInput" class="form-input" placeholder="+593 9…" onchange="app.setPhone(this.value)">
             </div>
           </div>
-          <div id="nameErrorMsg" style="display:none;" class="form-error">⚠ ESCRIBE TU NOMBRE PARA CONFIRMAR LA RESERVA.</div>
-          <button class="confirm-btn" onclick="app.confirm()">CONFIRMAR POR WHATSAPP</button>
-          <div class="confirm-note">SE ABRE WHATSAPP CON EL MENSAJE LISTO. NO PAGAS NADA TODAVÍA.</div>
+          <div id="nameErrorMsg" style="display:none;" class="form-error">⚠ Escribe tu nombre para confirmar la reserva.</div>
+          <button class="btn wa confirm-btn" onclick="app.confirm()"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Confirmar por WhatsApp</button>
+          <div class="confirm-note">Se abre WhatsApp con el mensaje listo. El pago es en el local.</div>
         </div>
 
         <!-- ÉXITO -->
         <div id="successPanel" class="step-page" style="display:none;">
           <div class="success-container">
             <div class="success-check">✓</div>
-            <h3 class="success-title" id="successTitle">¡LISTO!</h3>
+            <h3 class="display success-title" id="successTitle">¡Listo!</h3>
             <p class="success-desc">Tu turno quedó pre-reservado. Envíanos el mensaje por WhatsApp y te confirmamos la silla en minutos.</p>
             <div class="success-msg-box" id="successMsg"></div>
             <div class="success-buttons">
-              <a id="successWaBtn" class="success-wa-btn" target="_blank" rel="noopener">ENVIAR POR WHATSAPP ↗</a>
-              <button class="success-reset-btn" onclick="app.reset()">HACER OTRA RESERVA</button>
+              <a id="successWaBtn" class="btn wa" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Enviar por WhatsApp</a>
+              <button class="btn" onclick="app.reset()">Hacer otra reserva</button>
             </div>
           </div>
         </div>
@@ -1560,52 +688,46 @@ footer {
 </section>
 
 <!-- ============ BARBEROS ============ -->
-<section id="barberos">
-  <div class="section-container">
-    <div class="eyebrow">
-      <span class="eyebrow-line"></span>
-      <span class="eyebrow-text">EL EQUIPO</span>
-    </div>
-    <h2>TRES BARBEROS, UN OFICIO</h2>
-    <p class="section-intro">Cada uno con su especialidad. Elige el tuyo al reservar, o déjate sorprender.</p>
+<section id="barberos" class="section">
+  <div class="wrap">
+    <div class="eyebrow"><span class="mono">El equipo</span></div>
+    <h2 class="display">Tres barberos,<br>un oficio</h2>
+    <p class="lede" style="margin-bottom: 32px;">Cada uno con su especialidad. Elige el tuyo al reservar, o déjate sorprender.</p>
     <div class="barbers-cards-grid" id="barbersCards"></div>
   </div>
 </section>
 
 <!-- ============ UBICACIÓN ============ -->
-<section id="ubicacion">
-  <div class="section-container">
-    <div class="eyebrow">
-      <span class="eyebrow-line"></span>
-      <span class="eyebrow-text">UBICACIÓN Y HORARIO</span>
-    </div>
-    <h2>EN EL CORAZÓN DE URDESA</h2>
-    <div class="location-grid">
+<section id="ubicacion" class="section">
+  <div class="wrap">
+    <div class="eyebrow"><span class="mono">Ubicación y horario</span></div>
+    <h2 class="display">En el corazón<br>de Urdesa</h2>
+    <div class="location-grid" style="margin-top: 32px;">
       <div class="location-card">
-        <div class="location-section">
-          <div class="location-section-label">DIRECCIÓN</div>
+        <div>
+          <div class="location-section-label">Dirección</div>
           <div class="location-section-title">Av. Víctor Emilio Estrada 707 y Ficus<br>Urdesa Central, Guayaquil</div>
           <div class="location-section-desc">A media cuadra del Parque de Urdesa. Parqueo en La Ficus.</div>
         </div>
-        <div class="location-section">
-          <div class="location-section-label">HORARIO</div>
+        <div>
+          <div class="location-section-label">Horario</div>
           <div id="hoursRows"></div>
         </div>
-        <div class="location-section">
-          <div class="location-section-label">CONTACTO</div>
+        <div>
+          <div class="location-section-label">Contacto</div>
           <div class="location-contact">+593 99 284 7310</div>
           <div class="location-contact-email">hola@bravobarber.ec</div>
         </div>
         <div class="location-buttons">
-          <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" class="location-btn">CÓMO LLEGAR ↗</a>
-          <a id="locWaBtn" href="#" target="_blank" rel="noopener" class="location-btn location-btn-wa">ESCRIBIR POR WHATSAPP</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" class="btn sm">Cómo llegar ↗</a>
+          <a id="locWaBtn" href="#" target="_blank" rel="noopener" class="btn wa sm"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>WhatsApp</a>
         </div>
       </div>
       <a href="https://www.google.com/maps/search/?api=1&query=Av.+Victor+Emilio+Estrada+707+Urdesa+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" class="map-link">
         <div class="map-pin"></div>
-        <div class="map-label">BRAVO BARBER CO.</div>
-        <div class="map-hint-left">MAPA · V.E. ESTRADA Y FICUS</div>
-        <div class="map-hint-right">ABRIR EN GOOGLE MAPS ↗</div>
+        <div class="map-label"><span class="sticker">Bravo Barber Co.</span></div>
+        <div class="map-hint-left">Mapa · V.E. Estrada y Ficus</div>
+        <div class="map-hint-right">Abrir en Google Maps ↗</div>
       </a>
     </div>
   </div>
@@ -1613,47 +735,46 @@ footer {
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="footer-content">
+  <div class="wrap">
+    <div class="footer-wordmark" aria-hidden="true">Bravo <span>Barber</span></div>
     <div class="footer-cols">
-      <div class="footer-col">
-        <div class="footer-brand">
-          <span class="footer-brand-rombo"></span>
-          <span class="footer-brand-text">BRAVO BARBER <span class="footer-brand-accent">CO.</span></span>
-        </div>
+      <div>
+        <div class="footer-col-label">Bravo Barber Co.</div>
         <p class="footer-tagline">Barbería de oficio en Urdesa desde 2012. Corte, navaja y conversación de la buena.</p>
       </div>
-      <div class="footer-col">
-        <div class="footer-col-label">HORARIO</div>
+      <div>
+        <div class="footer-col-label">Horario</div>
         <div class="footer-col-text">Lun – Vie · 09:00 – 20:00<br>Sábado · 09:00 – 18:00<br>Domingo · Cerrado</div>
       </div>
-      <div class="footer-col">
-        <div class="footer-col-label">CONTACTO</div>
+      <div>
+        <div class="footer-col-label">Contacto</div>
         <div class="footer-col-text">+593 99 284 7310<br>hola@bravobarber.ec<br>V.E. Estrada 707 y Ficus, Urdesa</div>
       </div>
-      <div class="footer-col">
-        <div class="footer-col-label">SÍGUENOS</div>
-        <div class="footer-col-links">
-          <a href="#" class="footer-link">Instagram · @bravobarber.gye</a>
-          <a href="#" class="footer-link">TikTok · @bravobarber</a>
-        </div>
+      <div>
+        <div class="footer-col-label">Síguenos</div>
+        <a href="#" class="footer-link">Instagram · @bravobarber.gye</a>
+        <a href="#" class="footer-link">TikTok · @bravobarber</a>
       </div>
     </div>
     <div class="footer-legal">
-      <span>© <span id="yearSpan">2026</span> BRAVO BARBER CO. — NEGOCIO Y DATOS FICTICIOS</span>
-      <span>SITIO DEMO · DISEÑADO POR <a href="../../" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">NEXORA STUDIO</a></span>
+      <span>© <span id="yearSpan">2026</span> Bravo Barber Co. — negocio y datos ficticios</span>
+      <span>Sitio demo · diseñado por <a href="../../" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">Nexora</a></span>
     </div>
   </div>
 </footer>
 
 <!-- ============ FLOATING WHATSAPP ============ -->
 <a id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" class="float-wa">
-  <span class="float-wa-text">WA</span>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
 </a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></symbol>
+</svg>
 
 <script>
 const app = {
   config: {
-    accent: '#C87F3F',
     whatsappNumber: '593992847310',
     showFloat: true
   },
@@ -1671,17 +792,19 @@ const app = {
     { id: 'marco', name: 'Marco Aguirre', spec: 'Clásicos y navaja · Fundador', years: 14, ig: '@MARCO.BRAVOBARBER', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80' },
     { id: 'diego', name: 'Diego Salazar', spec: 'Fades y diseño freestyle', years: 8, ig: '@DIEGO.FADES', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80' },
     { id: 'jandry', name: 'Jandry Vera', spec: 'Barba y afeitado clásico', years: 6, ig: '@JANDRY.NAVAJA', img: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=700&q=80' },
-    { id: 'any', name: 'El primero disponible', spec: 'Sin preferencia, te toca el que esté libre', years: null, ig: null }
+    { id: 'any', name: 'El primero disponible', spec: 'Cualquiera del equipo, el que esté libre', years: null, ig: null }
   ],
 
   gallery: [
-    { caption: 'FADE ALTO + LÍNEA', img: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80', alt: 'Fade alto con línea' },
-    { caption: 'AFEITADO · TOALLA CALIENTE', img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80', alt: 'Afeitado clásico con toalla caliente' },
-    { caption: 'CLÁSICO A TIJERA', img: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80', alt: 'Corte clásico a tijera' },
-    { caption: 'DISEÑO FREESTYLE', img: 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=700&q=80', alt: 'Diseño freestyle a máquina' },
-    { caption: 'PERFILADO DE BARBA', img: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=80', alt: 'Perfilado de barba' },
-    { caption: 'EL LOCAL · SILLAS 1–3', img: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=80', alt: 'Interior del local, sillas de barbero' }
+    { caption: 'Fade alto + línea', img: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c', alt: 'Fade alto con línea' },
+    { caption: 'Afeitado · toalla caliente', img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486', alt: 'Afeitado clásico con toalla caliente' },
+    { caption: 'Clásico a tijera', img: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a', alt: 'Corte clásico a tijera' },
+    { caption: 'Freestyle', img: 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186', alt: 'Diseño freestyle a máquina' },
+    { caption: 'Perfilado de barba', img: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033', alt: 'Perfilado de barba' },
+    { caption: 'El local · sillas 1–3', img: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70', alt: 'Interior del local, sillas de barbero' }
   ],
+
+  marquee: ['Fade', 'Navaja', 'Toalla caliente', 'Barba', 'Corte clásico', 'Freestyle', 'Urdesa', 'Desde 2012'],
 
   times: ['09:00', '09:45', '10:30', '11:15', '12:00', '12:45', '14:00', '14:45', '15:30', '16:15', '17:00', '17:45', '18:30', '19:15'],
 
@@ -1699,12 +822,6 @@ const app = {
   },
 
   init() {
-    document.documentElement.style.setProperty('--bbA', this.config.accent);
-    document.documentElement.style.setProperty('--bbAsoft', this.config.accent + '1F');
-    document.documentElement.style.setProperty('--bbAstripe', this.config.accent + '0D');
-    document.documentElement.style.setProperty('--bbAglow', this.config.accent + '26');
-    document.documentElement.style.setProperty('--bbAline', this.config.accent + '59');
-
     document.getElementById('yearSpan').textContent = new Date().getFullYear();
 
     const waIntroMsg = 'Hola Bravo Barber, quiero información.';
@@ -1714,6 +831,7 @@ const app = {
 
     if (!this.config.showFloat) document.getElementById('floatWa').style.display = 'none';
 
+    this.renderMarquee();
     this.renderAll();
 
     document.addEventListener('error', (e) => {
@@ -1721,6 +839,11 @@ const app = {
         e.target.style.display = 'none';
       }
     }, true);
+  },
+
+  renderMarquee() {
+    const items = this.marquee.concat(this.marquee).map(t => `<span class="marquee-item">${t}</span>`).join('');
+    document.getElementById('marqueeTrack').innerHTML = items;
   },
 
   getDays() {
@@ -1776,17 +899,18 @@ const app = {
   },
 
   renderServices() {
-    const html = this.services.map(s => `
-      <div class="service-card">
-        <div class="service-header">
-          <span class="service-name">${s.name}</span>
-          <span class="service-price">$${s.price}</span>
+    const html = this.services.map((s, i) => `
+      <div class="board-row">
+        <span class="board-num">0${i + 1}</span>
+        <div class="board-name-cell">
+          <div class="board-name">${s.name}</div>
+          <div class="board-desc">${s.desc}</div>
         </div>
-        <p class="service-desc">${s.desc}</p>
-        <div class="service-footer">
-          <span class="service-duration">${s.min} MIN</span>
-          <a href="#reserva" class="service-book-link" onclick="app.pickService('${s.id}', event)">RESERVAR →</a>
+        <div class="board-meta">
+          <span class="board-min">${s.min} min</span>
+          <span class="board-price">$${s.price}</span>
         </div>
+        <a href="#reserva" class="btn sm board-cta" onclick="app.pickService('${s.id}', event)">Reservar →</a>
       </div>
     `).join('');
     document.getElementById('servicesGrid').innerHTML = html;
@@ -1795,29 +919,28 @@ const app = {
   renderGallery() {
     const html = this.gallery.map(g => `
       <div class="gallery-tile">
-        <img class="gallery-img" src="${g.img}?auto=format&fit=crop&w=700&q=80" alt="${g.alt}" crossorigin="anonymous">
-        <div class="gallery-gradient"></div>
-        <span class="gallery-caption">${g.caption}</span>
+        <img src="${g.img}?auto=format&fit=crop&w=900&q=80" alt="${g.alt}" crossorigin="anonymous" loading="lazy">
+        <span class="gallery-caption"><span class="sticker paper">${g.caption}</span></span>
       </div>
     `).join('');
     document.getElementById('galleryGrid').innerHTML = html;
   },
 
   renderBarbers() {
-    const html = this.barbers.map(b => {
-      const initials = b.id === 'any' ? '¿?' : b.name.split(' ').map(w => w[0]).slice(0, 2).join('');
+    const html = this.barbers.filter(b => b.id !== 'any').map((b, i) => {
+      const initials = b.name.split(' ').map(w => w[0]).slice(0, 2).join('');
       return `
       <div class="barber-card">
         <div class="barber-photo-container">
           <span class="barber-initials">${initials}</span>
-          ${b.img ? `<img class="barber-photo" src="${b.img}?auto=format&fit=crop&w=700&q=80" alt="Retrato de ${b.name}" crossorigin="anonymous">` : ''}
-          <div class="barber-photo-gradient"></div>
+          ${b.img ? `<img class="barber-photo" src="${b.img}" alt="Retrato de ${b.name}" crossorigin="anonymous">` : ''}
+          <span class="barber-index">0${i + 1}</span>
         </div>
         <div class="barber-info-card">
           <div class="barber-card-name">${b.name}</div>
           <div class="barber-card-spec">${b.spec}</div>
           <div class="barber-chips">
-            ${b.years ? `<span class="barber-chip">${b.years} AÑOS DE OFICIO</span>` : ''}
+            ${b.years ? `<span class="barber-chip">${b.years} años de oficio</span>` : ''}
             ${b.ig ? `<span class="barber-chip barber-chip-accent">${b.ig}</span>` : ''}
           </div>
         </div>
@@ -1836,7 +959,7 @@ const app = {
     ];
     const html = hours.map(h => `
       <div class="hours-row ${h.today ? 'today' : ''}">
-        <span>${h.d}${h.today ? ` <span class="hours-badge">HOY</span>` : ''}</span>
+        <span>${h.d}${h.today ? ` <span class="hours-badge">Hoy</span>` : ''}</span>
         <span>${h.h}</span>
       </div>
     `).join('');
@@ -1854,10 +977,10 @@ const app = {
 
   renderStepChips() {
     const defs = [
-      { n: 1, label: 'SERVICIO' },
-      { n: 2, label: 'BARBERO' },
-      { n: 3, label: 'FECHA Y HORA' },
-      { n: 4, label: 'CONFIRMAR' }
+      { n: 1, label: 'Servicio' },
+      { n: 2, label: 'Barbero' },
+      { n: 3, label: 'Fecha y hora' },
+      { n: 4, label: 'Confirmar' }
     ];
     const canGo = (n) => {
       if (n === 1) return true;
@@ -1887,7 +1010,7 @@ const app = {
           <span class="service-row-desc">${s.desc}</span>
         </span>
         <span class="service-row-right">
-          <span class="service-row-min">${s.min} MIN</span>
+          <span class="service-row-min">${s.min} min</span>
           <span class="service-row-price">$${s.price}</span>
         </span>
       </button>
@@ -1911,7 +1034,7 @@ const app = {
     document.getElementById('barbersStep2').innerHTML = html;
 
     if (this.state.service) {
-      document.getElementById('step2Label').textContent = `PASO 2 DE 4 · ${this.state.service.name.toUpperCase()} · $${this.state.service.price}`;
+      document.getElementById('step2Label').textContent = `Paso 2 de 4 · ${this.state.service.name} · $${this.state.service.price}`;
     }
   },
 
@@ -1919,16 +1042,16 @@ const app = {
     const days = this.getDays();
     const html = days.map(d => `
       <button class="day-chip ${d.closed ? 'disabled' : ''} ${this.state.day?.key === d.key ? 'selected' : ''}" onclick="app.pickDay('${d.key}', event)" ${d.closed ? 'disabled' : ''}>
-        <span class="day-wd">${(d.today ? 'HOY' : d.wd).toUpperCase()}</span>
+        <span class="day-wd">${(d.today ? 'Hoy' : d.wd)}</span>
         <span class="day-num">${d.num}</span>
-        <span class="day-mo">${d.mo.toUpperCase()}</span>
-        ${d.closed || d.full ? `<span class="day-tag ${d.full ? 'full' : 'closed'}">${d.full ? 'LLENO' : 'CERRADO'}</span>` : ''}
+        <span class="day-mo">${d.mo}</span>
+        ${d.closed || d.full ? `<span class="day-tag ${d.full ? 'full' : 'closed'}">${d.full ? 'Lleno' : 'Cerrado'}</span>` : ''}
       </button>
     `).join('');
     document.getElementById('dayChips').innerHTML = html;
 
     if (this.state.service && this.state.barber) {
-      document.getElementById('step3Label').textContent = `PASO 3 DE 4 · ${this.state.service.name.toUpperCase()} · $${this.state.service.price} · ${this.state.barber.name.toUpperCase()}`;
+      document.getElementById('step3Label').textContent = `Paso 3 de 4 · ${this.state.service.name} · $${this.state.service.price} · ${this.state.barber.name}`;
     }
 
     this.renderSlots();
@@ -1937,22 +1060,22 @@ const app = {
   renderSlots() {
     const container = document.getElementById('slotsContainer');
     if (!this.state.day) {
-      container.innerHTML = '<div class="slots-idle">ELIGE UN DÍA PARA VER LOS HUECOS LIBRES</div>';
+      container.innerHTML = '<div class="slots-idle">Elige un día para ver los huecos libres</div>';
       return;
     }
     if (this.state.slotsLoading) {
-      container.innerHTML = '<div class="slots-loading"><span class="spinner"></span><span class="loading-text">BUSCANDO HUECOS LIBRES…</span></div>';
+      container.innerHTML = '<div class="slots-loading"><span class="spinner"></span><span>Buscando huecos libres…</span></div>';
       return;
     }
     if (this.state.day.full) {
       const days = this.getDays();
       const nextDay = days.find(d => d.i > this.state.day.i && !d.closed && !d.full);
-      const label = nextDay ? nextDay.label : 'VER OTRO DÍA';
+      const label = nextDay ? nextDay.label : 'ver otro día';
       container.innerHTML = `
         <div class="day-full-panel">
-          <div class="day-full-title">AGENDA LLENA ESE DÍA</div>
+          <div class="day-full-title">Agenda llena ese día</div>
           <p class="day-full-desc">Se nos fue todo. El sábado suele tener huecos a primera hora.</p>
-          <button class="day-full-btn" onclick="app.goNextDay()">PROBAR EL ${label.toUpperCase()}</button>
+          <button class="btn solid sm" onclick="app.goNextDay()">Probar el ${label}</button>
         </div>
       `;
       return;
@@ -1965,7 +1088,7 @@ const app = {
             <button class="time-slot ${this.state.time === sl.t ? 'selected' : ''} ${sl.busy ? 'busy' : ''}" onclick="app.pickTime('${sl.t}', event)" ${sl.busy ? 'disabled' : ''}>${sl.t}</button>
           `).join('')}
         </div>
-        <div class="slots-legend">TACHADO = OCUPADO · HORA GUAYAQUIL (GMT-5)</div>
+        <div class="slots-legend">Tachado = ocupado · hora Guayaquil (GMT-5)</div>
       </div>
     `;
     container.innerHTML = html;
@@ -1974,12 +1097,12 @@ const app = {
   renderStep4() {
     if (this.state.service) {
       const rows = [
-        { k: 'SERVICIO', v: this.state.service.name },
-        { k: 'BARBERO', v: this.state.barber ? this.state.barber.name : '—' },
-        { k: 'DÍA', v: this.state.day ? this.state.day.label : '—' },
-        { k: 'HORA', v: this.state.time || '—' },
-        { k: 'DURACIÓN', v: this.state.service.min + ' min' },
-        { k: 'PRECIO', v: '$' + this.state.service.price + ' — pagas en el local' }
+        { k: 'Servicio', v: this.state.service.name },
+        { k: 'Barbero', v: this.state.barber ? this.state.barber.name : '—' },
+        { k: 'Día', v: this.state.day ? this.state.day.label : '—' },
+        { k: 'Hora', v: this.state.time || '—' },
+        { k: 'Duración', v: this.state.service.min + ' min' },
+        { k: 'Precio', v: '$' + this.state.service.price + ' — pagas en el local' }
       ];
       const html = rows.map(r => `
         <div class="summary-row">
@@ -2006,6 +1129,7 @@ const app = {
     if (e) e.preventDefault();
     this.state.service = this.services.find(s => s.id === id);
     this.renderStep1();
+    scrollToSection('reserva');
     setTimeout(() => {
       this.state.step = 2;
       this.updateWizardDisplay();
@@ -2087,6 +1211,8 @@ const app = {
   },
 
   confirm() {
+    this.state.name = document.getElementById('nameInput').value;
+    this.state.phone = document.getElementById('phoneInput').value;
     if (!this.state.name.trim()) {
       this.state.nameError = true;
       document.getElementById('nameErrorMsg').style.display = 'block';
@@ -2107,8 +1233,8 @@ const app = {
       '• Nombre: ' + (nm || '—') + (this.state.phone.trim() ? '\n• Teléfono: ' + this.state.phone.trim() : '') +
       '\n¿Me confirman? ¡Gracias!';
 
-    const firstName = (nm || 'crack').split(' ')[0].toUpperCase();
-    document.getElementById('successTitle').textContent = '¡LISTO, ' + firstName + '!';
+    const firstName = (nm || 'crack').split(' ')[0];
+    document.getElementById('successTitle').textContent = '¡Listo, ' + firstName + '!';
     document.getElementById('successMsg').textContent = waMsg;
     const waLink = 'https://wa.me/' + this.config.whatsappNumber + '?text=' + encodeURIComponent(waMsg);
     document.getElementById('successWaBtn').href = waLink;

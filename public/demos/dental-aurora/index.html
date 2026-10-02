@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Clínica Dental Aurora — Sonrisas tranquilas, tratos claros. Odontología moderna con precios cerrados por escrito.">
+<meta name="description" content="Clínica Dental Aurora — Sonrisas tranquilas, tratos claros. Odontología moderna con plan de tratamiento y precios por escrito.">
 <meta name="theme-color" content="#0E7490">
 <link rel="canonical" href="https://nexoradevs.com/demos/dental-aurora/">
 <meta property="og:title" content="Clínica Dental Aurora — Sonrisas tranquilas, tratos claros">
-<meta property="og:description" content="Odontología moderna con precios cerrados por escrito, agenda en línea y cero salas de espera eternas.">
+<meta property="og:description" content="Odontología moderna con precios por escrito, agenda en línea y atención puntual.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23FFFFFF' width='32' height='32'/%3E%3Crect x='11' y='2' width='10' height='28' rx='3' fill='%230E7490'/%3E%3Crect x='2' y='11' width='28' height='10' rx='3' fill='%230E7490'/%3E%3C/svg%3E">
@@ -268,6 +268,8 @@ footer{background:#123A47;color:#DCEDF1;border-top:1px solid #0E7490}
 /* ============ FLOATING WA ============ */
 .float-wa{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#1FAE55;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(18,58,71,.35);transition:transform .15s ease;font-weight:700;font-size:16px;color:#08240F}
 .float-wa:hover{transform:scale(1.07)}
+.wa-ico{width:30px;height:30px}
+.wa-btn-ico{width:18px;height:18px;vertical-align:-3px;margin-right:6px}
 
 /* ============ IMAGE FALLBACK ============ */
 img.error{display:none}
@@ -309,8 +311,8 @@ img.error{display:none}
           <span></span>
           <span>KENNEDY NORTE · GUAYAQUIL</span>
         </div>
-        <h1>Tu sonrisa, sin miedo<br>y <span>sin letra pequeña.</span></h1>
-        <p class="subtext">Odontología moderna con precios cerrados por escrito, agenda en línea y cero salas de espera eternas.</p>
+        <h1>Tu sonrisa, tranquila<br>y <span>con todo por escrito.</span></h1>
+        <p class="subtext">Odontología moderna con plan de tratamiento y precios por escrito, agenda en línea y atención puntual.</p>
         <div class="cta-group">
           <button class="cta-primary" id="heroCita">Agendar cita</button>
           <a href="#especialidades" class="cta-secondary">Ver especialidades</a>
@@ -336,7 +338,7 @@ img.error{display:none}
           <span class="badge-icon">✓</span>
           <span class="badge-text">
             <span>Precios cerrados por escrito</span>
-            <span>Sin sorpresas en la factura</span>
+            <span>El plan firmado es el que se factura</span>
           </span>
         </div>
       </div>
@@ -349,7 +351,7 @@ img.error{display:none}
   <div class="container">
     <p class="eyebrow">ESPECIALIDADES</p>
     <h2>Lo que hacemos, con precio claro</h2>
-    <p class="section-sub">Cada tratamiento arranca con una valoración y un plan por escrito. El precio que firmas es el precio que pagas.</p>
+    <p class="section-sub">Cada tratamiento comienza con una valoración y un plan por escrito. El precio que firmas es el que pagas.</p>
     <div class="cards-grid" id="srvCards"></div>
   </div>
 </section>
@@ -370,7 +372,7 @@ img.error{display:none}
       <div>
         <p class="eyebrow">LA DOCTORA</p>
         <h2>"Te explico todo antes de tocar nada."</h2>
-        <p class="doctor-quote">Mi consulta funciona con una regla: diagnóstico con cámara intraoral, plan por escrito y precios cerrados. Sin sorpresas en la factura ni en la silla.</p>
+        <p class="doctor-quote">Mi consulta funciona con una regla: diagnóstico con cámara intraoral, plan por escrito y precios cerrados. Así sabes qué se hace y cuánto cuesta antes de sentarte en la silla.</p>
         <div class="creds">
           <div class="cred">
             <span class="cred-dot"></span>
@@ -397,7 +399,7 @@ img.error{display:none}
     <div class="section-header">
       <p class="eyebrow">AGENDA EN LÍNEA</p>
       <h2>Tu cita en tres pasos</h2>
-      <p class="section-sub">Elige, confirma y el mensaje queda listo en WhatsApp. La confirmación no genera ningún cobro.</p>
+      <p class="section-sub">Elige, confirma y el mensaje queda listo en WhatsApp. El pago se realiza en la consulta.</p>
     </div>
     <div class="wizard-card">
       <div class="wizard-steps" id="stepChips"></div>
@@ -450,7 +452,7 @@ img.error{display:none}
         </div>
         <div class="ubicacion-buttons">
           <a href="https://www.google.com/maps/search/?api=1&query=Av.+Joaquin+Orrantia+Kennedy+Norte+Guayaquil" target="_blank" rel="noopener" class="maps-link">Cómo llegar ↗</a>
-          <a href="#" id="contactWaBtn" class="wa-btn">Escribir por WhatsApp</a>
+          <a href="#" id="contactWaBtn" class="wa-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>WhatsApp</a>
         </div>
       </div>
       <a href="https://www.google.com/maps/search/?api=1&query=Av.+Joaquin+Orrantia+Kennedy+Norte+Guayaquil" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" class="mapa">
@@ -472,7 +474,7 @@ img.error{display:none}
           <span class="footer-cross"><span></span><span></span></span>
           <span><span class="footer-title">Aurora</span> <span class="footer-subtitle">CLÍNICA DENTAL</span></span>
         </div>
-        <p class="footer-tagline">Sonrisas tranquilas, tratos claros. Precios cerrados por escrito desde la primera consulta.</p>
+        <p class="footer-tagline">Sonrisas tranquilas, tratos claros. Plan y precios por escrito desde la primera consulta.</p>
       </div>
       <div>
         <div class="footer-heading">HORARIO</div>
@@ -492,13 +494,14 @@ img.error{display:none}
     </div>
     <div class="footer-legal">
       <span>© <span id="footerYear"></span> Clínica Dental Aurora — clínica y datos ficticios · Este sitio demo no ofrece consejo médico.</span>
-      <span>Sitio demo · diseñado por <a href="../../" target="_blank" rel="noopener" class="footer-link-nexora">Nexora Studio</a></span>
+      <span>Sitio demo · diseñado por <a href="../../" target="_blank" rel="noopener" class="footer-link-nexora">Nexora</a></span>
     </div>
   </div>
 </footer>
 
 <!-- ============ FLOATING WA ============ -->
-<a href="#" id="floatWa" class="float-wa" aria-label="Escríbenos por WhatsApp">WA</a>
+<a href="#" id="floatWa" class="float-wa" aria-label="Escríbenos por WhatsApp"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg></a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></symbol></svg>
 
 <script>
 // ============ STATE & CONFIG ============
@@ -534,13 +537,13 @@ const FAQS = [
   { q: '¿Qué formas de pago aceptan?', a: 'Efectivo, transferencia y tarjetas de crédito (diferido hasta 12 meses sin interés con bancos aliados).' },
   { q: '¿Qué incluye la primera valoración?', a: 'Revisión completa, fotos intraorales y un plan de tratamiento por escrito con precios cerrados. Te lo llevas impreso o por correo.' },
   { q: '¿Trabajan con seguros?', a: 'Emitimos factura y el detalle clínico que tu aseguradora pide para el reembolso. Te ayudamos con el formulario.' },
-  { q: '¿Hacen ortodoncia en adultos?', a: 'Sí — el 40% de nuestros pacientes de ortodoncia son mayores de 30. Nunca es tarde para alinear.' }
+  { q: '¿Hacen ortodoncia en adultos?', a: 'Sí. El 40% de nuestros pacientes de ortodoncia son mayores de 30 años.' }
 ];
 
 const TESTIMONIOS = [
   { name: 'María Fernanda O.', role: 'Limpieza & prevención', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80', quote: 'Le tenía pánico al dentista. La doctora me explicó cada paso y no sentí nada. Volví con mis dos hijos.' },
-  { name: 'José Luis P.', role: 'Implante dental', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80', quote: 'Cotizé en tres lugares. Aurora fue la única con precio cerrado por escrito. Cero sorpresas al pagar.' },
-  { name: 'Andrea T.', role: 'Ortodoncia', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80', quote: 'Los brackets me los pusieron en la fecha que dijeron y el pago mensual nunca cambió. Eso vale oro.' }
+  { name: 'José Luis P.', role: 'Implante dental', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80', quote: 'Pedí el plan por escrito antes de empezar y el precio final fue exactamente ese. Da mucha tranquilidad.' },
+  { name: 'Andrea T.', role: 'Ortodoncia', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80', quote: 'Los brackets me los pusieron en la fecha acordada y el pago mensual se mantuvo igual todo el tratamiento.' }
 ];
 
 // ============ UTILITIES ============
@@ -807,7 +810,7 @@ function renderWizard() {
         </button>
         ${STATE.nameError ? '<div class="error-msg">⚠ Escribe tu nombre para confirmar la cita.</div>' : ''}
         <button class="cta-primary" onclick="confirm()" style="width: 100%; margin-top: 16px;">Confirmar por WhatsApp</button>
-        <p style="margin: 10px 0 0; text-align: center; font-size: 12px; color: #7E97A1;">Se abre WhatsApp con el mensaje listo. No pagas nada todavía.</p>
+        <p style="margin: 10px 0 0; text-align: center; font-size: 12px; color: #7E97A1;">Se abre WhatsApp con el mensaje listo. El pago se realiza en la consulta.</p>
       </div>
     `;
   }
@@ -825,7 +828,7 @@ function renderWizard() {
         <p class="success-subtitle">Tu cita quedó pre-agendada. Envíanos el mensaje y te confirmamos en minutos.</p>
         <div class="msg-preview">${msg}</div>
         <div class="success-buttons">
-          <a href="${waHref}" target="_blank" rel="noopener" class="wa-btn">Enviar por WhatsApp ↗</a>
+          <a href="${waHref}" target="_blank" rel="noopener" class="wa-btn"><svg class="wa-btn-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>Enviar por WhatsApp</a>
           <button class="secondary-btn" onclick="reset()">Agendar otra cita</button>
         </div>
       </div>
