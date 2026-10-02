@@ -400,10 +400,13 @@ rojo — el checklist dice que una landing sin cuentas no los necesita, así que
 sitio; (5) la petición de GA4 no se pudo confirmar desde esta máquina (su DNS no resuelve
 `googletagmanager.com`): la etiqueta está en el HTML, falta verla llegar desde otro equipo.
 
-## Fase 14: Identidad de las demos + demo de arquitectura ⬜
+## Fase 14: Identidad de las demos + demo de arquitectura ✅
 
-**Estado al 2026-10-01: construida en la rama `demos/identidad`, sin pasar a `main`** (en Nexora el
-push a `main` despliega). Pedido del dueño en `docs/nexora-demos/request.txt`.
+**En producción desde el 2026-10-01** (`main` en `b750b8c`, por orden del dueño tras revisar la vista
+previa). Pedido del dueño en `docs/nexora-demos/request.txt`. Ajustes de la ronda: botones de
+WhatsApp en blanco con el logo oficial (círculo verde, glifo blanco) y flotante verde con glifo
+blanco en las seis demos; Chum con el contenido real de su sitio (menú, proyectos, consultas, redes),
+Poppins, radios 10–14 px y voz de tú.
 
 - **Bravo Barber** reescrita entera con identidad «street»: negro + amarillo ácido, Anton + Archivo,
   cinta, stickers, marquesina, tablero de precios, galería en mosaico; el flujo de reserva de 4 pasos
