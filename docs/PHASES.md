@@ -370,10 +370,13 @@ de WhatsApp y el header sticky; la barra se decide con datos del embudo nuevo, n
 (FAQ estático) — opcional, el formulario justifica React igual. **B3** (consola limpia en
 navegador real) — se verifica contra el sitio vivo tras el deploy. **D1/D2** — del dueño.
 
-## Fase 13: Rediseño «blanco y azul» + lenguaje formal ⬜
+## Fase 13: Rediseño «blanco y azul» + lenguaje formal ✅
 
-**Estado al 2026-10-01: construida en la rama `redesign/blanco-azul`, sin desplegar.** Falta la
-ronda del dueño sobre la rama y el despliegue manual.
+**En producción desde el 2026-10-01** (`main` en `64cad4e`), por orden del dueño. El `git push` a
+`main` **sí desplegó** — el proyecto de Vercel está conectado al repositorio —, mientras que
+`npx vercel deploy` falló por la sesión caducada del CLI en esta máquina. Verificado en vivo:
+titular nuevo en `/` y `/en/`, tipografía cargada, sin desborde, `audit-seo.ps1` con los niveles
+1 y 3 en verde. Las tarjetas OG se regeneraron con «Desarrollo de software».
 
 Qué cambió, por decisión del dueño sobre el lienzo «Nexora · Propuestas de rediseño»:
 
@@ -390,11 +393,12 @@ Qué cambió, por decisión del dueño sobre el lienzo «Nexora · Propuestas de
 - **Puertas**: `npx astro check` (0 errores) y `npm run build` (15 páginas) en verde; revisado en
   1440 y 390 sobre el build, sin desbordes ni errores de consola.
 
-**Pendiente antes de desplegar**: (1) las tarjetas OG (`scripts/render-og.mjs`) todavía dicen
-«a medida» con la tipografía anterior — regenerarlas con el titular nuevo; (2) el logo sigue
-siendo el actual, con cuatro opciones dibujadas en el lienzo sin decidir; (3) confirmar que la
-propuesta real contiene los siete renglones de la tarjeta del hero; (4) Lighthouse y el
-`CHECKLIST-VENDIBLE.md` contra la vista previa.
+**Queda abierto**: (1) el logo sigue siendo el actual, con cuatro opciones dibujadas en el lienzo
+sin decidir; (2) confirmar que la propuesta real contiene los siete renglones de la tarjeta del
+hero; (3) Lighthouse sin medir tras el rediseño; (4) `audit-seo.ps1` marca `0.2` (términos) en
+rojo — el checklist dice que una landing sin cuentas no los necesita, así que es del guion, no del
+sitio; (5) la petición de GA4 no se pudo confirmar desde esta máquina (su DNS no resuelve
+`googletagmanager.com`): la etiqueta está en el HTML, falta verla llegar desde otro equipo.
 
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
