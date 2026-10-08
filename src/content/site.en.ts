@@ -174,6 +174,13 @@ export const siteEn: SiteContent = {
       url: demoUrls.corporate,
       image: demoPreviews.corporate,
     },
+    {
+      title: 'Site with a 3D model for a real-estate firm',
+      clientType: 'Architecture and real estate',
+      result: 'Projects explored in 3D, with floor plans, photographs and direct enquiries.',
+      url: demoUrls.architecture,
+      image: demoPreviews.architecture,
+    },
   ],
 
   process: [

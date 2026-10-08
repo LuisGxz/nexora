@@ -61,6 +61,7 @@ export const demoUrls = {
   clinic: `${BASE}/demos/dental-aurora/`,
   event: `${BASE}/demos/andrea-y-mateo/`,
   corporate: `${BASE}/demos/vertice/`,
+  architecture: `${BASE}/demos/chum-inmobiliaria/`,
 } as const;
 
 /**
@@ -75,6 +76,7 @@ export const demoPreviews = {
   clinic: `${BASE}/works/dental-aurora.webp`,
   event: `${BASE}/works/andrea-y-mateo.webp`,
   corporate: `${BASE}/works/vertice.webp`,
+  architecture: `${BASE}/works/chum-inmobiliaria.webp`,
   turnia: `${BASE}/works/turnia.webp`,
 } as const;
 

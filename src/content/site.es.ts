@@ -175,6 +175,13 @@ export const siteEs: SiteContent = {
       url: demoUrls.corporate,
       image: demoPreviews.corporate,
     },
+    {
+      title: 'Sitio con modelo 3D para inmobiliaria',
+      clientType: 'Arquitectura e inmobiliaria',
+      result: 'Proyectos que se recorren en 3D, con planos, fotografías y consulta directa.',
+      url: demoUrls.architecture,
+      image: demoPreviews.architecture,
+    },
   ],
 
   process: [
