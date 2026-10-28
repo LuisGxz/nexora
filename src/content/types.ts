@@ -111,6 +111,11 @@ export interface Work {
   badge?: string;
   /** Texto del enlace cuando no es un demo (p. ej. «Ver proyecto»); por omisión `ui.viewDemo`. */
   linkLabel?: string;
+  /**
+   * Tarjeta destacada: ocupa la fila entera desde `md` con la vista previa a la izquierda, para que
+   * el producto propio abra la grilla y las demos debajo llenen sus filas (6 = 3+3 y 2+2+2).
+   */
+  featured?: boolean;
 }
 
 /** La última casilla de servicios: el llamado para lo que no está en la lista. */

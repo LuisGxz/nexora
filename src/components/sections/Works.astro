@@ -3,7 +3,9 @@
  * Works / Projects (section 03) — ONLY Nexora's own work.
  *
  * What: the section header, a grid of project cards (preview, type tag, title,
- * result, and a link when a live URL exists) and a closing band that offers the
+ * result, and a link when a live URL exists) — a `featured` work spans the whole
+ * row from `md` with its preview on the left, so the own product opens the grid
+ * and the demos below fill complete rows — and a closing band that offers the
  * two contact channels, WhatsApp and email. Preview: a real screenshot when
  * `work.image` is set (lazy, fixed aspect so CLS stays 0); otherwise a neutral
  * token-colored panel — never a fake illustration. Past employers never appear
@@ -41,8 +43,18 @@ const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
     <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {
         works.map((work) => (
-          <li class="flex flex-col overflow-hidden rounded-lg border border-border bg-surface">
-            <div class="relative aspect-video border-b border-border bg-blue-50">
+          <li
+            class:list={[
+              'flex flex-col overflow-hidden rounded-lg border border-border bg-surface',
+              work.featured && 'md:col-span-2 md:flex-row lg:col-span-3',
+            ]}
+          >
+            <div
+              class:list={[
+                'relative aspect-video border-b border-border bg-blue-50',
+                work.featured && 'md:w-1/2 md:shrink-0 md:border-b-0 md:border-r',
+              ]}
+            >
               {work.image && (
                 <img
                   src={work.image}
@@ -55,7 +67,12 @@ const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
                 />
               )}
             </div>
-            <div class="flex flex-1 flex-col gap-2 p-5">
+            <div
+              class:list={[
+                'flex flex-1 flex-col gap-2 p-5',
+                work.featured && 'md:justify-center md:p-6 lg:p-7',
+              ]}
+            >
               <p class="flex flex-wrap items-center gap-2 text-small font-semibold text-blue-800">
                 {work.clientType}
                 {work.badge && (
@@ -64,8 +81,22 @@ const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
                   </span>
                 )}
               </p>
-              <h3 class="font-display text-h4 text-text-primary">{work.title}</h3>
-              <p class="flex-1 text-small text-text-muted">{work.result}</p>
+              <h3
+                class:list={[
+                  'font-display text-h4 text-text-primary',
+                  work.featured && 'md:text-h3',
+                ]}
+              >
+                {work.title}
+              </h3>
+              <p
+                class:list={[
+                  'text-small text-text-muted',
+                  work.featured ? 'flex-1 md:flex-none md:text-body' : 'flex-1',
+                ]}
+              >
+                {work.result}
+              </p>
               {isLive(work.url) && (
                 <a
                   href={work.url}

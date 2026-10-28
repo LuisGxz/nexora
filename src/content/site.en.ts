@@ -138,6 +138,7 @@ export const siteEn: SiteContent = {
       url: productUrls.turnia,
       image: demoPreviews.turnia,
       linkLabel: 'View project',
+      featured: true,
     },
     {
       title: 'Barbershop with online booking',

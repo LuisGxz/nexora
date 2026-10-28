@@ -139,6 +139,7 @@ export const siteEs: SiteContent = {
       url: productUrls.turnia,
       image: demoPreviews.turnia,
       linkLabel: 'Ver proyecto',
+      featured: true,
     },
     {
       title: 'Barbería con reservas en línea',
