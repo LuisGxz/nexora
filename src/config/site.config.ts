@@ -48,7 +48,7 @@ export const brand = {
  * WhatsApp contact in E.164 WITHOUT the leading `+` or spaces — this is the
  * exact form `wa.me/<number>` requires.
  */
-export const whatsappNumber = '593995402939';
+export const whatsappNumber = '593959704235';
 
 /**
  * Live demo URLs referenced by `works[]` (same key in both locales). Each demo

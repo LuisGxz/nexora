@@ -80,7 +80,7 @@ These ship as clearly-marked placeholders. Search the repo for `PENDING` and set
 
 | What | Where | Status |
 |---|---|---|
-| WhatsApp number (E.164, no `+`) | `src/config/site.config.ts` → `whatsappNumber` | ✅ `593995402939` |
+| WhatsApp number (E.164, no `+`) | `src/config/site.config.ts` → `whatsappNumber` | ✅ `593959704235` (desde el 2026-10-28) |
 | Contact email | `src/config/site.config.ts` → `brand.email` | ✅ `hola@nexoradevs.com` (Google Workspace domain alias of the owner's `spektova.com` tenant — receives *and* sends) |
 | Live demo URLs | `src/config/site.config.ts` → `demoUrls` (5 demos from `public/demos/<slug>/`, previews in `public/works/`) | ✅ |
 | Employer roles / periods | `src/content/site.es.ts` + `site.en.ts` → `about.experience` | ✅ real roles + periods |
