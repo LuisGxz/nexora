@@ -426,6 +426,15 @@ Poppins, radios 10–14 px y voz de tú.
 **Pendiente**: visto bueno del dueño sobre la vista previa; renders reales de Chum para reemplazar
 las imágenes de referencia; decidir si la demo de arquitectura entra en «Proyectos» de la landing.
 
+**2026-10-28 · Chum entra en «Proyectos», en producción** (`main` en `42dbe5b`, orden «Pasa a main»).
+La tarjeta estaba hecha desde el 08-oct en `feat/chum-en-proyectos` (`7084588`) y nunca había pasado a
+`main`. Con siete tarjetas la grilla de tres dejaba la última sola, así que Turnia pasó a ser tarjeta
+destacada (`Work.featured`): ocupa la fila entera desde `md`, con la vista previa a la izquierda, y las
+seis demos llenan filas completas (3+3 en 1440, 2+2+2 en 800; en 390 no cambia). Título genérico
+(«Sitio con modelo 3D para inmobiliaria») y la demo conserva su `noindex`. Puertas: `astro check`
+0 errores, build y capturas en 1440/800/390; verificado en nexoradevs.com, en ES y EN: 7 tarjetas,
+vistas previas en 200 y sin desplazamiento horizontal.
+
 ## Assumptions / open items
 - **Brand folder lives in `nexora-brand/`**, not repo root as the prompt assumes. Phase 0 copies assets out; the folder stays read-only.
 - **Pricing conflict resolved in favor of NO pricing**: brand kit (`flows/user-flows.md`, `README.md`) still describes tiers — ignore them; 07 is repurposed.
