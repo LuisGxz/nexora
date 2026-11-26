@@ -233,6 +233,8 @@ export interface UiStrings {
   breadcrumbsLabel: string;
   /** Fase 12 · el enlace del footer a la política (decisión D). */
   privacyLink: string;
+  /** Nombre accesible del botón fijo de WhatsApp en móvil. */
+  stickyWhatsappLabel: string;
 }
 
 /** Headers for every titled section, keyed by section id. */

@@ -302,6 +302,7 @@ export const siteEs: SiteContent = {
     breadcrumbHome: 'Inicio',
     breadcrumbsLabel: 'Ubicación en el sitio',
     privacyLink: 'Privacidad',
+    stickyWhatsappLabel: 'Escribir a Nexora por WhatsApp',
   },
 
   // ── Fase 12 · A5 + C4 · Las páginas de servicio, cada una con su caso ─────────

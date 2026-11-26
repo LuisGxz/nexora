@@ -17,6 +17,7 @@ import Niches from '../../components/sections/Niches.astro';
 import About from '../../components/sections/About.astro';
 import Faq from '../../components/sections/Faq.tsx';
 import Contact from '../../components/sections/Contact.astro';
+import StickyWhatsApp from '../../components/StickyWhatsApp.astro';
 import { getContent } from '../../lib/i18n';
 import { faqPageJsonLd, jsonLdString } from '../../lib/jsonld';
 
@@ -52,4 +53,5 @@ const faqJsonLd = jsonLdString(faqPageJsonLd(content.faq));
     <Contact content={content} />
   </main>
   <Footer content={content} locale="en" />
+  <StickyWhatsApp content={content} />
 </BaseLayout>

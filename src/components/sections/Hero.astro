@@ -6,7 +6,7 @@
  * proposal card (what is delivered in writing) and the three-pillar strip.
  * Why the card: the headline states what Nexora develops; the card is the proof
  * beside it — each row is something the real proposal contains. The primary CTA
- * funnels to contact; the secondary jumps to the projects — there is NO pricing
+ * opens a prefilled WhatsApp chat (same link as Works/Contact); the secondary jumps to the projects — there is NO pricing
  * anywhere. All copy comes from `hero` / `pillars`.
  *
  * The eyebrow reads `hero.eyebrow`, not `footer.tagline`: the city belongs to
@@ -15,6 +15,8 @@
  * @prop content - active locale content tree.
  */
 import type { SiteContent } from '../../content/types';
+import { whatsappNumber } from '../../config/site.config';
+import { waLink } from '../../lib/whatsapp';
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
 
@@ -23,7 +25,9 @@ interface Props {
 }
 
 const { content } = Astro.props;
-const { hero, pillars } = content;
+const { hero, pillars, contact } = content;
+
+const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
 ---
 
 <section id="inicio" class="bg-surface">
@@ -44,7 +48,17 @@ const { hero, pillars } = content;
       </p>
 
       <div class="mt-1 flex flex-col gap-3 sm:flex-row">
-        <Button href="#contacto">{hero.ctaPrimary}</Button>
+        <Button
+          href={whatsappHref}
+          icon="ui-whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-cta="whatsapp"
+          data-analytics-source="hero"
+          data-hero-whatsapp
+        >
+          {hero.ctaPrimary}
+        </Button>
         <Button href="#demos" variant="secondary">{hero.ctaSecondary}</Button>
       </div>
     </div>

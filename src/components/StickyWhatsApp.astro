@@ -1,0 +1,77 @@
+---
+/**
+ * StickyWhatsApp — barra fija de WhatsApp, solo móvil (`< lg`).
+ *
+ * What: una barra inferior con el mismo `Button` y el mismo `waLink` que Works y
+ * Contact. Why: en móvil el contacto queda a un toque en cualquier punto de la
+ * página. Un script mínimo con `IntersectionObserver` la muestra una vez que el
+ * botón del hero sale de vista y la oculta mientras `#contacto` está visible,
+ * para que nunca haya dos botones de WhatsApp en pantalla; oculta también deja
+ * de ser enfocable (`invisible`). Sin JS permanece oculta. Un espaciador del
+ * alto de la barra evita que tape el último contenido del footer. Es
+ * `position: fixed`, así que no provoca layout shift; la entrada es una
+ * transición solo bajo `motion-safe:`.
+ *
+ * @prop content - active locale content tree (contact, ui).
+ */
+import type { SiteContent } from '../content/types';
+import { whatsappNumber } from '../config/site.config';
+import { waLink } from '../lib/whatsapp';
+import Button from './ui/Button.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { contact, ui } = content;
+
+const whatsappHref = waLink(whatsappNumber, contact.whatsappPrefill);
+---
+
+<div class="h-[calc(5rem+env(safe-area-inset-bottom))] lg:hidden" aria-hidden="true"></div>
+
+<div
+  data-sticky-whatsapp
+  class="invisible fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-border bg-surface/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur data-[visible=true]:visible data-[visible=true]:translate-y-0 motion-safe:transition-[transform,visibility] motion-safe:duration-base motion-safe:ease-standard lg:hidden"
+>
+  <Button
+    href={whatsappHref}
+    icon="ui-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={ui.stickyWhatsappLabel}
+    class="w-full"
+    data-analytics-cta="whatsapp"
+    data-analytics-source="sticky"
+  >
+    {contact.whatsappCtaLabel}
+  </Button>
+</div>
+
+<script>
+  /**
+   * Alterna `data-visible` en la barra según qué referencias están en vista:
+   * visible solo cuando ni el botón del hero ni `#contacto` se ven.
+   */
+  function initStickyWhatsApp(): void {
+    const bar = document.querySelector<HTMLElement>('[data-sticky-whatsapp]');
+    const targets = [
+      document.querySelector('[data-hero-whatsapp]'),
+      document.getElementById('contacto'),
+    ].filter((el): el is Element => el !== null);
+    if (!bar || targets.length === 0 || !('IntersectionObserver' in window)) return;
+
+    const inView = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) inView.add(entry.target);
+        else inView.delete(entry.target);
+      }
+      bar.dataset.visible = String(inView.size === 0);
+    });
+    targets.forEach((el) => observer.observe(el));
+  }
+
+  initStickyWhatsApp();
+</script>

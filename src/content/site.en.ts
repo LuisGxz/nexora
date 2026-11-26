@@ -300,6 +300,7 @@ export const siteEn: SiteContent = {
     breadcrumbHome: 'Home',
     breadcrumbsLabel: 'Location in the site',
     privacyLink: 'Privacy',
+    stickyWhatsappLabel: 'Message Nexora on WhatsApp',
   },
 
   // ── Fase 12 · A5 + C4 · Service pages, each with its case study ───────────────
